@@ -1,3 +1,37 @@
-<p>
-  create-article-form-fields works!
-</p>
+<div class="create-article-fields col-md-12">
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#create-field">Create Article Field</button>
+</div>
+
+<div class="modal fade" id="create-field" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Article Field</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup] = 'article_fields_form'  (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Field Type</mat-label>
+                <mat-select formControlName = "type" (selectionChange)="enableFieldValueOptions($event)">
+                  <mat-option *ngFor="let field of field_type" [value]="field.value">
+                    {{field.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div formArrayName="field_values">
+              <mat-form-field *ngFor="let value of field_values.controls, let i = index " >
+                  <input matInput [formControlName] = "i" placeholder="Field Value" (change) = "addFieldValueCol($event)" />
+                </mat-form-field>
+              </div>
+        </form>
+      
+       
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

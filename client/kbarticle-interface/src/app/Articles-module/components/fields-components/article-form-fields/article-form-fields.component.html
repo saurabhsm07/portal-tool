@@ -1,37 +1,23 @@
+<div class = "form-fields-list offset-md-2 col-md-8">
+
+
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="article-body-attr col-md-12" cdkDrag>
-    <label>Problem :</label>
-    <editor id="problem"
-    
-    initialValue="<p>Initial content - problem</p>"
-    [init]="tiny_mce_editor_config">
-  </editor>
+
+  <div class="article-body-attr col-md-12" *ngFor="let field of article_fields" cdkDrag>
+  
+      <label for="comment">{{field.field_name}}:</label>
+      <textarea class="form-control" rows="2" id={{field.field_name}}>Text Area for field : {{field.field_name}}</textarea>
+
+
    </div>
   
-   <div class="article-body-attr col-md-12" cdkDrag>
-      <label>Prerequisites :</label>
-     <editor id="prerequisites"
-    
-      initialValue="<p>Initial content - prerequisites</p>"
-      [init]="tiny_mce_editor_config">
-    </editor>
-  </div>
-
-  <div class="article-body-attr col-md-12" cdkDrag>
-    <label>Steps :</label>
-    <editor id="steps"
-    
-     initialValue="<p>Initial content - steps</p>"
-     [init]="tiny_mce_editor_config">
-   </editor>
- </div>
-
- <div class="article-body-attr col-md-12" cdkDrag>
-   <label>Resolution :</label>
-  <editor id="resolution"
    
-   initialValue="<p>Initial content - resolution</p>"
-   [init]="tiny_mce_editor_config">
- </editor>
-</div>  
+</div>
+</div>
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop1($event)">
+  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}
+<div > <p>test ting {{movie}} </p></div>
+
+  </div>
 </div>

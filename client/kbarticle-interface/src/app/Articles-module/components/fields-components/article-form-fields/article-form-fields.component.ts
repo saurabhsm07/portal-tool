@@ -9,40 +9,32 @@ import { Article_Fields } from '../../../classes/article_fields';
 })
 export class ArticleFormFieldsComponent implements OnInit {
 
-  tiny_mce_editor_config = {
-    base_url: '/assets/', 
-    suffix: '.min',
-    plugins: ` preview fullpage paste autolink autosave save 
-              code  fullscreen image link media template codesample 
-              table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist 
-              lists wordcount imagetools textpattern  help  quickbars `,
-    toolbar: `undo redo | bold italic underline strikethrough |
-              fontselect fontsizeselect formatselect |
-              alignleft aligncenter alignright alignjustify | outdent indent |  
-              numlist bullist | forecolor backcolor removeformat | pagebreak | 
-              charmap emoticons | fullscreen  preview save print 
-              | insertfile image media template link anchor codesample | ltr rtl`,
-    menubar:  false,
-    height: 300,
-    max_height: 500,
+//   tiny_mce_editor_config = {
+//     base_url: '/assets/', 
+//     suffix: '.min',
+//     plugins: ``,
+//     toolbar: ``,
+//     menubar:  false,
+//     height: 100,
+//     max_height: 500,
 
-    images_upload_handler: (blobInfo, success, failure) => {
+//     images_upload_handler: (blobInfo, success, failure) => {
      
-      console.log(blobInfo.blob())
+//       console.log(blobInfo.blob())
     
-      // this.articleAttachmentService.postArticleAttachment({ 'file_data' :blobInfo.blob(), 
-      //                                                        'inline': true,
-      //                                                        'article_id' : 155442 })
-      //                              .subscribe((data) => {
-      //                                console.log("successfully saved file")
-      //                                success(data.url)
-      //                              },
-      //                              (error) => {
-      //                                console.log(error)
-      //                              })
+//       // this.articleAttachmentService.postArticleAttachment({ 'file_data' :blobInfo.blob(), 
+//       //                                                        'inline': true,
+//       //                                                        'article_id' : 155442 })
+//       //                              .subscribe((data) => {
+//       //                                console.log("successfully saved file")
+//       //                                success(data.url)
+//       //                              },
+//       //                              (error) => {
+//       //                                console.log(error)
+//       //                              })
     
-    }
-}
+//     }
+// }
 
   constructor() { }
 
@@ -83,7 +75,9 @@ export class ArticleFormFieldsComponent implements OnInit {
    }
   ];
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Article_Fields[]>) {
+    console.log(event);
+    console.log(this.article_fields)
     moveItemInArray(this.article_fields, event.previousIndex, event.currentIndex);
   }
 }
