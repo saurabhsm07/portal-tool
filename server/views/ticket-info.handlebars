@@ -1,0 +1,193 @@
+<div id ="ticket-info-div" class = " row">
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr class="thead-dark">
+            <th  align="center" colspan="3" style="text-align: center">Ticket Information</th>
+        </tr>
+    </thead>
+    <tbody class="">
+        {{#if ticket}}
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Id</td>
+            <td class="ticket-col-val" id="ticket-id-val">{{ticket.id}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Subject</td>
+            <td class="ticket-col-val">{{ticket.subject}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td id="ticket-status" class="ticket-col-key">Status</td>
+            <td id="ticket-status-val" class="ticket-col-val">{{ticket.status}}</td>
+        </tr>
+         <tr class="ticket-info-row">
+            <td id= "ticket-priority" class="ticket-col-key">Priority</td>
+            <td id="ticket-priority-val" class="ticket-col-val">{{ticket.priority}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Created At</td>
+            <td class="ticket-col-val">{{ticket.created_at}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Last Updated At</td>
+            <td class="ticket-col-val">{{ticket.updated_at}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Description</td>
+            <td class="ticket-col-val">{{ticket.description}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Requester Id</td>
+            <td class="ticket-col-val">{{ticket.requester_id}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Assignee Id</td>
+            <td class="ticket-col-val">{{ticket.assignee_id}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Organization Id</td>
+            <td class="ticket-col-val">{{ticket.organization_id}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Collaborator Ids</td>
+            <td class="ticket-col-val">{{ticket.collaborator_ids}}</td>
+        </tr>
+        <tr class="ticket-info-row">
+            <td class="ticket-col-key">Tags</td>
+            <td class="ticket-col-val">{{ticket.tags}}</td>
+        </tr>
+
+        {{/if}}
+    </tbody>
+</table>
+<div id="ticket-options-div" class = "col-md-12">
+ <button type="button" id = "update-ticket-option" class="btn btn-info" data-toggle="modal" data-target="#update-ticket-modal">Update</button>
+ <button type="button" id = "delete-ticket-option" class="btn btn-danger" data-toggle="modal" data-target="#delete-ticket-modal">Delete</button>
+</div>
+
+</div>
+
+  <div class="modal fade" id="update-ticket-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Update Ticket</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+  <div class="form-group row">
+    <label for="ticket-update-id" class="col-sm-2 col-form-label">Ticket ID</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control col-sm-4" id="ticket-update-id" placeholder="Ticket Id" value={{ticket.id}} readonly>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="ticket-update-subject" class="col-sm-2 col-form-label">Subject</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ticket-update-subject" placeholder="Subject" value ="{{ticket.subject}}" readonly>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-update-priority" class="col-sm-2 col-form-label">Priority</label>
+    <div class="col-sm-10">
+    <select class="form-control col-sm-4" id="ticket-update-priority">
+    <option>low</option>
+    <option>normal</option>
+    <option>high</option>
+    <option>urgent</option>
+  </select>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-update-status" class="col-sm-2 col-form-label">Status</label>
+    <div class="col-sm-10">
+    <select class="form-control col-sm-4" id="ticket-update-status">
+    <option>new</option>
+    <option>pending</option>
+    <option>hold</option>
+    <option>open</option>
+    <option>solved</option>
+  </select>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-update-description" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="ticket-update-description" placeholder="Description">{{ticket.description}} readonly</textarea>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-update-requester" class="col-sm-2 col-form-label">Requester</label>
+    <div class="col-sm-10">
+    <input type="number" class="form-control col-sm-4" id="ticket-update-requester" placeholder="Requester" value={{ticket.requester_id}} readonly>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="ticket-update-org" class="col-sm-2 col-form-label">Organization</label>
+    <div class="col-sm-10">
+    <input type="number" class="form-control col-sm-6" id="ticket-update-org" placeholder="Organization" value={{ticket.organization_id}}>
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="ticket-update-collaborators" class="col-sm-2 col-form-label">Collaborator</label>
+    <div class="col-sm-10">
+    <input type="number" class="form-control col-sm-6" id="ticket-update-collaborators" placeholder="Collaborators" value={{ticket.collaborator_ids}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="ticket-update-tags" class="col-sm-2 col-form-label">Tags</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control col-sm-10" id="ticket-update-tags" placeholder="Tags" value={{ticket.tags}}>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12 update-ticket-button">
+      <button type="button" class="btn btn-primary" id="update-ticket-form">Update</button>
+    </div>
+  </div>
+</form>
+        </div>
+        
+        <!-- Modal footer -->
+        {{!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> --}}
+        
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade" id="delete-ticket-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Ticket</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+              <h3> Are you sure you want to delete the ticket ?</h3>
+  <div class="form-group row">
+    <div class="col-sm-12 delete-ticket-button">
+      <button type="button" class="btn btn-danger" id="delete-ticket-form">Confirm</button>
+    </div>
+  </div>
+</form>
+        </div>
+        
+        <!-- Modal footer -->
+        {{!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> --}}
+        
+      </div>
+    </div>
+  </div>

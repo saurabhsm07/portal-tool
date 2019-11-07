@@ -1,0 +1,43 @@
+// colors
+$acceleriteBlue : #388ecf;
+$createArticleBackCol: rgb(0, 188, 212);
+// padding sizes 
+$pad-zero: 0px !important;
+$pad-five: 5px;
+$pad-ten: 10px;
+mat-form-field {
+padding-left :  $pad-zero;   
+}
+
+mat-radio-button{
+  padding-right: $pad-ten;
+}
+
+
+.article-title-field{
+  width: 100%;
+}
+
+.article-radio{
+  padding-top: $pad-ten;
+  padding-bottom: $pad-ten;
+}
+
+.create-article > button {
+  background-color: $createArticleBackCol;
+  color: white
+  
+}
+  
+.create-article {
+  padding: $pad-ten $pad-ten $pad-ten $pad-ten;
+  text-align: center;
+}
+
+.article-body-attr{
+  margin : 15px 0 15px 0px;
+  label{
+    font-size: 20px;
+    font-weight: 400;
+  }
+}

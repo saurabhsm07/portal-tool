@@ -1,0 +1,185 @@
+<div id="tickets_list" class="container">
+
+  <div class="modals-div">
+  {{!-- <h2>Fading Modal</h2>
+  <p>Add the "fade" class to the modal container if you want the modal to fade in on open and fade out on close.</p>
+
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Open modal
+  </button> --}}
+
+  <!-- The Modal -->
+  <div class="modal fade" id="ticket-creation-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Create Ticket</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+  <div class="form-group row">
+    <label for="ticket-input-id" class="col-sm-2 col-form-label">Ticket ID</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control col-sm-4" id="ticket-input-id" placeholder="Ticket Id">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="ticket-input-subject" class="col-sm-2 col-form-label">Subject</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ticket-input-subject" placeholder="Subject">
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-input-priority" class="col-sm-2 col-form-label">Priority</label>
+    <div class="col-sm-10">
+    <select class="form-control col-sm-4" id="ticket-input-priority">
+    <option>low</option>
+    <option>normal</option>
+    <option>high</option>
+    <option>urgent</option>
+  </select>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-input-description" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="ticket-input-description" placeholder="Description"> </textarea>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-input-requester" class="col-sm-2 col-form-label">Requester</label>
+    <div class="col-sm-10">
+    <input type="number" class="form-control col-sm-4" id="ticket-input-requester" placeholder="Requester">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12 submit-ticket-button">
+      <button type="button" class="btn btn-primary" id="submit-ticket-form">Submit</button>
+    </div>
+  </div>
+</form>
+        </div>
+        
+        <!-- Modal footer -->
+        {{!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> --}}
+        
+      </div>
+    </div>
+  </div>
+  
+
+    <div class="modal fade" id="ticket-search-modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Search Tickets</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form>
+  <div class="form-group row">
+    <label for="ticket-search-priority" class="col-sm-4 col-form-label">Priority</label>
+    <div class="col-sm-8">
+    <select class="form-control " id="ticket-search-priority">
+    <option>low</option>
+    <option>normal</option>
+    <option>high</option>
+    <option>urgent</option>
+  </select>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="ticket-search-status" class="col-sm-4 col-form-label">Status</label>
+    <div class="col-sm-8">
+    <select class="form-control" id="ticket-search-status">
+    <option>new</option>
+    <option>pending</option>
+    <option>hold</option>
+    <option>open</option>
+    <option>solved</option>
+  </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12 search-ticket-button">
+      <button type="button" class="btn btn-primary" id="search-ticket-form">Search</button>
+    </div>
+  </div>
+</form>
+        </div>
+        
+        <!-- Modal footer -->
+        {{!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> --}}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class= "row">
+
+       
+  <div class ="col-md-12 ticket-options">
+    <div class="col-md-5 ticket-search">
+       <h1 class="ticket-list-title">Ticket Listing</h1>
+    
+    </div>
+
+    <div class="col-md-7 create-ticket-div">
+        <form class="form-inline homepage-form">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="input-ticket-id" class="sr-only">Ticket Id :</label>
+    <input type="text" class="form-control" id="input-ticket-id" placeholder="Ticket ID">
+  </div>
+  <button type="button" class="btn btn-primary mb-2" id="search-ticket" data-toggle="modal" data-target="#ticket-search-modal">Advanced Search</button>
+   <button type="button" class="btn btn-primary mb-2" id="create-ticket" data-toggle="modal" data-target="#ticket-creation-modal">Create Ticket</button>
+</form>
+       
+    </div>
+  </div>       
+
+  <div class="table-responsive">          
+  <table class="table table table-bordered table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope='col'>Id</th>
+        <th scope='col'>Subject</th>
+        <th scope='col'>Priority</th>
+        <th scope='col'>Status</th>
+        <th scope='col'>Created Date</th>
+        <th scope='col'>Requester</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each tickets}}
+      <tr>
+        <td scope='col'><a href="{{url}}">{{id}}</a></td>
+        <td>{{subject}}</td>
+        <td>{{priority}}</td>
+        <td>{{status}}</td>
+        <td>{{created_at}}</td>
+        <td>{{requester_id}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
+</div>
+
+
+

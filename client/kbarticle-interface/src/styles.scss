@@ -1,0 +1,77 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$kbarticle-interface-primary: mat-palette($mat-indigo);
+$kbarticle-interface-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$kbarticle-interface-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$kbarticle-interface-theme: mat-light-theme($kbarticle-interface-primary, $kbarticle-interface-accent, $kbarticle-interface-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($kbarticle-interface-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+$h1_title_color : #369;
+$font_family :  Roboto-light;
+
+
+$h23_weight : lighter;
+$h23_title_color : black;
+$h3_font_size : 25px; 
+
+$h1_title_color : #369;
+
+h1 {
+    color: $h1_title_color;
+    font-family: $font_family;
+  }
+
+  h2, h3 {
+    color: $h23_title_color;
+    font : {
+        family  : $font_family;
+        weight: $h23_weight;
+    }
+  }
+
+  h3{
+    font: {
+      size: $h3_font_size;
+    }
+  }
+  body {
+    margin: 2em;
+  }
+  body, input[type="text"], button {
+    color: $h23_title_color;
+    font-family: Cambria, Georgia;
+  }
+  /* everywhere else */
+  * {
+    font-family: $font_family;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// css added as a fix for material components in boostrap modal
+//ISSUE : material components appear behind bootstrap modal because of conflicting z-index
+.cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}

@@ -1,0 +1,61 @@
+.kbarticle_table{
+    td, th {
+        border: 1px solid gray;
+    }
+}
+
+.kb-list-headers{
+    td {
+        padding: 6px 6px 6px 6px;
+        font-size: 18px;
+    }
+    background: #0a64ab;
+    color: white;
+    text-align: left;
+    .head-title{
+        width: 75%;
+    }
+}
+
+.btn-draft{
+    border-radius: 3px;
+    border: 1px solid #FF8040;
+    padding: 3px 7px 3px 7px;
+    text-align: center;
+    color: #FF8040;
+    margin-left: 20px;
+    padding: 3px 7px;
+    font-size: 16px;
+}
+
+.btn-rejected{
+    border-radius: 3px;
+    border: 1px solid #ff0000;
+    padding: 3px 7px 3px 7px;
+    text-align: center;
+    color: #ff0000;
+    cursor: pointer;
+    margin-left: 20px;
+    padding: 3px 7px;
+    font-size: 15px;
+}
+
+
+.kb-list{
+    .title-col-art{
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left : 10px;
+
+        .info-data-art {
+            font-size: 16px;
+            color: #057961;
+            margin: 0px;
+            padding-top: 5px;
+
+            i {
+                padding: 0px 5px 0px 5px;
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+body{
+    background-color: #f9f9f9;
+}
+
+.ticket-app-title{
+    text-align: center
+}
+
+.ticket-options{
+    display: flex;
+    text-align: left;
+}
+
+.homepage-form{
+    padding-top: 10px;
+    float: right;
+}
+
+#create-ticket{
+    margin-left: 10px;
+}
+
+.homepage-form button{
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.submit-ticket-button button{
+float: right;
+}
+.search-ticket-button button{
+    float: right;
+    }
+    
+
+.update-ticket-button{
+    text-align: center;
+}
+
+.delete-ticket-button{
+    text-align: center;
+}
+
+#ticket-options-div{
+    text-align: center;
+}
+
+.modal-body h3{
+    text-align :center;
+}

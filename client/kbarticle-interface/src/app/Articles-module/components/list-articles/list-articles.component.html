@@ -1,0 +1,25 @@
+<div *ngIf =  "articles" class="kbarticle_list_div">
+  <table class="col-md-12 kbarticle_table">
+    <tbody>
+      <tr class="kb-list-headers">
+        <td class="head-title">Title</td>
+        <td class="text-center">Created At</td>
+        <td class="text-center">Updated At</td>
+        <td></td>
+      </tr>
+      <tr *ngFor = "let article of articles" class="kb-list">
+        <td  class="title-col-art">{{article.title}} 
+          <span class=" btn-draft">{{draftStatusPipe(article.draft)}}</span>
+          <span class=" btn-rejected">{{reviewStatusPipe(article.review_state)}}</span>
+          <p class="info-data-art">
+            <i class="fa fa-user" aria-hidden="true"></i> {{authorPipe(article.author)}} 
+            <i class="fa fa-folder-o" aria-hidden="true" ></i>{{sectionPipe(article.section)}}
+          </p>
+        </td>
+        <td class="text-center">{{article.created_at}}</td>
+        <td class="text-center">{{article.updated_at}}</td>
+        <td class="text-center"><a href='{{article.url}}{{article.id}}' >View</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

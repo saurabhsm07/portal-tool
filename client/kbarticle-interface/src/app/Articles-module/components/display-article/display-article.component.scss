@@ -1,0 +1,86 @@
+// padding values :
+$pad10 : 10px; 
+$pad20: 20px; 
+$pad30: 30px;
+$article-title-pad: 0 0 40px 0;
+$article-body-pad: 0 0 40px 0;
+
+// margin values :
+$marginArticle : 40px;
+
+//border right :
+$body_border : 1px solid gainsboro;
+
+
+h1 {
+    text-align: center;
+}
+
+.article-title {
+    text-align: left;
+    padding-left: $pad10;
+    font-size: 30px;
+    color: black;
+    padding: $article-title-pad;
+    margin: 0;
+}
+
+.display-article-home{
+    margin-left: $marginArticle;
+    margin-right: $marginArticle;
+    line-height: 27px;
+    font-size: 16px;
+}
+
+.article-body{
+        font-size: 20px;
+        font-weight: lighter;
+        padding: $article-body-pad;
+        font-family: Roboto-light;
+
+        border-right: $body_border;
+        .body-title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .body-textarea{
+            font-size: 17px;
+        }
+}
+
+.article-sidebar {
+
+    .kb-article-opt {
+     
+     margin-bottom: 10px;
+     button{
+        margin-right: 10px;
+        color: white;
+        background-color: #388ecf; 
+     }
+     
+     
+    }
+    h3  {
+        font : {
+            weight :bold;
+            size :20px;
+        }
+    }
+
+    p {
+        line-height: 27px;
+        font-size:18px;
+    }
+
+    .review_state{
+        color: #c70000;
+        font-size: 20px;
+        display: inline-block;
+        margin-bottom: 10px;
+        span {
+            font-weight: bold;
+        }
+    }
+}
+
