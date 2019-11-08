@@ -1,3 +1,35 @@
+// colors
+$acceleriteBlue : #388ecf;
+$createArticleBackCol: rgb(0, 188, 212);
+// padding sizes 
+$pad-zero: 0px !important;
+$pad-five: 5px;
+$pad-ten: 10px;
+
 .modal-title{
     text-align: left;
 }
+
+.field_values_div{
+    mat-form-field{
+        width: 50%;
+        display: block;
+    }
+}
+
+.checkbox-options-div{
+    mat-checkbox{
+        display: block;
+    }
+}
+
+.create-article > button {
+    background-color: $createArticleBackCol;
+    color: white
+    
+  }
+    
+  .create-article {
+    padding: $pad-ten $pad-ten $pad-ten $pad-ten;
+    text-align: center;
+  }

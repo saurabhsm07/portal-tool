@@ -41,7 +41,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
 
   addFieldValueCol(event){
     console.log(event)
-    console.log(this.field_values.length)
+    console.log(this.field_values)
     this.field_values.push( this.fb.control(''))
     // this.field_values.removeAt()
   }

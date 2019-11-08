@@ -9,41 +9,14 @@ import { Article_Fields } from '../../../classes/article_fields';
 })
 export class ArticleFormFieldsComponent implements OnInit {
 
-//   tiny_mce_editor_config = {
-//     base_url: '/assets/', 
-//     suffix: '.min',
-//     plugins: ``,
-//     toolbar: ``,
-//     menubar:  false,
-//     height: 100,
-//     max_height: 500,
-
-//     images_upload_handler: (blobInfo, success, failure) => {
-     
-//       console.log(blobInfo.blob())
-    
-//       // this.articleAttachmentService.postArticleAttachment({ 'file_data' :blobInfo.blob(), 
-//       //                                                        'inline': true,
-//       //                                                        'article_id' : 155442 })
-//       //                              .subscribe((data) => {
-//       //                                console.log("successfully saved file")
-//       //                                success(data.url)
-//       //                              },
-//       //                              (error) => {
-//       //                                console.log(error)
-//       //                              })
-    
-//     }
-// }
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  article_fields : Article_Fields[] = [
+  article_body_fields : Article_Fields[] = [
   {id: 1,
-   field_name: 'field_1',
+   field_name: 'Problem',
    field_type: 'text',
    created_at: new Date(),
    required: false,
@@ -51,7 +24,7 @@ export class ArticleFormFieldsComponent implements OnInit {
   },
 
   {id: 2,
-    field_name: 'field_2',
+    field_name: 'Prerequisites',
     field_type: 'text',
     created_at: new Date(),
     required: false,
@@ -59,7 +32,7 @@ export class ArticleFormFieldsComponent implements OnInit {
   },
 
   {id: 3,
-    field_name: 'field_3',
+    field_name: 'Steps',
     field_type: 'text',
     created_at: new Date(),
     required: false,
@@ -67,7 +40,7 @@ export class ArticleFormFieldsComponent implements OnInit {
    },
 
    {id: 4,
-    field_name: 'field_4',
+    field_name: 'Resolution',
     field_type: 'text',
     created_at: new Date(),
     required: false,
@@ -75,9 +48,41 @@ export class ArticleFormFieldsComponent implements OnInit {
    }
   ];
 
-  drop(event: CdkDragDrop<Article_Fields[]>) {
+  article_header_fields : Article_Fields[] = [
+    {id: 1,
+     field_name: 'Section',
+     field_type: 'dropdown',
+     created_at: new Date(),
+     required: false,
+     active: true
+    },
+  
+    {id: 2,
+      field_name: 'Product Version',
+      field_type: 'multiselect',
+      created_at: new Date(),
+      required: false,
+      active: true
+    },
+  
+    {id: 3,
+      field_name: 'Operating System',
+      field_type: 'multiselect',
+      created_at: new Date(),
+      required: false,
+      active: true
+     },
+    ];
+
+  dropHeaderAttr(event: CdkDragDrop<Article_Fields[]>) {
     console.log(event);
-    console.log(this.article_fields)
-    moveItemInArray(this.article_fields, event.previousIndex, event.currentIndex);
+    console.log(this.article_header_fields)
+    moveItemInArray(this.article_header_fields, event.previousIndex, event.currentIndex);
+  }
+
+  dropBodyAttr(event: CdkDragDrop<Article_Fields[]>) {
+    console.log(event);
+    console.log(this.article_body_fields)
+    moveItemInArray(this.article_body_fields, event.previousIndex, event.currentIndex);
   }
 }
