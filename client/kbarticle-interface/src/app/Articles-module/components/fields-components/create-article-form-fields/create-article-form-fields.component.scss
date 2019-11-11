@@ -6,10 +6,23 @@ $pad-zero: 0px !important;
 $pad-five: 5px;
 $pad-ten: 10px;
 
-.modal-title{
+.create-field-content{
+    margin: 10px 10px 10px 10px;
+}
+
+.remove-button{
+    float:right;
+}
+
+.create-field-title{
     text-align: left;
 }
 
+.field-discription{
+    mat-form-field{
+        width: 80%;
+    }
+}
 .field_values_div{
     mat-form-field{
         width: 50%;

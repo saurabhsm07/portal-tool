@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
+import { Article_Field } from './../../../classes/article_fields';
 
 @Component({
   selector: 'app-create-article-form-fields',
@@ -8,22 +9,24 @@ import { FormBuilder, FormArray } from '@angular/forms';
 })
 export class CreateArticleFormFieldsComponent implements OnInit {
 
+  selectedType: number;
+
   field_type = [
     {name: 'text', value:1},
     {name: 'textarea', value:2},
     {name: 'dropdown', value:3},
-    {name: 'checkbox', value: 4},
+    {name: 'multliselect', value:4},
+    {name: 'checkbox', value: 5},
   ];
 
   value_map=[];
 
   article_fields_form = this.fb.group({
-    type : [''],
+    // type : [''],
     name : [''],
     description: [''],
-    require: [''],
-    readonly: [''],
-    endUser_editable: [''],
+    required: [''],
+    agentonly: [''],
     field_values: this.fb.array([ this.fb.control('')])
   })
 
@@ -33,18 +36,29 @@ export class CreateArticleFormFieldsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  enableFieldValueOptions(value){
-    if((value == 2) || (value == 3)){
+
+  updateSelectedFieldType(value){
+    this.selectedType = value.value;
+    console.log(this.selectedType)
+  }
+
+  // enableFieldValueOptions(value){
+  //   if((value == 2) || (value == 3)){
       
+  //   }
+  // }
+
+  addFieldValueCol(index){
+    console.log(this.field_values.value)
+    if(this.field_values.value[index].length > 0){
+      this.field_values.push( this.fb.control(''))
     }
   }
 
-  addFieldValueCol(event){
-    console.log(event)
-    console.log(this.field_values)
-    this.field_values.push( this.fb.control(''))
-    // this.field_values.removeAt()
+  removeValue(i){
+    this.field_values.removeAt(i);
   }
+
 
   ngOnInit() {
   }

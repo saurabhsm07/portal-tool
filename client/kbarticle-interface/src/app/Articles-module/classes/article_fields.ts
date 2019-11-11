@@ -1,4 +1,4 @@
-export class Article_Fields {
+export class Article_Field {
     id?: number;
     field_name: string;
     field_value?: {};
@@ -9,4 +9,5 @@ export class Article_Fields {
     field_type : string;
     active : boolean;
     required : boolean;
+    agentonly : boolean;
 }
