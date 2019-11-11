@@ -36,12 +36,14 @@
                   <input matInput formControlName = "name" placeholder="Add Field Name" />
                 </mat-form-field>
               </div>
-              <div *ngIf="selectedType" formArrayName="field_values" class="field_values_div">
+              <span  *ngIf="typeof(selectedType)!=='undefined' || selectedType!=1 || selectedType!=2">
+              <div formArrayName="field_values" class="field_values_div">
               <mat-form-field *ngFor="let value of field_values.controls, let i = index " >
                   <input matInput [formControlName] = "i" placeholder="Field Value" (change) = "addFieldValueCol(i)" />
                   <i class="remove-button fa fa-times-circle-o" aria-hidden="true" (click) = "removeValue(i)"></i>
                 </mat-form-field>
               </div>
+            </span>
               <div *ngIf="selectedType" class="create-field-footer create-article">
                   <button type="button" class="btn btn-default" >Create Field</button>
                 </div>

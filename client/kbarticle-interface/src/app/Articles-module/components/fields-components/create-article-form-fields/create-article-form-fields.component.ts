@@ -17,6 +17,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     {name: 'dropdown', value:3},
     {name: 'multliselect', value:4},
     {name: 'checkbox', value: 5},
+    {name: 'radiobox', value: 6}
   ];
 
   value_map=[];
@@ -38,6 +39,9 @@ export class CreateArticleFormFieldsComponent implements OnInit {
 
 
   updateSelectedFieldType(value){
+    if(this.selectedType == 1 || this.selectedType == 2){
+
+    }
     this.selectedType = value.value;
     console.log(this.selectedType)
   }
@@ -56,11 +60,13 @@ export class CreateArticleFormFieldsComponent implements OnInit {
   }
 
   removeValue(i){
+    if(i!=0)
     this.field_values.removeAt(i);
   }
 
 
   ngOnInit() {
+    console.log(this.selectedType)
   }
 
 
