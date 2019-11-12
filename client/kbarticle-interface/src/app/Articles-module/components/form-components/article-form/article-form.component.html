@@ -1,0 +1,43 @@
+<div class = "form-fields-list offset-md-2 col-md-8">
+  <div class="col-md-12 title-div">
+    <h5>Form Layout Design :</h5>
+    <mat-form-field class="example-full-width">
+        <input matInput class="col-md-12" placeholder="Article Title Here" disabled>
+      </mat-form-field>
+  </div>
+  <div cdkDropList class= "article-header-div col-md-12" (cdkDropListDropped)="dropHeaderAttr($event)">
+      <div class="article-header-attr col-md-4" *ngFor="let field of article_header_fields" cdkDrag>
+    
+          <label for="comment">{{field.field_name}}:</label>
+          <select class="form-control" id={{field.id}} disabled>Select {{field.field_name}}</select>
+    
+    
+       </div>
+  </div>
+  <div class="col-md-12 reference-ticket-div">
+    <h5>Reference Tickets :</h5>
+    <mat-form-field class="">
+        <input matInput class="col-md-12" placeholder="Reference Ticket Id" disabled>
+      </mat-form-field>
+      <mat-form-field class="">
+          <input matInput class="col-md-12" placeholder="Reference Jira Id" disabled>
+        </mat-form-field>
+  </div>
+  <div cdkDropList class="article-body-div col-md-12" (cdkDropListDropped)="dropBodyAttr($event)">
+  
+    <div class="article-body-attr col-md-12" *ngFor="let field of article_body_fields" cdkDrag>
+    
+        <label for="comment">{{field.field_name}}:</label>
+        <textarea class="form-control" rows="2" id={{field.field_name}}>Text Area for field : {{field.field_name}}</textarea>
+  
+  
+     </div>
+    
+     
+  </div>
+  
+  <div class="create-article col-md-12" >
+      <button mat-button type="submit" color="primary" disabled>Create Article</button>
+  </div>
+  </div>
+  

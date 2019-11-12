@@ -21,6 +21,7 @@ import { CreateArticleFormFieldsComponent } from './components/fields-components
 import { ArticleFormFieldsComponent } from './components/fields-components/article-form-fields/article-form-fields.component';
 import { ListArticleFormFieldsComponent } from './components/fields-components/list-article-form-fields/list-article-form-fields.component';
 import { EditArticleFormFieldsComponent } from './components/fields-components/edit-article-form-fields/edit-article-form-fields.component';
+import { ArticleFormComponent } from './components/form-components/article-form/article-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { EditArticleFormFieldsComponent } from './components/fields-components/e
     ArticleFormFieldsComponent,
     ListArticleFormFieldsComponent,
     EditArticleFormFieldsComponent,
+    ArticleFormComponent,
   ],
   imports: [
     BrowserModule,

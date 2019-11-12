@@ -1,74 +1,17 @@
-// colors
-$acceleriteBlue : #388ecf;
-$createArticleBackCol: rgb(0, 188, 212);
-// padding sizes 
-$pad-zero: 0px !important;
-$pad-five: 5px;
-$pad-ten: 10px;
+.article-fields-header{
+  margin-bottom: 20px;
 
-.article-body-attr{
-  margin: 10px 0 0px 0;
-}
-
-.form-fields-list{
-  // text-align: center;
-  display: inline-grid
-}
-
-.article-header-attr{
-  border: dotted 1px black;
+  .head-title-div{
+    padding: 15px 10px 15px 10px;
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
   
-  margin-bottom: 10px;
-
-  label{
-    font-weight: bold;
-    font-size: 15px;
-  }
-  select{
-    padding: 0 5px 0 5px;
-  }
-}
-
-.article-body-attr{
-  border: dotted 1px black;
-
-
-  label{
-    font-weight: bold;
-    font-size: 15px;
-  }
-  textarea{
-    margin: 5px 0 5px 0;
-  }
-}
-
-.article-header-div{
-  div{
-    display: inline-block;
+    p{
+      font-size: 15px;
+    }
 
   }
-}
-
-.title-div{
-  mat-form-field{
-    width: 100%;
-  }
-}
-
-.reference-ticket-div{
-  mat-form-field{
-    width: 40%;
-    margin-right:10px;
-  }
-}
-
-.create-article > button {
-  background-color: $createArticleBackCol;
-  color: white
-  
-}
-  
-.create-article {
-  padding: $pad-ten $pad-ten $pad-ten $pad-ten;
-  text-align: center;
+ 
 }
