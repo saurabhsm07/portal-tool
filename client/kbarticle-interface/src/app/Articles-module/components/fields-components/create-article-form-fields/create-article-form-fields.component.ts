@@ -85,9 +85,30 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * @param index = position in field_values.value array for which this function was called
    */
   addFieldValueCol(index){
-    if(this.field_values.value[index].length > 0){
-      this.field_values.push( this.fb.control(''))
+    //Only 1 field value for check-box
+    if(this.selectedType == 5){
+      if(this.field_values.value.length < 1){
+      if(this.field_values.value[index].length > 0){
+        this.field_values.push( this.fb.control(''))
+      }
     }
+    }
+
+    //Only 2 field values for radiobox
+    else if(this.selectedType == 6){
+      if(this.field_values.value.length < 2)
+      if(this.field_values.value[index].length > 0){
+        this.field_values.push( this.fb.control(''))
+      }
+    }
+
+    //unlimited field values for multiselect and dropdown select
+    else{
+      if(this.field_values.value[index].length > 0){
+        this.field_values.push( this.fb.control(''))
+      }
+    }
+    
   }
 
   /**
