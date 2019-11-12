@@ -46,3 +46,9 @@ $pad-ten: 10px;
     padding: $pad-ten $pad-ten $pad-ten $pad-ten;
     text-align: center;
   }
+
+  .field-name{
+      mat-form-field{
+          width: 70%;
+      }
+  }
