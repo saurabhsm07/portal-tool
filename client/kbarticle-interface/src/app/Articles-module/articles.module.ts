@@ -22,6 +22,7 @@ import { ArticleFormFieldsComponent } from './components/fields-components/artic
 import { ListArticleFormFieldsComponent } from './components/fields-components/list-article-form-fields/list-article-form-fields.component';
 import { EditArticleFormFieldsComponent } from './components/fields-components/edit-article-form-fields/edit-article-form-fields.component';
 import { ArticleFormComponent } from './components/form-components/article-form/article-form.component';
+import { SearchFieldPipe } from './pipes/search-article-field/search-field.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ArticleFormComponent } from './components/form-components/article-form/
     ListArticleFormFieldsComponent,
     EditArticleFormFieldsComponent,
     ArticleFormComponent,
+    SearchFieldPipe,
   ],
   imports: [
     BrowserModule,
