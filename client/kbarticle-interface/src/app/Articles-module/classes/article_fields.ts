@@ -7,7 +7,7 @@ export class Article_Field {
     description? : Text;
     removable? : boolean;
     field_type : string;
-    active : boolean;
+    active?: boolean;
     required : boolean;
     agentonly : boolean;
 }

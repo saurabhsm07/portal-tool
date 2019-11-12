@@ -31,13 +31,15 @@ fields.get('/id/:id', (req, res) =>{
 })
 
 fields.post('/', (req, res) =>{
+    console.log(req.body)
     const data = {
-        required: true,
-        field_type: 'checkbox',
-        field_name: 'field_name_14',
-        description: 'field description 12',
-        removable: false,
-        active: false,
+        required: req.body.required,
+        field_type: req.body.field_type,
+        field_name: req.body.field_name,
+        description: req.body.description,
+        removable: true,
+        agent_only: req.body.agent_only,
+        active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
 
@@ -46,7 +48,7 @@ fields.post('/', (req, res) =>{
     Field.create(data)
               .then((resp) => {
                   console.log('New Field created')
-                  res.send(`field name : ${resp.field_name} saved with id: ${resp.id}`)
+                  res.send(resp)
               })
               .catch((err) =>{
                   console.log(err)

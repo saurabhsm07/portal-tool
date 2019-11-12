@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { Article_Field } from './../../../classes/article_fields';
-import { validateStyleParams } from '../../../../../../node_modules/@angular/animations/browser/src/util';
+
+
+import { ArticleFieldServiceService } from './../../../services/article-fields-service/article-field-service.service';
+// import { validateStyleParams } from '../../../../../../node_modules/@angular/animations/browser/src/util';
 
 @Component({
   selector: 'app-create-article-form-fields',
@@ -32,7 +35,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * Article field form built using form builder to create article fields 
    */
   article_fields_form = this.fb.group({
-    // type : [''],
+    type : [''],
     name : [''],
     description: [''],
     required: [''],
@@ -47,7 +50,15 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     return this.article_fields_form.get('field_values') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) { }
+/**
+ * Add field type to reactive forms
+ */
+  addFieldType(){
+    this.article_fields_form.patchValue({type : this.field_type.filter(field => field.value == this.selectedType)[0].name})
+  }
+
+  constructor(private fb: FormBuilder,
+              private articleFieldService :  ArticleFieldServiceService) { }
 
 
   /**
@@ -74,7 +85,6 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * @param index = position in field_values.value array for which this function was called
    */
   addFieldValueCol(index){
-    console.log(this.field_values.value)
     if(this.field_values.value[index].length > 0){
       this.field_values.push( this.fb.control(''))
     }
@@ -97,12 +107,25 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * @param index = position in field_values.value array for which this function was called
    */
   validateFieldValues(index){
-    const lenVal = this.field_values.value.filter((val, i) => (val == this.field_values.value[index] && (i != index)))
-    console.log(lenVal)
-    if(lenVal.length > 0){
-      console.log(lenVal)
+    const commonVals = this.field_values.value.filter((val, i) => (val == this.field_values.value[index] && (i != index)))
+
+    if(commonVals.length > 0){
+      
       console.log("cannot contain similar values")
     }
+  }
+
+/**
+ * Save Article Field Form Details to the Database on form submit
+ */
+  onSubmit(){
+    this.addFieldType()
+    console.log(this.article_fields_form.value)
+    this.articleFieldService.postArticleField(this.article_fields_form.value)
+                            .subscribe((data) => {
+                              console.log("successfully saved the field to database")
+                              console.log(data)
+                            })
   }
 
 

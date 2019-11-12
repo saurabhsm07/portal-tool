@@ -25,6 +25,9 @@ const Field = client.define('Article_fields',{
                                                         removable: {
                                                             type: Sequelize.BOOLEAN
                                                         },
+                                                        agent_only: {
+                                                            type: Sequelize.BOOLEAN
+                                                        },
                                                         field_type:{
                                                             type: Sequelize.ENUM('text', 'textarea', 'checkbox', 'dropdown', 'multiselect')
                                                         },
