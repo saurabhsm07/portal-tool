@@ -36,6 +36,7 @@ fields.post('/', (req, res) =>{
         required: req.body.required,
         field_type: req.body.field_type,
         field_name: req.body.field_name,
+        field_value: req.body.field_value,
         description: req.body.description,
         removable: true,
         agent_only: req.body.agent_only,

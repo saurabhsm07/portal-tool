@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ArticleFieldServiceService } from './article-field-service.service';
+import { ArticleFieldService } from './article-field-service.service';
 
-describe('ArticleFieldServiceService', () => {
+describe('ArticleFieldService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ArticleFieldServiceService = TestBed.get(ArticleFieldServiceService);
+    const service: ArticleFieldService = TestBed.get(ArticleFieldService);
     expect(service).toBeTruthy();
   });
 });

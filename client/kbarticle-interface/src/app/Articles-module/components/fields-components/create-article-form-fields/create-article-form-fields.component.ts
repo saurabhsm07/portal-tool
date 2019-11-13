@@ -3,7 +3,7 @@ import { FormBuilder, FormArray } from '@angular/forms';
 import { Article_Field } from './../../../classes/article_fields';
 
 
-import { ArticleFieldServiceService } from './../../../services/article-fields-service/article-field-service.service';
+import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
 // import { validateStyleParams } from '../../../../../../node_modules/@angular/animations/browser/src/util';
 
 @Component({
@@ -35,30 +35,30 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * Article field form built using form builder to create article fields 
    */
   article_fields_form = this.fb.group({
-    type : [''],
-    name : [''],
+    field_type : [''],
+    field_name : [''],
     description: [''],
     required: [''],
-    agentonly: [''],
-    field_values: this.fb.array([ this.fb.control('')])
+    agent_only: [''],
+    field_value: this.fb.array([ this.fb.control('')])
   })
 
   /**
    * Get Field values as form array
    */
-  get field_values() {
-    return this.article_fields_form.get('field_values') as FormArray;
+  get field_value() {
+    return this.article_fields_form.get('field_value') as FormArray;
   }
 
 /**
  * Add field type to reactive forms
  */
   addFieldType(){
-    this.article_fields_form.patchValue({type : this.field_type.filter(field => field.value == this.selectedType)[0].name})
+    this.article_fields_form.patchValue({field_type : this.field_type.filter(field => field.value == this.selectedType)[0].name})
   }
 
   constructor(private fb: FormBuilder,
-              private articleFieldService :  ArticleFieldServiceService) { }
+              private articleFieldService :  ArticleFieldService) { }
 
 
   /**
@@ -87,25 +87,25 @@ export class CreateArticleFormFieldsComponent implements OnInit {
   addFieldValueCol(index){
     //Only 1 field value for check-box
     if(this.selectedType == 5){
-      if(this.field_values.value.length < 1){
-      if(this.field_values.value[index].length > 0){
-        this.field_values.push( this.fb.control(''))
+      if(this.field_value.value.length < 1){
+      if(this.field_value.value[index].length > 0){
+        this.field_value.push( this.fb.control(''))
       }
     }
     }
 
     //Only 2 field values for radiobox
     else if(this.selectedType == 6){
-      if(this.field_values.value.length < 2)
-      if(this.field_values.value[index].length > 0){
-        this.field_values.push( this.fb.control(''))
+      if(this.field_value.value.length < 2)
+      if(this.field_value.value[index].length > 0){
+        this.field_value.push( this.fb.control(''))
       }
     }
 
     //unlimited field values for multiselect and dropdown select
     else{
-      if(this.field_values.value[index].length > 0){
-        this.field_values.push( this.fb.control(''))
+      if(this.field_value.value[index].length > 0){
+        this.field_value.push( this.fb.control(''))
       }
     }
     
@@ -118,7 +118,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    */
   removeValue(i){
     if(i!=0)
-    this.field_values.removeAt(i);
+    this.field_value.removeAt(i);
   }
 
 
@@ -128,7 +128,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * @param index = position in field_values.value array for which this function was called
    */
   validateFieldValues(index){
-    const commonVals = this.field_values.value.filter((val, i) => (val == this.field_values.value[index] && (i != index)))
+    const commonVals = this.field_value.value.filter((val, i) => (val == this.field_value.value[index] && (i != index)))
 
     if(commonVals.length > 0){
       
@@ -146,6 +146,10 @@ export class CreateArticleFormFieldsComponent implements OnInit {
                             .subscribe((data) => {
                               console.log("successfully saved the field to database")
                               console.log(data)
+                            },
+                            (error)=>{
+                              console.log("error occured")
+                              console.log(error)
                             })
   }
 

@@ -14,7 +14,43 @@
         </div>
 
     </div>
-    <div class="fields-body-div">
-            <h1 *ngFor="let user of users">{{user.name | searchField: searchString }}</h1>
+    <div *ngIf="articleFields" class="fields-body-div col-md-12">
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <div class="mat-elevation-z8 col-md-12">
+                            <table mat-table [dataSource]="dataSource">
+                          
+                              <!-- Position Column -->
+                              <ng-container matColumnDef="field_name">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let field"> {{field.field_name}} </td>
+                              </ng-container>
+                          
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef> Id </th>
+                                <td mat-cell *matCellDef="let field"> {{field.id}} </td>
+                              </ng-container>
+                          
+                              <!-- Weight Column -->
+                              <ng-container matColumnDef="field_type">
+                                <th mat-header-cell *matHeaderCellDef> Type </th>
+                                <td mat-cell *matCellDef="let field"> {{field.field_type}} </td>
+                              </ng-container>
+                          
+                              <!-- Symbol Column -->
+                              <ng-container matColumnDef="created_at">
+                                <th mat-header-cell *matHeaderCellDef> Created At </th>
+                                <td mat-cell *matCellDef="let field"> {{field.created_at}} </td>
+                              </ng-container>
+                          
+                              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                          
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                          </div>
     </div>
 </div>

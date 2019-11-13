@@ -9,5 +9,5 @@ export class Article_Field {
     field_type : string;
     active?: boolean;
     required : boolean;
-    agentonly : boolean;
+    agent_only : boolean;
 }

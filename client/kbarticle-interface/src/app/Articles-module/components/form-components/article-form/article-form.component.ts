@@ -20,7 +20,7 @@ export class ArticleFormComponent implements OnInit {
      field_type: 'text',
      created_at: new Date(),
      required: false,
-     agentonly: true
+     agent_only: true
     },
   
     {id: 2,
@@ -28,7 +28,7 @@ export class ArticleFormComponent implements OnInit {
       field_type: 'text',
       created_at: new Date(),
       required: false,
-      agentonly: true
+      agent_only: true
     },
   
     {id: 3,
@@ -36,7 +36,7 @@ export class ArticleFormComponent implements OnInit {
       field_type: 'text',
       created_at: new Date(),
       required: false,
-      agentonly: true
+      agent_only: true
      },
   
      {id: 4,
@@ -44,7 +44,7 @@ export class ArticleFormComponent implements OnInit {
       field_type: 'text',
       created_at: new Date(),
       required: false,
-      agentonly: true
+      agent_only: true
      }
     ];
   
@@ -54,7 +54,7 @@ export class ArticleFormComponent implements OnInit {
        field_type: 'dropdown',
        created_at: new Date(),
        required: false,
-       agentonly: true
+       agent_only: true
       },
     
       {id: 2,
@@ -62,7 +62,7 @@ export class ArticleFormComponent implements OnInit {
         field_type: 'multiselect',
         created_at: new Date(),
         required: false,
-        agentonly: true
+        agent_only: true
       },
     
       {id: 3,
@@ -70,7 +70,7 @@ export class ArticleFormComponent implements OnInit {
         field_type: 'multiselect',
         created_at: new Date(),
         required: false,
-        agentonly: true
+        agent_only: true
        },
       ];
   
