@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './../imports/material-module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { EditorModule } from '@tinymce/tinymce-angular'
+import { FormsModule } from '@angular/forms';
 
 import { ArticleRoutingModule } from './routes/article-routing.module';
 import { ArticleFieldsRoutingModule } from './routes/article-fields-routing.module';
@@ -42,6 +43,7 @@ import { SearchFieldPipe } from './pipes/search-article-field/search-field.pipe'
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,

@@ -5,6 +5,16 @@
         Add and manage article fields to customize your article forms to create customised knowledge base articles.</p>
     </div>
     <div class="header-controls-div col-md-12">
-        <h1>{{"testing values" | searchField : "jake"}}</h1>
+        <div class="search-div col-md-6">
+            <input [(ngModel)] = "searchString" placeholder="Search article fields" />
+            
+        </div>
+        <div class="create-div col-md-6">
+                <a routerLink='/article/create-fields' class="btn btn-info">Add Field </a>
+        </div>
+
+    </div>
+    <div class="fields-body-div">
+            <h1 *ngFor="let user of users">{{user.name | searchField: searchString }}</h1>
     </div>
 </div>

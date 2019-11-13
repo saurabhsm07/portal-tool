@@ -11,6 +11,14 @@ export class ArticleFormFieldsComponent implements OnInit {
 
   constructor() { }
 
+    searchString : string = '';
+    users = [
+    {id: 1, name: 'product'},
+    {id: 2, name: 'versions'},
+    {id: 3, name: 'type'},
+    {id: 4, name: 'problem'},
+    {id: 5, name: 'ticket-id'}
+  ]
   ngOnInit() {
   }
 

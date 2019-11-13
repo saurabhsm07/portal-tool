@@ -5,10 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchFieldPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    console.log(value)
-    console.log(args)
-    return null;
+  transform(value: string, searchString?: string): string {
+
+    if(searchString.length == 0)
+      return value;
+    else if(value.includes(searchString))
+      return value;
+    else 
+      return null;
   }
 
 }
