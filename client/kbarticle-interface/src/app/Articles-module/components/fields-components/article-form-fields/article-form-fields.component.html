@@ -14,13 +14,13 @@
         </div>
 
     </div>
-    <div *ngIf="articleFields" class="fields-body-div col-md-12">
+    <div *ngIf="dataSource" class="fields-body-div col-md-12">
                     <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
                   
                     <!-- Position Column -->
                     <div class="mat-elevation-z8 col-md-12">
-                            <table mat-table [dataSource]="dataSource">
+                            <table class="col-md-12" mat-table [dataSource]="dataSource">
                           
                               <!-- Position Column -->
                               <ng-container matColumnDef="field_name">
@@ -43,7 +43,7 @@
                               <!-- Symbol Column -->
                               <ng-container matColumnDef="created_at">
                                 <th mat-header-cell *matHeaderCellDef> Created At </th>
-                                <td mat-cell *matCellDef="let field"> {{field.created_at}} </td>
+                                <td mat-cell *matCellDef="let field"> {{field.created_at | date}} </td>
                               </ng-container>
                           
                               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

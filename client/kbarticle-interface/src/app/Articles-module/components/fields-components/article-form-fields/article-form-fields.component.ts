@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Article_Field } from '../../../classes/article_fields';
 import {ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service'
@@ -11,7 +11,8 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './article-form-fields.component.html',
   styleUrls: ['./article-form-fields.component.scss']
 })
-export class ArticleFormFieldsComponent implements OnInit {
+export class ArticleFormFieldsComponent implements OnInit  {
+  
 
   constructor(private articleFieldService : ArticleFieldService) { }
 
@@ -25,22 +26,24 @@ export class ArticleFormFieldsComponent implements OnInit {
   ]
     articleFields : Article_Field[];
 
-    dataSource : MatTableDataSource<Article_Field>;
+    dataSource = new MatTableDataSource<Article_Field>();
     displayedColumns: string[];
+    paginator: MatPaginator;
   
-    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
+    @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+      this.paginator = mp;
+   }
 
   ngOnInit() {
+    console.log("in ngon init")
     this.articleFieldService.getArticleField()
                             .subscribe((data) => {
-                              console.log(data)
+                              console.log("fetched data");
                               this.articleFields= data;
-                              console.log(this.articleFields)
+                      
 
                               this.displayedColumns = ['field_name', 'id', 'field_type', 'created_at'];
-
-                              this.dataSource = new MatTableDataSource<Article_Field>(this.articleFields);
+                              this.dataSource.data = data;
                               this.dataSource.paginator = this.paginator;
 
                             },
