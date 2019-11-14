@@ -66,10 +66,10 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * 
    * @param type = type of article form field selected by the user eg. dropdown, text etc.
    */
-  updateSelectedFieldType(type){
+  updateSelectedFieldType(value){
    
-    this.selectedType = type.value;
-    if(type.value != 1 && type.value != 2){
+    this.selectedType = value;
+    if(value != 1 && value != 2){
       this.hasValues = true;
     }
     else{
