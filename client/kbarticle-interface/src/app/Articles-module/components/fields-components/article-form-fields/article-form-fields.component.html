@@ -6,7 +6,7 @@
     </div>
     <div class="header-controls-div col-md-12">
         <div class="search-div col-md-6">
-            <input [(ngModel)] = "searchString" placeholder="Search article fields" />
+            <input [(ngModel)] = "searchString" placeholder="Search article fields"  />
             
         </div>
         <div class="create-div col-md-4">
@@ -14,7 +14,8 @@
         </div>
 
     </div>
-    <div *ngIf="dataSource" class="fields-body-div col-md-12">
+    <!-- <span *ngIf="ticketFields | searchField:searchString"></span> -->
+    <div *ngIf="dataSource | searchField:searchString : articleFields" class="fields-body-div col-md-12">
                     <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
                   

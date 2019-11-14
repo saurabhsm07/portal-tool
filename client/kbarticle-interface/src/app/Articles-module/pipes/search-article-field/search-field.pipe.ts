@@ -1,18 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Field } from '../../components/create-article/field-class';
+import { Article_Field } from '../../classes/article_fields';
+
 
 @Pipe({
   name: 'searchField'
 })
 export class SearchFieldPipe implements PipeTransform {
 
-  transform(value: string, searchString?: string): string {
+  transform(value: any, searchString?: string, articleFields? : Article_Field[]): any {
 
-    if(searchString.length == 0)
+    value.data = articleFields;
+    if (searchString.length == 0){
       return value;
-    else if(value.includes(searchString))
-      return value;
-    else 
-      return null;
+    }
+   
+      else{
+        value.data = articleFields.filter((field) => { if(field.field_name.includes(searchString)){
+          return field;
+        }})
+        return value;
+      }
   }
 
 }

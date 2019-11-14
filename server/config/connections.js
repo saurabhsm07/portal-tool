@@ -1,4 +1,4 @@
-const  Client = require('pg').Client;
+// const  Client = require('pg').Client;
 const  Sequelize = require('Sequelize');
 const config  =  require('./config'); 
 
@@ -13,13 +13,13 @@ const config  =  require('./config');
 //   console.log(err, res)
 //   pool.end()
 // })
-const client = new Client({
-    user: config.database.user,
-    host: config.database.host,
-    database: config.database.db,
-    password: config.database.pwd,
-    port: config.database.port,
-})
+// const client = new Client({
+//     user: config.database.user,
+//     host: config.database.host,
+//     database: config.database.db,
+//     password: config.database.pwd,
+//     port: config.database.port,
+// })
 
 const client_sequelize = new Sequelize(config.database.db, config.database.user,config.database.pwd,
                         {host: config.database.host,
@@ -27,17 +27,17 @@ const client_sequelize = new Sequelize(config.database.db, config.database.user,
                         })
 
 // client.connect()
-client.connect(err => {
-  if (err) {
-    console.error('connection error', err.stack)
-  } else {
-    console.log('Successfully connected to the database using pg.module')
-  }
-})
+// client.connect(err => {
+//   if (err) {
+//     console.error('connection error', err.stack)
+//   } else {
+//     console.log('Successfully connected to the database using pg.module')
+//   }
+// })
 
 client_sequelize.authenticate()
                 .then(() =>{ console.log(`Successfully connected to the database using sequelize module`)})
                 .catch((err) =>{ console.log(`connection error`, err.stack)
 })
 
-module.exports = {client, client_sequelize}
+module.exports = {client_sequelize}
