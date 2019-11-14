@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
+import {Router } from'@angular/router';
 import { Article_Field } from './../../../classes/article_fields';
 
 
@@ -43,6 +44,10 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     field_value: this.fb.array([ this.fb.control('')])
   })
 
+  constructor(private fb: FormBuilder,
+              private articleFieldService :  ArticleFieldService,
+              private router : Router) { }
+
   /**
    * Get Field values as form array
    */
@@ -57,8 +62,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     this.article_fields_form.patchValue({field_type : this.field_type.filter(field => field.value == this.selectedType)[0].name})
   }
 
-  constructor(private fb: FormBuilder,
-              private articleFieldService :  ArticleFieldService) { }
+
 
 
   /**
@@ -146,6 +150,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
                             .subscribe((data) => {
                               console.log("successfully saved the field to database")
                               console.log(data)
+                              this.router.navigate(['/article/fields/list']);
                             },
                             (error)=>{
                               console.log("error occured")

@@ -13,8 +13,8 @@ import { EditArticleFormFieldsComponent } from './../components/fields-component
 import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
 
 const articleFieldsRoutes: Routes = [
-  { path: 'article/fields', component: ArticleFormFieldsComponent },
-  { path: 'article/create-fields', component: CreateArticleFormFieldsComponent },
+  { path: 'article/fields/list', component: ArticleFormFieldsComponent },
+  { path: 'article/fields/create', component: CreateArticleFormFieldsComponent },
 //   { path: 'article/list-fields', component: ListArticleFormFieldsComponent },
 //   { path: '', redirectTo: 'article/fields', pathMatch: 'full',},
 //   { path: '**', component: ArticleNotFoundComponent}
