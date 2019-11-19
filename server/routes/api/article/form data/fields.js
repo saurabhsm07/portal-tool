@@ -21,8 +21,7 @@ fields.get('/', (req, res) =>{
 fields.get('/id/:id', (req, res) =>{
     Field.findAll({where : {'id': req.params.id}})
          .then((data) => {
-             console.log("data")
-             res.send(data)
+                          res.send(data)
          })
          .catch((err) => {
              console.log(err)
@@ -32,12 +31,14 @@ fields.get('/id/:id', (req, res) =>{
 
 fields.post('/', (req, res) =>{
     const data = {
-        required: true,
-        field_type: 'checkbox',
-        field_name: 'field_name_14',
-        description: 'field description 12',
-        removable: false,
-        active: false,
+        required: req.body.required,
+        field_type: req.body.field_type,
+        field_name: req.body.field_name,
+        field_value: req.body.field_value,
+        description: req.body.description,
+        removable: true,
+        agent_only: req.body.agent_only,
+        active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
 
@@ -46,7 +47,7 @@ fields.post('/', (req, res) =>{
     Field.create(data)
               .then((resp) => {
                   console.log('New Field created')
-                  res.send(`field name : ${resp.field_name} saved with id: ${resp.id}`)
+                  res.send(resp)
               })
               .catch((err) =>{
                   console.log(err)
@@ -55,23 +56,21 @@ fields.post('/', (req, res) =>{
 } )
 
 fields.put('/', (req, res) =>{
-    const updateObj = {id:1,
-                       removable: true, 
-                       active: true, 
-                       field_name: "dwevr 12",
-                       field_type: "multiselect",
-                       field_value: [{name :'val3', id: 1},{name :'val4', id: 2}, {name :'val5', id: 3}],
+    const field_id = req.body.id;
+    const updateObj = {required: req.body.field.required,
+                       field_name: req.body.field.field_name,
+                       field_value: req.body.field.field_value,
                        updated_at: new Date().toISOString()}
     
     
-    Field.update(updateObj,{where: {id: updateObj.id} })
+    Field.update(updateObj,{where: {id: field_id} })
               .then((data) =>{
                   console.log("update successfull")
                   if(data == 0){
-                      res.send(`field with id ${updateObj.id} does not exist`)
+                      res.send({id : 0})
                   }
                   else{
-                    res.send(`field with id ${updateObj.id} updated successfully`)
+                    res.send({id: field_id})
                   }
               })
               .catch((err)=>{

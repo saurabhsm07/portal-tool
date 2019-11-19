@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { ArticleService } from './../../services/article-service/article.service'
 import { Article} from './../../classes/article'
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-display-article',

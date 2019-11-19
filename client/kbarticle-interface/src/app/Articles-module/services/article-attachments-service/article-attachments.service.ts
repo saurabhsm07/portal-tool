@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-import { ArticleAttachmentErrorHandlersService } from './../error-handler-service/article-attachment-error-handlers.service'
+import { ArticleAttachmentErrorHandlersService } from './../error-handler-service/article-attachment-error-handlers/article-attachment-error-handlers.service'
 
 import { Article_Attachment } from './../../classes/article_attachment'
 @Injectable({

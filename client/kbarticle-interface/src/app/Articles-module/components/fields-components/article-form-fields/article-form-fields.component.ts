@@ -1,89 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { Article_Fields } from '../../../classes/article_fields';
+import { Article_Field } from '../../../classes/article_fields';
+import {ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service'
+
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-article-form-fields',
   templateUrl: './article-form-fields.component.html',
   styleUrls: ['./article-form-fields.component.scss']
 })
-export class ArticleFormFieldsComponent implements OnInit {
+export class ArticleFormFieldsComponent implements OnInit, OnChanges  {
+  
+  
 
-  tiny_mce_editor_config = {
-    base_url: '/assets/', 
-    suffix: '.min',
-    plugins: ` preview fullpage paste autolink autosave save 
-              code  fullscreen image link media template codesample 
-              table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist 
-              lists wordcount imagetools textpattern  help  quickbars `,
-    toolbar: `undo redo | bold italic underline strikethrough |
-              fontselect fontsizeselect formatselect |
-              alignleft aligncenter alignright alignjustify | outdent indent |  
-              numlist bullist | forecolor backcolor removeformat | pagebreak | 
-              charmap emoticons | fullscreen  preview save print 
-              | insertfile image media template link anchor codesample | ltr rtl`,
-    menubar:  false,
-    height: 300,
-    max_height: 500,
+  constructor(private articleFieldService : ArticleFieldService) { }
 
-    images_upload_handler: (blobInfo, success, failure) => {
-     
-      console.log(blobInfo.blob())
-    
-      // this.articleAttachmentService.postArticleAttachment({ 'file_data' :blobInfo.blob(), 
-      //                                                        'inline': true,
-      //                                                        'article_id' : 155442 })
-      //                              .subscribe((data) => {
-      //                                console.log("successfully saved file")
-      //                                success(data.url)
-      //                              },
-      //                              (error) => {
-      //                                console.log(error)
-      //                              })
-    
-    }
-}
+    private searchString : string = '';   //parameter for dynamic search article fields table
+    private articleFields : Article_Field[]; //article fields list
 
-  constructor() { }
+    dataSource = new MatTableDataSource<Article_Field>(); //datasource
+    displayedColumns: string[];     //saves column names of the article fields table
+    paginator: MatPaginator;        //paginator for paginating the data table
+  
+    @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+      this.paginator = mp;
+   }
 
   ngOnInit() {
+this.articleFieldService.getArticleField()
+                            .subscribe((data) => {
+                              console.log("fetched data");
+                              this.articleFields= data;
+                      
+
+                              this.displayedColumns = ['field_name', 'id', 'field_type', 'created_at'];
+                              this.dataSource.data = this.articleFields;
+                              this.dataSource.paginator = this.paginator;
+                              this.dataSource.filter = this.searchString;
+
+                            },
+                          (error) => {
+                            console.log("error occured")
+                            console.log(error)
+                          })
   }
 
-  article_fields : Article_Fields[] = [
-  {id: 1,
-   field_name: 'field_1',
-   field_type: 'text',
-   created_at: new Date(),
-   required: false,
-   active: true
-  },
-
-  {id: 2,
-    field_name: 'field_2',
-    field_type: 'text',
-    created_at: new Date(),
-    required: false,
-    active: true
-  },
-
-  {id: 3,
-    field_name: 'field_3',
-    field_type: 'text',
-    created_at: new Date(),
-    required: false,
-    active: true
-   },
-
-   {id: 4,
-    field_name: 'field_4',
-    field_type: 'text',
-    created_at: new Date(),
-    required: false,
-    active: true
-   }
-  ];
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.article_fields, event.previousIndex, event.currentIndex);
+  filterTable(){
+    this.dataSource.filter = this.searchString;
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+  }
+
+
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from './field-class';
-import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { ArticleService } from './../../services/article-service/article.service'
 import { ArticleAttachmentsService} from './../../services/article-attachments-service/article-attachments.service'
 import { Article } from './../../classes/article'
+import { Router } from '@angular/router'
 
 
 
@@ -92,7 +93,8 @@ sectionList = [{id: 1, name :'section-1'},
 
 constructor(private fb : FormBuilder, 
             private articleService : ArticleService, 
-            private articleAttachmentService: ArticleAttachmentsService) { }
+            private articleAttachmentService: ArticleAttachmentsService,
+            private router : Router) { }
 
   ngOnInit(){}
  
@@ -140,6 +142,7 @@ constructor(private fb : FormBuilder,
       this.articleService.postArticle({'article' : articleObj})
                          .subscribe((data) => {
                            console.log("succesfully created the article")
+                           this.router.navigate(['/list-articles/']);
                          },
                         (error) => {
                           console.log(error.error_on_req)

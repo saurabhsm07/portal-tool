@@ -1,3 +1,49 @@
-<p>
-  edit-article-form-fields works!
-</p>
+<div class="col-md-12">
+    <div class="edit-field-content col-md-8   offset-md-2">
+        <div class="edit-field-header  col-md-12">
+          <h4 class="edit-field-title">Edit Article Field</h4>       
+  
+        </div>
+        <div *ngIf="article_field" class="edit-field-body  col-md-12">
+          <form class="edit-field-form" [formGroup] = 'article_fields_form'  (ngSubmit)="onSubmit()">
+  
+              
+                <div class="checkbox-options-div col-md-12">
+                <h5 class="field-attr-title">Permissions:</h5>
+                  <mat-checkbox class="col-md-12" formControlName ="agent_only" >Agents Only (field will not be visible to end users)</mat-checkbox>
+                <mat-checkbox class="col-md-12" formControlName ="required">Required (field cannot be left blank)</mat-checkbox>
+                </div> 
+                <div class="field-discription col-md-12">
+                    <h5 class="field-attr-title">Description:</h5>
+                      <mat-form-field class="col-md-12">
+                          <textarea matInput formControlName = "description" placeholder="Add Field Description"></textarea>
+                        </mat-form-field>
+        
+                  </div> 
+                <div class="field-name col-md-12">
+                    <h5 class="field-attr-title">Field Name:</h5>
+                  <mat-form-field class="col-md-12">
+                    <input matInput formControlName = "field_name" placeholder="Add Field Name" />
+                  </mat-form-field>
+                </div>
+    
+                <div formArrayName="field_value" class="field_values_div col-md-12">
+                  <h5 class="field-attr-title">Field Options :</h5>
+                <mat-form-field class="col-md-12" *ngFor="let value of field_value.controls, let i = index " >
+                    <input matInput [formControlName] = "i" placeholder="Field Value" (change) = "addFieldValueCol(i)" (keyup)= "validateFieldValues(i)" />
+                    <i class="remove-button fa fa-times-circle-o" aria-hidden="true" (click) = "removeValue(i)"></i>
+                  </mat-form-field>
+                </div>
+          
+                <div class="edit-field-footer col-md-12 edit-article">
+                    <button type="submit" class="btn btn-default" >Submit Changes</button>
+                  </div>
+          </form>
+        
+         
+  
+        </div>
+      
+      </div>
+  
+    </div>

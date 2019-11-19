@@ -1,0 +1,87 @@
+// colors
+$acceleriteBlue : #388ecf;
+$editArticleBackCol: rgb(0, 188, 212);
+// padding sizes 
+$pad-zero: 0px !important;
+$pad-five: 5px;
+$pad-ten: 10px;
+
+.edit-field-content{
+    // margin: 10px 0px 10px 10px;
+    border: 1px solid black;
+}
+
+.remove-button{
+    float:right;
+}
+
+.edit-field-title{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.field-discription{
+    mat-form-field{
+        width: 75%;
+    }
+}
+.field_values_div{
+    mat-form-field{
+        width: 50%;
+        display: block;
+    }
+}
+
+.checkbox-options-div{
+    mat-checkbox{
+        display: block;
+    }
+}
+
+.edit-article > button {
+    background-color: $editArticleBackCol;
+    color: white
+    
+  }
+    
+  .edit-article {
+    padding: $pad-ten $pad-ten $pad-ten $pad-ten;
+    text-align: center;
+    button{
+        width:20%;
+    }
+  }
+
+  .field-name{
+      mat-form-field{
+          width: 50%;
+         
+      }
+  }
+
+  .select-field-type{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px grey groove;
+      padding-bottom: 20px;
+      margin-bottom: 10px;
+      border-bottom: 1px grey groove;
+      button{
+          margin : 10px 10px 10px 10px;
+          padding: 10px 10px 10px 10px;
+          border : 1px solid black;
+          width: 20%;
+      }
+  }
+
+  .field-attr-title{
+      font-weight: 400;
+  }
+
+  .edit-field-form{
+      div{
+        padding-bottom: 20px;
+      }
+      
+  }
