@@ -1,4 +1,4 @@
-const client = require('./../config/connections').client_sequelize;
+const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
 const Attachment = client.define('Article_attachments',{

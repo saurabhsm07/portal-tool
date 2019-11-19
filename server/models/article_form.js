@@ -1,4 +1,4 @@
-const client = require('./../config/connections').client_sequelize;
+const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
 const Form = client.define('Article_form',{
