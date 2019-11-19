@@ -44,7 +44,6 @@ export class ArticleService {
   }
 
   updateArticle({article: Article}): Observable<Article>{
-    console.log("in update article");
     return this.http.put<Article>(this.requestUri.updateArticle, {article : Article}, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.putArticleError))
   }
