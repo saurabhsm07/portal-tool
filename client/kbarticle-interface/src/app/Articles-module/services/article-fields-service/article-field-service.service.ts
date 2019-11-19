@@ -56,8 +56,8 @@ getArticleFieldById(id :Number): Observable<Article_Field>{
 /**
  * updateArticleField: Service function to update article field
  */
-updateArticleField(field: Article_Field) : Observable<Article_Field> {
-  return this.http.put<Article_Field>(this.requestUri.updateArticleField, field, this.headersOptions)
+updateArticleField(field: Article_Field, id: number) : Observable<{id : number}> {
+  return this.http.put<{id: number}>(this.requestUri.updateArticleField, {field,id}, this.headersOptions)
                // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
 }
 

@@ -21,8 +21,7 @@ fields.get('/', (req, res) =>{
 fields.get('/id/:id', (req, res) =>{
     Field.findAll({where : {'id': req.params.id}})
          .then((data) => {
-             console.log("data")
-             res.send(data)
+                          res.send(data)
          })
          .catch((err) => {
              console.log(err)
@@ -31,7 +30,6 @@ fields.get('/id/:id', (req, res) =>{
 })
 
 fields.post('/', (req, res) =>{
-    console.log(req.body)
     const data = {
         required: req.body.required,
         field_type: req.body.field_type,
@@ -58,23 +56,21 @@ fields.post('/', (req, res) =>{
 } )
 
 fields.put('/', (req, res) =>{
-    const updateObj = {id:1,
-                       removable: true, 
-                       active: true, 
-                       field_name: "dwevr 12",
-                       field_type: "multiselect",
-                       field_value: [{name :'val3', id: 1},{name :'val4', id: 2}, {name :'val5', id: 3}],
+    const field_id = req.body.id;
+    const updateObj = {required: req.body.field.required,
+                       field_name: req.body.field.field_name,
+                       field_value: req.body.field.field_value,
                        updated_at: new Date().toISOString()}
     
     
-    Field.update(updateObj,{where: {id: updateObj.id} })
+    Field.update(updateObj,{where: {id: field_id} })
               .then((data) =>{
                   console.log("update successfull")
                   if(data == 0){
-                      res.send(`field with id ${updateObj.id} does not exist`)
+                      res.send({id : 0})
                   }
                   else{
-                    res.send(`field with id ${updateObj.id} updated successfully`)
+                    res.send({id: field_id})
                   }
               })
               .catch((err)=>{
