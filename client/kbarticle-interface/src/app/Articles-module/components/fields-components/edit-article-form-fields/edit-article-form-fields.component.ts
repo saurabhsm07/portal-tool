@@ -105,9 +105,12 @@ export class EditArticleFormFieldsComponent implements OnInit {
 
     //unlimited field values for multiselect and dropdown select
     else{
-      if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+      if(this.field_value.value.filter(val => val.length > 0).length == this.field_value.value.length){
+        if(this.field_value.value[index].length > 0){
+          this.field_value.push( this.fb.control(''))
+        }
       }
+     
     }
     
   }
