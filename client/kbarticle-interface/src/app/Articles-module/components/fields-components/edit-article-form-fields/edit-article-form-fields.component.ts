@@ -148,6 +148,7 @@ export class EditArticleFormFieldsComponent implements OnInit {
                                 console.log("specified field does not exist")
                               }else{
                                 console.log("successfully updated article field with id "+ data.id);
+                                this.router.navigate(['/article/fields/list'])
                               }
                                    
                                    
