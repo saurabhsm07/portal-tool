@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-// import { ArticleFieldErrorHandlersService } from './../error-handler-service/article-attachment-error-handlers/article-attachment-error-handlers.service'
+
 
 import { Article_Field } from './../../classes/article_fields'
 

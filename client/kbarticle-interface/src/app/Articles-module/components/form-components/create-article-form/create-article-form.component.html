@@ -1,1 +1,29 @@
-<p>create-article-form works!</p>
+<div *ngIf ="article_fields_incl" class="create-form-div">
+    <div class = "create-form-div col-md-6">
+        <h4> Article Form :</h4>
+        <div cdkDropList  
+            #includedList="cdkDropList"
+            [cdkDropListData]="article_fields_incl"
+            [cdkDropListConnectedTo]="[excludedList]"
+            class="example-list"
+             (cdkDropListDropped)="drop($event)">
+                <div class="field-info-div" *ngFor="let field of article_fields_incl" cdkDrag> 
+                <h3> {{field.field_name}}</h3>
+            </div>
+        </div>
+       </div>
+       
+       <div class="field-list-div col-md-5">
+            <h4> Available Fields :</h4>
+           <div cdkDropList 
+                #excludedList="cdkDropList"
+                [cdkDropListData]="article_fields_excl"
+                [cdkDropListConnectedTo]="[includedList]"
+                 (cdkDropListDropped)="drop($event)">
+                <div class="field-info-div" *ngFor="let field of article_fields_excl" cdkDrag> 
+                <h3> {{field.field_name}}</h3>
+            </div>
+        </div>
+       </div>
+</div>
+    

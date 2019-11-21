@@ -1,0 +1,26 @@
+// colors
+$acceleriteBlue : #388ecf;
+$createArticleBackCol: rgb(0, 188, 212);
+// padding sizes 
+$pad-zero: 0px !important;
+$pad-five: 5px;
+$pad-ten: 10px;
+
+.create-form-div{
+    border: 1px solid grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    div{
+        display: inline-grid;
+    }
+}
+
+.field-list-div{
+    border: 1px solid grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.field-info-div{
+    border: 1px solid grey;
+    margin: 5px 0px 5px 0px;
+}
