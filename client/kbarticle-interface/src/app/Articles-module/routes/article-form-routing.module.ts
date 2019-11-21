@@ -10,7 +10,7 @@ import { ListArticleFormComponent } from './../components/form-components/list-a
 import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
 
 const articleFormsRoutes: Routes = [
-  { path: 'article/forms/', component: ArticleFormComponent },
+  { path: 'article/forms', component: ArticleFormComponent },
   { path: 'article/forms/list', component: ListArticleFormComponent },
   { path: 'article/form/create', component: CreateArticleFormComponent },
   { path: 'article/form/edit/:id', component: EditArticleFormComponent },
