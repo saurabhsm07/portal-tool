@@ -26,7 +26,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     {name: 'text', value:1},
     {name: 'textarea', value:2},
     {name: 'dropdown', value:3},
-    {name: 'multliselect', value:4},
+    {name: 'multiselect', value:4},
     {name: 'checkbox', value: 5},
     {name: 'radiobox', value: 6}
   ];

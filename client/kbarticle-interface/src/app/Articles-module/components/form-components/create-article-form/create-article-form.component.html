@@ -7,8 +7,11 @@
             [cdkDropListConnectedTo]="[excludedList]"
             class="example-list"
              (cdkDropListDropped)="drop($event)">
-                <div class="field-info-div" *ngFor="let field of article_fields_incl" cdkDrag> 
-                <h3> {{field.field_name}}</h3>
+                <div class="field-info-div" *ngFor="let field of article_fields_incl" cdkDrag>
+                   <span>
+                        <i class={{field_type_icon[field.field_type]}}></i>
+                        <p> {{field.field_name}}</p>
+                   </span>
             </div>
         </div>
        </div>
@@ -21,7 +24,10 @@
                 [cdkDropListConnectedTo]="[includedList]"
                  (cdkDropListDropped)="drop($event)">
                 <div class="field-info-div" *ngFor="let field of article_fields_excl" cdkDrag> 
-                <h3> {{field.field_name}}</h3>
+                        <span>
+                                <i class={{field_type_icon[field.field_type]}}></i>
+                                <p> {{field.field_name}}</p>
+                           </span>
             </div>
         </div>
        </div>

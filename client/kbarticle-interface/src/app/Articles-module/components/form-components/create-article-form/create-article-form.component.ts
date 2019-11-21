@@ -16,7 +16,12 @@ export class CreateArticleFormComponent implements OnInit {
   private article_fields_excl : Article_Field[];
 
   protected field_type_icon = {
-    text : ''
+    text : 'fa fa-text-width',
+    textarea : 'fa fa-bars',
+    dropdown: 'fa fa-caret-square-o-down',
+    multiselect: 'fa fa-list',
+    checkbox: 'fa fa-check-square-o',
+    radiobox: 'fa fa-check-circle'
   }
 
   constructor(private articleFieldService : ArticleFieldService) { }

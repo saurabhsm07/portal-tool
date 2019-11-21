@@ -23,4 +23,20 @@ $pad-ten: 10px;
 .field-info-div{
     border: 1px solid grey;
     margin: 5px 0px 5px 0px;
+    span{
+        padding-top: 5px;
+        p{
+            margin-left:40px;
+            display: inline-grid;
+            position: relative;
+            top: -3px;
+            font-size: 20px;
+            margin-bottom: 0px;
+        }
+        i{
+            display: inline-grid;
+            font-size: 25px;
+        }
+    }
+    
 }
