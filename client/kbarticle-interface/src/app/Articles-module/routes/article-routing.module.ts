@@ -7,11 +7,11 @@ import { ArticleHomeComponent } from './../components/article-home/article-home.
 import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
 
 const articleRoutes: Routes = [
-  { path: 'home', component: ArticleHomeComponent },
-  { path: 'create-article', component: CreateArticleComponent },
-  { path: 'list-articles', component: ListArticlesComponent },
-  { path: 'article/:id', component: DisplayArticleComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full',},
+  { path: 'articles/home', component: ArticleHomeComponent },
+  { path: 'article/create', component: CreateArticleComponent },
+  { path: 'articles/list', component: ListArticlesComponent },
+  { path: 'article/id/:id', component: DisplayArticleComponent },
+  { path: '', redirectTo: '/articles/home', pathMatch: 'full',},
   { path: '**', component: ArticleNotFoundComponent}
 ];
 
