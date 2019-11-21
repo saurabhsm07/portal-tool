@@ -1,4 +1,3 @@
-// const  Client = require('pg').Client;
 const  Sequelize = require('Sequelize');
 const config  =  require('./config'); 
 
@@ -21,12 +20,12 @@ const config  =  require('./config');
 //     port: config.database.port,
 // })
 
-const client_sequelize = new Sequelize(config.database.db, config.database.user,config.database.pwd,
+const client = new Sequelize(config.database.db, config.database.user,config.database.pwd,
                         {host: config.database.host,
                          dialect: 'mysql'
                         })
 
-// client.connect()
+// // client.connect()
 // client.connect(err => {
 //   if (err) {
 //     console.error('connection error', err.stack)
@@ -35,9 +34,9 @@ const client_sequelize = new Sequelize(config.database.db, config.database.user,
 //   }
 // })
 
-client_sequelize.authenticate()
+client.authenticate()
                 .then(() =>{ console.log(`Successfully connected to the database using sequelize module`)})
                 .catch((err) =>{ console.log(`connection error`, err.stack)
 })
 
-module.exports = {client_sequelize}
+module.exports = {client}
