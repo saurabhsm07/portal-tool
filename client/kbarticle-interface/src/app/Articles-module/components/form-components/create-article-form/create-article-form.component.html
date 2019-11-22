@@ -11,6 +11,7 @@
                 </form>   
         </div>
         <div class="col-md-12 form-required-div">
+                <small>Fields in this section cannot be changed</small>
                 <div class=" col-md-12 title-req-field"> 
                         <span class="" >
                                 <i class="fa fa-text-width"></i>
@@ -48,7 +49,8 @@
                     </span>
          </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 form-custom-div">
+                <small>Drag fields from the fields section to customise form</small>
  <div cdkDropList  
             #includedList="cdkDropList"
             [cdkDropListData]="article_fields_incl"
@@ -63,11 +65,12 @@
             </div>
         </div>
         </div>
-         
+     
        </div>
        
        <div class="field-list-div col-md-3 ">
             <h4> Available Fields :</h4>
+            <small>Drag fields you want to the article form</small>
            <div cdkDropList 
                 #excludedList="cdkDropList"
                 [cdkDropListData]="article_fields_excl"
@@ -81,5 +84,10 @@
             </div>
         </div>
        </div>
+       <div class="submit-form-div col-md-8">
+        <button class="col-md-2" mat-raised-button color="primary" (click)="createForm($event)">Submit Form</button>
 </div>
+     
+</div>
+
 </div>

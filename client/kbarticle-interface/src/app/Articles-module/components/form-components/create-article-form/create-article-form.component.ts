@@ -47,4 +47,8 @@ export class CreateArticleFormComponent implements OnInit {
                         event.currentIndex);
     }
   }
+
+  createForm(event){
+    console.log("submitting form")
+  }
 }

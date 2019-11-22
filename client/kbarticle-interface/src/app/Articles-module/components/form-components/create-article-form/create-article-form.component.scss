@@ -5,6 +5,7 @@ $createArticleBackCol: rgb(0, 188, 212);
 $pad-zero: 0px !important;
 $pad-five: 5px;
 $pad-ten: 10px;
+$submit-btn-color: #00bcd4;
 
 .form-div{
     div{
@@ -57,12 +58,20 @@ $pad-ten: 10px;
 }
 
 .form-required-div{
+    border-top: 1px grey dotted;
+    border-bottom: 1px grey dotted;
     display: grid;
     grid-template-columns: auto auto auto;
-
+    padding-top:20px;
+    padding-bottom: 20px;
     .title-req-field{
         grid-column-start: 1;
         grid-column-end: 4;
+    }
+    small{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        float: right;
     }
    
     div{
@@ -87,4 +96,32 @@ $pad-ten: 10px;
         
     }
     
+}
+
+.submit-form-div{
+    justify-items: end ;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    // display: flex;
+    button{
+        // text-align: right;
+        background: $submit-btn-color;
+        float: right;
+    }
+}
+
+.form-custom-div{
+    border-top: 1px grey dotted;
+    border-bottom: 1px grey dotted;
+    grid-template-columns: auto auto auto;
+    padding-top:20px;
+    padding-bottom: 20px;
+    small{
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+    div{
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
 }
