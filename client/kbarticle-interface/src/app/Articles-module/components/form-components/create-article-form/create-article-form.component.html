@@ -1,7 +1,55 @@
-<div *ngIf ="article_fields_incl" class="create-form-div">
-    <div class = "create-form-div col-md-6">
-        <h4> Article Form :</h4>
-        <div cdkDropList  
+<div class="row">
+<div *ngIf ="article_fields_incl" class="form-div col-md-12">
+    <div class = "create-form-div col-md-6 offset-md-2">
+        <div class="col-md-12 form-meta-div">
+                <h4> Article Form : </h4>
+                <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Form Name</label>
+                          <input type="text" class="form-control" id="form-name"  placeholder="Enter form name">
+                        </div>   
+                </form>   
+        </div>
+        <div class="col-md-12 form-required-div">
+                <div class=" col-md-12 title-req-field"> 
+                        <span class="" >
+                                <i class="fa fa-text-width"></i>
+                                <p> Article Title</p>
+                           </span>
+                </div>
+                <div class="  col-md-11">
+                           <span>
+                                <i class="fa fa-caret-square-o-down"></i>
+                                <p> Article Section</p>
+                           </span>
+                </div>
+                <div class=" col-md-11">
+                           <span>
+                                <i class="fa fa-list"></i>
+                                <p> Product Versions</p>
+                           </span>
+                </div>
+                <div class=" col-md-11">
+                           <span >
+                                <i class="fa fa-list"></i>
+                                <p> Operating Systems</p>
+                           </span>
+                </div>
+                <div class=" col-md-11 referenceField">
+                        <span >
+                             <i class="fa fa-text-width"></i>
+                             <p> Ticket Id</p>
+                        </span>
+             </div>
+             <div class=" col-md-11">
+                    <span >
+                         <i class="fa fa-text-width"></i>
+                         <p>Jira Ticket Id</p>
+                    </span>
+         </div>
+        </div>
+        <div class="col-md-12">
+ <div cdkDropList  
             #includedList="cdkDropList"
             [cdkDropListData]="article_fields_incl"
             [cdkDropListConnectedTo]="[excludedList]"
@@ -14,9 +62,11 @@
                    </span>
             </div>
         </div>
+        </div>
+         
        </div>
        
-       <div class="field-list-div col-md-5">
+       <div class="field-list-div col-md-3 ">
             <h4> Available Fields :</h4>
            <div cdkDropList 
                 #excludedList="cdkDropList"
@@ -32,4 +82,4 @@
         </div>
        </div>
 </div>
-    
+</div>

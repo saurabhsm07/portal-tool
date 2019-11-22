@@ -6,23 +6,33 @@ $pad-zero: 0px !important;
 $pad-five: 5px;
 $pad-ten: 10px;
 
-.create-form-div{
-    border: 1px solid grey;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.form-div{
     div{
         display: inline-grid;
     }
+    .create-form-div{
+         border: 1px solid grey;
+         padding-top: 10px;
+         padding-bottom: 10px;
+         div{
+             display: inline-grid;
+         }
+     }
 }
 
+
 .field-list-div{
+    margin: 10px 10px 10px 10px;
     border: 1px solid grey;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 .field-info-div{
+    
     border: 1px solid grey;
-    margin: 5px 0px 5px 0px;
+    margin: 5px 20px 5px 20px;
+    width: 90%;
+    
     span{
         padding-top: 5px;
         p{
@@ -36,7 +46,45 @@ $pad-ten: 10px;
         i{
             display: inline-grid;
             font-size: 25px;
+            margin-left: 10px;
         }
+    }
+    
+}
+
+.form-name-field{
+    height: 10%;
+}
+
+.form-required-div{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+    .title-req-field{
+        grid-column-start: 1;
+        grid-column-end: 4;
+    }
+   
+    div{
+        border: 1px solid grey;
+        margin: 5px 20px 5px 20px;
+        
+        display: inline-grid;
+        span{
+            display: inline-grid;
+            grid-template-columns: 10% 90%;
+
+            margin-top: 2px;
+            p{
+                display: inline-grid;
+                margin: 5px 0px 5px 20px;
+            }
+            i{
+                padding-top: 5px;
+                font-size: 20px;
+            }
+        }
+        
     }
     
 }
