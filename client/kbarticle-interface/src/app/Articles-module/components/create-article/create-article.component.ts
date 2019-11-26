@@ -23,7 +23,7 @@ export class CreateArticleComponent implements OnInit {
                              ];
 
  tiny_mce_editor_config = {
-                              base_url: '/assets/', 
+                              base_url: '/assets/',
                               suffix: '.min',
                               plugins: ` preview fullpage paste autolink autosave save 
                                         code  fullscreen image link media template codesample 
@@ -81,24 +81,24 @@ article_form = this.fb.group({
   })
 
 });
-   
+
 operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];
 versions = ['radia-1', 'radia-2', 'radia-3', 'radia-4', 'radia-5'];
-sectionList = [{id: 1, name :'section-1'},
-                {id: 2, name:'section-2'}, 
-                {id: 3, name:'section-3'}, 
-                {id: 4, name:'section-4'},
-                {id: 5, name:'section-5'}];
+sectionList = [{id: 1, name : 'section-1'},
+                {id: 2, name: 'section-2'},
+                {id: 3, name: 'section-3'},
+                {id: 4, name: 'section-4'},
+                {id: 5, name: 'section-5'}];
 
 
-constructor(private fb : FormBuilder, 
-            private articleService : ArticleService, 
+constructor(private fb: FormBuilder,
+            private articleService: ArticleService,
             private articleAttachmentService: ArticleAttachmentsService,
-            private router : Router) { }
+            private router: Router) { }
 
-  ngOnInit(){}
- 
-  updatePartialData(){
+  ngOnInit() {}
+
+  updatePartialData() {
     this.article_form.patchValue({
       article_header : {
         title  : 'Default partial title',

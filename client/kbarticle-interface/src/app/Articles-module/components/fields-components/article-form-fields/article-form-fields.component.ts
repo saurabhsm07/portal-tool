@@ -12,18 +12,17 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./article-form-fields.component.scss']
 })
 export class ArticleFormFieldsComponent implements OnInit, OnChanges  {
-  
-  
 
-  constructor(private articleFieldService : ArticleFieldService) { }
 
-    private searchString : string = '';   //parameter for dynamic search article fields table
-    private articleFields : Article_Field[]; //article fields list
+  constructor(private articleFieldService: ArticleFieldService) { }
+
+    private searchString: string = '';   //parameter for dynamic search article fields table
+    private articleFields: Article_Field[]; //article fields list
 
     dataSource = new MatTableDataSource<Article_Field>(); //datasource
     displayedColumns: string[];     //saves column names of the article fields table
     paginator: MatPaginator;        //paginator for paginating the data table
-  
+
     @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
       this.paginator = mp;
    }
@@ -32,8 +31,7 @@ export class ArticleFormFieldsComponent implements OnInit, OnChanges  {
 this.articleFieldService.getArticleField()
                             .subscribe((data) => {
                               console.log("fetched data");
-                              this.articleFields= data;
-                      
+                              this.articleFields = data;
 
                               this.displayedColumns = ['field_name', 'id', 'field_type', 'created_at'];
                               this.dataSource.data = this.articleFields;

@@ -1,12 +1,12 @@
 <div class="row">
-<div *ngIf ="article_fields_incl" class="form-div col-md-12">
+<div *ngIf ="article_fields_excl" class="form-div col-md-12">
     <div class = "create-form-div col-md-6 offset-md-2">
         <div class="col-md-12 form-meta-div">
                 <h4> Article Form : </h4>
                 <form>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Form Name</label>
-                          <input type="text" class="form-control" id="form-name"  placeholder="Enter form name">
+                          <input type="text" class="form-control" name="formName" id="form-name" [(ngModel)] = 'form_name' placeholder="Enter form name">
                         </div>   
                 </form>   
         </div>

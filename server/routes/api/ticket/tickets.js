@@ -2,7 +2,7 @@ const express = require('express');
 const tickets = express.Router();
 const client = require("./../../../config/connections").client
 //mock data
-let ticketsMock = require('./../../../models/docs/ticketDummy')
+// let ticketsMock = require('./../../../models/docs/ticketDummy')
 const comments = require('./comments/comments')
 const attachments = require('./attachments/attachments')
 

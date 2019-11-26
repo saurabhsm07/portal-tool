@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service'
-import { Article_Field } from './../../../classes/article_fields'
-import {} from './../.././../classes/article_form'
+import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
+import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { Article_Field } from './../../../classes/article_fields';
+import { Article_Form } from './../.././../classes/article_form';
 
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { element } from '../../../../../../node_modules/protractor';
@@ -12,8 +13,9 @@ import { element } from '../../../../../../node_modules/protractor';
 })
 export class CreateArticleFormComponent implements OnInit {
 
-  private article_fields_incl : Article_Field[];
-  private article_fields_excl : Article_Field[];
+  private article_fields_incl: Article_Field[];
+  private article_fields_excl: Article_Field[];
+  private form_name: string;
 
   protected field_type_icon = {
     text : 'fa fa-text-width',
@@ -22,22 +24,23 @@ export class CreateArticleFormComponent implements OnInit {
     multiselect: 'fa fa-list',
     checkbox: 'fa fa-check-square-o',
     radiobox: 'fa fa-check-circle'
-  }
+  };
 
-  constructor(private articleFieldService : ArticleFieldService) { }
+  constructor(private articleFieldService: ArticleFieldService,
+              private articleFormService: ArticleFormsService) { }
 
   ngOnInit() {
     this.articleFieldService.getArticleField()
                             .subscribe((data) => {
-                              this.article_fields_excl = data.filter((element, i) => i%2 == 0)
-                              this.article_fields_incl = data.filter((element, i) => i%2 == 1)
-                            }, (err) =>{
-                              console.log(err)
-                            })
+                              this.article_fields_excl = data;
+                              this.article_fields_incl = [];
+                            }, (err) => {
+                              console.log(err);
+                            });
   }
 
   drop(event: CdkDragDrop<Article_Field[]>) {
-    console.log(event)
+    console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -48,7 +51,23 @@ export class CreateArticleFormComponent implements OnInit {
     }
   }
 
-  createForm(event){
-    console.log("submitting form")
+  createForm(event) {
+
+    const article_form: Article_Form = {
+      name: this.form_name,
+      article_field_ids:  this.article_fields_incl,
+      default_form: false,
+      active: true,
+      created_at: new Date(),
+      updated_at: new Date(),
+
+    };
+    console.log(article_form);
+    this.articleFormService.postArticleForm(article_form)
+                           .subscribe((data) => {
+                             console.log(data);
+                             console.log('article published successfully');
+                            });
+
   }
 }

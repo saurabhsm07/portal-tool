@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
 
-import { Article_Form } from './../../classes/article_form'
+import { Article_Form } from './../../classes/article_form';
 import { Article_Field } from '../../classes/article_fields';
 
 @Injectable({
@@ -33,7 +33,7 @@ export class ArticleFormsService {
    * postArticleForm: Service function to add article
    * form : Article_Form = object to be saved in the Article_Form table
    */
-  postArticleForm(form: Article_Form) : Observable <Article_Form> {
+  postArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
                     // .pipe()
   }
@@ -42,7 +42,7 @@ export class ArticleFormsService {
    * postArticleForm: Service function to add article
    * form : Article_Form = object to be saved in the Article_Form table
    */
-  getArticleForm(form: Article_Form) : Observable <Article_Form> {
+  getArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
                     // .pipe()
   }
@@ -51,7 +51,7 @@ export class ArticleFormsService {
    * postArticleForm: Service function to add article
    * form : Article_Form = object to be saved in the Article_Form table
    */
-  putArticleForm(form: Article_Form) : Observable <Article_Form> {
+  putArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
                     // .pipe()
   }
@@ -60,7 +60,7 @@ export class ArticleFormsService {
    * deleteArticleForm: Service function to add article
    * form : Article_Form = object to be saved in the Article_Form table
    */
-  deleteArticleForm(form: Article_Form) : Observable <Article_Form> {
+  deleteArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
                     // .pipe()
   }

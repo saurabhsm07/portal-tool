@@ -30,17 +30,8 @@ forms.get('/id/:id', (req, res) =>{
 })
 
 forms.post('/', (req, res) =>{
-    const data = {
-        default: true,
-        name: 'Form_name_2',
-        description: 'Form description 2',
-        removable: true,
-        active: true,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        article_field_ids: [1,2,3]
-
-    }
+    const data = req.body;
+    console.log(data);
 
     Form.create(data)
               .then((resp) => {

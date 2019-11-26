@@ -18,6 +18,12 @@ const Form = client.define('Article_form',{
                                                         },
                                                         default: {
                                                             type: Sequelize.BOOLEAN
+                                                        },
+                                                        created_at: {
+                                                            type: Sequelize.DATE,
+                                                        },
+                                                        updated_at: {
+                                                            type: Sequelize.DATE,
                                                         }
 
                                     }, { 

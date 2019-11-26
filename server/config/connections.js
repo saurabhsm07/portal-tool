@@ -22,6 +22,7 @@ const config  =  require('./config');
 
 const client = new Sequelize(config.database.db, config.database.user,config.database.pwd,
                         {host: config.database.host,
+                         port: config.database.port,
                          dialect: 'mysql'
                         })
 
