@@ -1,1 +1,93 @@
-<p>edit-article-form works!</p>
+<div class="row">
+    <div *ngIf ="article_fields_excl" class="form-div col-md-12">
+        <div class = "create-form-div col-md-6 offset-md-2">
+            <div class="col-md-12 form-meta-div">
+                    <h4> Article Form : </h4>
+                    <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Form Name</label>
+                              <input type="text" class="form-control" name="formName" id="form-name" [(ngModel)] = 'form_name' placeholder="Enter form name">
+                            </div>   
+                    </form>   
+            </div>
+            <div class="col-md-12 form-required-div">
+                    <small>Fields in this section cannot be changed</small>
+                    <div class=" col-md-12 title-req-field"> 
+                            <span class="" >
+                                    <i class="fa fa-text-width"></i>
+                                    <p> Article Title</p>
+                               </span>
+                    </div>
+                    <div class="  col-md-11">
+                               <span>
+                                    <i class="fa fa-caret-square-o-down"></i>
+                                    <p> Article Section</p>
+                               </span>
+                    </div>
+                    <div class=" col-md-11">
+                               <span>
+                                    <i class="fa fa-list"></i>
+                                    <p> Product Versions</p>
+                               </span>
+                    </div>
+                    <div class=" col-md-11">
+                               <span >
+                                    <i class="fa fa-list"></i>
+                                    <p> Operating Systems</p>
+                               </span>
+                    </div>
+                    <div class=" col-md-11 referenceField">
+                            <span >
+                                 <i class="fa fa-text-width"></i>
+                                 <p> Ticket Id</p>
+                            </span>
+                 </div>
+                 <div class=" col-md-11">
+                        <span >
+                             <i class="fa fa-text-width"></i>
+                             <p>Jira Ticket Id</p>
+                        </span>
+             </div>
+            </div>
+            <div class="col-md-12 form-custom-div">
+                    <small>Drag fields from the fields section to customise form</small>
+     <div cdkDropList  
+                #includedList="cdkDropList"
+                [cdkDropListData]="article_fields_incl"
+                [cdkDropListConnectedTo]="[excludedList]"
+                class="example-list"
+                 (cdkDropListDropped)="drop($event)">
+                    <div class="field-info-div" *ngFor="let field of article_fields_incl" cdkDrag>
+                       <span>
+                            <i class={{field_type_icon[field.field_type]}}></i>
+                            <p> {{field.field_name}}</p>
+                       </span>
+                </div>
+            </div>
+            </div>
+         
+           </div>
+           
+           <div class="field-list-div col-md-3 ">
+                <h4> Available Fields :</h4>
+                <small>Drag fields you want to the article form</small>
+               <div cdkDropList 
+                    #excludedList="cdkDropList"
+                    [cdkDropListData]="article_fields_excl"
+                    [cdkDropListConnectedTo]="[includedList]"
+                     (cdkDropListDropped)="drop($event)">
+                    <div class="field-info-div" *ngFor="let field of article_fields_excl" cdkDrag> 
+                            <span>
+                                    <i class={{field_type_icon[field.field_type]}}></i>
+                                    <p> {{field.field_name}}</p>
+                               </span>
+                </div>
+            </div>
+           </div>
+           <div class="submit-form-div col-md-8">
+            <button class="col-md-2" mat-raised-button color="primary" (click)="createForm($event)">Submit Form</button>
+    </div>
+         
+    </div>
+    
+    </div>
