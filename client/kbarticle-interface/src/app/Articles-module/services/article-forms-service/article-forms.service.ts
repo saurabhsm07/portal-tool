@@ -39,11 +39,11 @@ export class ArticleFormsService {
   }
 
   /**
-   * postArticleForm: Service function to add article
-   * form : Article_Form = object to be saved in the Article_Form table
+   * getArticleForm: Service function to get All article forms
+   *  no input variable
    */
-  getArticleForm(form: Article_Form): Observable <Article_Form> {
-    return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
+  getArticleForm(): Observable <Article_Form []> {
+    return this.http.get<Article_Form []>(this.requestUri.getArticleForms, this.headersOptions);
                     // .pipe()
   }
 

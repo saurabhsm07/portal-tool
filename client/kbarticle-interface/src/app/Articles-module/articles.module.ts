@@ -28,6 +28,7 @@ import { SearchFieldPipe } from './pipes/search-article-field/search-field.pipe'
 import { CreateArticleFormComponent } from './components/form-components/create-article-form/create-article-form.component';
 import { EditArticleFormComponent } from './components/form-components/edit-article-form/edit-article-form.component';
 import { ListArticleFormComponent } from './components/form-components/list-article-form/list-article-form.component';
+import { SearchArticleFormPipe } from './pipes/search-article-form/search-article-form.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ListArticleFormComponent } from './components/form-components/list-arti
     CreateArticleFormComponent,
     EditArticleFormComponent,
     ListArticleFormComponent,
+    SearchArticleFormPipe,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,6 @@ import { ListArticleFormComponent } from './components/form-components/list-arti
     ArticleFieldsRoutingModule,
     ArticleFormsRoutingModule,
     ArticleRoutingModule,
-    
   ],
   providers: []
 })

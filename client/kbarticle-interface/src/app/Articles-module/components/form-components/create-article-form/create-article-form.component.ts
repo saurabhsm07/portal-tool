@@ -55,7 +55,7 @@ export class CreateArticleFormComponent implements OnInit {
 
     const article_form: Article_Form = {
       name: this.form_name,
-      article_field_ids:  this.article_fields_incl,
+      article_fields:  JSON.stringify(this.article_fields_incl),
       default_form: false,
       active: true,
       created_at: new Date(),

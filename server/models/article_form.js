@@ -13,10 +13,10 @@ const Form = client.define('Article_form',{
                                                         name:{
                                                             type: Sequelize.TEXT,
                                                         },
-                                                        article_field_ids:{
-                                                            type: Sequelize.ARRAY(Sequelize.BIGINT),
+                                                        article_fields:{
+                                                            type: Sequelize.TEXT,
                                                         },
-                                                        default: {
+                                                        default_form: {
                                                             type: Sequelize.BOOLEAN
                                                         },
                                                         created_at: {

@@ -30,7 +30,7 @@ export class ArticleFormFieldsComponent implements OnInit, OnChanges  {
   ngOnInit() {
 this.articleFieldService.getArticleField()
                             .subscribe((data) => {
-                              console.log("fetched data");
+                              console.log('fetched data');
                               this.articleFields = data;
 
                               this.displayedColumns = ['field_name', 'id', 'field_type', 'created_at'];
@@ -40,17 +40,17 @@ this.articleFieldService.getArticleField()
 
                             },
                           (error) => {
-                            console.log("error occured")
-                            console.log(error)
-                          })
+                            console.log('error occured')
+                            console.log(error);
+                          });
   }
 
-  filterTable(){
+  filterTable() {
     this.dataSource.filter = this.searchString;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+    console.log(changes);
   }
 
 
