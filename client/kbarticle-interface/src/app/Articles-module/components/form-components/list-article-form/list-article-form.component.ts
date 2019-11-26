@@ -4,6 +4,8 @@ import { ArticleFormsService } from './../../../services/article-forms-service/a
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { Article_Form } from 'src/app/Articles-module/classes/article_form';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-article-form',
@@ -12,7 +14,8 @@ import { Article_Form } from 'src/app/Articles-module/classes/article_form';
 })
 export class ListArticleFormComponent implements OnInit {
 
-  constructor(private articleFormService: ArticleFormsService) { }
+  constructor(private articleFormService: ArticleFormsService,
+              private router: Router) { }
 
   private searchString = '';   // parameter for dynamic search article forms table
   private articleForms: Article_Form[]; // article forms list
@@ -27,7 +30,7 @@ export class ListArticleFormComponent implements OnInit {
                               console.log(data);
                               this.articleForms = data;
 
-                              this.displayedColumns = ['name', 'id', 'created_at'];
+                              this.displayedColumns = ['name', 'id', 'created_at', 'edit'];
                               this.dataSource.data = this.articleForms;
                               this.dataSource.paginator = this.paginator;
                               this.dataSource.filter = this.searchString;
@@ -41,6 +44,14 @@ export class ListArticleFormComponent implements OnInit {
 
   filterTable() {
     this.dataSource.filter = this.searchString;
+  }
+
+  /**
+   * navigate to edit article page with id
+   * @param id : id of the article to edit
+   */
+  editArticle(id) {
+    this.router.navigate(['/article/form/edit/' + id]);
   }
 
 }

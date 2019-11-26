@@ -47,7 +47,30 @@
   
   .forms-body-div{
     margin-top: 20px;
+    table{
+      th{
+        font-size: 20px;
+      }
+      td {
+          font-size: 18px;
+          button {
+            background: none;
+            border: none;
+          }
+      }
+    }
   }
   
+  .default-badge{
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .icon-class{
+    margin-right: 10px;
+  }
+
+
+
   /* When the input field gets focus, change its width to 100% */
   

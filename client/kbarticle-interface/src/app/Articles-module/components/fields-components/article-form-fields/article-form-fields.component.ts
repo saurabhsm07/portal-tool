@@ -16,12 +16,12 @@ export class ArticleFormFieldsComponent implements OnInit, OnChanges  {
 
   constructor(private articleFieldService: ArticleFieldService) { }
 
-    private searchString: string = '';   //parameter for dynamic search article fields table
-    private articleFields: Article_Field[]; //article fields list
+    private searchString: string = '';   // arameter for dynamic search article fields table
+    private articleFields: Article_Field[]; // article fields list
 
-    dataSource = new MatTableDataSource<Article_Field>(); //datasource
-    displayedColumns: string[];     //saves column names of the article fields table
-    paginator: MatPaginator;        //paginator for paginating the data table
+    dataSource = new MatTableDataSource<Article_Field>(); // datasource
+    displayedColumns: string[];     // saves column names of the article fields table
+    paginator: MatPaginator;        // paginator for paginating the data table
 
     @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
       this.paginator = mp;

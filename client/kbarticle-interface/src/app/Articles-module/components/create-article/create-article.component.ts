@@ -3,8 +3,8 @@ import { Field } from './field-class';
 import {FormBuilder, Validators} from '@angular/forms';
 import { ArticleService } from './../../services/article-service/article.service'
 import { ArticleAttachmentsService} from './../../services/article-attachments-service/article-attachments.service'
-import { Article } from './../../classes/article'
-import { Router } from '@angular/router'
+import { Article } from './../../classes/article';
+import { Router } from '@angular/router';
 
 
 
@@ -142,7 +142,7 @@ constructor(private fb: FormBuilder,
       this.articleService.postArticle({'article' : articleObj})
                          .subscribe((data) => {
                            console.log("succesfully created the article")
-                           this.router.navigate(['/list-articles/']);
+                           this.router.navigate(['/articles/list']);
                          },
                         (error) => {
                           console.log(error.error_on_req)
