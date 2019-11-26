@@ -5,7 +5,8 @@ import { Article_Field } from './../../../classes/article_fields';
 import { Article_Form } from './../.././../classes/article_form';
 
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { element } from '../../../../../../node_modules/protractor';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-article-form',
   templateUrl: './create-article-form.component.html',
@@ -27,7 +28,8 @@ export class CreateArticleFormComponent implements OnInit {
   };
 
   constructor(private articleFieldService: ArticleFieldService,
-              private articleFormService: ArticleFormsService) { }
+              private articleFormService: ArticleFormsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.articleFieldService.getArticleField()
@@ -67,6 +69,7 @@ export class CreateArticleFormComponent implements OnInit {
                            .subscribe((data) => {
                              console.log(data);
                              console.log('article published successfully');
+                             this.router.navigate(['/article/forms/list']);
                             });
 
   }
