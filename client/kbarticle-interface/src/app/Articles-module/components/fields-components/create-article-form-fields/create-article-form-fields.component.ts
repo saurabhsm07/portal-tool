@@ -153,7 +153,6 @@ export class CreateArticleFormFieldsComponent implements OnInit {
                               this.router.navigate(['/article/fields/list']);
                             },
                             (error)=>{
-                              console.log("error occured")
                               console.log(error)
                             })
   }

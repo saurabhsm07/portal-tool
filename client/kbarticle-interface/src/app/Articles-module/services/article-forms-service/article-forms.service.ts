@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { ArticleFormErrorHandlerService } from './../error-handler-service/article-form-error-handlers/article-form-error-handler.service';
 
 
 import { Article_Form } from './../../classes/article_form';
@@ -35,7 +36,7 @@ export class ArticleFormsService {
    */
   postArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
-                    // .pipe()
+                    .pipe(catchError(ArticleFormErrorHandlerService.postArticleFormError))
   }
 
   /**
@@ -43,8 +44,8 @@ export class ArticleFormsService {
    *  no input variable
    */
   getArticleForm(): Observable <Article_Form []> {
-    return this.http.get<Article_Form []>(this.requestUri.getArticleForms, this.headersOptions);
-                    // .pipe()
+    return this.http.get<Article_Form []>(this.requestUri.getArticleForms, this.headersOptions)
+                    .pipe(catchError(ArticleFormErrorHandlerService.getArticleFormError))
   }
 
     /**
@@ -52,8 +53,8 @@ export class ArticleFormsService {
    *  id : string : id of the form to be fetched
    */
   getArticleFormById(id: string): Observable <Article_Form> {
-    return this.http.get<Article_Form>(this.requestUri.getArticleFormById + id, this.headersOptions);
-                    // .pipe()
+    return this.http.get<Article_Form>(this.requestUri.getArticleFormById + id, this.headersOptions)
+                    .pipe(catchError(ArticleFormErrorHandlerService.getArticleFormError))
   }
 
   /**
@@ -63,16 +64,16 @@ export class ArticleFormsService {
    */
   putArticleForm(form: Article_Form, id: Number): Observable <{id : Number}> {
     return this.http.put<{id : Number}>(this.requestUri.postArticleForm, {form, id}, this.headersOptions)
-                    // .pipe()
+                    .pipe(catchError(ArticleFormErrorHandlerService.putArticleFormError))
   }
 
   /**
-   * deleteArticleForm: Service function to add article
-   * form : Article_Form = object to be saved in the Article_Form table
+   * deleteArticleForm: Service function to delete article Form
+   * form : id = id of the article form to be deleted
    */
   deleteArticleForm(form: Article_Form): Observable <Article_Form> {
     return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
-                    // .pipe()
+                    .pipe(catchError(ArticleFormErrorHandlerService.deleteArticleFormError))
   }
 
 

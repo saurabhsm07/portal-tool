@@ -71,13 +71,15 @@ export class EditArticleFormFieldsComponent implements OnInit {
     );
 
     this.article_field$.subscribe((data: Article_Field) => {
-      this.article_field = data[0];
-      console.log(data)
-      this.article_field.field_value = JSON.parse(data[0].field_value).map(value => value.replace(/['"]+/g,''));
-      
-      console.log(this.article_field)                                                                              
-      this.setEditFormValues()
-    })
+                                  this.article_field = data[0];
+                                  console.log(data)
+                                  this.article_field.field_value = JSON.parse(data[0].field_value).map(value => value.replace(/['"]+/g,''));
+                                  
+                                  console.log(this.article_field)                                                                              
+                                  this.setEditFormValues()
+                                }, (error) => {
+                                  console.log(error);
+                                })
   }
 
 
@@ -153,6 +155,8 @@ export class EditArticleFormFieldsComponent implements OnInit {
                               }
                                    
                                    
+                            }, (error) => {
+                              console.log(error)
                             })
   }
 

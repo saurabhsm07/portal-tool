@@ -43,7 +43,6 @@ this.articleFieldService.getArticleField()
 
                   },
                 (error) => {
-                  console.log('error occured')
                   console.log(error);
                 });
 }

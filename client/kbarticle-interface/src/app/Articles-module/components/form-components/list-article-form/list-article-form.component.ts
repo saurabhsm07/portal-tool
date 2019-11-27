@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
 import {MatPaginator} from '@angular/material/paginator';
@@ -24,6 +24,10 @@ export class ListArticleFormComponent implements OnInit {
   displayedColumns: string[];     // saves column names of the article fields table
   paginator: MatPaginator;        // paginator for paginating the data table
 
+  @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    }
+
   ngOnInit() {
     this.articleFormService.getArticleForm()
                             .subscribe((data) => {
@@ -37,7 +41,6 @@ export class ListArticleFormComponent implements OnInit {
 
                             },
                             (error) => {
-                              console.log('error occured');
                               console.log(error);
                             });
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { ArticleFieldErrorHandlerService } from './../error-handler-service/article-field-error-handlers/article-field-error-handler.service';
 
 
 import { Article_Field } from './../../classes/article_fields'
@@ -33,7 +34,7 @@ private headersOptions = {
  article_field : Article_field   = object to be saved Article_Field database table */
  postArticleField(field: Article_Field) : Observable<Article_Field> {
   return this.http.post<Article_Field>(this.requestUri.postArticleField, field , this.headersOptions)
-                  // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
+                  .pipe(catchError(ArticleFieldErrorHandlerService.postArticleFieldError));
 
 }
 
@@ -42,7 +43,7 @@ private headersOptions = {
  */
 getArticleField(): Observable<Article_Field[]>{
   return this.http.get<Article_Field[]>(this.requestUri.getArticleFields, this.headersOptions)
-               // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
+               .pipe(catchError(ArticleFieldErrorHandlerService.getArticleFieldError));
 }
 
 /**
@@ -50,7 +51,7 @@ getArticleField(): Observable<Article_Field[]>{
 */
 getArticleFieldById(id :Number): Observable<Article_Field>{
  return this.http.get<Article_Field>(this.requestUri.getArticleFieldById+'/'+id, this.headersOptions)
-              // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
+              .pipe(catchError(ArticleFieldErrorHandlerService.getArticleFieldError));
 }
 
 /**
@@ -58,7 +59,7 @@ getArticleFieldById(id :Number): Observable<Article_Field>{
  */
 updateArticleField(field: Article_Field, id: number) : Observable<{id : number}> {
   return this.http.put<{id: number}>(this.requestUri.updateArticleField, {field,id}, this.headersOptions)
-               // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
+               .pipe(catchError(ArticleFieldErrorHandlerService.putArticleFieldError));
 }
 
 /**
@@ -66,7 +67,7 @@ updateArticleField(field: Article_Field, id: number) : Observable<{id : number}>
  */
 deleteArticleField(id: number) : Observable<Article_Field> {
   return this.http.put<Article_Field>(this.requestUri.updateArticleField+'/'+id, this.headersOptions)
-               // .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
+               .pipe(catchError(ArticleFieldErrorHandlerService.deleteArticleFieldError));
 }
 
   }
