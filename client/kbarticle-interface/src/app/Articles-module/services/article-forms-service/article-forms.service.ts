@@ -47,12 +47,22 @@ export class ArticleFormsService {
                     // .pipe()
   }
 
-  /**
-   * postArticleForm: Service function to add article
-   * form : Article_Form = object to be saved in the Article_Form table
+    /**
+   * getArticleFormById: Service function to get  article form by id
+   *  id : string : id of the form to be fetched
    */
-  putArticleForm(form: Article_Form): Observable <Article_Form> {
-    return this.http.post<Article_Form>(this.requestUri.postArticleForm, form, this.headersOptions)
+  getArticleFormById(id: string): Observable <Article_Form> {
+    return this.http.get<Article_Form>(this.requestUri.getArticleFormById + id, this.headersOptions);
+                    // .pipe()
+  }
+
+  /**
+   * putArticleForm: Service function to update article form
+   * form : Article_Form = object to be updated in the Article_Form table
+   * id : id of the form to be updated
+   */
+  putArticleForm(form: Article_Form, id: Number): Observable <{id : Number}> {
+    return this.http.put<{id : Number}>(this.requestUri.postArticleForm, {form, id}, this.headersOptions)
                     // .pipe()
   }
 

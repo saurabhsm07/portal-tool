@@ -45,37 +45,23 @@ forms.post('/', (req, res) =>{
 } )
 
 forms.put('/', (req, res) =>{
-    const updateData = {
-        id: 3,
-         active: false,
-         name: 'updated_name_1',
-         article_field_ids : [2, 11],
-    }
-    Form.findAll({where : {id : updateData.id}})
-        .then((form_obj) => {
-            if(form_obj){
-                console.log(form_obj[0].dataValues.article_field_ids)
-                updateData.article_field_ids = updateData.article_field_ids.concat(form_obj[0].dataValues.article_field_ids)
-                console.log(updateData)
-                Form.update(updateData, { where : {id: updateData.id} } )
+    const form_id = req.body.id;
+    const updateObj = {
+                       name: req.body.form.name,
+                       article_fields: req.body.form.article_fields,
+                       updated_at: req.body.form.updated_at}
+    
+
+                Form.update(updateObj, { where : {id: form_id} } )
                     .then((data) =>{
                         console.log("update successfull")
-                        res.send(`updated form with id = ${updateData.id} `)
+                        res.send({id : form_id})
                     })
                     .catch((err)=> {
                         console.log(err)
                         res.status(500).send(err)
                     })
-            }
-            else{
-                res.send(`form with id ${updateData.id} does not exist`);
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(500).send(err)
-        })
-} )
+            })
 
 forms.delete('/id/:id', (req, res) =>{
     Form.destroy({where: {id : req.params.id}})

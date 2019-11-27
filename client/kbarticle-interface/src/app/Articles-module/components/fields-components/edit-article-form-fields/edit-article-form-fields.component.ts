@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';import { switchMap } from 'rxjs/operators'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators'
 import { Article_Field } from './../../../classes/article_fields';
 
 import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
