@@ -50,7 +50,7 @@ export class ListArticleFormComponent implements OnInit {
    * navigate to edit article page with id
    * @param id : id of the article to edit
    */
-  editArticle(id) {
+  editArticleForm(id) {
     this.router.navigate(['/article/form/edit/' + id]);
   }
 

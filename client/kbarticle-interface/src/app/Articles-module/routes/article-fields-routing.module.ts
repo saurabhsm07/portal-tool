@@ -13,9 +13,9 @@ import { EditArticleFormFieldsComponent } from './../components/fields-component
 import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
 
 const articleFieldsRoutes: Routes = [
-  { path: 'article/fields/list', component: ArticleFormFieldsComponent },
+  { path: 'article/fields/list', component: ListArticleFormFieldsComponent },
   { path: 'article/fields/create', component: CreateArticleFormFieldsComponent },
-  { path: 'article/fields/edit/:id', component: EditArticleFormFieldsComponent },
+  { path: 'article/field/edit/:id', component: EditArticleFormFieldsComponent },
 //   { path: '', redirectTo: 'article/fields', pathMatch: 'full',},
 //   { path: '**', component: ArticleNotFoundComponent}
 ];
