@@ -44,7 +44,7 @@
         </div>
 </div>
 
-<div class="sidebar-container">
+<div class="sidebar-container ">
 		 
         <div class="main-sidebar" id="main-sidebar">
 <ul>
@@ -60,19 +60,16 @@
 
 
 <h4> <i class="fa fa-cog fa-1"></i> Administration</h4>
-<ul>
-<li class="active"><a href="">User Roles</a></li>
-<li><a href="">Article</a></li>
-<li><a href="">Organization Fields</a></li>
-<li><a href="">Organizations</a></li>
-<li><a href="">User Fields</a></li>
-<li><a href="">Users</a></li>
-<li><a href="">Ticket Fields</a></li>
-<li><a href="">Ticket Forms</a></li>
+<ul *ngIf= "secondarySidebarOptions">
+<li *ngFor="let option of secondarySidebarOptions" class="active"><a routerLink= {{option.sectionUrl}}>{{option.sectionName}}</a></li>
 </ul>
 <br>
-</div> 
-         
-         
 </div>
-<router-outlet></router-outlet>
+</div>
+<div class="view-container col-lg-9">
+        <div class="col-lg-12">
+                <router-outlet></router-outlet>
+                </div> 
+</div>
+
+
