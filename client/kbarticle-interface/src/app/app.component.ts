@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'KB article module';
+  sidebarOptions = { articles : ['published', 'drafts','archived'],
+                     community: ['topics', 'posts'],
+                     settings : ['Articles', 'Article Fields', 'Article Forms', 'Community topics', 'community posts']};
+  
+ updateSidebar(option){
+   console.log(option);
+ }
 }

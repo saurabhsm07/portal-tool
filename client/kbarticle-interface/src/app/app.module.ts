@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './imports/material-module'
 
 import { EditorModule } from '@tinymce/tinymce-angular'
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
@@ -27,6 +28,7 @@ import { AppComponent } from './app.component';
     ArticlesModule,
     AppRoutingModule,
     EditorModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

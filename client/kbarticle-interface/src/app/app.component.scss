@@ -2,3 +2,73 @@
     padding-top: 20px;
     text-align: center;
 }
+
+.main-header {
+    background: #1d2e42;
+    height: 75px;
+    min-height: 75px;
+
+    .header-content {
+        padding: 10px 20px 10px 20px;
+        margin-left: 0px;
+
+        .addMenu{
+            margin-top: 10px;
+            margin-right: 45px;
+        
+            .nav-link{
+                color: #ffffff;
+                font-size: 14px;
+            }
+        }
+
+        ul {
+            .userdropdown{
+                a{
+                    color: #ffffff;
+                    font-size: 14px;
+                    padding-top: 0px;
+                    .iconimg{
+                        width: 30px;
+                        margin-top: 0px;
+                        margin-bottom: 5px;
+                    }
+                }
+               
+                
+            }
+        }
+    }
+}
+
+.sidebar-container{
+    .main-sidebar{
+        width: 50px;
+        padding-top: 0px;
+        overflow: auto;
+        height: 1000px;
+        float: left;
+        background-color: #f2f5fa;
+        ul{
+            padding: 0px;
+            li{
+                padding: 15px;
+                a{
+                  
+                }
+            }
+        }
+    }
+
+    .sidebar{
+        overflow: auto;
+        height: 1000px;
+        float: left;
+        padding-right: 0;
+        max-width: 22%;
+        padding-left: 0px;
+        background: #ebebeb38;
+        border-right: 1px solid #dee2e6;
+        box-shadow: 5px 5px 10px 0px gainsboro;
+    }
+}
