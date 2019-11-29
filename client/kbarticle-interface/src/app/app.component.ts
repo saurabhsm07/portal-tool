@@ -20,8 +20,6 @@ export class AppComponent {
   secondarySidebarOptions : String[];
   
  updateSidebar(option){
-   
   this.secondarySidebarOptions = this.primarySidebarOptions[option]
-  console.log(this.secondarySidebarOptions)
  }
 }

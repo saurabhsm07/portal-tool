@@ -61,4 +61,8 @@ export class ListArticlesComponent implements OnInit {
     return JSON.parse(section).name;
   }
 
+  viewArticle(articleId){
+    this.route.navigate(['/article/id/'+articleId])
+  }
+
 }

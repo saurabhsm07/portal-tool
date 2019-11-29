@@ -6,16 +6,15 @@
       </div>
   <div class="header-controls-div col-md-12">
       <div class="search-div col-md-8">
-          <input [(ngModel)] = "searchString" placeholder="Search articles"  />
-          
-      </div>
-      <!-- <div class="advanced-search-div col-md-4">
-              <a  class="btn btn-info">Filters </a>
-      </div> -->
+            <input [(ngModel)] = "searchString" placeholder="Search articles"  />
+          <span class="advanced-search-span">
+              <a  class="btn btn-info">Add Filters </a>
 
+          </span>
+      </div>
   </div>
     <!-- <span *ngIf="ticketarticles | searchField:searchString"></span> -->
-<div *ngIf="dataSource | searchArticle:searchString : Articles" class="articles-body-div col-md-12">
+<div *ngIf="dataSource | searchArticle:searchString : articles" class="articles-body-div col-md-12">
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
       
@@ -42,7 +41,8 @@
                   
                   <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let article"> <button  (click) = "editArticle(article.id)"><i class="fa fa-pencil" aria-hidden="true"></i></button> </td>
+                    <td mat-cell *matCellDef="let article"> <button  (click) = "viewArticle(article.id)"><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                    </button> </td>
                   </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

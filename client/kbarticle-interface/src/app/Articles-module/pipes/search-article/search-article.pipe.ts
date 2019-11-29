@@ -7,7 +7,6 @@ import { Article } from './../../classes/article';
 export class SearchArticlePipe implements PipeTransform {
 
   transform(value: any, searchString?: string, articles?: Article[]): any {
-
     value.data = articles;
     if (searchString.length === 0) {
       return value;

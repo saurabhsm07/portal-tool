@@ -18,7 +18,7 @@
                                                         <div class="dropdown-menu">
                                                                 <!--div class="dropdown-item" >New</div>
                                                                 <div class="dropdown-divider"></div-->
-                                                                <a class="dropdown-item" href="">Article</a>
+                                                                <a class="dropdown-item" href="/article/create/">Article</a>
                                                                 <a class="dropdown-item" href="">Section</a>
                                                                 <a class="dropdown-item" href="">Category</a>
                                                                 <a class="dropdown-item" href="">Community Topics</a>
@@ -61,7 +61,7 @@
 
 
 <h4> <i class="fa fa-cog fa-1"></i> Administration</h4>
-<ul *ngIf= "secondarySidebarOptions">
+<ul class="list-unstyled" *ngIf= "secondarySidebarOptions">
 <li *ngFor="let option of secondarySidebarOptions" class="active"><a routerLink= {{option.sectionUrl}}>{{option.sectionName}}</a></li>
 </ul>
 <br>
