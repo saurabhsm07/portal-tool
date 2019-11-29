@@ -42,6 +42,7 @@
 }
 
 .sidebar-container{
+    padding-right: 0px;
     .main-sidebar{
         width: 50px;
         padding-top: 0px;
@@ -65,7 +66,7 @@
         height: 1000px;
         float: left;
         padding-right: 0;
-        max-width: 22%;
+        // max-width: 22%;
         padding-left: 0px;
         background: #ebebeb38;
         border-right: 1px solid #dee2e6;
@@ -111,4 +112,8 @@
 
 .view-container{
     display: inline-block;
+    padding-left: 0px;
+    .col-lg-12{
+        padding-left: 0px;
+    }
 }

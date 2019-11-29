@@ -60,7 +60,8 @@ articles.post('/', (req, res) => {
         created_at: req.body.article.createdAt,
         updated_at: req.body.article.updatedAt,
         edited_at:  req.body.article.updatedAt,
-        review_state: req.body.article.review_state
+        review_state: req.body.article.review_state,
+        label_names: req.body.label_names
     }
     console.log(data)
     Article.create(data)

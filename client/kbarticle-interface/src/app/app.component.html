@@ -44,19 +44,20 @@
         </div>
 </div>
 
-<div class="sidebar-container ">
+<div class="row">
+<div class="sidebar-container col-lg-3">
 		 
         <div class="main-sidebar" id="main-sidebar">
 <ul>
 <li (click) = 'updateSidebar("home")'><a  matTooltip="Home"><i class="fa fa-home" aria-hidden="true" ></i></a></li>
-<li (click) = 'updateSidebar("articles")'><a  matTooltip="Articles"><i class="fa fa-list-alt" aria-hidden="true"></i></a></li>
+<li (click) = 'updateSidebar("section")'><a  matTooltip="Articles"><i class="fa fa-list-alt" aria-hidden="true"></i></a></li>
 <li (click) = 'updateSidebar("settings")'><a  matTooltip="Settings"><i class="fa fa-cog fa-1"></i></a></li>
 
 </ul>
 <br>
 </div>			 
                          
-        <div class="sidebar col-lg-3" id="sidebar">
+        <div class="sidebar col-lg-10" id="sidebar">
 
 
 <h4> <i class="fa fa-cog fa-1"></i> Administration</h4>
@@ -70,6 +71,7 @@
         <div class="col-lg-12">
                 <router-outlet></router-outlet>
                 </div> 
+</div>
 </div>
 
 
