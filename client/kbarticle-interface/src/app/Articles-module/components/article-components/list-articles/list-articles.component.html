@@ -1,0 +1,55 @@
+<div class="article-articles-header col-md-12" >
+      <div class="head-title-div col-md-12">
+      <h1>Articles</h1>
+      <p>List of articles varying from announcements, knowledge base, patches and hotfixes<br>
+          Add and manage articles using customised (user defined) articles and fields </p>
+      </div>
+  <div class="header-controls-div col-md-12">
+      <div class="search-div col-md-8">
+            <input [(ngModel)] = "searchString" placeholder="Search articles"  />
+          <span class="advanced-search-span">
+              <a  class="btn btn-info">Add Filters </a>
+
+          </span>
+      </div>
+  </div>
+    <!-- <span *ngIf="ticketarticles | searchField:searchString"></span> -->
+<div *ngIf="dataSource | searchArticle:searchString : articles" class="articles-body-div col-md-12">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <div class="mat-elevation-z8 col-md-12">
+                <table class="article-list-table col-md-12" mat-table [dataSource]="dataSource">
+              
+                  <!-- Position Column -->
+                  <ng-container  matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Article Name </th>
+                    <td mat-cell *matCellDef="let article"><i class="fa fa-list-alt icon-class" aria-hidden="true"></i>  {{article.title}}</td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status</th>
+                    <td mat-cell *matCellDef="let article"> {{draftStatusPipe(article.draft)}}</td>
+                  </ng-container>
+
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef> Created At </th>
+                    <td mat-cell *matCellDef="let article"> {{article.created_at | date}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let article"> <button  (click) = "viewArticle(article.id)"><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                    </button> </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+</div>
+</div>

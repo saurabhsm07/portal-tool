@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from './field-class';
 import {FormBuilder, Validators} from '@angular/forms';
-import { ArticleService } from './../../services/article-service/article.service'
-import { ArticleAttachmentsService} from './../../services/article-attachments-service/article-attachments.service'
-import { Article } from './../../classes/article';
+import { ArticleService } from './../../../services/article-service/article.service'
+import { ArticleAttachmentsService} from './../../../services/article-attachments-service/article-attachments.service'
+import { Article } from './../../../classes/article';
 import { Router } from '@angular/router';
 
 

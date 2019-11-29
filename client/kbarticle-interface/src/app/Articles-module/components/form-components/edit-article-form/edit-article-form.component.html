@@ -1,6 +1,6 @@
 <div class="row">
     <div *ngIf ="article_fields_excl" class="form-div col-md-12">
-        <div class = "create-form-div col-md-6 offset-md-2">
+        <div class = "create-form-div col-md-8">
             <div class="col-md-12 form-meta-div">
                     <h4> Article Form : </h4>
                     <form>
@@ -68,21 +68,24 @@
          
            </div>
            
-           <div class="field-list-div col-md-3 ">
-                <h4> Available Fields :</h4>
-                <small>Drag fields you want to the article form</small>
-               <div cdkDropList 
-                    #excludedList="cdkDropList"
-                    [cdkDropListData]="article_fields_excl"
-                    [cdkDropListConnectedTo]="[includedList]"
-                     (cdkDropListDropped)="drop($event)">
-                    <div class="field-info-div" *ngFor="let field of article_fields_excl" cdkDrag> 
-                            <span>
-                                    <i class={{field_type_icon[field.field_type]}}></i>
-                                    <p> {{field.field_name}}</p>
-                               </span>
-                </div>
-            </div>
+           <div class="col-md-4 ">
+                   <div class="field-list-div ">
+                        <h4> Available Fields :</h4>
+                        <small>Drag fields you want to the article form</small>
+                        <div cdkDropList 
+                                #excludedList="cdkDropList"
+                                [cdkDropListData]="article_fields_excl"
+                                [cdkDropListConnectedTo]="[includedList]"
+                                (cdkDropListDropped)="drop($event)">
+                                <div class="field-info-div" *ngFor="let field of article_fields_excl" cdkDrag> 
+                                        <span>
+                                                <i class={{field_type_icon[field.field_type]}}></i>
+                                                <p> {{field.field_name}}</p>
+                                        </span>
+                        </div>
+                        </div>
+                   </div>
+              
            </div>
            <div class="submit-form-div col-md-8">
             <button class="col-md-2" mat-raised-button color="primary" (click)="updateForm()">Update Form</button>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateArticleComponent } from './../components/create-article/create-article.component';
-import { ListArticlesComponent } from './../components/list-articles/list-articles.component';
-import { DisplayArticleComponent } from './../components/display-article/display-article.component';
-import { ArticleHomeComponent } from './../components/article-home/article-home.component';
-import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
+import { CreateArticleComponent } from './../components/article-components/create-article/create-article.component';
+import { ListArticlesComponent } from './../components/article-components/list-articles/list-articles.component';
+import { DisplayArticleComponent } from './../components/article-components/display-article/display-article.component';
+import { ArticleHomeComponent } from './../components/article-components/article-home/article-home.component';
+import { ArticleNotFoundComponent } from './../components/article-components/article-not-found/article-not-found.component'
 
 const articleRoutes: Routes = [
   { path: 'articles/home', component: ArticleHomeComponent },

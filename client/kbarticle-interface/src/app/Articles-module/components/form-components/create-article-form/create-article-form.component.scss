@@ -15,6 +15,7 @@ $submit-btn-color: #00bcd4;
          border: 1px solid grey;
          padding-top: 10px;
          padding-bottom: 10px;
+         
          div{
              display: inline-grid;
          }
@@ -23,15 +24,23 @@ $submit-btn-color: #00bcd4;
 
 
 .field-list-div{
-    margin: 10px 10px 10px 10px;
+    margin: 10px 0px 10px 0px;
     border: 1px solid grey;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-right: 0px;
+
+    h4{
+        padding-left: 10px;
+    }
+    small{
+        padding-left: 10px;
+    }
 }
 .field-info-div{
     
     border: 1px solid grey;
-    margin: 5px 20px 5px 20px;
+    margin: 5px 10px 5px 10px;
     width: 90%;
     
     span{

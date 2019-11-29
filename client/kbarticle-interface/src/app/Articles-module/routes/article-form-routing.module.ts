@@ -7,8 +7,6 @@ import { EditArticleFormComponent } from './../components/form-components/edit-a
 import { ListArticleFormComponent } from './../components/form-components/list-article-form/list-article-form.component';
 
 //replace below route in the future
-import { ArticleNotFoundComponent } from './../components/article-not-found/article-not-found.component'
-
 const articleFormsRoutes: Routes = [
   { path: 'article/forms', component: ArticleFormComponent },
   { path: 'article/forms/list', component: ListArticleFormComponent },

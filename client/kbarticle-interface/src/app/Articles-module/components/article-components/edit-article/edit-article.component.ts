@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router'
 import {FormBuilder, Validators} from '@angular/forms';
-import { ArticleService } from './../../services/article-service/article.service'
-import { ArticleAttachmentsService} from './../../services/article-attachments-service/article-attachments.service'
-import { Article } from './../../classes/article'
+import { ArticleService } from './../../../services/article-service/article.service'
+import { ArticleAttachmentsService} from './../../../services/article-attachments-service/article-attachments.service'
+import { Article } from './../../../classes/article'
 
-import { Observable } from '../../../../../node_modules/rxjs';
-declare var $ : any;
+declare var $ : any;   //touse jquery for modal toggle
 
 @Component({
   selector: 'app-edit-article',
