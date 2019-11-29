@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Field } from '../../components/create-article/field-class';
 import { Article_Field } from '../../classes/article_fields';
 
 
