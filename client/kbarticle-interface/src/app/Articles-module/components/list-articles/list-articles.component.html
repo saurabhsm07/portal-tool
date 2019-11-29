@@ -1,25 +1,55 @@
-<div *ngIf =  "articles" class="kbarticle_list_div">
-  <table class="col-md-12 kbarticle_table">
-    <tbody>
-      <tr class="kb-list-headers">
-        <td class="head-title">Title</td>
-        <td class="text-center">Created At</td>
-        <td class="text-center">Updated At</td>
-        <td></td>
-      </tr>
-      <tr *ngFor = "let article of articles" class="kb-list">
-        <td  class="title-col-art">{{article.title}} 
-          <span class=" btn-draft">{{draftStatusPipe(article.draft)}}</span>
-          <span class=" btn-rejected">{{reviewStatusPipe(article.review_state)}}</span>
-          <p class="info-data-art">
-            <i class="fa fa-user" aria-hidden="true"></i> {{authorPipe(article.author)}} 
-            <i class="fa fa-folder-o" aria-hidden="true" ></i>{{sectionPipe(article.section)}}
-          </p>
-        </td>
-        <td class="text-center">{{article.created_at}}</td>
-        <td class="text-center">{{article.updated_at}}</td>
-        <td class="text-center"><a href='{{article.url}}{{article.id}}' >View</a></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="article-articles-header col-md-12" >
+      <div class="head-title-div col-md-12">
+      <h1>Articles</h1>
+      <p>List of articles varying from announcements, knowledge base, patches and hotfixes<br>
+          Add and manage articles using customised (user defined) articles and fields </p>
+      </div>
+  <div class="header-controls-div col-md-12">
+      <div class="search-div col-md-8">
+          <input [(ngModel)] = "searchString" placeholder="Search articles"  />
+          
+      </div>
+      <!-- <div class="advanced-search-div col-md-4">
+              <a  class="btn btn-info">Filters </a>
+      </div> -->
+
+  </div>
+    <!-- <span *ngIf="ticketarticles | searchField:searchString"></span> -->
+<div *ngIf="dataSource | searchArticle:searchString : Articles" class="articles-body-div col-md-12">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <div class="mat-elevation-z8 col-md-12">
+                <table class="article-list-table col-md-12" mat-table [dataSource]="dataSource">
+              
+                  <!-- Position Column -->
+                  <ng-container  matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Article Name </th>
+                    <td mat-cell *matCellDef="let article"><i class="fa fa-list-alt icon-class" aria-hidden="true"></i>  {{article.title}}</td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status</th>
+                    <td mat-cell *matCellDef="let article"> {{draftStatusPipe(article.draft)}}</td>
+                  </ng-container>
+
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef> Created At </th>
+                    <td mat-cell *matCellDef="let article"> {{article.created_at | date}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let article"> <button  (click) = "editArticle(article.id)"><i class="fa fa-pencil" aria-hidden="true"></i></button> </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+</div>
 </div>

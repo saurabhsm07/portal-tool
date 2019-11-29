@@ -29,6 +29,7 @@ import { CreateArticleFormComponent } from './components/form-components/create-
 import { EditArticleFormComponent } from './components/form-components/edit-article-form/edit-article-form.component';
 import { ListArticleFormComponent } from './components/form-components/list-article-form/list-article-form.component';
 import { SearchArticleFormPipe } from './pipes/search-article-form/search-article-form.pipe';
+import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SearchArticleFormPipe } from './pipes/search-article-form/search-articl
     EditArticleFormComponent,
     ListArticleFormComponent,
     SearchArticleFormPipe,
+    SearchArticlePipe,
   ],
   imports: [
     BrowserModule,

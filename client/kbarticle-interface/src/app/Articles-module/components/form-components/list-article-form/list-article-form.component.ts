@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 })
 export class ListArticleFormComponent implements OnInit {
 
-  constructor(private articleFormService: ArticleFormsService,
-              private router: Router) { }
 
   private searchString = '';   // parameter for dynamic search article forms table
   private articleForms: Article_Form[]; // article forms list
@@ -27,6 +25,10 @@ export class ListArticleFormComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     }
+
+  
+  constructor(private articleFormService: ArticleFormsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.articleFormService.getArticleForm()
