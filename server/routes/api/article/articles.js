@@ -1,12 +1,12 @@
 const express = require('express')
 const articles = express.Router()
-const client = require("./../../../config/connections").client_sequelize
-const Article = require("./../../../models/Article")
+const client = require("./../../../config/connections").client;
+const Article = require("./../../../models/Article");
 
-const attachments = require('./attachments/attachments')
-const comments = require('./comments/comments')
-const fields = require('./form data/fields')
-const forms = require('./form data/forms')
+const attachments = require('./attachments/attachments');
+const comments = require('./comments/comments');
+const fields = require('./form data/fields');
+const forms = require('./form data/forms');
 
 articles.get('/', (req, res) => {
     Article.findAll()

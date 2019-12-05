@@ -1,39 +1,40 @@
 const express = require('express');
 const path = require('path');
-const handlebars = require('express-handlebars')
-const loggers = require('./middleware/loggers')
+const handlebars = require('express-handlebars');
+const loggers = require('./middleware/loggers');
 const app = express();
 const cors = require('cors');
 
-const tickets = require('./routes/api/ticket/tickets')
-const articles = require('./routes/api/article/articles')
+const tickets = require('./routes/api/ticket/tickets');
+const articles = require('./routes/api/article/articles');
+const categories = require('./routes/api/category/categories');
 
-const PORT = process.env.PORT  || 5000
+const PORT = process.env.PORT  || 5000;
 
 
 app.use(cors());
 
 //middlewares
-app.use(loggers.requestLogger)
+app.use(loggers.requestLogger);
 
 // Body parser
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 //static files
-app.use(express.static(path.join(__dirname,"assets/files/article_data")))
-app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,"assets/files/article_data")));
+app.use(express.static(path.join(__dirname,"public")));
 
 // Handlebars Middleware
-app.set('views', path.join(__dirname,'views'))
-app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.set('views', path.join(__dirname,'views'));
+app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine','handlebars');
 
 
 //get home path -  rendered
 app.get('/', (req, res) =>{
     // client.connect()
-    res.render('index')
+    res.render('index');
 })
 
 
@@ -43,10 +44,10 @@ app.get('/', (req, res) =>{
 //     res.sendFile(__dirname, 'public', 'index.html')
 // })
 
-//routes
-app.use('/api/ticket/',tickets)
-app.use('/api/articles/', articles)
-
+//API: routes
+app.use('/api/ticket/',tickets);            // routes for ticket APIs
+app.use('/api/articles/', articles);        // routes for article APIs
+app.use('/api/categories/', categories);    // route for category APIs
 
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })
