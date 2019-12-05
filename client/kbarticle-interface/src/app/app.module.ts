@@ -13,6 +13,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { ArticlesModule} from './Articles-module/articles.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CategoryModule } from './Category-module/category.module';
+import { SectionModule } from './Section-module/section.module';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    CategoryModule,
+    SectionModule,
     ArticlesModule,
     AppRoutingModule,
     EditorModule,
