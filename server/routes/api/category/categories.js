@@ -31,7 +31,7 @@ categories.get('/', (req, res) => {
 categories.get('/id/:id', (req, res) => {
     Category.findAll({where : {id : req.params.id}})
            .then((data) => {
-                if(data){
+                if(data.length == 1){
                     console.log(`fetched category with id : ${data[0].id}`);
                     res.send(data[0]);
                 }
@@ -84,16 +84,14 @@ categories.post('/', (req, res) => {
 categories.put('/', (req, res) => {
     const updateData = {
         name: req.body.category.name,
-        req: req.body.category.description,
+        description: req.body.category.description,
         position: 0,
-        up_vote: 12,
-        down_vote: 0,
         updated_at: req.body.category.updatedAt
     }
 
     Category.findAll({where : {id: req.body.category.id}})
            .then( (category_obj)=> {
-               if(category_obj){
+               if(category_obj.length == 1){
                    Category.update(updateData, {where : {id: req.body.category.id}})
                           .then((data) => {
                               if(data == 1){

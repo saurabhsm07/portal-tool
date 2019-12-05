@@ -10,13 +10,13 @@ export class AppComponent {
   primarySidebarOptions = { home :     [{sectionName: 'published', sectionUrl: '#'}, 
                                         {sectionName: 'drafts', sectionUrl: '#'}, 
                                         {sectionName: 'archived', sectionUrl: '#'}],
-                            section: [{sectionName: 'topics', sectionUrl: '#' }, 
-                                        {sectionName: 'posts', sectionUrl: '#'}],
+                            // section: [{sectionName: 'Sectu', sectionUrl: '#' }, 
+                            //             {sectionName: 'posts', sectionUrl: '#'}],
                             settings : [{sectionName:'Articles', sectionUrl: '/articles/list' }, 
                                         {sectionName: 'Article Fields', sectionUrl: '/article/fields/list'}, 
                                         {sectionName: 'Article Forms', sectionUrl: '/article/forms/list'},
-                                        {sectionName: 'Community topics', sectionUrl:'#'},
-                                        {sectionName: 'community posts', sectionUrl: '#'}]};
+                                        {sectionName: 'Sections', sectionUrl:'/sections/home'},
+                                        {sectionName: 'Categories', sectionUrl: '/categories/home'}]};
   secondarySidebarOptions : String[];
   
  updateSidebar(option){
