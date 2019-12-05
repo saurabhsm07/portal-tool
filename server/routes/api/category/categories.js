@@ -9,7 +9,7 @@ categories.get('/', (req, res) => {
     Category.findAll()
             .then((data) => {
                if(data.length > 0){
-                    console.log(data[0].dataValues);
+                    console.log(`${data.length} categories fetched`);
                     res.status(200).send(data);
                }else{
                    console.log('no data exists in the category table');
@@ -44,7 +44,7 @@ categories.get('/id/:id', (req, res) => {
            .catch((err) => {
                     console.log("ERROR :");
                     console.log(err.stack);
-                    res.status(500).send(err)
+                    res.status(500).send(err);
            })
 })
 
@@ -67,8 +67,8 @@ categories.post('/', (req, res) => {
     }
     Category.create(data)
            .then((resp) => {
-                console.log(resp)
-                res.send(resp)
+                console.log(resp);
+                res.send(resp);
             })
           .catch((err)=>{
                 console.log("ERROR :");
@@ -101,8 +101,9 @@ categories.put('/', (req, res) => {
                               }
                         })
                           .catch((err) => {
-                            console.log(err)
-                            res.status(500).send(err)
+                            console.log("ERROR :");
+                            console.log(err.stack);
+                            res.status(500).send(err);
                         })
                }
                else{
@@ -113,7 +114,7 @@ categories.put('/', (req, res) => {
            .catch((err) => {
                     console.log("ERROR :");
                     console.log(err.stack);
-                    res.status(500).send(err)
+                    res.status(500).send(err);
            })
 })
 
@@ -131,15 +132,15 @@ categories.delete('/id/:id', (req, res) => {
                else{
                    console.log(`category with id ${req.params.id} does not exist`);
                    res.status(404).send({status: 404,
-                                         message: `category with id = ${req.params.id} does not exist`});
+                                         message: `Category with id = ${req.params.id} does not exist`});
                }
                
            })
            .catch((err) =>{
                 console.log("ERROR :");
                 console.log(err.stack);
-                res.status(500).send(err)
+                res.status(500).send(err);
            })
 })
 
-module.exports = categories; // exporting module to be using for routing
+module.exports = categories; // exporting category APIs module

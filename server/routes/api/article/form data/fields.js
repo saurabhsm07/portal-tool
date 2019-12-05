@@ -1,34 +1,56 @@
 const express = require('express');
-const path = require('path');
-const multer = require('multer');
-const fs = require('fs');
-const Field = require('./../../../../models/article_field')
+const Field = require('./../../../../models/article_field');
 const fields = express.Router();
 
+/**
+ * GET: api path to get list of article fields from the database.
+ */
 fields.get('/', (req, res) =>{
     Field.findAll()
               .then((data) =>{
-                  console.log("data fetched successfully")
-                  res.send(data)
+                if(data.length > 0){
+                    console.log(`${data.length} article fields fetched`);
+                    res.status(200).send(data);
+               }else{
+                   console.log('no data exists in the article fields table');
+                   res.status(404).send({status: 404,
+                                         message: `No Article Fields data available`});
+               }
               })
               .catch((err) =>{
-                  console.log(err)
-                  res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
               })
 
 })
 
+/**
+ * GET: api path to get article field record with id.
+ */
 fields.get('/id/:id', (req, res) =>{
     Field.findAll({where : {'id': req.params.id}})
          .then((data) => {
-                          res.send(data)
+                if(data.length == 1){
+                    console.log(`fetched article field with id : ${data[0].id}`);
+                    res.send(data[0]);
+                }
+                else{
+                    console.log(`article field with id : ${req.params.id} does not exist`);
+                    res.status(404).send({status: 404,
+                                        message: `Article Field with id = ${req.params.id} does not exist`})
+                }
          })
          .catch((err) => {
-             console.log(err)
-             res.status(500).send("internal server error")
+            console.log("ERROR :");
+            console.log(err.stack);
+            res.status(500).send(err);
          })
 })
 
+/**
+ * POST: api path to create a article field record to the database.
+ */
 fields.post('/', (req, res) =>{
     const data = {
         required: req.body.required,
@@ -46,15 +68,19 @@ fields.post('/', (req, res) =>{
 
     Field.create(data)
               .then((resp) => {
-                  console.log('New Field created')
-                  res.send(resp)
+                console.log(resp);
+                res.send(resp);
               })
               .catch((err) =>{
-                  console.log(err)
-                  res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
               })
 } )
 
+/**
+ * PUT: api path to update a article field record with specific i.d
+ */
 fields.put('/', (req, res) =>{
     const field_id = req.body.id;
     const updateObj = {required: req.body.field.required,
@@ -65,30 +91,45 @@ fields.put('/', (req, res) =>{
     
     Field.update(updateObj,{where: {id: field_id} })
               .then((data) =>{
-                  console.log("update successfull")
-                  if(data == 0){
-                      res.send({id : 0})
-                  }
-                  else{
-                    res.send({id: field_id})
+                if(data == 1){
+                    console.log('update successfull');
+                    res.send({  status: 200,
+                                message:`Article Field with id ${field_id} updated successfully`});
+                  }else{
+                    console.log(`article field with id : ${field_id} does not exist`);
+                    res.status(404).send({status: 404,
+                                        message: `Article Field with id = ${field_id} does not exist`})
                   }
               })
               .catch((err)=>{
-                  console.log(err)
-                  res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
               })
 } )
 
+/**
+ * DELETE: api path to delete Article Field with specific i.d 
+ */
 fields.delete('/id/:id', (req, res) =>{
     Field.destroy({where: {id : req.params.id}})
-              .then(() => {
-                  console.log(`article field with ${req.params.id} deleted successfully`)
-                  res.send(`article field with ${req.params.id} deleted successfully`)
+              .then((data) => {
+                  if(data == 1){
+                    console.log(`article field with ${req.params.id} deleted successfully`);
+                    res.send({status: 200,
+                            message: `Article Field with ${req.params.id} deleted successfully`});
+                  }else{
+                    console.log(`Article Field with id ${req.params.id} does not exist`);
+                    res.status(404).send({status: 404,
+                                          message: `Article Field with id = ${req.params.id} does not exist`});
+                  }
+                  
               })
               .catch((err)=> {
-                  console.log(err);
-                  res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
               })
 } )
 
-module.exports = fields
+module.exports = fields // exporting article fields api module
