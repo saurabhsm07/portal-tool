@@ -7,20 +7,24 @@ const Category = require("./../../../models/category");
  */
 categories.get('/', (req, res) => {
     Category.findAll()
-           .then((data) => {
-               console.log("test")
-               if(data)
-               console.log(data[0].dataValues)
-               res.status(200).send(data)
+            .then((data) => {
+               if(data.length > 0){
+                    console.log(data[0].dataValues);
+                    res.status(200).send(data);
+               }else{
+                   console.log('no data exists in the category table');
+                   res.status(404).send('no category data available');
+               }
+           
            })
-           .catch((err) => {
-               
-               console.log(err.stack)
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
            })
 })
 
 /**
- * GET: api path to get category record with specific i.d.
+ * GET: api path to get category record with id.
  */
 categories.get('/id/:id', (req, res) => {
     Category.findAll({where : {id : req.params.id}})
@@ -46,8 +50,8 @@ categories.get('/id/:id', (req, res) => {
 categories.post('/', (req, res) => {
     
     const data = {
-        url: 'http://localhost:4200/category/',
-        html_url: 'http://localhost:5000/api/category/',
+        url: 'http://localhost:4200/category/id/',
+        html_url: 'http://localhost:5000/api/category/id',
         title: req.body.category.title,
         body: req.body.category.body,
         header: req.body.category.header,
