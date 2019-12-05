@@ -14,8 +14,9 @@ sections.get('/', (req, res) => {
                res.status(200).send(data)
            })
            .catch((err) => {
-               
-               console.log(err.stack)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 })
 
@@ -35,8 +36,9 @@ sections.get('/id/:id', (req, res) => {
                 }
            })
            .catch((err) => {
-                    console.log(err)
-                    res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 })
 
@@ -77,8 +79,9 @@ sections.post('/', (req, res) => {
                
            })
           .catch((err)=>{
-              console.log(err)
-              res.status(400).send('bad request')
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
           })
 })
 
