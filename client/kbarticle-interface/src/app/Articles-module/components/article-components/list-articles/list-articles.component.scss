@@ -50,8 +50,9 @@
   }
 
   .header-controls-div {
-    display: inline;
+
     .search-div{
+      display: inline-block;
         input {
           width: 50%;
           box-sizing: border-box;
@@ -74,6 +75,13 @@
       }
   .advanced-search-span{
     float: right;
+    color: white;
+    margin-top: 5px;
+  }
+
+  .create-div{
+    display: inline-block;
+    text-align: right;
     color: white;
     margin-top: 5px;
   }
