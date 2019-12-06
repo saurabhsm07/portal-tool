@@ -33,7 +33,7 @@ categories.get('/id/:id', (req, res) => {
            .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched category with id : ${data[0].id}`);
-                    res.send(data[0]);
+                    res.status(200).send(data[0]);
                 }
                 else{
                     console.log(`category with id : ${req.params.id} does not exist`);
@@ -68,7 +68,7 @@ categories.post('/', (req, res) => {
     Category.create(data)
            .then((resp) => {
                 console.log(resp);
-                res.send(resp);
+                res.status(200).send(resp);
             })
           .catch((err)=>{
                 console.log("ERROR :");
@@ -96,7 +96,7 @@ categories.put('/', (req, res) => {
                           .then((data) => {
                               if(data == 1){
                                 console.log('update successfull');
-                                res.send({  status: 200,
+                                res.status(200).send({  status: 200,
                                             message:`category with id ${req.body.category.id} updated successfully`});
                               }
                         })
@@ -107,7 +107,7 @@ categories.put('/', (req, res) => {
                         })
                }
                else{
-                    res.send({status: 404,
+                    res.status(404).send({status: 404,
                               message:`category with id ${req.body.category.id} does not exist`});
                }
            })

@@ -58,7 +58,7 @@ attachments.post('/', upload.single('attachment'),(req, res) =>{
                 Attachment.create(attachement_data)
                 .then((resp) => {
                     console.log(resp);
-                    res.send(resp);
+                    res.status(200).send(resp);
                 })
                 .catch((err) =>{
                     console.log("ERROR :");
@@ -78,10 +78,10 @@ attachments.put('/', (req, res) =>{
     Attachment.update({inline: true},{where: {article_id : parseInt(req.baseUrl.match(/\d+/)[0])}})
               .then((data) =>{
                   if(data > 0){
-                    res.send({  status: 200,
+                    res.status(200).send({status: 200,
                         message:`attachment for article id ${parseInt(req.baseUrl.match(/\d+/)[0])} updated to inline state successfully`});
                   }else{
-                    res.send({status: 404,
+                    res.status(404).send({status: 404,
                         message:`attachments for article id ${parseInt(req.baseUrl.match(/\d+/)[0])} does not exist`});
                   }
                

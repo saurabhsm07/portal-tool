@@ -1,39 +1,55 @@
 const express = require('express');
-const path = require('path');
-const multer = require('multer');
-const fs = require('fs');
 const Comment = require('./../../../../models/article_comment')
 const comments = express.Router();
 
+/**
+ * GET: api path to get list of article comments from the database for specific article id.
+ */
 comments.get('/', (req, res) =>{
     Comment.findAll({where : {'source_id': parseInt(req.baseUrl.match(/\d+/)[0])}})
            .then((data) => {
-                console.log("successfully fetched data");
-                res.send(data);
+                if(data.length > 0){
+                    console.log(`${data.length} article comments fetched`);
+                    res.status(200).send(data);
+                }else{
+                    console.log('no data exists in the Comments table for the given articl id');
+                    res.status(404).send({status: 404,
+                                            message: `No Comments available for article id ${parseInt(req.baseUrl.match(/\d+/)[0])}`});
+                }
            })
            .catch((err) => {
-                console.log(err);
-                res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 })
 
+/**
+ * GET: api path to get article comment record with id.
+ */
 comments.get('/id/:id', (req, res) => {
     Comment.findAll({where : {id : req.params.id}})
             .then((data) => {
-                if(data){
-                    console.log(`successfully fetched article_comment`)
-                    res.send(data)
+                if(data.length == 1){
+                    console.log(`fetched article comment with id : ${data[0].id}`);
+                    res.status(200).send(data[0]);
                 }
-                else {
-                    console.log(data)
-                    res.send(`comment does not exist ${req.params.id}`)
+                else{
+                    console.log(`article comment with id : ${req.params.id} does not exist`);
+                    res.status(404).send({status: 404,
+                                        message: `Article Field with id = ${req.params.id} does not exist`})
                 }
             })
             .catch((err) => {
-                
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
             })
 })
 
+/**
+ * POST: api path to create a article comment record to the database.
+ */
 comments.post('/', (req, res) =>{
     const data = {
         url:'api/url/1',
@@ -52,14 +68,18 @@ comments.post('/', (req, res) =>{
     Comment.create(data)
            .then((resp) => {
                console.log(resp)
-               res.send(resp)
+               res.status(200).send(resp)
            })
            .catch((err) => {
-                console.log(err);
-                res.send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 } )
 
+/**
+ * PUT: api path to update a article comment record with specific i.d
+ */
 comments.put('/', (req, res) =>{
     const updateData = {
         id : 1,
@@ -70,30 +90,46 @@ comments.put('/', (req, res) =>{
     }
     Comment.update(updateData, {where : { id: updateData.id}})
     .then((data) =>{
-        if(data != 0){
-            console.log(data)
-            res.status(200).send(`successfully updated article comment with id ${updateData.id}`)
+        if(data == 1){
+            res.status(404).send({  status: 200,
+                message:`comment with id ${updateData.id} updated successfully`});
         }
         else {
-            res.send(`comment with ${updateData.id} does not exist`)
+            res.status(404).send({status: 404,
+                      message: `comment with ${updateData.id} does not exist`});
         }
         
     })
     .catch((err) =>{
-        console.log(err)
-        res.status(200).send(err)
+        console.log("ERROR :");
+        console.log(err.stack);
+        res.status(500).send(err);
     })
 } )
 
+
+/**
+ * DELETE: api path to delete Article Comment with specific i.d 
+ */
 comments.delete('/id/:id', (req, res) =>{
     Comment.destroy({where: { id: req.params.id}})
            .then((data) =>{
-               res.status(200).send('successfully deleted article comment')
+               if(data == 1){
+                console.log(`successfully deleted Comment with id = ${req.params.id}`);
+                res.status(200).send({status: 200,
+                                      message: `successfully deleted Article Comment with id = ${req.params.id}`});
+               }
+               else{
+                console.log(`article comment with id = ${req.params.id} does not exist`);
+                res.status(404).send({status: 404,
+                    message: `article comment with id = ${req.params.id} does not exist`});
+               }
            })
            .catch((err) =>{
-               console.log(err)
-               res.status(500).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 } )
 
-module.exports = comments
+module.exports = comments // exporting comments APIs module

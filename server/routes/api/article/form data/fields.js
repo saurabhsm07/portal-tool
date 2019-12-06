@@ -33,7 +33,7 @@ fields.get('/id/:id', (req, res) =>{
          .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched article field with id : ${data[0].id}`);
-                    res.send(data[0]);
+                    res.status(200).send(data[0]);
                 }
                 else{
                     console.log(`article field with id : ${req.params.id} does not exist`);
@@ -69,7 +69,7 @@ fields.post('/', (req, res) =>{
     Field.create(data)
               .then((resp) => {
                 console.log(resp);
-                res.send(resp);
+                res.status(200).send(resp);
               })
               .catch((err) =>{
                 console.log("ERROR :");
@@ -93,7 +93,7 @@ fields.put('/', (req, res) =>{
               .then((data) =>{
                 if(data == 1){
                     console.log('update successfull');
-                    res.send({  status: 200,
+                    res.status(200).send({  status: 200,
                                 message:`Article Field with id ${field_id} updated successfully`});
                   }else{
                     console.log(`article field with id : ${field_id} does not exist`);
@@ -116,7 +116,7 @@ fields.delete('/id/:id', (req, res) =>{
               .then((data) => {
                   if(data == 1){
                     console.log(`article field with ${req.params.id} deleted successfully`);
-                    res.send({status: 200,
+                    res.status(200).send({status: 200,
                             message: `Article Field with ${req.params.id} deleted successfully`});
                   }else{
                     console.log(`Article Field with id ${req.params.id} does not exist`);

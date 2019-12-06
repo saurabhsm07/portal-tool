@@ -33,12 +33,12 @@ forms.get('/id/:id', (req, res) =>{
          .then((data) => {
             if(data.length == 1){
                 console.log(`fetched article form with id : ${data[0].id}`);
-                res.send(data[0]);
+                res.status(200).send(data[0]);
             }
             else{
                 console.log(`article form with id : ${req.params.id} does not exist`);
                 res.status(404).send({status: 404,
-                                    message: `Article Form with id = ${req.params.id} does not exist`})
+                                    message: `Article Form with id = ${req.params.id} does not exist`});
             }
          })
          .catch((err) => {
@@ -57,8 +57,8 @@ forms.post('/', (req, res) =>{
 
     Form.create(data)
               .then((resp) => {
-                  console.log(resp)
-                  res.send(resp)
+                  console.log(resp);
+                  res.status(200).send(resp);
               })
               .catch((err) =>{
                 console.log("ERROR :");
@@ -75,14 +75,14 @@ forms.put('/', (req, res) =>{
     const updateObj = {
                        name: req.body.form.name,
                        article_fields: req.body.form.article_fields,
-                       updated_at: req.body.form.updated_at}
+                       updated_at: req.body.form.updated_at};
     
 
                 Form.update(updateObj, { where : {id: form_id} } )
                     .then((data) =>{
                         if(data == 1){
                             console.log('update successfull');
-                            res.send({  status: 200,
+                            res.status(200).send({  status: 200,
                                         message:`Article Form with id ${form_id} updated successfully`});
                           }else{
                             console.log(`article form with id : ${form_id} does not exist`);
@@ -105,7 +105,7 @@ forms.delete('/id/:id', (req, res) =>{
               .then((data) => {
                 if(data == 1){
                     console.log(`article form with ${req.params.id} deleted successfully`);
-                    res.send({status: 200,
+                    res.status(200).send({status: 200,
                             message: `Article Form with ${req.params.id} deleted successfully`});
                   }else{
                     console.log(`Article Form with id ${req.params.id} does not exist`);

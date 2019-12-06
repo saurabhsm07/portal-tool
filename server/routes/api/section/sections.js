@@ -8,10 +8,15 @@ const Section = require("./../../../models/section");
 sections.get('/', (req, res) => {
     Section.findAll()
            .then((data) => {
-               console.log("test")
-               if(data)
-               console.log(data[0].dataValues)
-               res.status(200).send(data)
+               if(data.length > 0){
+                console.log(`${data.length} sections fetched`);
+                res.status(200).send(data);
+               }else{
+                console.log('no data exists in the sections table');
+                res.status(404).send({status: 404,
+                                      message: `No Sections data available`});
+               }
+
            })
            .catch((err) => {
                 console.log("ERROR :");
@@ -21,18 +26,19 @@ sections.get('/', (req, res) => {
 })
 
 /**
- * GET: api path to get section record with specific i.d.
+ * GET: api path to get section record with specific id.
  */
 sections.get('/id/:id', (req, res) => {
     Section.findAll({where : {id : req.params.id}})
            .then((data) => {
-                if(data){
-                    console.log(`fetched section with id : ${data[0].id}`)
-                    res.send(data[0])
+                if(data.length == 1){
+                    console.log(`fetched section with id : ${data[0].id}`);
+                    res.status(200).send(data[0]);
                 }
                 else{
-                    console.log(`section with id : ${req.params.id} does not exist`)
-                    res.status(404).send(`section with id : ${req.params.id} does not exist`)
+                    console.log(`section with id : ${req.params.id} does not exist`);
+                    res.status(404).send({status: 404,
+                                        message: `Section with id = ${req.params.id} does not exist`})
                 }
            })
            .catch((err) => {
@@ -43,40 +49,27 @@ sections.get('/id/:id', (req, res) => {
 })
 
 /**
- * POST: api path to create a section record to the database.
+ * POST: api path to add a section record to the database.
  */
 sections.post('/', (req, res) => {
     
     const data = {
         url: 'http://localhost:4200/section/',
         html_url: 'http://localhost:5000/api/section/',
-        title: req.body.section.title,
-        body: req.body.section.body,
-        header: req.body.section.header,
+        name: req.body.section.name,
         locale:'en-us',
-        author: req.body.section.author,
-        draft: req.body.section.draft,
-        comment_disabled: true,
-        promoted: true,
-        position: 0,
-        up_vote: 0,
-        down_vote: 0,
-        section: req.body.section.section,
-        user_segment_id: 624226,
-        permission_group_id: 1526652,
+        description: req.body.section.description,
+        category_id: req.body.section.category_id,
+        outdated: false,
+        position: 10,
+        parent_section_id: req.body.section.parent_section_id,
         created_at: req.body.section.createdAt,
         updated_at: req.body.section.updatedAt,
-        edited_at:  req.body.section.updatedAt,
-        review_state: req.body.section.review_state,
-        label_names: req.body.label_names
     }
-    console.log(data)
     Section.create(data)
            .then((resp) => {
-               
-                   console.log(resp)
-                   res.send(resp)
-               
+                console.log(resp);
+                res.status(200).send(resp);
            })
           .catch((err)=>{
                 console.log("ERROR :");
@@ -91,78 +84,66 @@ sections.post('/', (req, res) => {
 sections.put('/', (req, res) => {
     console.log(req.body.section)
     const updateData = {
-        title: req.body.section.title,
-        body: req.body.section.body,
-        header: req.body.section.header,
-        locale:'en-us',
-        draft: req.body.section.draft,
-        comment_disabled: true,
-        promoted: true,
-        position: 0,
-        up_vote: 12,
-        down_vote: 0,
-        section: req.body.section.section,
-        user_segment_id: 624226,
-        permission_group_id: 1526652,
+        name: req.body.section.name,
+        description: req.body.section.description,
+        category_id: req.body.section.category_id,
+        parent_section_id: req.body.section.parent_section_id,
         updated_at: req.body.section.updatedAt,
-        edited_at:  req.body.section.updatedAt,
-        review_state: req.body.section.review_state
     }
 
     Section.findAll({where : {id: req.body.section.id}})
            .then( (section_obj)=> {
-               if(section_obj){
-                   if(updateData.label_names){
-                     updateData.label_names = Array.from(new Set (updateData.label_names.concat(section_obj[0].dataValues.label_names)))
-                   }
+               if(section_obj.length == 1){
                    Section.update(updateData, {where : {id: req.body.section.id}})
                           .then((data) => {
-                            console.log("update successfull")
-                            Section.findAll({where : {id : req.body.section.id}})
-                                   .then((resp) => {
-                                       res.send(resp[0])
-                                    })
-                                   .catch((err)=>{
-                                       console.log("Successfull Update, Fetch Failed")
-                                       res.status(500).send(err)
-                                   })
+                                if(data == 1){
+                                    console.log('update successfull');
+                                    res.status(200).send({  status: 200,
+                                                message:`section with id ${req.body.section.id} updated successfully`});
+                                }
                             
                           })
                           .catch((err) => {
-                            console.log(err)
-                            res.status(500).send(err)
+                            console.log("ERROR :");
+                            console.log(err.stack);
+                            res.status(500).send(err);
                         })
                }
                else{
-                res.send(`section with id ${req.body.section.id} does not exist`);
+                    res.status(404).send({status: 404,
+                                          message:`section with id ${req.body.category.id} does not exist`});
                }
            })
-           .catch( (err) => {
-                console.log(err)
-                res.status(500).send(err)
+           .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 })
 
 /**
- * DELETE: api path to delete section with specific i.d 
+ * DELETE: api path to delete section with specific id 
  */
 sections.delete('/id/:id', (req, res) => {
     Section.destroy({where: { id: req.params.id}})
            .then((data) =>{
                if(data == 1){
-                    console.log(`successfully deleted section with id = ${req.params.id}`)
-                    res.status(200).send(`successfully deleted section with id = ${req.params.id}`)
+                    console.log(`successfully deleted section with id = ${req.params.id}`);
+                    res.status(200).send({status: 200,
+                                          message:`successfully deleted section with id = ${req.params.id}`});
                }
                else{
-                   console.log(`section with id ${req.params.id} does not exist`)
-                   res.status(404).send(`section with id ${req.params.id} does not exist`)
+                   console.log(`section with id ${req.params.id} does not exist`);
+                   res.status(404).send({status: 404, 
+                                         message: `section with id ${req.params.id} does not exist`});
                }
                
            })
            .catch((err) =>{
-               console.log(err)
-               res.status(404).send(err)
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
            })
 })
 
-module.exports = sections; // exporting module to be using for routing
+module.exports = sections; // exporting sections APIs module

@@ -38,7 +38,7 @@ articles.get('/id/:id', (req, res) => {
            .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched Article with id : ${data[0].id}`);
-                    res.send(data[0]);
+                    res.status(200).send(data[0]);
                 }
                 else{
                     console.log(`Article with id : ${req.params.id} does not exist`);
@@ -84,7 +84,7 @@ articles.post('/', (req, res) => {
     Article.create(data)
            .then((resp) => {
                 console.log(resp)
-                res.send(resp)
+                res.status(200).send(resp)
                })
           .catch((err)=>{
                 console.log("ERROR :");
@@ -126,7 +126,7 @@ articles.put('/', (req, res) => {
                           .then((data) => {
                             if(data == 1){
                                 console.log('update successfull');
-                                res.send({  status: 200,
+                                res.status(200).send({  status: 200,
                                             message:`Article with id ${req.body.article.id} updated successfully`});
                               }
                             
@@ -138,7 +138,7 @@ articles.put('/', (req, res) => {
                         })
                }
                else{
-                res.send({status: 404,
+                res.status(404).send({status: 404,
                           message:`Article with id ${req.body.article.id} does not exist`});
                }
            })
