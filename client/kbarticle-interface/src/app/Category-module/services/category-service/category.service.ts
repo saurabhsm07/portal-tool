@@ -29,8 +29,8 @@ private headersOptions = {
 
   constructor(private http: HttpClient) { }
 
-  postCategory({category: Category}) : Observable<Category> {
-    return this.http.post<Category>(this.requestUri.postCategory, {category : Category}, this.headersOptions)
+  postCategory(category : Category) : Observable<Category> {
+    return this.http.post<Category>(this.requestUri.postCategory, {category : category}, this.headersOptions)
         // .pipe(catchError());
   }
 

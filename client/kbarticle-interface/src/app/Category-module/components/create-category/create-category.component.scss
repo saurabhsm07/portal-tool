@@ -1,0 +1,30 @@
+$createBackCol : rgb(0, 188, 212);
+
+.create-category-div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .create-category-form{
+        .category-name-div{
+            mat-form-field{
+                .mat-form-field-infix{
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                }
+            }
+            
+        }
+        mat-form-field{
+            width: 100%;
+        }
+    }
+
+    .create-category-footer {
+        text-align: right;
+        button {
+            background-color: $createBackCol;
+            color: white
+            
+          }
+    } 
+}

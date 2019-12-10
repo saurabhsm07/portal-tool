@@ -6,8 +6,7 @@ export class Category {
     html_url?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    review_state: {};
     icon_url?: Text;
     outdated?:boolean;
-    description: Text
+    description?: Text
 }
