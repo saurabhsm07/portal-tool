@@ -3,7 +3,7 @@ export class Section {
     category_id:number;
     parent_section_id:number;
     name: string;
-    descripion?: Text;
+    description?: Text;
     url?: Text;
     locale?: string;
     html_url?: string;

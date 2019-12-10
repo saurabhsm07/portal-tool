@@ -52,7 +52,7 @@ sections.get('/id/:id', (req, res) => {
  * POST: api path to add a section record to the database.
  */
 sections.post('/', (req, res) => {
-    
+    console.log(req.body.section)
     const data = {
         url: 'http://localhost:4200/section/',
         html_url: 'http://localhost:5000/api/section/',
@@ -62,7 +62,7 @@ sections.post('/', (req, res) => {
         category_id: req.body.section.category_id,
         outdated: false,
         position: 10,
-        parent_section_id: req.body.section.parent_section_id,
+        parent_section_id: null,
         created_at: req.body.section.createdAt,
         updated_at: req.body.section.updatedAt,
     }

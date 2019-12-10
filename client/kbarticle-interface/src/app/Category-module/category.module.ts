@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './../imports/material-module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { EditorModule } from '@tinymce/tinymce-angular'
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { CategoryRoutingModule } from './routes/category-routing.module';

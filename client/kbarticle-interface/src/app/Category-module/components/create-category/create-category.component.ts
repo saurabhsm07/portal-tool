@@ -22,15 +22,7 @@ export class CreateCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
-
-  // triggerResize() {
-  //   // Wait for changes to be applied, then trigger textarea resize.
-  //   this._ngZone.onStable.pipe(take(1))
-  //       .subscribe(() => this.autosize.resizeToFitContent(true));
-  // }
-  // category reactive form object
+  // reactive form to work with category object data
   category_form = this.fb.group({
     name: [''],
     description: [''],

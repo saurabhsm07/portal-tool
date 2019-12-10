@@ -1,1 +1,58 @@
-<p>create-section works!</p>
+<div *ngIf="categoryList" class="col-md-12">
+        <div class="create-section-div">
+                <form class="create-section-form" [formGroup] = 'section_form'  (ngSubmit)="onSubmitForm()">
+                    <div class="col-md-4 select-category-div">
+                            <mat-form-field>
+                                    <mat-label>Select Category</mat-label>
+                                    <mat-select formControlName = "category_id" [(value)]="selectedCategory" (selectionChange) = "getSectionsInCategory()">
+                                      <mat-option>None</mat-option>
+                                      <ng-container *ngFor="let category of categoryList">
+                                            <mat-option value= {{category.id}}>{{category.name}}</mat-option>
+                                      </ng-container>
+                                      
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                              
+                    </div>
+
+                    <div class="col-md-4 select-parent-section-div">
+                            <mat-form-field>
+                                    <mat-label>Select Parent Section</mat-label>
+                                    <mat-select formControlName = "parent_section_id">
+                                      <mat-option>None</mat-option>
+                                      <ng-container *ngIf="sectionList">
+                                            <ng-container *ngFor="let section of sectionList">
+                                                    <mat-option value= {{section.id}}>{{section.name}}</mat-option>
+                                              </ng-container>
+                                      </ng-container>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  
+                           
+                    </div>
+                    
+                    <div class = "section-name-div col-md-10">
+                        <h5>Name</h5>
+                        <mat-form-field class="" appearance="outline">
+                                <input formControlName = "name" matInput placeholder="Enter section Name">
+                            </mat-form-field>
+                    </div>
+                    <div class="col-md-10">
+                        <h5>Description</h5>
+                        <mat-form-field class="" appearance="outline">
+                                <textarea formControlName = "description" matInput  
+                                          cdkTextareaAutosize
+                                          #autosize="cdkTextareaAutosize"
+                                          cdkAutosizeMinRows="12"
+                                          cdkAutosizeMaxRows="20"
+                                          placeholder="section Description"></textarea>
+                            </mat-form-field>
+                    </div>
+                    <div class="create-section-footer col-md-10">
+                        <button type="submit" class="btn btn-default"> Create section</button>
+                    </div>
+                </form>
+    
+        </div>
+    </div>
