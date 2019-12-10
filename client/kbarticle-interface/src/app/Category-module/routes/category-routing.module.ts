@@ -6,7 +6,7 @@ import { CreateCategoryComponent } from './../components/create-category/create-
 
 const routes: Routes = [
   { path: 'categories/home', component: CategoryHomeComponent },
-  { path: 'categories/edit', component: EditCategoryComponent },
+  { path: 'category/id/:id', component: EditCategoryComponent },
   { path: 'categories/create', component: CreateCategoryComponent },
 
 ];

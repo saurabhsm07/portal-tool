@@ -43,7 +43,7 @@ export class EditArticleFormComponent implements OnInit {
     );
     // get all article forms
     this.article_form$.subscribe( (data) => {
-      this.article_form = data[0];
+      this.article_form = data;
       this.form_name = this.article_form.name;
       this.articleFieldService.getArticleField()
                               .subscribe( (fields) => {

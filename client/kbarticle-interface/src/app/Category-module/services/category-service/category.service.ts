@@ -44,8 +44,8 @@ private headersOptions = {
                 // .pipe(catchError(CategoryRequestErrorHandlersService.listCategorysError));
   }
 
-  updateCategory({category: Category}): Observable<Category>{
-    return this.http.put<Category>(this.requestUri.updateCategory, {category : Category}, this.headersOptions)
+  updateCategory(category: Category): Observable<any>{
+    return this.http.put<any>(this.requestUri.updateCategory, {category : category}, this.headersOptions)
               //  .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
   }
 
