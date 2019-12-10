@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field'
+import { FormBuilder } from '@angular/forms';
+import {Router } from'@angular/router';
+
+import { Section } from './../../classes/section'
+// import {  } from './../../services/sec/category.service';
+
 
 @Component({
   selector: 'app-create-section',
