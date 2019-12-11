@@ -8,13 +8,15 @@ import { SectionHomeComponent } from './components/section-home/section-home.com
 import { CreateSectionComponent } from './components/create-section/create-section.component';
 import { EditSectionComponent } from './components/edit-section/edit-section.component';
 import { ListSectionsComponent } from './components/list-sections/list-sections.component';
+import { SearchSectionPipe } from './pipes/search-section/search-section.pipe';
 
 
 @NgModule({
   declarations: [SectionHomeComponent, 
                  CreateSectionComponent, 
                  EditSectionComponent,
-                 ListSectionsComponent],
+                 ListSectionsComponent,
+                 SearchSectionPipe],
   imports: [
     CommonModule,
     SectionRoutingModule,

@@ -1,1 +1,50 @@
-<p>list-sections works!</p>
+<div class="sections-header col-md-12" >
+    <div class="head-title-div col-md-12">
+    <h1>Sections</h1>
+    <p>List of sections for holding different types of Sections and Article hirarchy<br>
+        ranging from agent specific, patches , product specific etc.</p>
+    </div>
+<div class="header-controls-div col-md-12">
+    <div class="search-div col-md-8">
+          <input [(ngModel)] = "searchString" placeholder="Search sections"  />
+        </div>
+          <div class="create-div col-md-4">
+            <a routerLink='/sections/create' class="btn btn-info">Add Section </a>
+    </div>
+</div>
+<div *ngIf="dataSource | searchSection:searchString : sections" class="sections-body-div col-md-12">
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      
+      <div class="mat-elevation-z8 col-md-12">
+              <table class="sections-list-table col-md-12" mat-table [dataSource]="dataSource">
+                <ng-container  matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Section Name </th>
+                  <td mat-cell *matCellDef="let section"><i class="fa fa-list-alt icon-class" aria-hidden="true"></i>  {{section.name}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> Id</th>
+                  <td mat-cell *matCellDef="let section"> {{section.id}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="created_at">
+                  <th mat-header-cell *matHeaderCellDef> Created At </th>
+                  <td mat-cell *matCellDef="let section"> {{section.created_at | date}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef> </th>
+                  <td mat-cell *matCellDef="let section"> <button  (click) = "viewSection(section.id)"><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </button> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+</div>
+</div>

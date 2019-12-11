@@ -62,7 +62,7 @@ sections.post('/', (req, res) => {
         category_id: req.body.section.category_id,
         outdated: false,
         position: 10,
-        parent_section_id: null,
+        parent_section_id: req.body.section.parent_section_id,
         created_at: req.body.section.createdAt,
         updated_at: req.body.section.updatedAt,
     }

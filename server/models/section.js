@@ -1,6 +1,6 @@
 const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
-
+const Category = require('./category');
 const Section = client.define('Sections', {
                                                 id: {
                                                     type: Sequelize.BIGINT,
@@ -33,10 +33,16 @@ const Section = client.define('Sections', {
                                                 },
                                                 updated_at: {
                                                     type: Sequelize.DATE,
+                                                },
+                                                category_id: {
+                                                    type: Sequelize.BIGINT,
+                                                },
+                                                parent_section_id: {
+                                                    type: Sequelize.BIGINT,
                                                 }
 
                             }, {
                                 timestamps: false
                             });
-
+                         
 module.exports = Section;                            
