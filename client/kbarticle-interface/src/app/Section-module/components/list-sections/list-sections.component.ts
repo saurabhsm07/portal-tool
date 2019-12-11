@@ -44,7 +44,7 @@ export class ListSectionsComponent implements OnInit {
   }
 
   viewSection(sectionId){
-    this.route.navigate(['/section/id/'+sectionId])
+    this.route.navigate(['/sections/id/'+sectionId])
   }
 
 }

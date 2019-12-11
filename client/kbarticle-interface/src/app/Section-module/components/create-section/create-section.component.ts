@@ -72,8 +72,11 @@ export class CreateSectionComponent implements OnInit {
                             })
     }
 
+    /**
+     * Get all sections from the selected category id
+     */
     getSectionsInCategory(){
-      this.sectionService.listSections()
+      this.sectionService.getSectionInCategory(this.selectedCategory.toString())
                           .subscribe((data) => {
                             console.log(data);
                             this.sectionList = data;

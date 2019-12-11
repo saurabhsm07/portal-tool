@@ -17,6 +17,7 @@ export class SectionService {
 private requestUri = {
   getSections: 'http://localhost:5000/api/sections/',
   getSectionById: 'http://localhost:5000/api/sections/id/',
+  getSectionInCategory: 'http://localhost:5000/api/sections/category/id/',
   postSection: 'http://localhost:5000/api/sections/',
   updateSection: 'http://localhost:5000/api/sections/',
   deleteSection: 'http://localhost:5000/api/sections/',
@@ -37,6 +38,11 @@ postSection(section : Section) : Observable<Section> {
 
 getSection(id : String) : Observable<Section> {
   return this.http.get<Section>(this.requestUri.getSectionById+id, this.headersOptions)
+            //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+}
+
+getSectionInCategory(id : String) : Observable<Section[]> {
+  return this.http.get<Section[]>(this.requestUri.getSectionInCategory+id, this.headersOptions)
             //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
 }
 

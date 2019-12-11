@@ -7,7 +7,7 @@ import { EditSectionComponent } from './../components/edit-section/edit-section.
 const routes: Routes = [
   { path: 'sections/home', component: SectionHomeComponent },
   { path: 'sections/create', component: CreateSectionComponent},
-  { path: 'sections/edit', component: CreateSectionComponent}
+  { path: 'sections/id/:id', component: EditSectionComponent}
 ];
 
 @NgModule({

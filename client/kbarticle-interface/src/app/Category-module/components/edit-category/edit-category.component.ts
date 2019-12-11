@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field'
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
 
-import { Category } from './../../classes/category'
+import { Category } from './../../classes/category';
 import { CategoryService } from './../../services/category-service/category.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { CategoryService } from './../../services/category-service/category.serv
 })
 export class EditCategoryComponent implements OnInit {
 
+  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
   category$: Observable<Category>;  // observable to map category i.d from angular route path and call get category by id API
   category: Category                // category object to store category record field values
   
