@@ -24,7 +24,7 @@ export class EditSectionComponent implements OnInit {
   section: Section;                  // section object to store section record field values
   sectionList: Section[];            // list of sections for the parent section dropdown
   categoryList: Category[];          // list of categories
-  selectedCategoryId: Number;
+  selectedCategoryId: Number;        // id of the currently selected section
   
   // reactive form used to store values
   section_form = this.fb.group({
@@ -51,6 +51,7 @@ export class EditSectionComponent implements OnInit {
                                           this.section = section;
                                           this.selectedCategoryId = section.category_id
                                           this.fetchCategories();
+                                          this.setSectionFormValues();
                                         },
                                           (error) => {
                                             console.log(error);
@@ -67,6 +68,21 @@ export class EditSectionComponent implements OnInit {
                   category_id: this.section.category_id,
                   parent_section_id: this.section.parent_section_id
                 })
+              }
+
+              /**
+               * Disable parent section field
+               */
+              disableParentSectionField(){
+                this.section_form.patchValue({parent_section_id : ''})
+                this.section_form.controls['parent_section_id'].disable();
+              }
+
+               /**
+               * Disable parent section field
+               */
+              enableParentSectionField(){
+                this.section_form.controls['parent_section_id'].enable();
               }
 
               /**
@@ -90,13 +106,14 @@ export class EditSectionComponent implements OnInit {
                 getSectionsInCategory(){
                   this.sectionService.getSectionInCategory(this.selectedCategoryId.toString())
                                       .subscribe((data) => {
-                                        this.setSectionFormValues();
-                                        this.sectionList = data;
+                                        // this.setSectionFormValues();
+                                        this.sectionList = data.filter(section => section.id != this.section.id);
+                                        this.enableParentSectionField();
                                       },
                                       (error) => {
                                         if(error.status == 404){
-                                          this.sectionList = null;
-                                          console.log("in sections")
+                                          this.disableParentSectionField();
+                                          
                                         }
                                         else{
                                           console.log(error);
@@ -111,12 +128,14 @@ export class EditSectionComponent implements OnInit {
               onSubmitForm(){
                 this.section.name = this.section_form.value.name;
                 this.section.description = this.section_form.value.description;
-            
+                this.section.parent_section_id = this.section_form.value.parent_section_id;
+                this.section.category_id = this.section_form.value.category_id;
+                this.section.updatedAt = new Date();
                 this.sectionService.updateSection(this.section)
                                     .subscribe((data) => {
                                       if(data.status == 200){
                                         console.log(data.message);
-                                        this.router.navigate(['/categories/home'])
+                                        this.router.navigate(['/sections/home'])
                                       }
                                       else{
                                         console.log(data.message);
