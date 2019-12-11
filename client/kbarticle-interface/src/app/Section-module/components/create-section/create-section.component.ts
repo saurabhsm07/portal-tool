@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field'
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
 
 import { Section } from './../../classes/section'
@@ -39,11 +39,14 @@ export class CreateSectionComponent implements OnInit {
 
   // reactive form to work with section object data
   section_form = this.fb.group({
-    name: [''],
+    name: ['', [Validators.required, Validators.minLength(10)]],
     description: [''],
-    category_id: [''],
+    category_id: ['', Validators.required],
     parent_section_id: [''],
   });
+
+  get name() { return this.section_form.get('name'); }
+
 
     // section object to be saved to the database
     section: Section;

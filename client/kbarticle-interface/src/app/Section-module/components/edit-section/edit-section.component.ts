@@ -123,7 +123,7 @@ export class EditSectionComponent implements OnInit {
                 }
               
               /**
-               * 
+               *  preprocess and submit the edited changes in section object to update section service 
                */
               onSubmitForm(){
                 this.section.name = this.section_form.value.name;
