@@ -7,6 +7,7 @@ import { Section } from './../../classes/section'
 import { SectionService } from './../../services/section-service/section.service';
 import { CategoryService } from './../../../Category-module/services/category-service/category.service';
 import { Category } from './../../../Category-module/classes/category';
+import { customValidators } from './../../../imports/custom-form-validators';
 
 @Component({
   selector: 'app-create-section',
@@ -41,11 +42,12 @@ export class CreateSectionComponent implements OnInit {
   section_form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(10)]],
     description: [''],
-    category_id: ['', Validators.required],
+    category_id: ['', [Validators.required, customValidators.forbiddenNullValueSelect]],
     parent_section_id: [''],
   });
 
   get name() { return this.section_form.get('name'); }
+  get category_id() {return this.section_form.get('category_id')}
 
 
     // section object to be saved to the database
@@ -79,20 +81,26 @@ export class CreateSectionComponent implements OnInit {
      * Get all sections from the selected category id
      */
     getSectionsInCategory(){
-      this.sectionService.getSectionInCategory(this.selectedCategory.toString())
-                          .subscribe((data) => {
-                            console.log(data);
-                            this.sectionList = data;
-                          },
-                          (error) => {
-                            if(error.status == 404){
-                              this.sectionList = null;
-                              console.log("in sections")
-                            }
-                            else{
-                              console.log(error);
-                            }
-                            
-                          })
+      if(this.selectedCategory == 0){
+        this.sectionList = [];
+      }
+      else{
+        this.sectionService.getSectionInCategory(this.selectedCategory.toString())
+        .subscribe((data) => {
+          console.log(data);
+          this.sectionList = data;
+        },
+        (error) => {
+          if(error.status == 404){
+            this.sectionList = null;
+            console.log("in sections")
+          }
+          else{
+            console.log(error);
+          }
+          
+        })
+      }
+
     }
 }

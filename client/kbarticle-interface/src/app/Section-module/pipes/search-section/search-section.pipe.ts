@@ -13,7 +13,7 @@ export class SearchSectionPipe implements PipeTransform {
     if (searchString.length === 0) {
       return value;
     } else {
-        value.data = sections.filter((section) => { if(section.name.includes(searchString)) {
+        value.data = sections.filter((section) => { if(section.name.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())) {
           return section;
         }});
         return value;
