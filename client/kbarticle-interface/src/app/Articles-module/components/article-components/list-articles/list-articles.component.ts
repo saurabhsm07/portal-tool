@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {Article } from './../../../classes/article'
+import { Article } from './../../../classes/article'
 import { ArticleService } from './../../../services/article-service/article.service'
 
 import {MatPaginator} from '@angular/material/paginator';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ListArticlesComponent implements OnInit {
 
-  articles : Article[];   // List of article objects
+  articles : Article[];   // List of Article objects
   private searchString = '';   // parameter for dynamic search articles table
 
   dataSource = new MatTableDataSource<Article>(); // datasource of type 'Article' for mat-table 
@@ -29,7 +29,7 @@ export class ListArticlesComponent implements OnInit {
   ngOnInit() {
     this.articleService.listArticles()
                        .subscribe((data) => {
-                         console.log(data)
+                         console.log(data);
                          this.articles = data;
 
                          
@@ -39,9 +39,9 @@ export class ListArticlesComponent implements OnInit {
                          this.dataSource.filter = this.searchString;
 
                        },
-                      (err) => {
-                        console.log("error occured")
-                        console.log(err)
+                      (error) => {
+                        console.log("error occured");
+                        console.log(error);
                       })
   }
 

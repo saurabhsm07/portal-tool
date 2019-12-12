@@ -49,12 +49,35 @@ sections.get('/id/:id', (req, res) => {
 })
 
 /**
+ * GET: api path to get section record for specific category id.
+ */
+sections.get('/category/id/:id', (req, res) => {
+    Section.findAll({where : {category_id : req.params.id}})
+           .then((data) => {
+                if(data.length > 0){
+                    console.log(`fetched ${data.length} sections from the database`);
+                    res.status(200).send(data);
+                }
+                else{
+                    console.log(`sections in category id : ${req.params.id} do not exist`);
+                    res.status(404).send({status: 404,
+                                          message: `sections in category id : ${req.params.id} do not exist`})
+                }
+           })
+           .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+           })
+})
+
+/**
  * POST: api path to add a section record to the database.
  */
 sections.post('/', (req, res) => {
-    
+    console.log(req.body.section)
     const data = {
-        url: 'http://localhost:4200/section/',
+        url: 'http://localhost:4200/sections/id',
         html_url: 'http://localhost:5000/api/section/',
         name: req.body.section.name,
         locale:'en-us',

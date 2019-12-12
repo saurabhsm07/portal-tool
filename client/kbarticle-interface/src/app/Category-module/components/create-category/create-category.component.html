@@ -1,1 +1,36 @@
-<p>create-category works!</p>
+<div class="col-md-12">
+    <div class="create-category-div">
+            <form class="create-category-form" [formGroup] = 'category_form'  (ngSubmit)="onSubmitForm()">
+                <div class = "category-name-div col-md-10">
+                    <h5>Name</h5>
+                    <mat-form-field class="" appearance="outline">
+                            <input formControlName = "name" matInput placeholder="Enter Category Name">
+                        </mat-form-field>
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                            <small *ngIf="name.errors.required">
+                            Category Name is required.
+                            </small>
+                            <small *ngIf="name.errors.minlength">
+                            Category Name must be at least 10 characters long.
+                            </small>
+                      </div>
+                </div>
+                <div class="col-md-10">
+                    <h5>Description</h5>
+                    <mat-form-field class="" appearance="outline">
+                            <textarea formControlName = "description" matInput  
+                                      cdkTextareaAutosize
+                                      #autosize="cdkTextareaAutosize"
+                                      cdkAutosizeMinRows="12"
+                                      cdkAutosizeMaxRows="20"
+                                      placeholder="Category Description"></textarea>
+                        </mat-form-field>
+                </div>
+                <div class="create-category-footer col-md-10">
+                    <button type="submit" class="btn btn-default" [disabled] = "category_form.invalid"> Create Category</button>
+                </div>
+            </form>
+
+    </div>
+</div>

@@ -48,7 +48,7 @@ app.get('/', (req, res) =>{
 //API: routes
 app.use('/api/ticket/',tickets);            // routes for ticket APIs
 app.use('/api/articles/', articles);        // routes for article APIs
-app.use('/api/category/', categories);    // routes for category APIs
+app.use('/api/categories/', categories);    // routes for category APIs
 app.use('/api/sections/', sections);         // routes for sections APIs
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })

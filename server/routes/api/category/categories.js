@@ -49,10 +49,9 @@ categories.get('/id/:id', (req, res) => {
 })
 
 /**
- * POST: api path to create a category record to the database.
+ * POST: api path to add a category record to the database.
  */
 categories.post('/', (req, res) => {
-    
     const data = {
         url: 'http://localhost:4200/category/id/',
         html_url: 'http://localhost:5000/api/category/id',
@@ -85,7 +84,6 @@ categories.put('/', (req, res) => {
     const updateData = {
         name: req.body.category.name,
         description: req.body.category.description,
-        position: 0,
         updated_at: req.body.category.updatedAt
     }
 

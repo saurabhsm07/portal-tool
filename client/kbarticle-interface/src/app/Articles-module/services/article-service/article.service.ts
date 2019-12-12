@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from './../../classes/article';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators'
+import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {ArticleRequestErrorHandlersService } from './../error-handler-service/article-request-error-handlers/article-request-error-handlers.service'
 
@@ -11,12 +11,15 @@ import {ArticleRequestErrorHandlersService } from './../error-handler-service/ar
 export class ArticleService {
 
 
+  /**
+   * List of primary CRUD APIs for Article Data
+   */
   private requestUri = {
     getArticles: 'http://localhost:5000/api/articles/',
     getArticleById: 'http://localhost:5000/api/articles/id/',
     postArticle: 'http://localhost:5000/api/articles/',
     updateArticle: 'http://localhost:5000/api/articles/',
-    deleteArticle: 'http://localhost:5000/api/articles/',
+    deleteArticle: 'http://localhost:5000/api/articles/id/',
 };
 
   private headersOptions = {
@@ -46,5 +49,10 @@ export class ArticleService {
   updateArticle({article: Article}): Observable<Article>{
     return this.http.put<Article>(this.requestUri.updateArticle, {article : Article}, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.putArticleError))
+  }
+
+  deleteArticle(id: String) : Observable<any> {
+    return this.http.delete<any>(this.requestUri.deleteArticle + id, this.headersOptions )
+                // .pipe(catchError(ArticleRequestErrorHandlersService.))
   }
 }

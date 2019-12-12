@@ -3,6 +3,7 @@ import { ArticleFieldService } from './../../../services/article-fields-service/
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
 import { Article_Field } from './../../../classes/article_fields';
 import { Article_Form } from './../.././../classes/article_form';
+import { FormControl, Validators } from '@angular/forms';
 
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
@@ -14,10 +15,17 @@ import { Router } from '@angular/router';
 })
 export class CreateArticleFormComponent implements OnInit {
 
-  private article_fields_incl: Article_Field[];
-  private article_fields_excl: Article_Field[];
-  private form_name: string;
+  
 
+  private article_fields_incl: Article_Field[];    // custom fields that are included in the custom article form
+  private article_fields_excl: Article_Field[];    // custom fields that are not included in the custom article form 
+  
+
+  private form_name = new FormControl('', [Validators.required, Validators.minLength(10)]);
+
+  /**
+   * font awesome icons to used in field display UI
+   */
   protected field_type_icon = {
     text : 'fa fa-text-width',
     textarea : 'fa fa-bars',
@@ -41,6 +49,10 @@ export class CreateArticleFormComponent implements OnInit {
                             });
   }
 
+  /**
+   * 
+   * @param event article fields array elements to be added in or removed from the custom form creation
+   */
   drop(event: CdkDragDrop<Article_Field[]>) {
     console.log(event);
     if (event.previousContainer === event.container) {
@@ -53,10 +65,13 @@ export class CreateArticleFormComponent implements OnInit {
     }
   }
 
+
+
+
   createForm(event) {
 
     const article_form: Article_Form = {
-      name: this.form_name,
+      name: this.form_name.value,
       article_fields:  JSON.stringify(this.article_fields_incl),
       default_form: false,
       active: true,

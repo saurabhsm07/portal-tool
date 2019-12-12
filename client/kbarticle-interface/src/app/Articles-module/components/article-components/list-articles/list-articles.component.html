@@ -1,4 +1,4 @@
-<div class="article-articles-header col-md-12" >
+<div class="articles-header-div col-md-12" >
       <div class="head-title-div col-md-12">
       <h1>Articles</h1>
       <p>List of articles varying from announcements, knowledge base, patches and hotfixes<br>
@@ -7,11 +7,12 @@
   <div class="header-controls-div col-md-12">
       <div class="search-div col-md-8">
             <input [(ngModel)] = "searchString" placeholder="Search articles"  />
-          <span class="advanced-search-span">
-              <a  class="btn btn-info">Add Filters </a>
-
-          </span>
+          
       </div>
+      <div class="create-div col-md-4">
+        <a  routerLink='/article/create' class="btn btn-info">Create Article</a>
+
+    </div>
   </div>
     <!-- <span *ngIf="ticketarticles | searchField:searchString"></span> -->
 <div *ngIf="dataSource | searchArticle:searchString : articles" class="articles-body-div col-md-12">

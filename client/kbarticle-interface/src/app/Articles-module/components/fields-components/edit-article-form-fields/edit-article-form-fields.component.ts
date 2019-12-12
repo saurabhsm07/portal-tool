@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators'
 import { Article_Field } from './../../../classes/article_fields';
@@ -24,13 +24,17 @@ export class EditArticleFormFieldsComponent implements OnInit {
    */
   article_fields_form = this.fb.group({
     field_type : [''],
-    field_name : [''],
+    field_name : ['', [Validators.required]],
     description: [''],
     required: [''],
     agent_only: [''],
     field_value: this.fb.array([])
   })
 
+  // getter method to get form group control property
+  get field_name(){return this.article_fields_form.controls['field_name'];}
+
+  
     /**
    * Get Field values as form array
    */
@@ -71,9 +75,9 @@ export class EditArticleFormFieldsComponent implements OnInit {
     );
 
     this.article_field$.subscribe((data: Article_Field) => {
-                                  this.article_field = data[0];
-                                  console.log(data)
-                                  this.article_field.field_value = JSON.parse(data[0].field_value).map(value => value.replace(/['"]+/g,''));
+                    console.log(data)
+                                  this.article_field = data;
+                                  this.article_field.field_value = JSON.parse(data.field_value).map(value => value.replace(/['"]+/g,''));
                                   
                                   console.log(this.article_field)                                                                              
                                   this.setEditFormValues()

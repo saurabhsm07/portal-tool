@@ -1,0 +1,30 @@
+$editBackCol : rgb(0, 188, 212);
+
+.edit-section-div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .edit-section-form{
+        .section-name-div{
+            mat-form-field{
+                .mat-form-field-infix{
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                }
+            }
+            
+        }
+        mat-form-field{
+            width: 100%;
+        }
+    }
+
+    .edit-section-footer {
+        text-align: right;
+        button {
+            background-color: $editBackCol;
+            color: white
+            
+          }
+    } 
+}

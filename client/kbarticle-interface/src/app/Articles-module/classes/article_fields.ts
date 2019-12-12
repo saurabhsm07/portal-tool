@@ -1,7 +1,7 @@
 export class Article_Field {
     id?: number;
     field_name: string;
-    field_value?: [''];
+    field_value?: any;
     created_at? : Date;
     updated_at? : Date;
     description? : Text;
