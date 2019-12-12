@@ -6,7 +6,16 @@
                     <form>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Form Name</label>
-                              <input type="text" class="form-control" name="formName" id="form-name" [(ngModel)] = 'form_name' placeholder="Enter form name">
+                              <input type="text" class="form-control" name="formName" id="form-name" [formControl] = 'form_name' placeholder="Enter form name">
+                              <span *ngIf="form_name.invalid && (form_name.dirty || form_name.touched)" class="alert alert-danger">
+
+                                <small *ngIf="form_name.errors.required">
+                                Name is required.
+                                </small>
+                                <small *ngIf="form_name.errors.minlength">
+                                Form Name must be at least 10 characters long.
+                                </small>
+                        </span>
                             </div>   
                     </form>   
             </div>
@@ -88,7 +97,7 @@
               
            </div>
            <div class="submit-form-div col-md-8">
-            <button class="col-md-2" mat-raised-button color="primary" (click)="updateForm()">Update Form</button>
+            <button class="col-md-2" mat-raised-button color="primary" [disabled] = 'form_name.invalid' (click)="updateForm()">Update Form</button>
     </div>
          
     </div>

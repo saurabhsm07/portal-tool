@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Article_Form } from '../../../classes/article_form';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-article-form',
@@ -19,7 +20,8 @@ export class EditArticleFormComponent implements OnInit {
   private article_fields_excl: Article_Field[];
   private article_form$: Observable<Article_Form>;
   private article_form : Article_Form;
-  private form_name: string;
+
+  private form_name = new  FormControl('', [Validators.required, Validators.minLength(10)]);
   
   protected field_type_icon = {
     text : 'fa fa-text-width',
@@ -44,7 +46,7 @@ export class EditArticleFormComponent implements OnInit {
     // get all article forms
     this.article_form$.subscribe( (data) => {
       this.article_form = data;
-      this.form_name = this.article_form.name;
+      this.form_name.setValue(this.article_form.name);
       this.articleFieldService.getArticleField()
                               .subscribe( (fields) => {
                                 const includedIds = JSON.parse(this.article_form.article_fields).map( (field) => field.id)
@@ -76,7 +78,7 @@ export class EditArticleFormComponent implements OnInit {
 
   updateForm() {
     const article_form: Article_Form = {
-      name: this.form_name,
+      name: this.form_name.value,
       article_fields: JSON.stringify(this.article_fields_incl),
       updated_at: new Date()
     }
