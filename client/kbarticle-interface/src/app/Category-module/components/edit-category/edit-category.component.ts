@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -19,12 +19,19 @@ export class EditCategoryComponent implements OnInit {
   category$: Observable<Category>;  // observable to map category i.d from angular route path and call get category by id API
   category: Category                // category object to store category record field values
   
-  // reactive form used to store values
+  // reactive form to work with category object data
   category_form = this.fb.group({
-    name: [''],
+    name: ['', [Validators.required,Validators.minLength(10)]],
     description: [''],
     icon_file: ['']
-  })
+  });
+
+    /**
+   * Getter Functions to get name from category form
+   */
+    get name() { return this.category_form.get('name'); }
+
+
   constructor(private router: Router,
               private categoryService: CategoryService,
               private route: ActivatedRoute,

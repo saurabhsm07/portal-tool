@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { Section } from './../../classes/section';
 import { SectionService } from './../../services/section-service/section.service';
 import { Category } from './../../../Category-module/classes/category';
 import { CategoryService } from './../../../Category-module/services/category-service/category.service';
+import { CustomValidators } from './../../../imports/custom-form-validators'
 
 // import { } from './../../../'
 
@@ -28,11 +29,17 @@ export class EditSectionComponent implements OnInit {
   
   // reactive form used to store values
   section_form = this.fb.group({
-    name: [''],
+    name: ['', [Validators.required, Validators.minLength(10)]],
     description: [''],
-    category_id: [''],
+    category_id: ['', [Validators.required, CustomValidators.forbiddenNullValueSelect]],
     parent_section_id: [''],
   })
+
+  /**
+   * Getter Functions to get name and category id
+   */
+  get name() { return this.section_form.get('name'); }
+  get category_id() {return this.section_form.get('category_id')}
 
   constructor(private router: Router,
               private sectionService: SectionService,
@@ -100,27 +107,32 @@ export class EditSectionComponent implements OnInit {
                 
               }
 
-                 /**
-                 * Get all sections from the selected category id
-                 */
-                getSectionsInCategory(){
-                  this.sectionService.getSectionInCategory(this.selectedCategoryId.toString())
-                                      .subscribe((data) => {
-                                        // this.setSectionFormValues();
-                                        this.sectionList = data.filter(section => section.id != this.section.id);
-                                        this.enableParentSectionField();
-                                      },
-                                      (error) => {
-                                        if(error.status == 404){
-                                          this.disableParentSectionField();
-                                          
-                                        }
-                                        else{
-                                          console.log(error);
-                                        }
-                                        
-                                      })
-                }
+                     /**
+                     * Get all sections from the selected category id
+                     */
+                    getSectionsInCategory(){
+                      if(this.selectedCategoryId == 0){
+                        this.sectionList = [];
+                      }
+                      else{
+                        this.sectionService.getSectionInCategory(this.selectedCategoryId.toString())
+                        .subscribe((data) => {
+                          console.log(data);
+                          this.sectionList = data;
+                        },
+                        (error) => {
+                          if(error.status == 404){
+                            this.sectionList = [];
+                            console.log("in sections")
+                          }
+                          else{
+                            console.log(error);
+                          }
+                          
+                        })
+                      }
+
+                    }
               
               /**
                *  preprocess and submit the edited changes in section object to update section service 

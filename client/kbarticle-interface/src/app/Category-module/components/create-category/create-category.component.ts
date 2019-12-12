@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field'
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
 
 import { Category } from './../../classes/category'
@@ -24,10 +24,16 @@ export class CreateCategoryComponent implements OnInit {
 
   // reactive form to work with category object data
   category_form = this.fb.group({
-    name: [''],
+    name: ['', [Validators.required,Validators.minLength(10)]],
     description: [''],
     icon_file: ['']
   });
+
+    /**
+   * Getter Functions to get name from category form
+   */
+    get name() { return this.category_form.get('name'); }
+
 
   // category object to be saved to the database
   category: Category;

@@ -6,6 +6,15 @@
                         <mat-form-field class="" appearance="outline">
                                 <input formControlName = "name" matInput placeholder="Enter Category Name">
                             </mat-form-field>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                                <small *ngIf="name.errors.required">
+                                Category Name is required.
+                                </small>
+                                <small *ngIf="name.errors.minlength">
+                                Category Name must be at least 10 characters long.
+                                </small>
+                          </div>
                     </div>
                     <div class="col-md-10">
                         <h5>Description</h5>
@@ -19,7 +28,7 @@
                             </mat-form-field>
                     </div>
                     <div class="edit-category-footer col-md-10">
-                        <button type="submit" class="btn btn-default"> Edit Category</button>
+                        <button type="submit" class="btn btn-default" [disabled] = "category_form.invalid"> Edit Category</button>
                     </div>
                 </form>
     

@@ -7,7 +7,7 @@ import { Section } from './../../classes/section'
 import { SectionService } from './../../services/section-service/section.service';
 import { CategoryService } from './../../../Category-module/services/category-service/category.service';
 import { Category } from './../../../Category-module/classes/category';
-import { customValidators } from './../../../imports/custom-form-validators';
+import { CustomValidators } from './../../../imports/custom-form-validators';
 
 @Component({
   selector: 'app-create-section',
@@ -20,7 +20,7 @@ export class CreateSectionComponent implements OnInit {
 
   categoryList : Category[];
   sectionList : Section[];
-  selectedCategory :  Number;
+  selectedCategoryId :  Number;
   
   constructor(private fb: FormBuilder,
               private sectionService: SectionService,
@@ -42,10 +42,13 @@ export class CreateSectionComponent implements OnInit {
   section_form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(10)]],
     description: [''],
-    category_id: ['', [Validators.required, customValidators.forbiddenNullValueSelect]],
+    category_id: ['', [Validators.required, CustomValidators.forbiddenNullValueSelect]],
     parent_section_id: [''],
   });
 
+    /**
+   * Getter Functions to get name and category id
+   */
   get name() { return this.section_form.get('name'); }
   get category_id() {return this.section_form.get('category_id')}
 
@@ -81,11 +84,11 @@ export class CreateSectionComponent implements OnInit {
      * Get all sections from the selected category id
      */
     getSectionsInCategory(){
-      if(this.selectedCategory == 0){
+      if(this.selectedCategoryId == 0){
         this.sectionList = [];
       }
       else{
-        this.sectionService.getSectionInCategory(this.selectedCategory.toString())
+        this.sectionService.getSectionInCategory(this.selectedCategoryId.toString())
         .subscribe((data) => {
           console.log(data);
           this.sectionList = data;

@@ -4,7 +4,7 @@ import { AbstractControl } from '@angular/forms';
  * class with functions of custom validators to be used to validate reactive forms accross modules,
  * for different field types and use cases
  */
-export class customValidators {
+export class CustomValidators {
 
     /**
      * Checks if the dropdown select option is updated from none to specific value or not
