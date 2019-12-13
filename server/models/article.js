@@ -19,9 +19,6 @@ const Article = client.define('Articles', {
                                             body: {
                                                 type: Sequelize.JSON
                                             },
-                                            header: {
-                                                type: Sequelize.JSON
-                                            },
                                             locale: {
                                                 type: Sequelize.TEXT
                                             },

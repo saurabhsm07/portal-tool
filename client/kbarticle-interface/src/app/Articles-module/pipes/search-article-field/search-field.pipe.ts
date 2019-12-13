@@ -13,7 +13,7 @@ export class SearchFieldPipe implements PipeTransform {
     if (searchString.length === 0) {
       return value;
     } else {
-        value.data = articleFields.filter((field) => { if(field.field_name.includes(searchString)) {
+        value.data = articleFields.filter((field) => { if(field.field_name.toLowerCase().includes(searchString.toLowerCase())) {
           return field;
         }});
         return value;

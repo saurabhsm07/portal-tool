@@ -63,7 +63,7 @@ articles.post('/', (req, res) => {
         html_url: 'http://localhost:5000/api/article/',
         title: req.body.article.title,
         body: req.body.article.body,
-        header: req.body.article.header,
+        article_form_id: req.body.article.formId,
         locale:'en-us',
         author: req.body.article.author,
         draft: req.body.article.draft,

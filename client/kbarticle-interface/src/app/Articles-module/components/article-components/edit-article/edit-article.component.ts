@@ -56,24 +56,25 @@ export class EditArticleComponent implements OnInit {
 
 
 
-// build using FormBuilder service
+// reactive article form to create new article
 article_form = this.fb.group({
-article_header : this.fb.group({
-title  : [],
-operatingSys : [''],
-section : [''],
-version : [''],
-articleVisibility: [''],
-jiraId: [''],
-ticketId: ['']
-}),
+  article_header : this.fb.group({
+    title  : [''],
+    form : [''],   
+    section : [''],                 
+  }),
 
-article_body : this.fb.group({
-problem : [''],
-prerequisites : [''],
-steps: [''],
-resolution : ['']
-})
+  article_body : this.fb.group({
+    operatingSystem : [''],             
+    version : [''],
+    articleVisibility: [''],
+    jiraId: [''],
+    ticketId: [''],
+    problem : [''],
+    prerequisites : [''],
+    steps: [''],
+    resolution : ['']
+  })
 
 });
 
@@ -100,14 +101,15 @@ sectionList = [{id: 1, name :'section-1'},
       article_header : {
         title  : this.article.title,
         section : JSON.parse(this.article.section).id,
-        version : this.article.header.versions,
-        operatingSys: this.article.header.operatingSys,
-        articleVisibility: this.article.header.agentFacing,
-        jiraId: this.article.header.jiraId,
-        ticketId:this.article.header.ticketId
+        form: this.article.formId
       },
     
       article_body : {
+        version : this.article.body.versions,
+        operatingSys: this.article.body.operatingSys,
+        articleVisibility: this.article.body.agentFacing,
+        jiraId: this.article.body.jiraId,
+        ticketId:this.article.body.ticketId,
         problem : this.article.body.filter(x => (x.name == 'problem'))[0]['value'],
         steps : this.article.body.filter(x => (x.name == 'steps'))[0]['value'],
         resolution: this.article.body.filter(x => (x.name == 'resolution'))[0]['value'],
@@ -128,14 +130,13 @@ sectionList = [{id: 1, name :'section-1'},
       author : {id: 112323, name: 'saurabh'},
       draft: {status :true, type: 'Draft'},
       formId: 1,
-       header : {
-        versions : this.article_form.value.article_header.version,
-        operatingSys : this.article_form.value.article_header.operatingSys,
-        ticketId: this.article_form.value.article_header.ticketId,
-        jiraId: this.article_form.value.article_header.jiraId,
-        agentFacing: this.article_form.value.article_header.articleVisibility
-        },
+
         body : [
+          {versions : this.article_form.value.article_body.version},
+          {operatingSystem : this.article_form.value.article_body.operatingSys},
+          {ticketId: this.article_form.value.article_body.ticketId},
+          {jiraId: this.article_form.value.article_body.jiraId},
+          {agentFacing: this.article_form.value.article_body.articleVisibility},
           {name: 'problem', value: this.article_form.value.article_body.problem},
           {name: 'prerequisites', value: this.article_form.value.article_body.prerequisites},
           {name: 'steps', value: this.article_form.value.article_body.steps},

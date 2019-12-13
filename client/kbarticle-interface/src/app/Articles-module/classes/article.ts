@@ -5,7 +5,6 @@ export class Article {
     formId: number;
     url?: Text;
     author:{};
-    header: {};
     body: {};
     createdAt?: Date;
     updatedAt: Date;

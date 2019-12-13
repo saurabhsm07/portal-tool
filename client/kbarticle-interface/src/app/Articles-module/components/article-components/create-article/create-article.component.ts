@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from './field-class';
 import {FormBuilder, Validators} from '@angular/forms';
-import { ArticleService } from './../../../services/article-service/article.service'
-import { ArticleAttachmentsService} from './../../../services/article-attachments-service/article-attachments.service'
 import { Article } from './../../../classes/article';
+import { Section } from './../../../../Section-module/classes/section';
+import { Article_Form } from './../../../classes/article_form';
+import { ArticleService } from './../../../services/article-service/article.service';
+import { ArticleAttachmentsService} from './../../../services/article-attachments-service/article-attachments.service';
+import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { SectionService } from './../../../../Section-module/services/section-service/section.service';
 import { Router } from '@angular/router';
 
 
@@ -22,6 +26,19 @@ export class CreateArticleComponent implements OnInit {
                               {name : 'discription', type: 'textarea', values: null }
                              ];
 
+
+  sectionList: Section[]; //list of section available to select
+  formList: Article_Form[]; //list of forms available to create article
+  operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];  //list of operating systems
+  versions = ['radia-1', 'radia-2', 'radia-3', 'radia-4', 'radia-5'];
+                             
+                             
+                             
+
+/**
+ * Tiny MCE congiguration object : configuration object for tiny mce rich text editor 
+ *  which replaces the normal textarea in angular form component
+ **/                             
  tiny_mce_editor_config = {
                               base_url: '/assets/',
                               suffix: '.min',
@@ -61,19 +78,20 @@ export class CreateArticleComponent implements OnInit {
 
 
 
-// build using FormBuilder service
+// reactive article form to create new article
 article_form = this.fb.group({
   article_header : this.fb.group({
     title  : [''],
-    operatingSys : [''],
-    section : [''],
-    version : [''],
-    articleVisibility: [''],
-    jiraId: [''],
-    ticketId: ['']
+    form : [''],   
+    section : [''],                 
   }),
 
   article_body : this.fb.group({
+    operatingSystem : [''],             
+    version : [''],
+    articleVisibility: [''],
+    jiraId: [''],
+    ticketId: [''],
     problem : [''],
     prerequisites : [''],
     steps: [''],
@@ -82,21 +100,36 @@ article_form = this.fb.group({
 
 });
 
-operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];
-versions = ['radia-1', 'radia-2', 'radia-3', 'radia-4', 'radia-5'];
-sectionList = [{id: 1, name : 'section-1'},
-                {id: 2, name: 'section-2'},
-                {id: 3, name: 'section-3'},
-                {id: 4, name: 'section-4'},
-                {id: 5, name: 'section-5'}];
-
 
 constructor(private fb: FormBuilder,
             private articleService: ArticleService,
             private articleAttachmentService: ArticleAttachmentsService,
+            private sectionService: SectionService,
+            private articleFormsService: ArticleFormsService,
             private router: Router) { }
 
-  ngOnInit() {}
+
+
+ngOnInit() {
+    this.articleFormsService.getArticleForm()
+                            .subscribe((forms) => {
+                              console.log(forms);
+                              this.formList = forms;
+                            },
+                            (error) => {
+                              console.log(error);
+                            })
+
+    this.sectionService.listSections()
+                       .subscribe((sections) => {
+                          console.log(sections);
+                          this.sectionList = sections;
+                       },
+                        (error) => {
+                          console.log(error);
+                        })
+                        
+}
 
   updatePartialData() {
     this.article_form.patchValue({
@@ -118,25 +151,17 @@ constructor(private fb: FormBuilder,
                name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name},
     author : {id: 112323, name: 'saurabh'},
     draft: {status :true, type: 'Draft'},
-    formId: 1,
-     header : {
-      versions : this.article_form.value.article_header.version,
-      operatingSys : this.article_form.value.article_header.operatingSys,
-      ticketId: this.article_form.value.article_header.ticketId,
-      jiraId: this.article_form.value.article_header.jiraId,
-      agentFacing: this.article_form.value.article_header.articleVisibility
-      },
-      body : [
+    formId: this.article_form.value.article_header.form,
+    body : [
         {name: 'problem', value: this.article_form.value.article_body.problem},
         {name: 'prerequisites', value: this.article_form.value.article_body.prerequisites},
         {name: 'steps', value: this.article_form.value.article_body.steps},
         {name: 'resolution', value: this.article_form.value.article_body.resolution}
-  
-      ],
-      review_state: {state: 'Non Technical Review State', value: 1},
-      createdAt: new Date(),
-      updatedAt: new Date()
-      }
+    ],
+    review_state: {state: 'Non Technical Review State', value: 1},
+    createdAt: new Date(),
+    updatedAt: new Date()
+    }
 
   
       this.articleService.postArticle({'article' : articleObj})

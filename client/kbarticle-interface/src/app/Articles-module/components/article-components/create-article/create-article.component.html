@@ -6,27 +6,36 @@
                 <div class ="form-row">
                   <div formGroupName ='article_header' class = "article_form_header col-md-12">
                     <div class="col-md-12 form-group">
-                      <!-- <label class="" for="article_title"> Title:</label>
-                      <input type="text" class="form-control"  formControlName="title" placeholder="Title" required> -->
                       <mat-form-field class="col-md-12">
-                        <input matInput formControlName= 'title' placeholder="Input">
+                        <input matInput formControlName= 'title' placeholder="Article Title">
                       </mat-form-field>
                     </div>
                       <div class="col-md-12 form-row">
-                        <div class="col-md-4">
-                         <!-- <label for="article_section">Section: </label> -->
-                         <!-- <input id="article_section" class="form-control" type="text" formControlName="section" /> -->
-                         <mat-form-field class="col-md-10">
-                          <mat-label>Section</mat-label>
-                          <mat-select formControlName = 'section'>
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
-                          </mat-select>
-                        </mat-form-field>
+                        <div class="col-md-6">
+                          <mat-form-field class="col-md-10">
+                            <mat-label>Select Article Forms</mat-label>
+                            <mat-select formControlName = 'form'>
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let form of formList" [value]="form.id">{{form.name}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         </div>
-                        <div class="col-md-4">
-                          <!-- <label for="article_version">version:</label> -->
-                          <!-- <input id="article_version" class="form-control" type="text" formControlName="version" /> -->
+                        <div class="col-md-6">
+                          <mat-form-field class="col-md-10">
+                           <mat-label>Section</mat-label>
+                           <mat-select formControlName = 'section'>
+                             <mat-option>None</mat-option>
+                             <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
+                           </mat-select>
+                         </mat-form-field>
+                         </div>
+                      </div>
+                      </div>
+
+                      <div formGroupName = 'article_body' class="article_form_body col-md-12">
+                      <div class="col-md-12 form-row">
+
+                        <div class="col-md-6">
                           <mat-form-field class="col-md-10">
                             <mat-label>Product version</mat-label>
                             <mat-select formControlName="version" multiple>
@@ -34,12 +43,10 @@
                             </mat-select>
                           </mat-form-field>
                         </div>
-                        <div class="col-md-4">
-                            <!-- <label for="article_operatingSys"> Operating System:</label> -->
-                            <!-- <input id="article_operatingSys" class="form-control" type="text" formControlName="operatingSys" /> -->
+                        <div class="col-md-6">
                             <mat-form-field class="col-md-10">
                               <mat-label>Operating System</mat-label>
-                              <mat-select formControlName = "operatingSys" multiple>
+                              <mat-select formControlName = "operatingSystem" multiple>
                                 <mat-option *ngFor="let os of operatingSystemList" [value]="os">{{os}}</mat-option>
                               </mat-select>
                             </mat-form-field>
@@ -61,8 +68,6 @@
                               </mat-radio-group>
                         </div>
               </div>
-            </div>
-            <div formGroupName = 'article_body' class="article_form_body col-md-12">
                 <div class="article-body-attr col-md-12">
                     <label>Problem :</label>
                     <editor id="problem"

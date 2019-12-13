@@ -11,7 +11,7 @@ export class SearchArticlePipe implements PipeTransform {
     if (searchString.length === 0) {
       return value;
     } else {
-        value.data = articles.filter((article) => { if(article.title.includes(searchString)) {
+        value.data = articles.filter((article) => { if(article.title.toLowerCase().includes(searchString.toLowerCase())) {
           return article;
         }});
         return value;
