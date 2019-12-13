@@ -61,7 +61,7 @@ export class FieldComponentCreators{
     /**
      * 
      * @param field : article_field object 
-     * return angular material html component for input of typearea
+     * return angular material html component for input of textarea
      */
     public static createTextareaComponent(field: Article_Field): string{
         return `<div class="article-body-attr col-md-12">
@@ -77,19 +77,44 @@ export class FieldComponentCreators{
     /**
      * 
      * @param field : article_field object 
-     * return angular material html component for input of type text
+     * return angular material html component for input of type dropdown select
      */
     public static createDropdownComponent(field: Article_Field): string{
-        return 'dropdown';
+
+        const field_values = JSON.parse(field.field_value);
+        let field_value_template =  FieldComponentCreators.getSelectFieldValueTemplate(field_values);
+                            
+            console.log(field_value_template);
+        return `<div class="col-md-6">
+                    <mat-form-field class="col-md-10">
+                    <mat-label>${field.field_name}</mat-label>
+                    <mat-select formControlName = ${field.field_name}>
+                    <mat-option>None</mat-option>
+                    ${field_value_template}
+                    </mat-select>
+                    </mat-form-field>
+                </div>`;
     }
 
     /**
      * 
      * @param field : article_field object 
-     * return angular material html component for input of type text
+     * return angular material html component for input of type multiselect dropdown
      */
     public static createMultiselectComponent(field: Article_Field): string{
-        return 'multiselect';
+        const field_values = JSON.parse(field.field_value);
+        let field_value_template =  FieldComponentCreators.getSelectFieldValueTemplate(field_values);
+                            
+        
+        return `<div class="col-md-6">
+                    <mat-form-field class="col-md-10">
+                    <mat-label>${field.field_name}</mat-label>
+                    <mat-select formControlName = ${field.field_name} multiple>
+                    <mat-option>None</mat-option>
+                    ${field_value_template}
+                    </mat-select>
+                    </mat-form-field>
+                </div>`;
     }
 
     /**
@@ -98,21 +123,51 @@ export class FieldComponentCreators{
      * return angular material html component for input of type text
      */
     public static createCheckboxComponent(field: Article_Field): string{
-        return 'checkbox';
+        return `<mat-checkbox class="col-md-12" formControlName = ${field.field_name} > ${field.field_name}</mat-checkbox>`;
     }
 
     /**
      * 
      * @param field : article_field object 
-     * return angular material html component for input of type text
+     * return angular material html component for input of type radiobox
      */
     public static createRadioboxComponent(field: Article_Field): string{
-        return 'radiobox';
+        const field_values = JSON.parse(field.field_value);
+        let field_value_template =  FieldComponentCreators.getRadioFieldValueTemplate(field_values);
+        return `<mat-radio-group aria-label="Select an option">
+                    ${field_value_template}
+                </mat-radio-group>`;
     }
 
+    /**
+     * default function to handle unknown field types
+     * @param field article_field object 
+     */
     public static unknownFieldType(field: Article_Field): void {
         console.error('UNKNOWN field type error');
         console.log(field);
+    }
+
+    /**
+     * creates a select option values template from list of values
+     * @param field_values : list of field values
+     */
+    private static getSelectFieldValueTemplate(field_values: string[]) {
+        return field_values.map((value) => {
+            value = value.replace(/"/g, "");
+            return `<mat-option [value]= ${value.replace(/ /g, "_")}>${value}</mat-option>`;
+        }).join().replace(/,/g, "");
+    }
+
+    /**
+     * creates a radiobox option values template from list of values
+     * @param field_values : list of field values
+     */
+    private static getRadioFieldValueTemplate(field_values: string[]) {
+        return field_values.map((value) => {
+            value = value.replace(/"/g, "");
+            return `<mat-radio-button [value]= ${value.replace(/ /g, "_")}>${value}</mat-radio-button>`;
+        }).join().replace(/,/g, "");
     }
 
 }

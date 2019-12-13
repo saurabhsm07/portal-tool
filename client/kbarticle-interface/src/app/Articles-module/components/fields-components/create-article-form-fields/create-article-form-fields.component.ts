@@ -76,7 +76,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
   updateSelectedFieldType(value){
    
     this.selectedType = value;
-    if(value != 1 && value != 2){
+    if(value != 1 && value != 2 && value != 5){
       this.hasValues = true;
     }
     else{
