@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler} from '@angular/core';
-import { Field } from './field-class';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Article } from './../../../classes/article';
 import { Section } from './../../../../Section-module/classes/section';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
 
 import { MaterialModule } from './../../../../imports/material-module';
 
+import { FieldComponentCreators } from './../../../../imports/field-component-creators';
 
 
 @Component({
@@ -21,14 +21,6 @@ import { MaterialModule } from './../../../../imports/material-module';
 })
 export class CreateArticleComponent implements OnInit {
 
-  article_fields : Field[] = [{name : 'section', type : 'dropdown', values : ['section-1', ' section-2', 'section-3', ' section-4']},
-                              {name: 'title' , type : 'text', values : null},
-                              {name : 'product', type: 'text', values : null},
-                              {name : 'versions ', type: 'multiselect', values: ['9.5', '10.0', '5.4', '6.8']},
-                              {name : 'discription', type: 'textarea', values: null }
-                             ];
-
-
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
   operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];  //list of operating systems
@@ -37,11 +29,11 @@ export class CreateArticleComponent implements OnInit {
   /**
    *  dynamically created form components
    */
-  dynamicFormComponent;
-  dynamicFormModule: NgModuleFactory<any>;
+  dynamicFormComponent;                       // component for the dynamic form
+  dynamicFormModule: NgModuleFactory<any>;    // module for the dynamic form
 
   @Input()
-  dynamicFormTemplate: string;
+  dynamicFormTemplate: string;    // the template string which will contain angular form components to be rendered later
                              
 
 /**
@@ -122,6 +114,9 @@ constructor(private fb: FormBuilder,
 
 
 ngOnInit() {
+    /**
+     * gets a list of article forms from the database
+     */
     this.articleFormsService.getArticleForm()
                             .subscribe((forms) => {
                               console.log(forms);
@@ -131,6 +126,9 @@ ngOnInit() {
                               console.log(error);
                             })
 
+    /**
+     * gets a list of sections from the database
+     */
     this.sectionService.listSections()
                        .subscribe((sections) => {
                           console.log(sections);
@@ -138,76 +136,15 @@ ngOnInit() {
                        },
                         (error) => {
                           console.log(error);
-                        })
-
-    /**
-     * Initializing Dynamic component on Ng init
-     */
-
-                        
+                        })           
 }
 
-
-protected renderArticleForm(){
-  console.log(this.formId);
-  this.dynamicFormTemplate = `<h1> you selected form : ${this.formId} </h1>
-                              <h4>Basic native select</h4>
-                              <mat-form-field>
-                              <mat-label>Select an option</mat-label>
-                              <mat-select>
-                                <mat-option>None</mat-option>
-                                <mat-option value="option1">Option 1</mat-option>
-                                <mat-option value="option2">Option 2</mat-option>
-                                <mat-option value="option3">Option 3</mat-option>
-                              </mat-select>
-                            </mat-form-field>`;
-  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
-  this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
-}
-protected createComponentModule (componentType: any) {
-  @NgModule({
-    imports: [ MaterialModule ],
-    declarations: [
-      componentType
-    ],
-    entryComponents: [componentType]
-  })
-  class RuntimeComponentModule
-  {
-  }
-  // a module for just this Type
-  return RuntimeComponentModule;
-}
-
-protected createNewComponent (template: string) {
-  let formTemplate = template;
-
-  @Component({
-    selector: 'dynamic-form-component',
-    template: formTemplate
-  })
-  class DynamicFormComponent implements OnInit{
-     template: any;
-
-     ngOnInit() {
-     this.template = template;
-     }
-  }
-  return DynamicFormComponent;
-}
-
-  updatePartialData() {
-    this.article_form.patchValue({
-      article_header : {
-        title  : 'Default partial title',
-        product : 'radia partial',
-        section : 'admin partial',
-        version : 1011
-      }
-    })
-  }
+  /**
+   * Event function called once the create article form is submitted ,
+   * Saves the article object to the database
+   */
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+
     console.log(this.article_form.value);
 
    let articleObj: Article = {
@@ -231,18 +168,75 @@ protected createNewComponent (template: string) {
   
       this.articleService.postArticle({'article' : articleObj})
                          .subscribe((data) => {
-                           console.log("succesfully created the article")
+                           console.log("succesfully created the article");
                            this.router.navigate(['/articles/list']);
                          },
                         (error) => {
-                          console.log(error.error_on_req)
-                          console.log(error.error)
+                          console.log(error.error_on_req);
+                          console.log(error.error);
                         })
-    
-   }
+    }
 
+/**
+ * Event function : called when user selects a form from the select form dropdown menu,
+ *                  in create_article form 
+ */
+protected renderArticleForm(){
+  const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
   
+  let a = FieldComponentCreators.createFieldComponent(JSON.parse(selectedForm.article_fields));
+  this.dynamicFormTemplate = `<h1> you selected form : ${this.formId} </h1>
+                                ${a}
+                              <mat-form-field>
+                              <mat-label>Select an option</mat-label>
+                              <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option value="option1">Option 1</mat-option>
+                                <mat-option value="option2">Option 2</mat-option>
+                                <mat-option value="option3">Option 3</mat-option>
+                              </mat-select>
+                            </mat-form-field>`;
+  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
+  this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
+}
 
+/**
+ * Creates a dynamic module to be injected in ngModuleFactory
+ * @param componentType : dynamic component to be created appended added in entry components array of the dynamic Module
+ */
+protected createComponentModule (componentType: any) {
+  @NgModule({
+    imports: [ MaterialModule ],
+    declarations: [
+      componentType
+    ],
+    entryComponents: [componentType]
+  })
+  class RuntimeComponentModule
+  {
   }
-  
+  // a module for just this Type
+  return RuntimeComponentModule;
+}
 
+/**
+ * dynamically creates the required angular component
+ * @param template : the template containing angular specific components to be rendered at runtime
+ */
+protected createNewComponent (template: string) {
+  let formTemplate = template;
+
+  @Component({
+    selector: 'dynamic-form-component',
+    template: formTemplate
+  })
+  class DynamicFormComponent implements OnInit{
+     template: any;
+
+     ngOnInit() {
+     this.template = template;
+     }
+  }
+  return DynamicFormComponent;
+}
+}
