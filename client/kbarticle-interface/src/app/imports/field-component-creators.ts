@@ -16,34 +16,103 @@ export class FieldComponentCreators{
      */
     public static createFieldComponent(fieldList : Article_Field[]): string{
         console.log(fieldList);
-        let fieldStr = '';
+        let formBodyTemplate = ``;
         fieldList.forEach(field => {
             switch(field.field_type){
                 case 'text':
-                fieldStr = fieldStr + 'text';
+                formBodyTemplate = formBodyTemplate + this.createTextComponent(field);
                 break;
                 case 'textarea':
-                fieldStr = fieldStr + ' textarea ';
+                formBodyTemplate = formBodyTemplate + this.createTextareaComponent(field);
                 break;
                 case 'dropdown':
-                fieldStr = fieldStr + ' dropdown ';
+                formBodyTemplate = formBodyTemplate + this.createDropdownComponent(field);
                 break;
                 case 'multiselect':
-                fieldStr = fieldStr + ' multiselect ';
+                formBodyTemplate = formBodyTemplate + this.createMultiselectComponent(field);
                 break;
                 case 'checkbox':
-                fieldStr = fieldStr + ' checkbox ';
+                formBodyTemplate = formBodyTemplate + this.createCheckboxComponent(field);
                 break;
                 case 'radiobox':
-                fieldStr = fieldStr + ' radiobox  ';
+                formBodyTemplate = formBodyTemplate + this.createRadioboxComponent(field);
                 break;
                 default:
-                fieldStr = fieldStr + "no idea";
+                this.unknownFieldType(field);
                 break;
             }
         });
-        return fieldStr;
+        return formBodyTemplate;
     }
 
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of type text
+     */
+    public static createTextComponent(field: Article_Field): string{
+        return `<div class="col-md-12 form-group">
+                    <mat-form-field class="col-md-12">
+                    <input matInput formControlName= ${field.field_name} placeholder="Article Title">
+                    </mat-form-field>
+                </div>`;
+    }
+
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of typearea
+     */
+    public static createTextareaComponent(field: Article_Field): string{
+        return `<div class="article-body-attr col-md-12">
+                    <label>${field.field_name} :</label>
+                    <editor id= ${field.field_name}
+                    formControlName = ${field.field_name}
+                    initialValue="<p>Initial content - ${field.field_name}</p>"
+                    [init]="tiny_mce_editor_config">
+                    </editor>
+                </div>`;
+    }
+
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of type text
+     */
+    public static createDropdownComponent(field: Article_Field): string{
+        return 'dropdown';
+    }
+
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of type text
+     */
+    public static createMultiselectComponent(field: Article_Field): string{
+        return 'multiselect';
+    }
+
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of type text
+     */
+    public static createCheckboxComponent(field: Article_Field): string{
+        return 'checkbox';
+    }
+
+    /**
+     * 
+     * @param field : article_field object 
+     * return angular material html component for input of type text
+     */
+    public static createRadioboxComponent(field: Article_Field): string{
+        return 'radiobox';
+    }
+
+    public static unknownFieldType(field: Article_Field): void {
+        console.error('UNKNOWN field type error');
+        console.log(field);
+    }
 
 }

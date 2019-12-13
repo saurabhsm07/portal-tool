@@ -10,6 +10,7 @@ import { SectionService } from './../../../../Section-module/services/section-se
 import { Router } from '@angular/router';
 
 import { MaterialModule } from './../../../../imports/material-module';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
 
@@ -184,18 +185,9 @@ ngOnInit() {
 protected renderArticleForm(){
   const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
   
-  let a = FieldComponentCreators.createFieldComponent(JSON.parse(selectedForm.article_fields));
-  this.dynamicFormTemplate = `<h1> you selected form : ${this.formId} </h1>
-                                ${a}
-                              <mat-form-field>
-                              <mat-label>Select an option</mat-label>
-                              <mat-select>
-                                <mat-option>None</mat-option>
-                                <mat-option value="option1">Option 1</mat-option>
-                                <mat-option value="option2">Option 2</mat-option>
-                                <mat-option value="option3">Option 3</mat-option>
-                              </mat-select>
-                            </mat-form-field>`;
+  let formBodyTemplate = FieldComponentCreators.createFieldComponent(JSON.parse(selectedForm.article_fields));
+  console.log(formBodyTemplate);
+  this.dynamicFormTemplate = formBodyTemplate;
   this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
   this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
 }
@@ -206,7 +198,7 @@ protected renderArticleForm(){
  */
 protected createComponentModule (componentType: any) {
   @NgModule({
-    imports: [ MaterialModule ],
+    imports: [ MaterialModule, EditorModule],
     declarations: [
       componentType
     ],
