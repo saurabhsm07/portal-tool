@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler} from '@angular/core';
 import { Field } from './field-class';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Article } from './../../../classes/article';
@@ -9,6 +9,8 @@ import { ArticleAttachmentsService} from './../../../services/article-attachment
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
 import { SectionService } from './../../../../Section-module/services/section-service/section.service';
 import { Router } from '@angular/router';
+
+import { MaterialModule } from './../../../../imports/material-module';
 
 
 
@@ -32,7 +34,14 @@ export class CreateArticleComponent implements OnInit {
   operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];  //list of operating systems
   versions = ['radia-1', 'radia-2', 'radia-3', 'radia-4', 'radia-5'];
                              
-                             
+  /**
+   *  dynamically created form components
+   */
+  dynamicFormComponent;
+  dynamicFormModule: NgModuleFactory<any>;
+
+  @Input()
+  dynamicFormTemplate: string;
                              
 
 /**
@@ -100,13 +109,15 @@ article_form = this.fb.group({
 
 });
 
+get formId(){ return this.article_form.value.article_header.form;}  //return current form selected in the article form
 
 constructor(private fb: FormBuilder,
             private articleService: ArticleService,
             private articleAttachmentService: ArticleAttachmentsService,
             private sectionService: SectionService,
             private articleFormsService: ArticleFormsService,
-            private router: Router) { }
+            private router: Router,
+            private compiler: Compiler) { }
 
 
 
@@ -128,7 +139,61 @@ ngOnInit() {
                         (error) => {
                           console.log(error);
                         })
+
+    /**
+     * Initializing Dynamic component on Ng init
+     */
+
                         
+}
+
+
+protected renderArticleForm(){
+  console.log(this.formId);
+  this.dynamicFormTemplate = `<h1> you selected form : ${this.formId} </h1>
+                              <h4>Basic native select</h4>
+                              <mat-form-field>
+                              <mat-label>Select an option</mat-label>
+                              <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option value="option1">Option 1</mat-option>
+                                <mat-option value="option2">Option 2</mat-option>
+                                <mat-option value="option3">Option 3</mat-option>
+                              </mat-select>
+                            </mat-form-field>`;
+  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
+  this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
+}
+protected createComponentModule (componentType: any) {
+  @NgModule({
+    imports: [ MaterialModule ],
+    declarations: [
+      componentType
+    ],
+    entryComponents: [componentType]
+  })
+  class RuntimeComponentModule
+  {
+  }
+  // a module for just this Type
+  return RuntimeComponentModule;
+}
+
+protected createNewComponent (template: string) {
+  let formTemplate = template;
+
+  @Component({
+    selector: 'dynamic-form-component',
+    template: formTemplate
+  })
+  class DynamicFormComponent implements OnInit{
+     template: any;
+
+     ngOnInit() {
+     this.template = template;
+     }
+  }
+  return DynamicFormComponent;
 }
 
   updatePartialData() {

@@ -14,7 +14,7 @@
                         <div class="col-md-6">
                           <mat-form-field class="col-md-10">
                             <mat-label>Select Article Forms</mat-label>
-                            <mat-select formControlName = 'form'>
+                            <mat-select formControlName = 'form' (selectionChange)="renderArticleForm()">
                               <mat-option>None</mat-option>
                               <mat-option *ngFor="let form of formList" [value]="form.id">{{form.name}}</mat-option>
                             </mat-select>
@@ -115,3 +115,8 @@
         </div>    
     </div>
  </div>
+ <div class = "dynamic-form-creation-part">
+    <ng-container *ngComponentOutlet="dynamicFormComponent;
+    ngModuleFactory: dynamicFormModule;"></ng-container>
+ </div>
+
