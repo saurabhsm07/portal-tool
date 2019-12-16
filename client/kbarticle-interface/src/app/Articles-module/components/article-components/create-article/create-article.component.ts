@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
 import { Article } from './../../../classes/article';
 import { Section } from './../../../../Section-module/classes/section';
 import { Article_Form } from './../../../classes/article_form';
@@ -13,6 +13,7 @@ import { MaterialModule } from './../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
+import { Article_Field } from './../../../classes/article_fields';
 
 
 @Component({
@@ -87,17 +88,8 @@ article_form = this.fb.group({
     form : [''],   
     section : [''],                 
   }),
-
   article_body : this.fb.group({
-    operatingSystem : [''],             
-    version : [''],
-    articleVisibility: [''],
-    jiraId: [''],
-    ticketId: [''],
-    problem : [''],
-    prerequisites : [''],
-    steps: [''],
-    resolution : ['']
+
   })
 
 });
@@ -155,12 +147,7 @@ ngOnInit() {
     author : {id: 112323, name: 'saurabh'},
     draft: {status :true, type: 'Draft'},
     formId: this.article_form.value.article_header.form,
-    body : [
-        {name: 'problem', value: this.article_form.value.article_body.problem},
-        {name: 'prerequisites', value: this.article_form.value.article_body.prerequisites},
-        {name: 'steps', value: this.article_form.value.article_body.steps},
-        {name: 'resolution', value: this.article_form.value.article_body.resolution}
-    ],
+    body : this.article_form.value.article_body.value,
     review_state: {state: 'Non Technical Review State', value: 1},
     createdAt: new Date(),
     updatedAt: new Date()
@@ -184,9 +171,26 @@ ngOnInit() {
  */
 protected renderArticleForm(){
   const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
+  const formFields : Article_Field[] = JSON.parse(selectedForm.article_fields);
   
-  let formBodyTemplate = FieldComponentCreators.createFieldComponent(JSON.parse(selectedForm.article_fields));
-  console.log(formBodyTemplate);
+  let article_body = this.fb.group([])
+  
+  formFields.forEach(field => {
+    article_body.addControl(field.field_name.toLowerCase(), this.fb.control(''));
+
+  });
+
+  if(this.article_form.controls.article_body){
+    console.log("removed")
+    this.article_form.removeControl('article_body')
+  }
+  this.article_form.addControl('article_body', article_body);
+
+  console.log()
+  console.log(this.article_form.controls)
+
+  let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
+
   this.dynamicFormTemplate = formBodyTemplate;
   this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
   this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
@@ -198,7 +202,7 @@ protected renderArticleForm(){
  */
 protected createComponentModule (componentType: any) {
   @NgModule({
-    imports: [ MaterialModule, EditorModule],
+    imports: [ MaterialModule, EditorModule, ReactiveFormsModule],
     declarations: [
       componentType
     ],
@@ -217,6 +221,7 @@ protected createComponentModule (componentType: any) {
  */
 protected createNewComponent (template: string) {
   let formTemplate = template;
+  let editorConfig = this.tiny_mce_editor_config;
 
   @Component({
     selector: 'dynamic-form-component',
@@ -224,11 +229,15 @@ protected createNewComponent (template: string) {
   })
   class DynamicFormComponent implements OnInit{
      template: any;
-
+     tiny_mce_editor_config = editorConfig;
      ngOnInit() {
      this.template = template;
      }
   }
   return DynamicFormComponent;
+}
+
+validateData(){
+  console.log(this.article_form.value);
 }
 }

@@ -33,7 +33,7 @@
                       </div>
 
                       <div formGroupName = 'article_body' class="article_form_body col-md-12">
-                      <div class="col-md-12 form-row">
+                      <!-- <div class="col-md-12 form-row">
 
                         <div class="col-md-6">
                           <mat-form-field class="col-md-10">
@@ -67,17 +67,21 @@
                                 <mat-radio-button value="0">End-user Facing</mat-radio-button>
                               </mat-radio-group>
                         </div>
-              </div>
-                <div class="article-body-attr col-md-12">
+                      </div> -->
+                      <div class = "dynamic-form-creation-part">
+                        <ng-container *ngComponentOutlet="dynamicFormComponent;
+                        ngModuleFactory: dynamicFormModule;"></ng-container>
+                     </div>
+                <!-- <div class="article-body-attr col-md-12">
                     <label>Problem :</label>
                     <editor id="problem"
                     formControlName = 'problem'
                     initialValue="<p>Initial content - problem</p>"
                     [init]="tiny_mce_editor_config">
                   </editor>
-                   </div>
+                   </div> -->
                   
-                   <div class="article-body-attr col-md-12">
+                   <!-- <div class="article-body-attr col-md-12">
                       <label>Prerequisites :</label>
                      <editor id="prerequisites"
                       formControlName = 'prerequisites'
@@ -102,21 +106,19 @@
                    initialValue="<p>Initial content - resolution</p>"
                    [init]="tiny_mce_editor_config">
                  </editor>
-               </div>
+               </div> -->
+
               </div>
             <div class="create-article col-md-12" >
                 <button mat-button type="submit" color="primary">Create Article</button>
+                <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button>
             </div>
           </div>
           
 
         </form>
-            
         </div>    
     </div>
  </div>
- <div class = "dynamic-form-creation-part">
-    <ng-container *ngComponentOutlet="dynamicFormComponent;
-    ngModuleFactory: dynamicFormModule;"></ng-container>
- </div>
+
 

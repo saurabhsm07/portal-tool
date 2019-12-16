@@ -65,10 +65,10 @@ export class FieldComponentCreators{
      */
     public static createTextareaComponent(field: Article_Field): string{
         return `<div class="article-body-attr col-md-12">
-                    <label>${field.field_name} :</label>
-                    <editor id= ${field.field_name}
-                    formControlName = ${field.field_name}
-                    initialValue="<p>Initial content - ${field.field_name}</p>"
+                    <label class="label-cls" >${field.field_name} :</label>
+                    <editor id= ${field.field_name.toLowerCase()}
+                    [formControl] = ${field.field_name.toLowerCase()}
+                    initialValue="<p>Initial content - ${field.field_name.toLowerCase()}</p>"
                     [init]="tiny_mce_editor_config">
                     </editor>
                 </div>`;
@@ -88,7 +88,7 @@ export class FieldComponentCreators{
         return `<div class="col-md-6">
                     <mat-form-field class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name}>
+                    <mat-select formControlName = ${field.field_name.toLowerCase()}>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
@@ -109,7 +109,7 @@ export class FieldComponentCreators{
         return `<div class="col-md-6">
                     <mat-form-field class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name} multiple>
+                    <mat-select formControlName = ${field.field_name.toLowerCase()} multiple>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
@@ -123,7 +123,7 @@ export class FieldComponentCreators{
      * return angular material html component for input of type text
      */
     public static createCheckboxComponent(field: Article_Field): string{
-        return `<mat-checkbox class="col-md-12" formControlName = ${field.field_name} > ${field.field_name}</mat-checkbox>`;
+        return `<mat-checkbox class="col-md-12" formControlName = ${field.field_name.toLowerCase()} > ${field.field_name}</mat-checkbox>`;
     }
 
     /**
