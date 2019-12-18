@@ -16,7 +16,7 @@ export class FieldComponentCreators{
      */
     public static createFieldComponent(fieldList : Article_Field[]): string{
         console.log(fieldList);
-        let formBodyTemplate = ``;
+        let formBodyTemplate = `<div class="article-body-cls" [formGroup] = 'article_body'>`;
         fieldList.forEach(field => {
             switch(field.field_type){
                 case 'text':
@@ -42,6 +42,9 @@ export class FieldComponentCreators{
                 break;
             }
         });
+
+        formBodyTemplate = formBodyTemplate + `<button mat-button type="button" (click) = 'validateVals()'> Clicker</button></div>`;
+        console.log(formBodyTemplate)
         return formBodyTemplate;
     }
 
@@ -67,7 +70,7 @@ export class FieldComponentCreators{
         return `<div class="article-body-attr col-md-12">
                     <label class="label-cls" >${field.field_name} :</label>
                     <editor id= ${field.field_name.toLowerCase()}
-                    [formControl] = ${field.field_name.toLowerCase()}
+                    formControlName = ${field.field_name.toLowerCase()}
                     initialValue="<p>Initial content - ${field.field_name.toLowerCase()}</p>"
                     [init]="tiny_mce_editor_config">
                     </editor>
@@ -109,7 +112,7 @@ export class FieldComponentCreators{
         return `<div class="col-md-6">
                     <mat-form-field class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name.toLowerCase()} multiple>
+                    <mat-select formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} multiple>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
@@ -134,6 +137,7 @@ export class FieldComponentCreators{
     public static createRadioboxComponent(field: Article_Field): string{
         const field_values = JSON.parse(field.field_value);
         let field_value_template =  FieldComponentCreators.getRadioFieldValueTemplate(field_values);
+        console.log(field_value_template);
         return `<mat-radio-group aria-label="Select an option">
                     ${field_value_template}
                 </mat-radio-group>`;
@@ -152,10 +156,11 @@ export class FieldComponentCreators{
      * creates a select option values template from list of values
      * @param field_values : list of field values
      */
-    private static getSelectFieldValueTemplate(field_values: string[]) {
-        return field_values.map((value) => {
-            value = value.replace(/"/g, "");
-            return `<mat-option [value]= ${value.replace(/ /g, "_")}>${value}</mat-option>`;
+    private static getSelectFieldValueTemplate(field_values: any[]) {
+        return field_values.map((field_value) => {
+            field_value = JSON.parse(field_value);
+            console.log(field_value)
+            return `<mat-option [value]= ${field_value.value}>${field_value.name}</mat-option>`;
         }).join().replace(/,/g, "");
     }
 
@@ -166,7 +171,7 @@ export class FieldComponentCreators{
     private static getRadioFieldValueTemplate(field_values: string[]) {
         return field_values.map((value) => {
             value = value.replace(/"/g, "");
-            return `<mat-radio-button [value]= ${value.replace(/ /g, "_")}>${value}</mat-radio-button>`;
+            return `<mat-radio-button [value]= ${value.split('').map(x => x.charCodeAt(0)).join()}>${value}</mat-radio-button>`;
         }).join().replace(/,/g, "");
     }
 

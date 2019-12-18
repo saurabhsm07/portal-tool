@@ -41,7 +41,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     description: [''],
     required: [''],
     agent_only: [''],
-    field_value: this.fb.array([ this.fb.control('')])
+    field_value: this.fb.array([ this.fb.group({ value : [0], name: ['']})])
   })
 
   // getter method to get form group control property
@@ -62,7 +62,9 @@ export class CreateArticleFormFieldsComponent implements OnInit {
  * Add field type to reactive forms
  */
   addFieldType(){
-    this.article_fields_form.patchValue({field_type : this.field_type.filter(field => field.value == this.selectedType)[0].name})
+    this.article_fields_form
+        .patchValue({field_type : this.field_type
+                                      .filter(field => field.value == this.selectedType)[0].name})
   }
 
 
@@ -93,10 +95,11 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    */
   addFieldValueCol(index){
     //Only 1 field value for check-box
+    console.log(this.selectedType);
     if(this.selectedType == 5){
       if(this.field_value.value.length < 1){
-      if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+      if(this.field_value.value[index].name.length > 0){
+        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
       }
     }
     }
@@ -104,18 +107,33 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     //Only 2 field values for radiobox
     else if(this.selectedType == 6){
       if(this.field_value.value.length < 2)
-      if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+      if(this.field_value.value[index].name.length > 0){
+        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
       }
     }
 
     //unlimited field values for multiselect and dropdown select
     else{
-      if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+      if(this.field_value.value[index].name.length > 0){
+        if(this.field_value.value[index].value == 0){
+          this.setFieldValueAttr(index); 
+        }
+        this.field_value.push(this.fb.group({ value : [''], name: ['']}))
       }
     }
     
+  }
+
+  /**
+   * Function gives a unique value id to the field value name string
+   * @param index = index of a field value object in the field value form array
+   */
+  private setFieldValueAttr(index: any) {
+    this.field_value.value[index].value = this.field_value
+                                              .value[index].name
+                                              .split('')
+                                              .map(x => x.charCodeAt())
+                                              .reduce((a, b) => (a + b));
   }
 
   /**

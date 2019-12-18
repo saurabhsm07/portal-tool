@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler} from '@angular/core';
-import {FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, Validators, ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
 import { Article } from './../../../classes/article';
 import { Section } from './../../../../Section-module/classes/section';
 import { Article_Form } from './../../../classes/article_form';
@@ -173,26 +173,13 @@ protected renderArticleForm(){
   const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
   const formFields : Article_Field[] = JSON.parse(selectedForm.article_fields);
   
-  let article_body = this.fb.group([])
-  
-  formFields.forEach(field => {
-    article_body.addControl(field.field_name.toLowerCase(), this.fb.control(''));
-
-  });
-
-  if(this.article_form.controls.article_body){
-    console.log("removed")
-    this.article_form.removeControl('article_body')
-  }
-  this.article_form.addControl('article_body', article_body);
-
-  console.log()
+  this.article_form.setControl('article_body', this.fb.group([]));
   console.log(this.article_form.controls)
 
   let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
 
   this.dynamicFormTemplate = formBodyTemplate;
-  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate);
+  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup> this.article_form.controls['article_body']);
   this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
 }
 
@@ -219,7 +206,7 @@ protected createComponentModule (componentType: any) {
  * dynamically creates the required angular component
  * @param template : the template containing angular specific components to be rendered at runtime
  */
-protected createNewComponent (template: string) {
+protected createNewComponent (template: string, fields: Article_Field[], article_body_obj : FormGroup ) {
   let formTemplate = template;
   let editorConfig = this.tiny_mce_editor_config;
 
@@ -230,8 +217,20 @@ protected createNewComponent (template: string) {
   class DynamicFormComponent implements OnInit{
      template: any;
      tiny_mce_editor_config = editorConfig;
+     article_body = article_body_obj;
+    
+  
      ngOnInit() {
      this.template = template;
+      console.log(fields);
+     fields.forEach(field => {
+      this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl(''));
+    });
+
+     }
+
+     validateVals(){
+       console.log(this.article_body.value)
      }
   }
   return DynamicFormComponent;
