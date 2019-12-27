@@ -7,7 +7,7 @@
   </div>
  <div class="article-body col-md-9">
    <span *ngFor="let obj of articleObj.body">
-     <h3 class="body-title col-md-12">{{obj.name}}</h3>
+     <h3 class="body-title col-md-12">{{obj.key}}</h3>
      <div class="body-textarea col-md-12" [innerHTML]="obj.value"></div>
    </span>
  </div>

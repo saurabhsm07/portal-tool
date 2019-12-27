@@ -39,7 +39,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
     
     this.article$.subscribe((data : Article) => {
       this.articleObj = data
-      this.articleObj.body = JSON.parse(<string> data.body)
+      this.articleObj.body = Object.keys(JSON.parse(<string> data.body)).map((key) => { return {key: key, value: JSON.parse(<string> data.body)[key]}});
       this.articleObj.author = JSON.parse(<string> data.author)
       this.articleObj.draft = JSON.parse(<string> data.draft)
       this.articleObj.review_state = JSON.parse(<string> data.review_state)

@@ -50,7 +50,7 @@ getArticleField(): Observable<Article_Field[]>{
 /**
 * getArticleFields: Service function to fetch article field by i.d
 */
-listArticleFieldByIds(ids:Number []): Observable<Article_Field []>{
+listArticleFieldByIds(ids:string): Observable<Article_Field []>{
  return this.http.get<Article_Field []>(this.requestUri.listArticleFieldsByIds + ids, this.headersOptions)
                  .pipe(catchError(ArticleFieldErrorHandlerService.getArticleFieldError));
 }

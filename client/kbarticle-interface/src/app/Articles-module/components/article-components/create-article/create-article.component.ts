@@ -7,6 +7,7 @@ import { ArticleService } from './../../../services/article-service/article.serv
 import { ArticleAttachmentsService} from './../../../services/article-attachments-service/article-attachments.service';
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
 import { SectionService } from './../../../../Section-module/services/section-service/section.service';
+import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
 import { Router } from '@angular/router';
 
 import { MaterialModule } from './../../../../imports/material-module';
@@ -101,6 +102,7 @@ constructor(private fb: FormBuilder,
             private articleAttachmentService: ArticleAttachmentsService,
             private sectionService: SectionService,
             private articleFormsService: ArticleFormsService,
+            private articleFieldService: ArticleFieldService,
             private router: Router,
             private compiler: Compiler) { }
 
@@ -138,7 +140,7 @@ ngOnInit() {
    */
   onSubmit() {
 
-    console.log(this.article_form.value);
+    // console.log(this.article_form.controls.article_body.value);
 
    let articleObj: Article = {
     title : this.article_form.value.article_header.title,
@@ -147,7 +149,7 @@ ngOnInit() {
     author : {id: 112323, name: 'saurabh'},
     draft: {status :true, type: 'Draft'},
     formId: this.article_form.value.article_header.form,
-    body : this.article_form.value.article_body.value,
+    body : this.article_form.controls.article_body.value,
     review_state: {state: 'Non Technical Review State', value: 1},
     createdAt: new Date(),
     updatedAt: new Date()
@@ -171,17 +173,31 @@ ngOnInit() {
  */
 protected renderArticleForm(){
   const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
-  const formFields : Article_Field[] = JSON.parse(selectedForm.article_fields);
-  
-  this.article_form.setControl('article_body', this.fb.group([]));
-  console.log(this.article_form.controls)
 
-  let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
+  let formFields : Article_Field[];
 
-  this.dynamicFormTemplate = formBodyTemplate;
-  this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup> this.article_form.controls['article_body']);
-  this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
-}
+  console.log(JSON.parse(selectedForm.article_fields));
+
+  this.articleFieldService.listArticleFieldByIds(selectedForm.article_fields)
+                          .subscribe((data) => {
+                            formFields = data;
+                            this.renderComponent(formFields);
+                          }, (error) => {
+                            console.log(error);
+                          })
+
+  }
+
+  private renderComponent(formFields: Article_Field[]) {
+    this.article_form.setControl('article_body', this.fb.group([]));
+    console.log(this.article_form.controls);
+    let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
+    this.dynamicFormTemplate = formBodyTemplate;
+    this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup>this.article_form.controls['article_body']);
+    this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
+  }
+
+
 
 /**
  * Creates a dynamic module to be injected in ngModuleFactory
