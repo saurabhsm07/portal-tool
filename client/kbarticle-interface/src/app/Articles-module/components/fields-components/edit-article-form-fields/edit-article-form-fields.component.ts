@@ -113,12 +113,27 @@ export class EditArticleFormFieldsComponent implements OnInit {
     else{
       if(this.field_value.value.filter(val => val.name.length > 0).length == this.field_value.value.length){
         if(this.field_value.value[index].name.length > 0){
+          if(this.field_value.value[index].value == 0){
+            this.setFieldValueAttr(index); 
+          }
           this.field_value.push( this.fb.group({ value : [0], name: ['']}))
         }
       }
      
     }
     
+  }
+
+    /**
+   * Function gives a unique value id to the field value name string
+   * @param index = index of a field value object in the field value form array
+   */
+  private setFieldValueAttr(index: any) {
+    this.field_value.value[index].value = this.field_value
+                                              .value[index].name
+                                              .split('')
+                                              .map(x => x.charCodeAt())
+                                              .reduce((a, b) => (a + b));
   }
 
   /**

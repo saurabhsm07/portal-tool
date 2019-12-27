@@ -16,6 +16,7 @@ export class ArticleFieldService {
   private requestUri = {
     getArticleFields: 'http://localhost:5000/api/articles/fields',
     getArticleFieldById: 'http://localhost:5000/api/articles/fields/id',
+    listArticleFieldsByIds: 'http://localhost:5000/api/articles/fields/list?ids=',
     postArticleField: 'http://localhost:5000/api/articles/fields/',
     updateArticleField: 'http://localhost:5000/api/articles/fields/',
     deleteArticleField: 'http://localhost:5000/api/articles/fields/',
@@ -49,10 +50,18 @@ getArticleField(): Observable<Article_Field[]>{
 /**
 * getArticleFields: Service function to fetch article field by i.d
 */
-getArticleFieldById(id :Number): Observable<Article_Field>{
- return this.http.get<Article_Field>(this.requestUri.getArticleFieldById+'/'+id, this.headersOptions)
+listArticleFieldByIds(ids:Number []): Observable<Article_Field []>{
+ return this.http.get<Article_Field []>(this.requestUri.listArticleFieldsByIds + ids, this.headersOptions)
                  .pipe(catchError(ArticleFieldErrorHandlerService.getArticleFieldError));
 }
+
+/**
+* getArticleFields: Service function to fetch article field by i.d
+*/
+getArticleFieldById(id :Number): Observable<Article_Field>{
+  return this.http.get<Article_Field>(this.requestUri.getArticleFieldById+'/'+id, this.headersOptions)
+                  .pipe(catchError(ArticleFieldErrorHandlerService.getArticleFieldError));
+ }
 
 /**
  * updateArticleField: Service function to update article field
