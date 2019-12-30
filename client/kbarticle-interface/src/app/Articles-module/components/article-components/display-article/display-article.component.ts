@@ -25,6 +25,9 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
 
   }
 
+  private fieldValues = {};
+  private fieldInformation = {};
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -44,7 +47,21 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
       this.articleObj.draft = JSON.parse(<string> data.draft)
       this.articleObj.review_state = JSON.parse(<string> data.review_state)
       console.log(this.articleObj)
-    })
+      if(Array.isArray(this.articleObj.body)){
+        this.fieldInformation = this.articleObj.body.filter(obj => obj.key == "fieldInformation")[0].value;
+        this.fieldValues = this.articleObj.body.filter(obj => obj.key == "fieldValues")[0].value;
+      }
+
+    if(Array.isArray(this.articleObj.body)){
+      this.articleObj.body.forEach(element => {
+        if(Array.isArray(element.value)){
+          element.value = element.value.map(ele => this.fieldValues[ele])
+        }
+      });
+    }
+      
+
+  })
 
   }
 

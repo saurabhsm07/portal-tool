@@ -5,10 +5,19 @@
           {{articleObj.title}}
       </h1>
   </div>
- <div class="article-body col-md-9">
+ <div *ngIf="fieldValues" class="article-body col-md-9">
    <span *ngFor="let obj of articleObj.body">
-     <h3 class="body-title col-md-12">{{obj.key}}</h3>
-     <div class="body-textarea col-md-12" [innerHTML]="obj.value"></div>
+     <span *ngIf="(obj.key!= 'fieldValues' && obj.key!= 'fieldInformation')">
+        <h3 class="body-title col-md-12">{{obj.key}}</h3>
+        <span *ngIf="(fieldValues[obj.value]); else displayVal">
+            <div class="body-textarea col-md-12" [innerHTML]="fieldValues[obj.value]"></div>
+        </span>
+        <ng-template #displayVal>
+            <div class="body-textarea col-md-12" [innerHTML]="obj.value"></div>
+        </ng-template>
+        
+     </span>
+
    </span>
  </div>
  <div class="article-sidebar col-md-3">
@@ -21,22 +30,6 @@
     <h3 class="col-md-12">Document Id:</h3>
     <p class="col-md-12">{{articleObj.id}}</p>
   </span>
-  <span>
-    <h3 class="col-md-12">Version:</h3>
-    <p class="col-md-12">{{articleObj.body.versions}}</p>
-  </span>
-  <span *ngIf="articleObj.body.ticketId">
-    <h3 class="col-md-12">Operating Systems:</h3>
-    <p class="col-md-12">{{articleObj.body.operatingSys}}</p>
-  </span>
-  <span *ngIf="articleObj.body.ticketId">
-    <h3 class="col-md-12">Ticket ID:</h3>
-    <p class="col-md-12">{{articleObj.body.ticketId}}</p>
-  </span>
-  <span *ngIf="articleObj.body.jiraId">
-    <h3 class="col-md-12">Reference Jira ID:</h3>
-    <p class="col-md-12">{{articleObj.body.jiraId}}</p>
-  </span>
  </div> 
  <div class="col-md-12 article-footer">
    <span>Created By : <a class="creator-name" href="">{{articleObj.author.name}}</a> - <span class="update-time">{{articleObj.updated_at | date: 'medium'}}</span></span>
@@ -45,9 +38,9 @@
 </div>
 
 <!-- edit article modal starts -->
-<div *ngIf="articleObj" class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div *ngIf="articleObj" class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     
          <app-edit-article [article] = articleObj (articleChange) = "this.articleObjVal = $event"></app-edit-article>
        
-  </div>
+  </div> -->
   <!-- edit article modal ends -->

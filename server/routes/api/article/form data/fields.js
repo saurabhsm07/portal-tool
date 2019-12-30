@@ -3,7 +3,9 @@ const Field = require('./../../../../models/article_field');
 const fields = express.Router();
 
 //sequelize imports
+const sequelize = require('sequelize');
 const Op = require('sequelize').Op;
+
 /**
  * GET: api path to get list of article fields from the database.
  */

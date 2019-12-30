@@ -42,9 +42,8 @@ export class FieldComponentCreators{
                 break;
             }
         });
-
-        formBodyTemplate = formBodyTemplate + `<button mat-button type="button" (click) = 'validateVals()'> Clicker</button></div>`;
-        console.log(formBodyTemplate)
+        
+        // console.log(formBodyTemplate)
         return formBodyTemplate;
     }
 
@@ -55,7 +54,7 @@ export class FieldComponentCreators{
      */
     public static createTextComponent(field: Article_Field): string{
         return `<div class="col-md-12 form-group">
-                    <mat-form-field class="col-md-12">
+                    <mat-form-field id = ${field.id} class="col-md-12">
                     <input matInput formControlName= ${field.field_name} placeholder="Article Title">
                     </mat-form-field>
                 </div>`;
@@ -69,7 +68,7 @@ export class FieldComponentCreators{
     public static createTextareaComponent(field: Article_Field): string{
         return `<div class="article-body-attr col-md-12">
                     <label class="label-cls" >${field.field_name} :</label>
-                    <editor id= ${field.field_name.toLowerCase()}
+                    <editor id= ${field.id}
                     formControlName = ${field.field_name.toLowerCase()}
                     initialValue="<p>Initial content - ${field.field_name.toLowerCase()}</p>"
                     [init]="tiny_mce_editor_config">
@@ -89,7 +88,7 @@ export class FieldComponentCreators{
                             
             console.log(field_value_template);
         return `<div class="col-md-6">
-                    <mat-form-field class="col-md-10">
+                    <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
                     <mat-select formControlName = ${field.field_name.toLowerCase()}>
                     <mat-option>None</mat-option>
@@ -110,9 +109,9 @@ export class FieldComponentCreators{
                             
         
         return `<div class="col-md-6">
-                    <mat-form-field class="col-md-10">
+                    <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} multiple>
+                    <mat-select formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} (selectionChange)="updateFieldValueArray($event)" multiple>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
