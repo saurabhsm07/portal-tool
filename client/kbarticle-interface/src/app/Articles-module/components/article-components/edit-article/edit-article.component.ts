@@ -167,7 +167,7 @@ export class EditArticleComponent implements OnInit {
     this.articleService.updateArticle({'article': article})
                        .subscribe((data) => {
                         console.log(data)
-                        this.router.navigate(['/article/', article.id]);
+                        this.router.navigate(['/article/id/', article.id]);
                        },
                                   (error) => {
                                     console.log(error)
@@ -281,16 +281,18 @@ export class EditArticleComponent implements OnInit {
         this.template = template;
         let fieldInformation = {}
         console.log(fields);
-        fields.forEach(field => {
-          let field_name = field.field_name.replace(/ /g, "_").toLowerCase();
-          if(Array.isArray(this.article.body)){
-          this.article_body.addControl(field_name, new FormControl(this.article.body.filter(element => element.key == field_name)[0].value));
-         }
+        if(Array.isArray(this.article.body)){
+          this.article.body.forEach(field => {
+          let field_name = field.key;
           
-          fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
+          this.article_body.addControl(field_name, new FormControl(field.value));
+        
+          
+          // fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
         });
-        this.article_body.addControl('fieldValues', new FormControl({}));
-        this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
+      }
+        // this.article_body.addControl('fieldValues', new FormControl({}));
+        // this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
       }
 
       //  validateVals(){

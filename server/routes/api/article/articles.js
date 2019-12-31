@@ -108,7 +108,7 @@ articles.put('/', (req, res) => {
         position: 0,
         up_vote: 12,
         down_vote: 0,
-        section: req.body.article.section,
+        section: JSON.parse(req.body.article.section),
         user_segment_id: 624226,
         permission_group_id: 1526652,
         updated_at: req.body.article.updatedAt,
