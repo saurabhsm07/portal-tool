@@ -1,128 +1,55 @@
-<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Edit Article</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-<div class = "edit_article_div col-md-12">
-  <form [formGroup] = 'article_form'  (ngSubmit)="onSubmit()">
-    <div class ="form-row">
-      <div formGroupName ='article_header' class = "article_form_header col-md-12">
-        <div class="col-md-12 form-group">
-          <mat-form-field class="col-md-12">
-            <input matInput formControlName= 'title' placeholder="Article Title">
-          </mat-form-field>
-        </div>
-          <div class="col-md-12 form-row">
-            <div class="col-md-6">
-              <mat-form-field class="col-md-10">
-                <mat-label>Select Article Forms</mat-label>
-                <mat-select formControlName = 'form'>
-                  <mat-option>None</mat-option>
-                  <mat-option *ngFor="let form of formList" [value]="form.id">{{form.name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-              <mat-form-field class="col-md-10">
-               <mat-label>Section</mat-label>
-               <mat-select formControlName = 'section'>
-                 <mat-option>None</mat-option>
-                 <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
-               </mat-select>
-             </mat-form-field>
-             </div>
-          </div>
-          </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class = "create_article_div offset-md-1 col-md-10">
+            <h4>Create KB article</h4>
+            <form [formGroup] = 'article_form'  (ngSubmit)="updateArticle()">
+                <div class ="form-row">
+                  <div formGroupName ='article_header' class = "article_form_header col-md-12">
+                    <div class="col-md-12 form-group">
+                      <mat-form-field class="col-md-12">
+                        <input matInput formControlName= 'title' placeholder="Article Title">
+                      </mat-form-field>
 
-          <div formGroupName = 'article_body' class="article_form_body col-md-12">
-          <div class="col-md-12 form-row">
 
-            <div class="col-md-6">
-              <mat-form-field class="col-md-10">
-                <mat-label>Product version</mat-label>
-                <mat-select formControlName="version" multiple>
-                  <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-md-6">
-                <mat-form-field class="col-md-10">
-                  <mat-label>Operating System</mat-label>
-                  <mat-select formControlName = "operatingSystem" multiple>
-                    <mat-option *ngFor="let os of operatingSystemList" [value]="os">{{os}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            <div class="col-md-12">
-              <h5 >Reference Tickets :</h5>
-                <mat-form-field class="col-md-4">
-                    <input matInput formControlName = 'ticketId' placeholder="Ticket Id">
-                  </mat-form-field>
-                  <mat-form-field class="col-md-4">
-                      <input matInput formControlName= 'jiraId' placeholder="Jira Ticket Id">
-                    </mat-form-field>
-            </div>  
-            <div class="article-radio col-md-12">
-              <h5>Article Visibility</h5>
-                <mat-radio-group formControlName= 'articleVisibility' aria-label="Article Visibility">
-                    <mat-radio-button value="1" default>Agent Facing</mat-radio-button>
-                    <mat-radio-button value="0">End-user Facing</mat-radio-button>
-                  </mat-radio-group>
-            </div>
-  </div>
-    <div class="article-body-attr col-md-12">
-        <label>Problem :</label>
-        <editor id="problem"
-        formControlName = 'problem'
-        initialValue="<p>Initial content - problem</p>"
-        [init]="tiny_mce_editor_config">
-      </editor>
-       </div>
+                    </div>
+                      <div class="col-md-12 form-row">
+                        <div *ngIf="selectedForm" class="col-md-6">
+                          <mat-form-field class="col-md-10">
+                            <mat-label>Article Form</mat-label>
+                            <mat-select formControlName = 'form' >
+                              <mat-option [value]="selectedForm.id">{{selectedForm.name}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                          <mat-form-field class="col-md-10">
+                           <mat-label>Section</mat-label>
+                           <mat-select formControlName = 'section'>
+                             <mat-option>None</mat-option>
+                             <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
+                           </mat-select>
+                         </mat-form-field>
+                         </div>
+                      </div>
+                      </div>
+                      <mat-form-field *ngIf = "article_form.get('title1')" class="col-md-12">
+                        <input matInput formControlName= 'title1' placeholder="Article Title 1">
+                      </mat-form-field>
+                      <div *ngIf = "article_form.get('article_body')"  class="article_form_body col-md-12">
+
+                        <ng-container *ngComponentOutlet="dynamicFormComponent;
+                        ngModuleFactory: dynamicFormModule;"></ng-container>
       
-       <div class="article-body-attr col-md-12">
-          <label>Prerequisites :</label>
-         <editor id="prerequisites"
-          formControlName = 'prerequisites'
-          initialValue="<p>Initial content - prerequisites</p>"
-          [init]="tiny_mce_editor_config">
-        </editor>
-      </div>
 
-      <div class="article-body-attr col-md-12">
-        <label>Steps :</label>
-        <editor id="steps"
-         formControlName = 'steps'
-         initialValue="<p>Initial content - steps</p>"
-         [init]="tiny_mce_editor_config">
-       </editor>
-     </div>
+              </div>
+            <div class="update-article col-md-12" >
+                <button mat-button type="submit" color="primary">Update Article</button>
+                <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+            </div>
+          </div>
+          
 
-     <div class="article-body-attr col-md-12">
-       <label>Resolution :</label>
-      <editor id="resolution"
-       formControlName = 'resolution'
-       initialValue="<p>Initial content - resolution</p>"
-       [init]="tiny_mce_editor_config">
-     </editor>
-   </div>
-  </div>
-<div class="create-article col-md-12" >
-    <button mat-button type="submit" color="primary">Create Article</button>
-</div>
-</div>
-
-
-</form>
-  
-</div> 
-</div>
-<!-- <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary">Save changes</button>
-</div> -->
-</div>
-</div>
+        </form>
+        </div>    
+    </div>
+ </div>

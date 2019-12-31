@@ -22,7 +22,7 @@
  </div>
  <div class="article-sidebar col-md-3">
    <div class="kb-article-opt">
-      <button type="button" data-toggle="modal" data-target="#editArticleModal" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-primary" (click)="editArticle()">Edit</button>
       <button type="button" class="btn btn-primary">Delete</button>
   </div>
    <span class="review_state">Status : <span> {{articleObj.review_state.state}}</span></span>

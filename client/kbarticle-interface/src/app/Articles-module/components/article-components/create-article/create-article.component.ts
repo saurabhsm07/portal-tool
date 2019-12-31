@@ -26,8 +26,7 @@ export class CreateArticleComponent implements OnInit {
 
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
-  operatingSystemList = ['windows', 'linux', 'hp-ux', 'aix', 'sun-solaris'];  //list of operating systems
-  versions = ['radia-1', 'radia-2', 'radia-3', 'radia-4', 'radia-5'];
+
 
   /**
    *  dynamically created form components
@@ -146,13 +145,13 @@ export class CreateArticleComponent implements OnInit {
 
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
-      section: {
+      section: JSON.stringify({
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
-      },
+      }),
       author: { id: 112323, name: 'saurabh' },
       draft: { status: true, type: 'Draft' },
-      formId: this.article_form.value.article_header.form,
+      article_form_id: this.article_form.value.article_header.form,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
       createdAt: new Date(),

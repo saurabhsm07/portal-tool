@@ -17,13 +17,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
   @Input()
   articleObj : Article;
   
-  @Input() 
-  set articleObjVal(article: Article){
-    console.log('in setvalue')
-    this.preProcessArticleData(article)
-    this.articleObj = Object.create(article);
 
-  }
 
   private fieldValues = {};
   private fieldInformation = {};
@@ -47,6 +41,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
       this.articleObj.draft = JSON.parse(<string> data.draft)
       this.articleObj.review_state = JSON.parse(<string> data.review_state)
       console.log(this.articleObj)
+
       if(Array.isArray(this.articleObj.body)){
         this.fieldInformation = this.articleObj.body.filter(obj => obj.key == "fieldInformation")[0].value;
         this.fieldValues = this.articleObj.body.filter(obj => obj.key == "fieldValues")[0].value;
@@ -77,6 +72,10 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
     this.articleObj.author = JSON.parse(<string> article.author)
     this.articleObj.draft = JSON.parse(<string> article.draft)
     this.articleObj.review_state = JSON.parse(<string> article.review_state)
+  }
+
+  editArticle(){
+    this.router.navigate(['/article/edit/id/'+this.articleObj.id])
   }
 
 }
