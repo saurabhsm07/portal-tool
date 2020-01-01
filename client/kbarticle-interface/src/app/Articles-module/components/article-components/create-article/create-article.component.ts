@@ -15,6 +15,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
 import { Article_Field } from './../../../classes/article_fields';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -86,9 +87,9 @@ export class CreateArticleComponent implements OnInit {
   // reactive article form to create new article
   article_form = this.fb.group({
     article_header: this.fb.group({
-      title: [''],
-      form: [''],
-      section: [''],
+      title: ['', [Validators.required]],
+      form: ['', [Validators.required]],
+      section: ['', [Validators.required]],
     }),
     article_body: this.fb.group({
 
@@ -96,7 +97,9 @@ export class CreateArticleComponent implements OnInit {
 
   });
 
-  get formId() { return this.article_form.value.article_header.form; }  //return current form selected in the article form
+  get title()   { return this.article_form.get('article_header').get('title'); }
+  get section() { return this.article_form.get('article_header').get('section'); }
+  get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
 
   constructor(private fb: FormBuilder,
     private articleService: ArticleService,
@@ -175,7 +178,7 @@ export class CreateArticleComponent implements OnInit {
    *                  in create_article form 
    */
   protected renderArticleForm() {
-    const selectedForm = this.formList.filter((form) => form.id == this.formId)[0];
+    const selectedForm = this.formList.filter((form) => form.id == this.article_form.value.article_header.form)[0];
 
     let formFields: Article_Field[];
 
@@ -215,7 +218,7 @@ export class CreateArticleComponent implements OnInit {
    */
   private renderComponent(formFields: Article_Field[]) {
     this.article_form.setControl('article_body', this.fb.group([]));
-    console.log(this.article_form.controls);
+    // console.log(this.article_form.controls);
     let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
     this.dynamicFormTemplate = formBodyTemplate;
     this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup>this.article_form.controls['article_body']);
@@ -230,7 +233,7 @@ export class CreateArticleComponent implements OnInit {
    */
   protected createComponentModule(componentType: any) {
     @NgModule({
-      imports: [MaterialModule, EditorModule, ReactiveFormsModule],
+      imports: [MaterialModule, EditorModule, ReactiveFormsModule, CommonModule],
       declarations: [
         componentType
       ],
@@ -252,7 +255,10 @@ export class CreateArticleComponent implements OnInit {
 
     @Component({
       selector: 'dynamic-form-component',
-      template: formTemplate
+      template: formTemplate,
+      styles: [`.article-body-attr {
+                padding: 10px 0px 10px 0px;
+              }`]
     })
     class DynamicFormComponent implements OnInit {
       template: any;
@@ -262,10 +268,19 @@ export class CreateArticleComponent implements OnInit {
 
       ngOnInit() {
         this.template = template;
-        let fieldInformation = {}
         console.log(fields);
+        this.addFieldFormControls();
+      }
+
+      private addFieldFormControls() {
+        let fieldInformation = {}
         fields.forEach(field => {
-          this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl(''));
+         
+          if(field.required){
+            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl('', Validators.required));
+          }else{
+            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl(''));
+          }
           fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
         });
         this.article_body.addControl('fieldValues', new FormControl({}));

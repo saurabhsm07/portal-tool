@@ -99,7 +99,10 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     if(this.selectedType == 5){
       if(this.field_value.value.length < 1){
       if(this.field_value.value[index].name.length > 0){
-        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
+        if(this.field_value.value[index].value == 0){
+          this.setFieldValueAttr(index); 
+        }
+        this.field_value.push( this.fb.group({ value : [''], name: ['']}))
       }
     }
     }
@@ -108,7 +111,10 @@ export class CreateArticleFormFieldsComponent implements OnInit {
     else if(this.selectedType == 6){
       if(this.field_value.value.length < 2)
       if(this.field_value.value[index].name.length > 0){
-        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
+        if(this.field_value.value[index].value == 0){
+          this.setFieldValueAttr(index); 
+        }
+        this.field_value.push( this.fb.group({ value : [''], name: ['']}))
       }
     }
 
@@ -134,6 +140,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
                                               .split('')
                                               .map(x => x.charCodeAt())
                                               .reduce((a, b) => (a + b));
+
   }
 
   /**

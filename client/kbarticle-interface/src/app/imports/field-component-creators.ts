@@ -53,10 +53,17 @@ export class FieldComponentCreators{
      * return angular material html component for input of type text
      */
     public static createTextComponent(field: Article_Field): string{
+
+        let validations = ''
+        if(field.required == true){
+            validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name)
+        }
+
         return `<div class="col-md-12 form-group">
                     <mat-form-field id = ${field.id} class="col-md-12">
                     <input matInput formControlName= ${field.field_name} placeholder="Article Title">
                     </mat-form-field>
+                    ${validations}
                 </div>`;
     }
 
@@ -66,8 +73,15 @@ export class FieldComponentCreators{
      * return angular material html component for input of textarea
      */
     public static createTextareaComponent(field: Article_Field): string{
+
+        let validations = ''
+        if(field.required == true){
+            validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name)
+        }
+
         return `<div class="article-body-attr col-md-12">
                     <label class="label-cls" >${field.field_name} :</label>
+                    ${validations}
                     <editor id= ${field.id}
                     formControlName = ${field.field_name.toLowerCase()}
                     initialValue="<p>Initial content - ${field.field_name.toLowerCase()}</p>"
@@ -86,8 +100,11 @@ export class FieldComponentCreators{
         const field_values = JSON.parse(field.field_value);
         let field_value_template =  FieldComponentCreators.getSelectFieldValueTemplate(field_values);
                             
-            console.log(field_value_template);
-        return `<div class="col-md-6">
+        let validations = ''
+        if(field.required == true){
+            validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name)
+        }
+        return `<div class="article-body-attr col-md-6">
                     <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
                     <mat-select formControlName = ${field.field_name.toLowerCase()}>
@@ -95,6 +112,7 @@ export class FieldComponentCreators{
                     ${field_value_template}
                     </mat-select>
                     </mat-form-field>
+                    ${validations}
                 </div>`;
     }
 
@@ -106,9 +124,13 @@ export class FieldComponentCreators{
     public static createMultiselectComponent(field: Article_Field): string{
         const field_values = JSON.parse(field.field_value);
         let field_value_template =  FieldComponentCreators.getSelectFieldValueTemplate(field_values);
-                            
+                     
+        let validations = ''
+        if(field.required == true){
+            validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name)
+        }
         
-        return `<div class="col-md-6">
+        return `<div class="article-body-attr col-md-6">
                     <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
                     <mat-select formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} (selectionChange)="updateFieldValueArray($event)" multiple>
@@ -116,6 +138,7 @@ export class FieldComponentCreators{
                     ${field_value_template}
                     </mat-select>
                     </mat-form-field>
+                    ${validations}
                 </div>`;
     }
 
@@ -125,7 +148,9 @@ export class FieldComponentCreators{
      * return angular material html component for input of type text
      */
     public static createCheckboxComponent(field: Article_Field): string{
-        return `<mat-checkbox class="col-md-12" formControlName = ${field.field_name.toLowerCase()} > ${field.field_name}</mat-checkbox>`;
+        return `<div class="article-body-attr col-md-6">
+                <mat-checkbox class="col-md-12" formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} > ${field.field_name}</mat-checkbox>
+                </div>`;
     }
 
     /**
@@ -136,10 +161,12 @@ export class FieldComponentCreators{
     public static createRadioboxComponent(field: Article_Field): string{
         const field_values = JSON.parse(field.field_value);
         let field_value_template =  FieldComponentCreators.getRadioFieldValueTemplate(field_values);
-        console.log(field_value_template);
-        return `<mat-radio-group aria-label="Select an option">
+        // console.log(field_value_template);
+        return `<div class="article-body-attr col-md-6">
+                <mat-radio-group aria-label="Select an option">
                     ${field_value_template}
-                </mat-radio-group>`;
+                </mat-radio-group>
+                </div>`;
     }
 
     /**
@@ -172,6 +199,17 @@ export class FieldComponentCreators{
             value = value.replace(/"/g, "");
             return `<mat-radio-button [value]= ${value.split('').map(x => x.charCodeAt(0)).join()}>${value}</mat-radio-button>`;
         }).join().replace(/,/g, "");
+    }
+
+
+    private static setRequiredValidationMessage(fieldName: String) : string{
+        let formControlName = fieldName.replace(/ /g,"_").toLowerCase();
+
+        return  `<div *ngIf="article_body.get('${formControlName}').invalid && (article_body.get('${formControlName}').dirty || article_body.get('${formControlName}').touched)" class="alert alert-danger">
+                    <small *ngIf="article_body.get('${formControlName}').errors.required">
+                        Select/Enter a value for ${fieldName}
+                    </small>
+                </div>`;
     }
 
 }
