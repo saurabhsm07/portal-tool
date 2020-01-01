@@ -48,18 +48,17 @@ export class EditArticleFormFieldsComponent implements OnInit {
 
   setEditFormValues(){
     this.article_field.field_value.forEach(element => {
-      this.field_value.push(this.fb.control(''))
+      this.field_value.push(this.fb.group({ value : [element.value], name: [element.name]}))
       
     });
 
     console.log(this.fb.array(this.article_field.field_value))
-    this.article_fields_form.setValue({
+    this.article_fields_form.patchValue({
       field_name: this.article_field.field_name,
       field_type : this.article_field.field_type,
       description: this.article_field.description,
       required: this.article_field.required,
-      agent_only: this.article_field.agent_only,
-      field_value: this.article_field.field_value
+      agent_only: this.article_field.agent_only
     })
 
   }
@@ -77,7 +76,7 @@ export class EditArticleFormFieldsComponent implements OnInit {
     this.article_field$.subscribe((data: Article_Field) => {
                     console.log(data)
                                   this.article_field = data;
-                                  this.article_field.field_value = JSON.parse(data.field_value).map(value => value.replace(/['"]+/g,''));
+                                  this.article_field.field_value = JSON.parse(data.field_value).map(value => JSON.parse(value));
                                   
                                   console.log(this.article_field)                                                                              
                                   this.setEditFormValues()
@@ -97,7 +96,7 @@ export class EditArticleFormFieldsComponent implements OnInit {
     if(this.fieldType == 5){
       if(this.field_value.value.length < 1){
       if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
       }
     }
     }
@@ -105,21 +104,36 @@ export class EditArticleFormFieldsComponent implements OnInit {
     //Only 2 field values for radiobox
     else if(this.fieldType == 6){
       if(this.field_value.value.length < 2)
-      if(this.field_value.value[index].length > 0){
-        this.field_value.push( this.fb.control(''))
+      if(this.field_value.value[index].name.length > 0){
+        this.field_value.push( this.fb.group({ value : [0], name: ['']}))
       }
     }
 
     //unlimited field values for multiselect and dropdown select
     else{
-      if(this.field_value.value.filter(val => val.length > 0).length == this.field_value.value.length){
-        if(this.field_value.value[index].length > 0){
-          this.field_value.push( this.fb.control(''))
+      if(this.field_value.value.filter(val => val.name.length > 0).length == this.field_value.value.length){
+        if(this.field_value.value[index].name.length > 0){
+          if(this.field_value.value[index].value == 0){
+            this.setFieldValueAttr(index); 
+          }
+          this.field_value.push( this.fb.group({ value : [0], name: ['']}))
         }
       }
      
     }
     
+  }
+
+    /**
+   * Function gives a unique value id to the field value name string
+   * @param index = index of a field value object in the field value form array
+   */
+  private setFieldValueAttr(index: any) {
+    this.field_value.value[index].value = this.field_value
+                                              .value[index].name
+                                              .split('')
+                                              .map(x => x.charCodeAt())
+                                              .reduce((a, b) => (a + b));
   }
 
   /**

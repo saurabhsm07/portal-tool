@@ -12,7 +12,7 @@ export class SearchArticleFormPipe implements PipeTransform {
     if (searchString.length === 0) {
       return value;
     } else {
-        value.data = articleForms.filter((form) => { if(form.name.includes(searchString)) {
+        value.data = articleForms.filter((form) => { if(form.name.toLowerCase().includes(searchString.toLowerCase())) {
           return form;
         }});
         return value;

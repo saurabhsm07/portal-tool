@@ -50,11 +50,13 @@
           </span>
               </div>
   
-              <div *ngIf="hasValues" formArrayName="field_value" class="field_values_div col-md-12">
+              <div *ngIf="hasValues"  class="field_values_div col-md-12">
                 <h5 class="field-attr-title">Field Options :</h5>
-              <mat-form-field class="col-md-12" *ngFor="let value of field_value.controls, let i = index " >
-                  <input matInput [formControlName] = "i" placeholder="Field Value" (change) = "addFieldValueCol(i)" (keyup)= "validateFieldValues(i)" />
-                  <i class="remove-button fa fa-times-circle-o" aria-hidden="true" (click) = "removeValue(i)"></i>
+              <mat-form-field class="col-md-12" *ngFor="let value of field_value.controls, let i = index " formArrayName="field_value" >
+                <ng-container [formGroupName] = "i" >
+                    <input matInput formControlName = "name" placeholder="Field Value" (change) = "addFieldValueCol(i)" (keyup)= "validateFieldValues(i)" />
+                    <i class="remove-button fa fa-times-circle-o" aria-hidden="true" (click) = "removeValue(i)"></i>
+                </ng-container>
                 </mat-form-field>
               </div>
         

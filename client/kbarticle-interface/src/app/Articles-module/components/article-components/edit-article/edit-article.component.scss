@@ -1,11 +1,65 @@
-.edit-articles-btn{
-        background: #00BCD4;
-        color: white;
-        height: 50px;
-        font-size: 20px;
-        margin: 25px 15px 20px 0;
-        float: right;
-        
+.update-article{
+        text-align: center;
+        button{
+                background: #00BCD4;
+                color: white;
+                height: 50px;
+                font-size: 20px;
+                margin: 25px 15px 20px 0;
+                // float: right;
+                
+        }
+
    
 }
 
+// colors
+$acceleriteBlue : #388ecf;
+$updateArticleBackCol: rgb(0, 188, 212);
+// padding sizes 
+$pad-zero: 0px !important;
+$pad-five: 5px;
+$pad-ten: 10px;
+mat-form-field {
+padding-left :  $pad-zero;   
+}
+
+mat-radio-button{
+  padding-right: $pad-ten;
+}
+
+
+.article-title-field{
+  width: 100%;
+}
+
+.article-radio{
+  padding-top: $pad-ten;
+  padding-bottom: $pad-ten;
+}
+
+.update-article > button {
+  background-color: $updateArticleBackCol;
+  color: white
+  
+}
+  
+.update-article {
+  padding: $pad-ten $pad-ten $pad-ten $pad-ten;
+  text-align: center;
+}
+
+.article-body-attr{
+  margin : 15px 0 15px 0px;
+  .label-cls{
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+
+.update_article_div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px 20px 15px 20px;
+  border: 1px solid rgba(174, 174, 181, 0.58);
+}

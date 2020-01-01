@@ -2,6 +2,10 @@ const express = require('express');
 const Field = require('./../../../../models/article_field');
 const fields = express.Router();
 
+//sequelize imports
+const sequelize = require('sequelize');
+const Op = require('sequelize').Op;
+
 /**
  * GET: api path to get list of article fields from the database.
  */
@@ -46,6 +50,35 @@ fields.get('/id/:id', (req, res) =>{
             console.log(err.stack);
             res.status(500).send(err);
          })
+})
+
+/**
+ * GET: api path to get article field record with list of ids.
+ */
+fields.get('/list', (req, res) => {
+
+    Field.findAll({where :  {
+                                'id': { 
+                                        [Op.or] : JSON.parse(req.query.ids)
+                                      }
+                            }
+                 })
+                    .then((fields) => {
+                        console.log("here")
+                        if(fields.length > 0){
+                            res.send(fields);
+                        }else{
+                            console.log(`article fields with ids : ${req.query.ids} do not exist`);
+                            res.status(404).send({status: 404,
+                                                message: `Article Field with ids = ${req.query.ids} does not exist`})
+                        }
+                    })
+                    .catch((err) => {
+                        console.log("ERROR :");
+                        console.log(err.stack);
+                        res.status(500).send(err);
+                    })
+    
 })
 
 /**

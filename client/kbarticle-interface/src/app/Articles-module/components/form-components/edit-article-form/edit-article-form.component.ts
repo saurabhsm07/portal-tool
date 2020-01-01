@@ -49,10 +49,9 @@ export class EditArticleFormComponent implements OnInit {
       this.form_name.setValue(this.article_form.name);
       this.articleFieldService.getArticleField()
                               .subscribe( (fields) => {
-                                const includedIds = JSON.parse(this.article_form.article_fields).map( (field) => field.id)
-                                
-                                this.article_fields_incl = JSON.parse(this.article_form.article_fields);
-                                this.article_fields_excl = fields.filter( (field) => { if(includedIds.includes(field.id) == false) return field });
+                                const includedFieldIds = JSON.parse(this.article_form.article_fields);
+                                this.article_fields_incl = fields.filter( (field) => { if(includedFieldIds.includes(field.id) == true) return field });
+                                this.article_fields_excl = fields.filter( (field) => { if(includedFieldIds.includes(field.id) == false) return field });
 
 
                               }, (error) => {
@@ -79,7 +78,7 @@ export class EditArticleFormComponent implements OnInit {
   updateForm() {
     const article_form: Article_Form = {
       name: this.form_name.value,
-      article_fields: JSON.stringify(this.article_fields_incl),
+      article_fields: JSON.stringify(this.article_fields_incl.map(field => field.id)),
       updated_at: new Date()
     }
     console.log(article_form)

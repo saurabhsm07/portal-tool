@@ -72,14 +72,16 @@ forms.post('/', (req, res) =>{
  */
 forms.put('/', (req, res) =>{
     const form_id = req.body.id;
+ 
     const updateObj = {
                        name: req.body.form.name,
                        article_fields: req.body.form.article_fields,
                        updated_at: req.body.form.updated_at};
     
-
+                       console.log(updateObj)
                 Form.update(updateObj, { where : {id: form_id} } )
                     .then((data) =>{
+                        console.log(data);
                         if(data == 1){
                             console.log('update successfull');
                             res.status(200).send({  status: 200,
