@@ -1,1 +1,123 @@
-<p>create-segment works!</p>
+<div class="col-md-12">
+    <div class="create-segment-div">
+        <form class="create-segment-form" [formGroup]='segment_form' (ngSubmit)="onSubmit()">
+            <div class="segment-name-div col-md-10">
+                <h5>User Segment Name</h5>
+                <mat-form-field class="" appearance="outline">
+                    <input formControlName="name" matInput placeholder="Enter User Segment name" required>
+                </mat-form-field>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                    <small *ngIf="name.errors.required">
+                        Name is required.
+                    </small>
+                    <small *ngIf="name.errors.minlength">
+                        Section Name must be at least 10 characters long.
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-12 select-div">
+                <div class="col-md-10">
+                    <h6> User Type</h6>
+                    <p>Select staff members or signed-in users as the base for this user segment</p>
+
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field>
+                        <mat-label>Select User Type</mat-label>
+                        <mat-select formControlName="user_type">
+                            <mat-option value=0>None</mat-option>
+                            <ng-container *ngFor="let user of user_type_list">
+                                <mat-option value={{user.value}}>{{user.name}}</mat-option>
+                            </ng-container>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <div *ngIf="user_type.invalid && (user_type.dirty || user_type.touched)" class="alert alert-danger">
+
+                        <small *ngIf="user_type.errors.required || user_type.errors.nullValue">
+                            User Type is required.
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12 select-div">
+                <div class="col-md-10">
+                    <h6> Users and organizations matching ALL of these tags</h6>
+                    <p>Users must have all of the tags to be included.</p>
+
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field>
+                        <mat-label>Select (And) Tags</mat-label>
+                        <mat-select formControlName="tags" multiple>
+                            <mat-option>None</mat-option>
+                            <ng-container *ngIf="tagList">
+                                <ng-container *ngFor="let tag of tagList">
+                                    <mat-option value={{tag.id}}>{{tag.name}}</mat-option>
+                                </ng-container>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12 select-div">
+                <div class="col-md-10">
+                    <h6> Users and organizations matching Any of these tags</h6>
+                    <p>Users must have any of the tags to be included.</p>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field>
+                        <mat-label>Select (Or) Tags</mat-label>
+                        <mat-select formControlName="or_tags" multiple>
+                            <mat-option>None</mat-option>
+                            <ng-container *ngIf="tagList">
+                                <ng-container *ngFor="let tag of tagList">
+                                    <mat-option value={{tag.id}}>{{tag.name}}</mat-option>
+                                </ng-container>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12 select-div">
+                <div class="col-md-10">
+                    <h6>Users in these organizations</h6>
+                    <p>Users belonging to at least one of these organizations will be included.</p>
+
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field>
+                        <mat-label>Select Organizations</mat-label>
+                        <mat-select formControlName="organization_ids" multiple>
+                            <mat-option>None</mat-option>
+                            <ng-container>
+                                <ng-container *ngFor="let organization of organizationList">
+                                    <mat-option value={{organization.id}}>{{organization.name}}</mat-option>
+                                </ng-container>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
+
+            </div>
+            <div class="create-segment-footer col-md-12">
+                <button type="submit" class="btn btn-default" [disabled]="segment_form.invalid"> Create segment</button>
+            </div>
+        </form>
+
+    </div>
+</div>

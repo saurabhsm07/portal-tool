@@ -12,7 +12,7 @@
             <a routerLink='/segments/create' class="btn btn-info">Add User Segment </a>
     </div>
 </div>
-<div *ngIf="dataSource | searchSegment:searchString : segments" class="segments-body-div col-md-12">
+<div *ngIf="dataSource | searchSegment:searchString : userSegments" class="segments-body-div col-md-12">
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
     
