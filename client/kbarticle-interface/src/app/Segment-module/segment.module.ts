@@ -8,13 +8,14 @@ import { CreateSegmentComponent } from './components/create-segment/create-segme
 import { EditSegmentComponent } from './components/edit-segment/edit-segment.component';
 import { ListSegmentsComponent } from './components/list-segments/list-segments.component';
 import { SegmentHomeComponent } from './components/segment-home/segment-home.component';
+import { SearchSegmentPipe } from './pipes/search-segment/search-segment.pipe';
 
 
 @NgModule({
   declarations: [CreateSegmentComponent, 
                  EditSegmentComponent, 
                  ListSegmentsComponent, 
-                 SegmentHomeComponent],
+                 SegmentHomeComponent, SearchSegmentPipe],
   imports: [
     CommonModule,
     SegmentRoutingModule,

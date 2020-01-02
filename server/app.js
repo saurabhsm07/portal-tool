@@ -9,6 +9,7 @@ const tickets = require('./routes/api/ticket/tickets');
 const articles = require('./routes/api/article/articles');
 const categories = require('./routes/api/category/categories');
 const sections = require('./routes/api/section/sections');
+const segments = require('./routes/api/segment/segments');
 
 const PORT = process.env.PORT  || 5000;
 
@@ -50,5 +51,6 @@ app.use('/api/ticket/',tickets);            // routes for ticket APIs
 app.use('/api/articles/', articles);        // routes for article APIs
 app.use('/api/categories/', categories);    // routes for category APIs
 app.use('/api/sections/', sections);         // routes for sections APIs
+app.use('/api/segments/', segments);         // routes for user segment APIs
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })

@@ -1,1 +1,50 @@
-<p>list-segments works!</p>
+<div class="segments-header col-md-12" >
+    <div class="head-title-div col-md-12">
+    <h1>User Segments</h1>
+    <p>User segments are subsets of signed-in users or staff members, based on tags, groups, and organizations.
+        <br> User segments are the building blocks for permissions</p>
+    </div>
+<div class="header-controls-div col-md-12">
+    <div class="search-div col-md-8">
+          <input [(ngModel)] = "searchString" placeholder="Search segments"  />
+        </div>
+          <div class="create-div col-md-4">
+            <a routerLink='/segments/create' class="btn btn-info">Add User Segment </a>
+    </div>
+</div>
+<div *ngIf="dataSource | searchSegment:searchString : segments" class="segments-body-div col-md-12">
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      
+      <div class="mat-elevation-z8 col-md-12">
+              <table class="segments-list-table col-md-12" mat-table [dataSource]="dataSource">
+                <ng-container  matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Segment Name </th>
+                  <td mat-cell *matCellDef="let segment"><i class="fa fa-list-alt icon-class" aria-hidden="true"></i>  {{segment.name}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> Id</th>
+                  <td mat-cell *matCellDef="let segment"> {{segment.id}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="created_at">
+                  <th mat-header-cell *matHeaderCellDef> Created At </th>
+                  <td mat-cell *matCellDef="let segment"> {{segment.created_at | date}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef> </th>
+                  <td mat-cell *matCellDef="let segment"> <button  (click) = "viewSegment(segment.id)"><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </button> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+</div>
+</div>

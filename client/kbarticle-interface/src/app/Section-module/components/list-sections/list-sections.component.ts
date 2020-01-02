@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 })
 export class ListSectionsComponent implements OnInit {
   sections: Section[];   // List of Section objects
-  private searchString = '';
+  private searchString = ''; //string used to filter SectionList on section name
 
   dataSource = new MatTableDataSource<Section>(); // datasource of type 'Section' for mat-table 
-  displayedColumns: string[];     // saves column names of the article table
+  displayedColumns: string[];     // saves column names of the segment table
   paginator: MatPaginator;        // paginator for paginating the data table
 
   @ViewChild(MatPaginator, {static: false}) set matPaginator(mp: MatPaginator) {
