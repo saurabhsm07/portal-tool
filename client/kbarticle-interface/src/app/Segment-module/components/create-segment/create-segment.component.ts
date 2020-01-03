@@ -90,6 +90,8 @@ export class CreateSegmentComponent implements OnInit {
       tags: JSON.stringify(this.segment_form.value.tags),
       or_tags: JSON.stringify(this.segment_form.value.or_tags),
       group_ids: JSON.stringify(this.segment_form.value.group_ids),
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now())
     }
 
     this.segmentService.postSegment(this.userSegment)

@@ -80,12 +80,13 @@ segments.post('/', (req, res) => {
         url: 'http://localhost:4200/segments/id',
         html_url: 'http://localhost:5000/api/segment/',
         name: req.body.segment.name,
+        user_type: req.body.segment.user_type,
         group_ids: req.body.segment.group_ids,
         organization_ids: req.body.segment.organization_ids,
         tags: req.body.segment.tags,
         or_tags: req.body.segment.or_tags,
-        created_at: req.body.segment.createdAt,
-        updated_at: req.body.segment.updatedAt,
+        created_at: req.body.segment.created_at,
+        updated_at: req.body.segment.updated_at,
     }
     Segment.create(data)
            .then((resp) => {
@@ -106,15 +107,16 @@ segments.put('/', (req, res) => {
     console.log(req.body.segment)
     const updateData = {
         name: req.body.segment.name,
+        user_type: req.body.segment.user_type,
         group_ids: req.body.segment.group_ids,
         organization_ids: req.body.segment.organization_ids,
         tags: req.body.segment.tags,
         or_tags: req.body.segment.or_tags,
-        updated_at: req.body.segment.updatedAt,
+        updated_at: req.body.segment.updated_at,
     }
 
     Segment.findAll({where : {id: req.body.segment.id}})
-           .then( (segment_obj)=> {
+           .then((segment_obj)=> {
                if(segment_obj.length == 1){
                    Segment.update(updateData, {where : {id: req.body.segment.id}})
                           .then((data) => {
