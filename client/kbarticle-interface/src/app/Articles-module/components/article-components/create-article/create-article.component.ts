@@ -144,7 +144,7 @@ export class CreateArticleComponent implements OnInit {
     this.articleService.getLastRecordId()
       .subscribe((data) => {
         console.log(data);
-        this.articleAttachmentId = data.id+1;
+        this.articleAttachmentId = data.id;
       },
         (error) => {
           console.log(error);

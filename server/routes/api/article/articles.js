@@ -57,11 +57,14 @@ articles.get('/id/:id', (req, res) => {
  * GET: api path to get latest article id.
  */
 articles.get('/max/id', (req, res) => {
-    Article.max('id',{})
+    client.query(`SELECT AUTO_INCREMENT
+    FROM  INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_SCHEMA = 'helpcenter_database'
+    AND   TABLE_NAME   = 'articles'`,{})
            .then((data) => {
-               console.log(data)
-                    console.log(`last article id : ${data}`);
-                    res.status(200).send({'id': data});
+
+                    console.log(`last article id : ${data[0][0].AUTO_INCREMENT}`);
+                    res.status(200).send({'id': data[0][0].AUTO_INCREMENT});
                 
            })
            .catch((err) => {
