@@ -17,6 +17,7 @@ export class ArticleService {
   private requestUri = {
     getArticles: 'http://localhost:5000/api/articles/',
     getArticleById: 'http://localhost:5000/api/articles/id/',
+    getLastArticleId: 'http://localhost:5000/api/articles/max/id',
     postArticle: 'http://localhost:5000/api/articles/',
     updateArticle: 'http://localhost:5000/api/articles/',
     deleteArticle: 'http://localhost:5000/api/articles/id/',
@@ -39,6 +40,11 @@ export class ArticleService {
   getArticle(id : String) : Observable<Article> {
     return this.http.get<Article>(this.requestUri.getArticleById+id, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.getArticleError));
+  }
+
+  getLastRecordId(): Observable<{id : number}> {
+    return this.http.get<{id: number}>(this.requestUri.getLastArticleId,this.headersOptions)
+               .pipe(catchError(ArticleRequestErrorHandlersService.getLastRecordError));
   }
 
   listArticles() : Observable<Article[]>{

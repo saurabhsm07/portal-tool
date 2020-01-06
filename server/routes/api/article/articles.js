@@ -54,6 +54,24 @@ articles.get('/id/:id', (req, res) => {
 })
 
 /**
+ * GET: api path to get latest article id.
+ */
+articles.get('/max/id', (req, res) => {
+    Article.max('id',{})
+           .then((data) => {
+               console.log(data)
+                    console.log(`last article id : ${data}`);
+                    res.status(200).send({'id': data});
+                
+           })
+           .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+           })
+})
+
+/**
  * POST: api path to create a article record to the database.
  */
 articles.post('/', (req, res) => {

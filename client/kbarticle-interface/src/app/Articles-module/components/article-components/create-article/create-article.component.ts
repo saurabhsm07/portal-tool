@@ -28,6 +28,7 @@ export class CreateArticleComponent implements OnInit {
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
 
+  articleAttachmentId: number; // folder Number to save article attachment in
 
   /**
    *  dynamically created form components
@@ -67,10 +68,10 @@ export class CreateArticleComponent implements OnInit {
       this.articleAttachmentService.postArticleAttachment({
         'file_data': blobInfo.blob(),
         'inline': true,
-        'article_id': 155442
+        'article_id': this.articleAttachmentId
       })
         .subscribe((data) => {
-          console.log("successfully saved file")
+          console.log("successfully saved the file")
           success(data.url)
         },
           (error) => {
@@ -132,6 +133,18 @@ export class CreateArticleComponent implements OnInit {
       .subscribe((sections) => {
         console.log(sections);
         this.sectionList = sections;
+      },
+        (error) => {
+          console.log(error);
+        })
+
+    /**
+     * gets a list of sections from the database
+     */
+    this.articleService.getLastRecordId()
+      .subscribe((data) => {
+        console.log(data);
+        this.articleAttachmentId = data.id+1;
       },
         (error) => {
           console.log(error);
