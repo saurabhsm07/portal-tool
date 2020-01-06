@@ -7,6 +7,7 @@ const attachments = require('./attachments/attachments');
 const comments = require('./comments/comments');
 const fields = require('./form data/fields');
 const forms = require('./form data/forms');
+const labels = require('./labels/labels');
 
 /**
  * GET: api path to get list of articles from the database.
@@ -199,5 +200,6 @@ articles.use('/:id/attachments/', attachments)  // Routes to article attachments
 articles.use('/:id/comments/', comments)        // Routes to article comments APIs
 articles.use('/fields', fields)                 // Routes to article fields APIs
 articles.use('/forms', forms)                   // Routes to article forms APIs
+articles.use('/labels', labels)                   // Routes to article forms APIs
 
 module.exports = articles                       // Exporting Article APIs module
