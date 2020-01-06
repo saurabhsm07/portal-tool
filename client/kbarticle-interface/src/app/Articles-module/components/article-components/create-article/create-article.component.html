@@ -46,10 +46,54 @@
                 </div>
               </div>
             </div>
+            <div class = "col-md-12 form-row">
+              <div class="col-md-6">
+                <mat-form-field class="col-md-10">
+                  <mat-label>Select User Segment</mat-label>
+                  <mat-select formControlName='segment'>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let segment of userSegments" [value]="segment.id">{{segment.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="segment.invalid && (segment.dirty || segment.touched)" class="alert alert-danger">
+                  <small *ngIf="segment.errors.required">
+                    Select segment form
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 form-row">
+              <div class="col-md-10">
+                <mat-form-field class="example-chip-list">
+                  <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip
+                      *ngFor="let label of labels"
+                      [selectable]="true"
+                      [removable]="true"
+                      (removed)="remove(label)">
+                      {{label}}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="New label..."
+                      #labelInput
+                      [formControl]="labelCtrl"
+                      [matAutocomplete]="auto"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="true"
+                      (matChipInputTokenEnd)="add($event)">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let label of filteredLabels | async" [value]="label">
+                      {{label}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>                
+              </div>
+            </div>
           </div>
-          <mat-form-field *ngIf="article_form.get('title1')" class="col-md-12">
-            <input matInput formControlName='title1' placeholder="Article Title 1">
-          </mat-form-field>
+
           <div *ngIf="article_form.get('article_body')" class="article_form_body col-md-12">
 
             <ng-container *ngComponentOutlet="dynamicFormComponent;
