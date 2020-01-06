@@ -7,6 +7,9 @@ const Segment = client.define('user_segment',{
                                                             primaryKey: true,
                                                             autoIncrement: true
                                                         },
+                                                        user_type: {
+                                                            type: Sequelize.NUMBER,
+                                                        },
                                                         name:{
                                                             type: Sequelize.TEXT,
                                                         },

@@ -5,11 +5,11 @@ import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleRequestErrorHandlersService {
+export class CategoryRequestErrorHandlersService {
 
   constructor() { }
 
-  public static postArticleError(error: HttpErrorResponse){
+  public static postCategoryError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -22,13 +22,12 @@ export class ArticleRequestErrorHandlersService {
 
     const errObj = {
       code: 500,
-      msg: 'error creating article'
+      msg: 'error creating category'
      };
     return throwError(errObj);
   }
 
-
-  public static getArticleError(error: HttpErrorResponse){
+  public static getCategoryError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -41,12 +40,12 @@ export class ArticleRequestErrorHandlersService {
 
     const errObj = {
       code: 500,
-      msg: 'error getting article'
+      msg: 'error getting category'
      };
     return throwError(errObj);
   }
 
-  public static listArticlesError(error: HttpErrorResponse){
+  public static listCategoriesError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -59,12 +58,12 @@ export class ArticleRequestErrorHandlersService {
 
     const errObj = {
       code: 500,
-      msg: 'error listing articles'
+      msg: 'error listing categorys'
      };
     return throwError(errObj);
   }
 
-  public static putArticleError(error: HttpErrorResponse){
+  public static putCategoryError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -78,9 +77,8 @@ export class ArticleRequestErrorHandlersService {
 
     const errObj = {
       code: 500,
-      msg: 'error updating articles'
+      msg: 'error updating category'
      };
     return throwError(errObj);
   }
-
 }

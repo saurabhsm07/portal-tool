@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
+import { SegmentModule } from './Segment-module/segment.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { SectionModule } from './Section-module/section.module';
     HttpClientModule,
     CategoryModule,
     SectionModule,
+    SegmentModule,
     ArticlesModule,
     AppRoutingModule,
     EditorModule,

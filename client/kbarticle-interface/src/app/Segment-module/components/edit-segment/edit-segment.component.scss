@@ -1,0 +1,45 @@
+$updateBackCol : rgb(0, 188, 212);
+
+.update-segment-div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .update-segment-form{
+        .segment-name-div{
+            h5{
+                font-weight: 700;
+            }
+            mat-form-field{
+                .mat-form-field-infix{
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                }
+            }
+            
+        }
+        mat-form-field{
+            width: 100%;
+        }
+
+        .select-div{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            h6{
+                font-weight: 700;
+                font-size: 18px;
+            }
+            p{
+                font-weight: 100;
+            }
+        }
+    }
+
+    .update-segment-footer {
+        text-align: center;
+        button {
+            background-color: $updateBackCol;
+            color: white
+            
+          }
+    } 
+}

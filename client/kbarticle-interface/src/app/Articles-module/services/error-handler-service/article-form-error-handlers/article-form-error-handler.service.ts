@@ -19,7 +19,6 @@ export class ArticleFormErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error creating Article Form'
@@ -37,7 +36,6 @@ export class ArticleFormErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error fetching Article Form'
@@ -55,7 +53,6 @@ export class ArticleFormErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error updating Article Form'
@@ -73,7 +70,6 @@ export class ArticleFormErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error deleting Article Form'

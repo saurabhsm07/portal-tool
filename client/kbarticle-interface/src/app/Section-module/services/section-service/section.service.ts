@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
 import { Section } from './../../classes/section';
-
+import { SectionRequestErrorHandlersService } from './../error-handlers/section-request/section-request-error-handlers.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,27 +32,27 @@ constructor(private http: HttpClient) { }
 
 postSection(section : Section) : Observable<Section> {
   return this.http.post<Section>(this.requestUri.postSection, {section : section}, this.headersOptions)
-      // .pipe(catchError());
+      .pipe(catchError(SectionRequestErrorHandlersService.postSectionError));
 }
 
 getSection(id : String) : Observable<Section> {
   return this.http.get<Section>(this.requestUri.getSectionById+id, this.headersOptions)
-            //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+             .pipe(catchError(SectionRequestErrorHandlersService.getSectionError));
 }
 
 getSectionInCategory(id : String) : Observable<Section[]> {
   return this.http.get<Section[]>(this.requestUri.getSectionInCategory+id, this.headersOptions)
-            //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+             .pipe(catchError(SectionRequestErrorHandlersService.listSectionsError));
 }
 
 listSections() : Observable<Section[]>{
   return this.http.get<Section[]>(this.requestUri.getSections, this.headersOptions)
-              // .pipe(catchError(CategoryRequestErrorHandlersService.listCategorysError));
+              .pipe(catchError(SectionRequestErrorHandlersService.listSectionsError));
 }
 
 updateSection(section: Section): Observable<any>{
   return this.http.put<any>(this.requestUri.updateSection, {section : section}, this.headersOptions)
-            //  .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
+             .pipe(catchError(SectionRequestErrorHandlersService.putSectionError))
 }
 
 deleteSection(id: String) : Observable<any> {

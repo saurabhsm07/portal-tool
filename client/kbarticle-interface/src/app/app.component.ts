@@ -16,7 +16,8 @@ export class AppComponent {
                                         {sectionName: 'Article Fields', sectionUrl: '/article/fields/list'}, 
                                         {sectionName: 'Article Forms', sectionUrl: '/article/forms/list'},
                                         {sectionName: 'Sections', sectionUrl:'/sections/home'},
-                                        {sectionName: 'Categories', sectionUrl: '/categories/home'}]};
+                                        {sectionName: 'Categories', sectionUrl: '/categories/home'},
+                                        {sectionName: 'User Segments', sectionUrl: '/segments/home'}]};
   secondarySidebarOptions : String[];
   
  updateSidebar(option){

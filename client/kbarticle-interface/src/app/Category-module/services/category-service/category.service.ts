@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
 import { Category } from './../../classes/category';
-
+import { CategoryRequestErrorHandlersService } from './../error-handlers/category-request/category-request-error-handlers.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,22 +30,22 @@ private headersOptions = {
 
   postCategory(category : Category) : Observable<Category> {
     return this.http.post<Category>(this.requestUri.postCategory, {category : category}, this.headersOptions)
-        // .pipe(catchError());
+               .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
   }
 
   getCategory(id : String) : Observable<Category> {
     return this.http.get<Category>(this.requestUri.getCategoryById+id, this.headersOptions)
-              //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+               .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
   }
 
   listCategories() : Observable<Category[]>{
     return this.http.get<Category[]>(this.requestUri.getCategories, this.headersOptions)
-                // .pipe(catchError(CategoryRequestErrorHandlersService.listCategorysError));
+                .pipe(catchError(CategoryRequestErrorHandlersService.listCategoriesError));
   }
 
   updateCategory(category: Category): Observable<any>{
     return this.http.put<any>(this.requestUri.updateCategory, {category : category}, this.headersOptions)
-              //  .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
+               .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
   }
 
   deleteCategory(id: String) : Observable<any> {
