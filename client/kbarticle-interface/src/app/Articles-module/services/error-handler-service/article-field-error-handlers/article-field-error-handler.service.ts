@@ -19,7 +19,6 @@ export class ArticleFieldErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error creating Article Field'
@@ -37,7 +36,6 @@ export class ArticleFieldErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error fetching Article Field'
@@ -55,7 +53,6 @@ export class ArticleFieldErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error updating Article Field'
@@ -73,7 +70,6 @@ export class ArticleFieldErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    // return an observable : mock drone object
     const errObj = {
       code: 500,
       msg: 'error deleting Article Field'

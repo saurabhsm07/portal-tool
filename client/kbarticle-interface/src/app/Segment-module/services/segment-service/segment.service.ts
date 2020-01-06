@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
 import { Segment } from './../../classes/segment';
+import { SegmentRequestErrorHandlersService } from './../error-handlers/segment-request/segment-request-error-handlers.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +31,12 @@ export class SegmentService {
   
   postSegment(segment : Segment) : Observable<Segment> {
     return this.http.post<Segment>(this.requestUri.postSegment, {segment : segment}, this.headersOptions)
-        // .pipe(catchError());
+               .pipe(catchError(SegmentRequestErrorHandlersService.postSegmentError));
   }
   
   getSegment(id : String) : Observable<Segment> {
     return this.http.get<Segment>(this.requestUri.getSegmentById+id, this.headersOptions)
-              //  .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+               .pipe(catchError(SegmentRequestErrorHandlersService.getSegmentError));
   }
   
   // getSegmentInCategory(id : String) : Observable<Segment[]> {
@@ -46,16 +46,16 @@ export class SegmentService {
   
   listSegments() : Observable<Segment[]>{
     return this.http.get<Segment[]>(this.requestUri.getSegments, this.headersOptions)
-                // .pipe(catchError(CategoryRequestErrorHandlersService.listCategorysError));
+                .pipe(catchError(SegmentRequestErrorHandlersService.listSegmentsError));
   }
   
   updateSegment(segment: Segment): Observable<any>{
     return this.http.put<any>(this.requestUri.updateSegment, {segment : segment}, this.headersOptions)
-              //  .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
+               .pipe(catchError(SegmentRequestErrorHandlersService.putSegmentError))
   }
   
   deleteSegment(id: String) : Observable<any> {
     return this.http.delete<any>(this.requestUri.deleteSegment + id, this.headersOptions )
-                // .pipe(catchError(CategoryRequestErrorHandlersService.))
+                // .pipe(catchError(SegmentRequestErrorHandlersService.))
   }
 }
