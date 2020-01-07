@@ -52,7 +52,7 @@
                   <mat-label>Select User Segment</mat-label>
                   <mat-select formControlName='segment'>
                     <mat-option>None</mat-option>
-                    <mat-option *ngFor="let segment of userSegments" [value]="segment.id">{{segment.name}}</mat-option>
+                    <mat-option *ngFor="let segment of userSegmentList" [value]="segment.id">{{segment.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <div *ngIf="segment.invalid && (segment.dirty || segment.touched)" class="alert alert-danger">
@@ -63,28 +63,29 @@
               </div>
             </div>
             <div class="col-md-12 form-row">
-              <div class="col-md-10">
+              <div *ngIf="allLabels" class="col-md-10">
                 <mat-form-field class="example-chip-list">
-                  <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip-list  #chipList aria-label="Label selection">
                     <mat-chip
-                      *ngFor="let label of labels"
+
+                      *ngFor="let label of selectedLabels"
                       [selectable]="true"
                       [removable]="true"
-                      (removed)="remove(label)">
+                      (removed)="removeLabel(label)">
                       {{label}}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                     <input
+                      formControlname="labels"
                       placeholder="New label..."
                       #labelInput
-                      [formControl]="labelCtrl"
                       [matAutocomplete]="auto"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                       [matChipInputAddOnBlur]="true"
-                      (matChipInputTokenEnd)="add($event)">
+                      (matChipInputTokenEnd)="addLabel($event)">
                   </mat-chip-list>
-                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedLabel($event);labelInput.value = ''">
                     <mat-option *ngFor="let label of filteredLabels | async" [value]="label">
                       {{label}}
                     </mat-option>
@@ -103,7 +104,7 @@
           </div>
           <div class="create-article col-md-12">
             <button mat-button type="submit" color="primary"  [disabled] = 'article_form.invalid'>Create Article</button>
-            <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+            <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button>
           </div>
         </div>
 

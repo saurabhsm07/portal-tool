@@ -7,7 +7,6 @@ import { ArticleFormErrorHandlerService } from './../error-handler-service/artic
 
 
 import { Article_Form } from './../../classes/article_form';
-import { Article_Field } from '../../classes/article_fields';
 
 @Injectable({
   providedIn: 'root'

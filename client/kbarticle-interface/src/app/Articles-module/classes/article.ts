@@ -6,8 +6,8 @@ export class Article {
     url?: Text;
     author:{};
     body:{};
-    createdAt?: Date;
-    updatedAt: Date;
+    created_at?: Date;
+    updated_at: Date;
     review_state: {};
     draft: {};
 }

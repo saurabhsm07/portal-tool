@@ -1,17 +1,20 @@
-import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 import { Article } from './../../../classes/article';
-import { Section } from './../../../../Section-module/classes/section';
 import { Article_Form } from './../../../classes/article_form';
+import { Article_Field } from './../../../classes/article_fields'
+import { Article_Label } from './../../../classes/article_label';
+import { Section } from './../../../../Section-module/classes/section';
 import { Segment } from './../../../../Segment-module/classes/segment';
 
 import { ArticleService } from './../../../services/article-service/article.service';
 import { ArticleAttachmentsService } from './../../../services/article-attachments-service/article-attachments.service';
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { ArticleLabelsService } from './../../../services/article-labels-service/article-labels.service';
 import { SectionService } from './../../../../Section-module/services/section-service/section.service';
 import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
 import { SegmentService } from './../../../../Segment-module/services/segment-service/segment.service';
@@ -21,7 +24,6 @@ import { MaterialModule } from './../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
-import { Article_Field } from './../../../classes/article_fields';
 import { CommonModule } from '@angular/common';
 import { Observable } from './../../../../../../node_modules/rxjs';
 import { map, startWith } from './../../../../../../node_modules/rxjs/operators';
@@ -30,14 +32,17 @@ import { map, startWith } from './../../../../../../node_modules/rxjs/operators'
 @Component({
   selector: 'app-article-fields',
   templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.scss']
+  styleUrls: ['./create-article.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateArticleComponent implements OnInit {
 
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
-  userSegments: Segment[]; //list of user permission segments available 
+  userSegmentList: Segment[]; //list of user permission segments available 
+  labelList: Article_Label[]; //list of article labels available to add to article
   articleAttachmentId: number; // folder Number to save article attachment in
+
 
   /**
    *  dynamically created form components
@@ -90,7 +95,21 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
+  constructor(private fb: FormBuilder,
+    private articleService: ArticleService,
+    private articleAttachmentService: ArticleAttachmentsService,
+    private sectionService: SectionService,
+    private articleFormsService: ArticleFormsService,
+    private articleFieldService: ArticleFieldService,
+    private articleLabelsService: ArticleLabelsService,
+    private segmentService: SegmentService,
+    private router: Router,
+    private compiler: Compiler) { 
 
+      this.filteredLabels = this.labels.valueChanges.pipe(
+        startWith(null),
+        map((label: string | null) => this.filterLabels2(label)))
+    }
 
 
 
@@ -101,7 +120,7 @@ export class CreateArticleComponent implements OnInit {
       form: ['', [Validators.required]],
       section: ['', [Validators.required]],
       segment: ['', [Validators.required]],
-      tags: []
+      labels: [[]]
     }),
     article_body: this.fb.group({
 
@@ -109,40 +128,134 @@ export class CreateArticleComponent implements OnInit {
 
   });
 
+  /**
+   * Article form value getters 
+   */
   get title()   { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
   get segment()    { return this.article_form.get('article_header').get('segment'); }  //return current user segment selected in the article form
+  get labels() { return this.article_form.get('article_header').get('labels'); }
 
-  constructor(private fb: FormBuilder,
-    private articleService: ArticleService,
-    private articleAttachmentService: ArticleAttachmentsService,
-    private sectionService: SectionService,
-    private articleFormsService: ArticleFormsService,
-    private articleFieldService: ArticleFieldService,
-    private segmentService: SegmentService,
-    private router: Router,
-    private compiler: Compiler) { 
 
-      this.filteredLabels = this.labelCtrl.valueChanges.pipe(
-        startWith(null),
-        map((label: string | null) => label ? this._filter(label) : this.allLabels.slice()));
+  /**
+   * material chip configuration for article labels
+   */
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredLabels: Observable<string[]>;
+  allLabels: string[];
+  selectedLabels: string[] = [];
+
+  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+
+
+
+  /**
+   *  add a article label to the labels array in article form
+   * @param event add chip event object
+   */
+  addLabel(event: MatChipInputEvent): void {
+    // Add label only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+
+      const input = event.input;
+      const value = event.value;
+      // Add our label
+      if ((value || '').trim())  {
+         if((this.selectedLabels.filter( val => val.toLowerCase() == value.trim().toLowerCase()).length == 0)){
+          this.selectedLabels.push(value.trim());
+         }
+         else{
+           console.log(`label "${value}" already exists`);
+         }
+        
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+    this.labels.setValue('')
     }
 
+  }
 
+  /**
+   * removes a label from the article labels list
+   * @param label : article label to be removed
+   */
+  removeLabel(label: string): void {
+    const index = this.selectedLabels.indexOf(label);
+
+    if (index >= 0) {
+      this.selectedLabels.splice(index, 1);
+    }
+  }
+
+
+  selectedLabel(event: MatAutocompleteSelectedEvent): void {
+    if (!event.option) { return; }
+    const input = event.source;
+    const value = event.option.value;
+
+    if ((value || '').trim()) {
+      this.selectedLabels.push(value.trim());
+      this.labels.setValue('');
+    }
+  }
+
+  /**
+   * function returns list of labels matching the perticular string
+   * @param value value used to filter out label value
+   */
+  private filterLabels(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allLabels.filter(label => label.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  filterLabels2(val: string): string[] {
+    console.log("here")
+    const matches = val ? this.allLabels.filter(s => new RegExp(`^${val}`, 'gi').test(s)) : this.allLabels;
+    return matches.filter(x => !this.selectedLabels.find(y => y === x));
+  }
 
   ngOnInit() {
  
+    //data initialization steps
     this.fetchArticleForms();
     this.fetchSectionsList();
-    this.segmentService.listSegments()
-                       .subscribe((segments) => {
-                         this.userSegments = segments;
-                         
-                       }, (error) => {
-                         console.log(error)
-                       })
+    this.fetchUserSegmentList();
     this.fetchArticleAutoIncrementId();
+    this.fetchArticleLabels();
+    
+  }
+
+  /**
+   * Get list of all user article label objects from the database
+   */
+  private fetchArticleLabels() {
+    this.articleLabelsService.getArticleLabels()
+      .subscribe((labels) => {
+        this.labelList = labels;
+        this.allLabels = this.labelList.map(label => label.name);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+   * Get list of all user segment objects from the database
+   */
+  private fetchUserSegmentList() {
+    this.segmentService.listSegments()
+      .subscribe((segments) => {
+        this.userSegmentList = segments;
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -190,7 +303,7 @@ export class CreateArticleComponent implements OnInit {
    */
   onSubmit() {
 
-    // console.log(this.article_form.controls.article_body.value);
+    console.log(this.article_form.value);
 
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
@@ -203,8 +316,8 @@ export class CreateArticleComponent implements OnInit {
       article_form_id: this.article_form.value.article_header.form,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now())
     }
 
 
@@ -334,7 +447,7 @@ export class CreateArticleComponent implements OnInit {
       }
 
       //  validateVals(){
-      //    console.log(this.article_body.value)
+      //    console.log(this.article_form.value)
       //  }
 
       updateFieldValueArray(event) {
@@ -349,64 +462,7 @@ export class CreateArticleComponent implements OnInit {
     return DynamicFormComponent;
   }
 
-  // validateData(){
-  //   console.log(this.article_form.value);
-  // }
-
-  /**
-   * Checing Material Chip
-   */
-
-
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  labelCtrl = new FormControl();
-  filteredLabels: Observable<string[]>;
-  labels: string[] = [];
-  allLabels: string[] = [];
-
-  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
-
-
-
-  add(event: MatChipInputEvent): void {
-    // Add label only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our label
-      if ((value || '').trim()) {
-        this.labels.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.labelCtrl.setValue(null);
-    }
-  }
-
-  remove(label: string): void {
-    const index = this.labels.indexOf(label);
-
-    if (index >= 0) {
-      this.labels.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.labels.push(event.option.viewValue);
-    this.labelInput.nativeElement.value = '';
-    this.labelCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allLabels.filter(label => label.toLowerCase().indexOf(filterValue) === 0);
+  validateData(){
+    console.log(this.article_form.value);
   }
 }

@@ -97,9 +97,9 @@ articles.post('/', (req, res) => {
         section: req.body.article.section,
         user_segment_id: 624226,
         permission_group_id: 1526652,
-        created_at: req.body.article.createdAt,
-        updated_at: req.body.article.updatedAt,
-        edited_at:  req.body.article.updatedAt,
+        created_at: req.body.article.created_at,
+        updated_at: req.body.article.updated_at,
+        edited_at:  req.body.article.updated_at,
         review_state: req.body.article.review_state,
         label_names: req.body.label_names
     };

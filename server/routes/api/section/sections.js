@@ -86,8 +86,8 @@ sections.post('/', (req, res) => {
         outdated: false,
         position: 10,
         parent_section_id: req.body.section.parent_section_id,
-        created_at: req.body.section.createdAt,
-        updated_at: req.body.section.updatedAt,
+        created_at: req.body.section.created_at,
+        updated_at: req.body.section.updated_at,
     }
     Section.create(data)
            .then((resp) => {

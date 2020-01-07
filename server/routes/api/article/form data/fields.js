@@ -94,8 +94,8 @@ fields.post('/', (req, res) =>{
         removable: true,
         agent_only: req.body.agent_only,
         active: true,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        created_at: req.body.created_at,
+        updated_at: req.body.updated_at,
 
     }
 
@@ -119,7 +119,7 @@ fields.put('/', (req, res) =>{
     const updateObj = {required: req.body.field.required,
                        field_name: req.body.field.field_name,
                        field_value: req.body.field.field_value,
-                       updated_at: new Date().toISOString()}
+                       updated_at: req.body.field.updated_at}
     
     
     Field.update(updateObj,{where: {id: field_id} })

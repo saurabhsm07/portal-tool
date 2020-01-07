@@ -1,7 +1,7 @@
 const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
-const Label = client.define('Article_form',{
+const Label = client.define('Article_labels',{
                                                         id: {
                                                             type : Sequelize.BIGINT,
                                                             primaryKey: true,
@@ -10,6 +10,8 @@ const Label = client.define('Article_form',{
                                                         name:{
                                                             type: Sequelize.TEXT,
                                                         }
+}, { 
+    timestamps: false
 })
 
 module.exports = Label;

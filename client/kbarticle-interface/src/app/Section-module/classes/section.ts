@@ -7,8 +7,8 @@ export class Section {
     url?: Text;
     locale?: string;
     html_url?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
     outdated?:boolean;
     position?: number;
 }
