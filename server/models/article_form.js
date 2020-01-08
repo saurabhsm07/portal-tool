@@ -1,7 +1,7 @@
 const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
-const Form = client.define('Article_form',{
+const Form = client.define('Article_forms',{
                                                         id: {
                                                             type : Sequelize.BIGINT,
                                                             primaryKey: true,

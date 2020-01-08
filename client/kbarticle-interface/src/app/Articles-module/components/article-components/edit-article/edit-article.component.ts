@@ -162,7 +162,7 @@ export class EditArticleComponent implements OnInit {
       draft: { status: true, type: 'Draft' },
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
-      updatedAt: new Date()
+      updated_at: new Date(Date.now())
     }
     this.articleService.updateArticle({'article': article})
                        .subscribe((data) => {

@@ -4,8 +4,8 @@ export class Category {
     url?: Text;
     locale?: string;
     html_url?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: Date;
+    updated_at?: Date;
     icon_url?: Text;
     outdated?:boolean;
     description?: Text;

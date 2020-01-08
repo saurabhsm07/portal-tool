@@ -67,8 +67,8 @@ export class CreateSectionComponent implements OnInit {
                                     description: this.section_form.value.description,
                                     category_id: parseInt(this.section_form.value.category_id),
                                     parent_section_id: this.section_form.value.parent_section_id,
-                                    createdAt: new Date(),
-                                    updatedAt: new Date(),
+                                    created_at: new Date(Date.now()),
+                                    updated_at: new Date(Date.now()),
                                   }
       this.sectionService.postSection(section)
                           .subscribe((data) => {

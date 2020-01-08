@@ -142,7 +142,7 @@ export class EditSectionComponent implements OnInit {
                 this.section.description = this.section_form.value.description;
                 this.section.parent_section_id = this.section_form.value.parent_section_id;
                 this.section.category_id = this.section_form.value.category_id;
-                this.section.updatedAt = new Date();
+                this.section.updated_at = new Date(Date.now());
                 this.sectionService.updateSection(this.section)
                                     .subscribe((data) => {
                                       if(data.status == 200){

@@ -7,6 +7,7 @@ const attachments = require('./attachments/attachments');
 const comments = require('./comments/comments');
 const fields = require('./form data/fields');
 const forms = require('./form data/forms');
+const labels = require('./labels/labels');
 
 /**
  * GET: api path to get list of articles from the database.
@@ -54,6 +55,27 @@ articles.get('/id/:id', (req, res) => {
 })
 
 /**
+ * GET: api path to get latest article id.
+ */
+articles.get('/max/id', (req, res) => {
+    client.query(`SELECT AUTO_INCREMENT
+    FROM  INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_SCHEMA = 'helpcenter_database'
+    AND   TABLE_NAME   = 'articles'`,{})
+           .then((data) => {
+
+                    console.log(`last article id : ${data[0][0].AUTO_INCREMENT}`);
+                    res.status(200).send({'id': data[0][0].AUTO_INCREMENT});
+                
+           })
+           .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+           })
+})
+
+/**
  * POST: api path to create a article record to the database.
  */
 articles.post('/', (req, res) => {
@@ -73,13 +95,14 @@ articles.post('/', (req, res) => {
         up_vote: 0,
         down_vote: 0,
         section: req.body.article.section,
-        user_segment_id: 624226,
+        user_segment_id: req.body.article.user_segment_id,
+        label_names: req.body.article.labels,
         permission_group_id: 1526652,
-        created_at: req.body.article.createdAt,
-        updated_at: req.body.article.updatedAt,
-        edited_at:  req.body.article.updatedAt,
+        created_at: req.body.article.created_at,
+        updated_at: req.body.article.updated_at,
+        edited_at:  req.body.article.updated_at,
         review_state: req.body.article.review_state,
-        label_names: req.body.label_names
+
     };
     Article.create(data)
            .then((resp) => {
@@ -178,5 +201,6 @@ articles.use('/:id/attachments/', attachments)  // Routes to article attachments
 articles.use('/:id/comments/', comments)        // Routes to article comments APIs
 articles.use('/fields', fields)                 // Routes to article fields APIs
 articles.use('/forms', forms)                   // Routes to article forms APIs
+articles.use('/labels', labels)                   // Routes to article forms APIs
 
 module.exports = articles                       // Exporting Article APIs module

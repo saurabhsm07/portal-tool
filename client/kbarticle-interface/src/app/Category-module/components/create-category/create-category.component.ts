@@ -48,8 +48,8 @@ export class CreateCategoryComponent implements OnInit {
                                   name: this.category_form.value.name,
                                   description: this.category_form.value.description,
                                   icon_url: this.category_form.value.icon_file,
-                                  createdAt: new Date(),
-                                  updatedAt: new Date(),
+                                  created_at: new Date(Date.now()),
+                                  updated_at: new Date(Date.now()),
                                 }
     this.categoryService.postCategory(category)
                         .subscribe((data) => {

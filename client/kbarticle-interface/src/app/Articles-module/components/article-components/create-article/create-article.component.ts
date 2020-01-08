@@ -1,32 +1,45 @@
-import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler } from '@angular/core';
+import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
 import { Article } from './../../../classes/article';
-import { Section } from './../../../../Section-module/classes/section';
 import { Article_Form } from './../../../classes/article_form';
+import { Article_Field } from './../../../classes/article_fields'
+import { Article_Label } from './../../../classes/article_label';
+import { Section } from './../../../../Section-module/classes/section';
+import { Segment } from './../../../../Segment-module/classes/segment';
+
 import { ArticleService } from './../../../services/article-service/article.service';
 import { ArticleAttachmentsService } from './../../../services/article-attachments-service/article-attachments.service';
 import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { ArticleLabelsService } from './../../../services/article-labels-service/article-labels.service';
 import { SectionService } from './../../../../Section-module/services/section-service/section.service';
 import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
+import { SegmentService } from './../../../../Segment-module/services/segment-service/segment.service';
 import { Router } from '@angular/router';
 
 import { MaterialModule } from './../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
-import { Article_Field } from './../../../classes/article_fields';
-import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-article-fields',
   templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.scss']
+  styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
 
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
+  userSegmentList: Segment[]; //list of user permission segments available 
+  labelList: Article_Label[]; //list of article labels available to add to article
+  articleAttachmentId: number; // folder Number to save article attachment in
 
 
   /**
@@ -38,6 +51,17 @@ export class CreateArticleComponent implements OnInit {
   @Input()
   dynamicFormTemplate: string;    // the template string which will contain angular form components to be rendered later
 
+  /**
+   * material chip configuration for article labels
+   */
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredLabels: Observable<string[]>;
+  allLabels: string[];
+  selectedLabels: string[] = [];
+
+  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   /**
    * Tiny MCE congiguration object : configuration object for tiny mce rich text editor 
@@ -67,10 +91,10 @@ export class CreateArticleComponent implements OnInit {
       this.articleAttachmentService.postArticleAttachment({
         'file_data': blobInfo.blob(),
         'inline': true,
-        'article_id': 155442
+        'article_id': this.articleAttachmentId
       })
         .subscribe((data) => {
-          console.log("successfully saved file")
+          console.log("successfully saved the file")
           success(data.url)
         },
           (error) => {
@@ -80,26 +104,22 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
-
-
-
-
-  // reactive article form to create new article
-  article_form = this.fb.group({
-    article_header: this.fb.group({
-      title: ['', [Validators.required]],
-      form: ['', [Validators.required]],
-      section: ['', [Validators.required]],
-    }),
-    article_body: this.fb.group({
-
-    })
-
-  });
-
-  get title()   { return this.article_form.get('article_header').get('title'); }
-  get section() { return this.article_form.get('article_header').get('section'); }
-  get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
+  /**    
+   * Reactive article form to create new article
+    */
+    article_form = this.fb.group({
+      article_header: this.fb.group({
+        title: ['', [Validators.required]],
+        form: ['', [Validators.required]],
+        section: ['', [Validators.required]],
+        segment: ['', [Validators.required]],
+        labels: [[]]
+      }),
+      article_body: this.fb.group({
+  
+      })
+  
+    });
 
   constructor(private fb: FormBuilder,
     private articleService: ArticleService,
@@ -107,35 +127,174 @@ export class CreateArticleComponent implements OnInit {
     private sectionService: SectionService,
     private articleFormsService: ArticleFormsService,
     private articleFieldService: ArticleFieldService,
+    private articleLabelsService: ArticleLabelsService,
+    private segmentService: SegmentService,
     private router: Router,
-    private compiler: Compiler) { }
+    private compiler: Compiler) { 
+
+      this.filteredLabels = this.labels.valueChanges.pipe(
+        startWith(null),
+        map((label: string | null) => this.filterLabels(label)))
+    }
+
+  /**
+   * Article form value getters 
+   */
+  get title()   { return this.article_form.get('article_header').get('title'); }
+  get section() { return this.article_form.get('article_header').get('section'); }
+  get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
+  get segment()    { return this.article_form.get('article_header').get('segment'); }  //return current user segment selected in the article form
+  get labels() { return this.article_form.get('article_header').get('labels'); }
 
 
+
+  /**
+   *  add a article label to the labels array in article form
+   * @param event add chip event object
+   */
+  addLabel(event: MatChipInputEvent): void {
+    // Add label only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+
+      const input = event.input;
+      const value = event.value;
+      // Add our label
+      if ((value || '').trim())  {
+         if((this.selectedLabels.filter( val => val.toLowerCase() == value.trim().toLowerCase()).length == 0)){
+          this.selectedLabels.push(value.trim());
+         }
+         else{
+           console.log(`label "${value}" already exists`);
+         }
+        
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+    this.labels.setValue('')
+    }
+
+  }
+
+  /**
+   * removes a label from the article labels list
+   * @param label : article label to be removed
+   */
+  removeLabel(label: string): void {
+    const index = this.selectedLabels.indexOf(label);
+
+    if (index >= 0) {
+      this.selectedLabels.splice(index, 1);
+    }
+  }
+
+
+  selectedLabel(event: MatAutocompleteSelectedEvent): void {
+    if (!event.option) { return; }
+    const input = event.source;
+    const value = event.option.value;
+
+    if ((value || '').trim()) {
+      this.selectedLabels.push(value.trim());
+      this.labels.setValue('');
+    }
+  }
+
+  /**
+   * function returns list of labels matching the perticular string
+   * @param value value used to filter out label value
+   */
+  filterLabels(val: string | null): string[] {
+   
+    const matches = typeof val === 'string' ? this.allLabels.filter(label => label.toLowerCase().indexOf(val.toLowerCase())!= -1) : this.allLabels;
+    return matches.filter(x => !this.selectedLabels.find(y => y === x));
+  }
+
+  /**
+   * update field values 
+   */
+  updateLables(val: string){
+    console.log(this.selectedLabels)
+    this.article_form.get('article_header').get('labels').setValue(this.selectedLabels);
+  }
 
   ngOnInit() {
-    /**
-     * gets a list of article forms from the database
-     */
-    this.articleFormsService.getArticleForm()
-      .subscribe((forms) => {
-        console.log(forms);
-        this.formList = forms;
-      },
-        (error) => {
-          console.log(error);
-        })
+ 
+    //data initialization steps
+    this.fetchArticleLabels();
+    this.fetchArticleForms();
+    this.fetchSectionsList();
+    this.fetchUserSegmentList();
+    this.fetchArticleAutoIncrementId();
+  
+    
+  }
 
-    /**
-     * gets a list of sections from the database
-     */
+  /**
+   * Get list of all user article label objects from the database
+   */
+  private fetchArticleLabels() {
+    this.articleLabelsService.getArticleLabels()
+      .subscribe((labels) => {
+        this.labelList = labels;
+        this.allLabels = this.labelList.map(label => label.name);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+   * Get list of all user segment objects from the database
+   */
+  private fetchUserSegmentList() {
+    this.segmentService.listSegments()
+      .subscribe((segments) => {
+        this.userSegmentList = segments;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+ * get i.d of the article to be created using auto increment for the Article Table on ID column
+ */
+  private fetchArticleAutoIncrementId() {
+    this.articleService.getLastRecordId()
+      .subscribe((data) => {
+        console.log(data);
+        this.articleAttachmentId = data.id;
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+ * gets a list of sections from the database
+ */
+  private fetchSectionsList() {
     this.sectionService.listSections()
       .subscribe((sections) => {
         console.log(sections);
         this.sectionList = sections;
-      },
-        (error) => {
-          console.log(error);
-        })
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+ * gets a list of article forms from the database
+ */
+  private fetchArticleForms() {
+    this.articleFormsService.getArticleForm()
+      .subscribe((forms) => {
+        console.log(forms);
+        this.formList = forms;
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -144,8 +303,8 @@ export class CreateArticleComponent implements OnInit {
    */
   onSubmit() {
 
-    // console.log(this.article_form.controls.article_body.value);
-
+    console.log(this.article_form.value);
+  
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
       section: JSON.stringify({
@@ -154,11 +313,13 @@ export class CreateArticleComponent implements OnInit {
       }),
       author: { id: 112323, name: 'saurabh' },
       draft: { status: true, type: 'Draft' },
+      labels: this.article_form.value.article_header.labels,
       article_form_id: this.article_form.value.article_header.form,
+      user_segment_id: this.article_form.value.article_header.segment,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
-      createdAt: new Date(),
-      updatedAt: new Date()
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now())
     }
 
 
@@ -288,7 +449,7 @@ export class CreateArticleComponent implements OnInit {
       }
 
       //  validateVals(){
-      //    console.log(this.article_body.value)
+      //    console.log(this.article_form.value)
       //  }
 
       updateFieldValueArray(event) {
@@ -303,8 +464,7 @@ export class CreateArticleComponent implements OnInit {
     return DynamicFormComponent;
   }
 
-  // validateData(){
-  //   console.log(this.article_form.value);
-  // }
-
+  validateData(){
+    console.log(this.article_form.value);
+  }
 }

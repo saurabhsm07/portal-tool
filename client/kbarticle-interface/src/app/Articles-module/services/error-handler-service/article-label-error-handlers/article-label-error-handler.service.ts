@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleRequestErrorHandlersService {
+export class ArticleLabelErrorHandlerService {
 
   constructor() { }
 
-  public static postArticleError(error: HttpErrorResponse){
+  public static postArticleLabelError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -19,16 +20,14 @@ export class ArticleRequestErrorHandlersService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-
     const errObj = {
       code: 500,
-      msg: 'error creating article'
+      msg: 'error creating Article Label'
      };
     return throwError(errObj);
   }
 
-
-  public static getArticleError(error: HttpErrorResponse){
+  public static getArticleLabelError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -38,16 +37,14 @@ export class ArticleRequestErrorHandlersService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-
     const errObj = {
       code: 500,
-      msg: 'error getting article'
+      msg: 'error fetching Article Label'
      };
     return throwError(errObj);
   }
 
-
-  public static getLastRecordError(error: HttpErrorResponse){
+  public static putArticleLabelError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -57,15 +54,14 @@ export class ArticleRequestErrorHandlersService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-
     const errObj = {
       code: 500,
-      msg: 'error getting article id'
+      msg: 'error updating Article Label'
      };
     return throwError(errObj);
   }
 
-  public static listArticlesError(error: HttpErrorResponse){
+  public static deleteArticleLabelError(error: HttpErrorResponse){
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
@@ -75,31 +71,10 @@ export class ArticleRequestErrorHandlersService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-
     const errObj = {
       code: 500,
-      msg: 'error listing articles'
+      msg: 'error deleting Article Label'
      };
     return throwError(errObj);
   }
-
-  public static putArticleError(error: HttpErrorResponse){
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend error
-      console.log(error)
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-
-    const errObj = {
-      code: 500,
-      msg: 'error updating articles'
-     };
-    return throwError(errObj);
-  }
-
 }
