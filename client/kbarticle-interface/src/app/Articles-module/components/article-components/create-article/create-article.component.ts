@@ -1,5 +1,9 @@
-import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, NgModule, NgModuleFactory, Compiler, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -22,18 +26,12 @@ import { Router } from '@angular/router';
 
 import { MaterialModule } from './../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
 import { FieldComponentCreators } from './../../../../imports/field-component-creators';
-import { CommonModule } from '@angular/common';
-import { Observable } from './../../../../../../node_modules/rxjs';
-import { map, startWith } from './../../../../../../node_modules/rxjs/operators';
-
 
 @Component({
   selector: 'app-article-fields',
   templateUrl: './create-article.component.html',
   styleUrls: ['./create-article.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateArticleComponent implements OnInit {
 
@@ -53,6 +51,17 @@ export class CreateArticleComponent implements OnInit {
   @Input()
   dynamicFormTemplate: string;    // the template string which will contain angular form components to be rendered later
 
+  /**
+   * material chip configuration for article labels
+   */
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredLabels: Observable<string[]>;
+  allLabels: string[];
+  selectedLabels: string[] = [];
+
+  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   /**
    * Tiny MCE congiguration object : configuration object for tiny mce rich text editor 
@@ -95,6 +104,23 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
+  /**    
+   * Reactive article form to create new article
+    */
+    article_form = this.fb.group({
+      article_header: this.fb.group({
+        title: ['', [Validators.required]],
+        form: ['', [Validators.required]],
+        section: ['', [Validators.required]],
+        segment: ['', [Validators.required]],
+        labels: [[]]
+      }),
+      article_body: this.fb.group({
+  
+      })
+  
+    });
+
   constructor(private fb: FormBuilder,
     private articleService: ArticleService,
     private articleAttachmentService: ArticleAttachmentsService,
@@ -108,25 +134,8 @@ export class CreateArticleComponent implements OnInit {
 
       this.filteredLabels = this.labels.valueChanges.pipe(
         startWith(null),
-        map((label: string | null) => this.filterLabels2(label)))
+        map((label: string | null) => this.filterLabels(label)))
     }
-
-
-
-  // reactive article form to create new article
-  article_form = this.fb.group({
-    article_header: this.fb.group({
-      title: ['', [Validators.required]],
-      form: ['', [Validators.required]],
-      section: ['', [Validators.required]],
-      segment: ['', [Validators.required]],
-      labels: [[]]
-    }),
-    article_body: this.fb.group({
-
-    })
-
-  });
 
   /**
    * Article form value getters 
@@ -136,18 +145,6 @@ export class CreateArticleComponent implements OnInit {
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
   get segment()    { return this.article_form.get('article_header').get('segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_header').get('labels'); }
-
-
-  /**
-   * material chip configuration for article labels
-   */
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredLabels: Observable<string[]>;
-  allLabels: string[];
-  selectedLabels: string[] = [];
-
-  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
 
 
@@ -210,26 +207,29 @@ export class CreateArticleComponent implements OnInit {
    * function returns list of labels matching the perticular string
    * @param value value used to filter out label value
    */
-  private filterLabels(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allLabels.filter(label => label.toLowerCase().indexOf(filterValue) === 0);
+  filterLabels(val: string | null): string[] {
+   
+    const matches = typeof val === 'string' ? this.allLabels.filter(label => label.toLowerCase().indexOf(val.toLowerCase())!= -1) : this.allLabels;
+    return matches.filter(x => !this.selectedLabels.find(y => y === x));
   }
 
-  filterLabels2(val: string): string[] {
-    console.log("here")
-    const matches = val ? this.allLabels.filter(s => new RegExp(`^${val}`, 'gi').test(s)) : this.allLabels;
-    return matches.filter(x => !this.selectedLabels.find(y => y === x));
+  /**
+   * update field values 
+   */
+  updateLables(val: string){
+    console.log(this.selectedLabels)
+    this.article_form.get('article_header').get('labels').setValue(this.selectedLabels);
   }
 
   ngOnInit() {
  
     //data initialization steps
+    this.fetchArticleLabels();
     this.fetchArticleForms();
     this.fetchSectionsList();
     this.fetchUserSegmentList();
     this.fetchArticleAutoIncrementId();
-    this.fetchArticleLabels();
+  
     
   }
 
@@ -304,7 +304,7 @@ export class CreateArticleComponent implements OnInit {
   onSubmit() {
 
     console.log(this.article_form.value);
-
+  
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
       section: JSON.stringify({
@@ -313,7 +313,9 @@ export class CreateArticleComponent implements OnInit {
       }),
       author: { id: 112323, name: 'saurabh' },
       draft: { status: true, type: 'Draft' },
+      labels: this.article_form.value.article_header.labels,
       article_form_id: this.article_form.value.article_header.form,
+      user_segment_id: this.article_form.value.article_header.segment,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
       created_at: new Date(Date.now()),

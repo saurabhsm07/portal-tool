@@ -6,6 +6,8 @@ export class Article {
     url?: Text;
     author:{};
     body:{};
+    labels?: string;
+    user_segment_id?: number;
     created_at?: Date;
     updated_at: Date;
     review_state: {};

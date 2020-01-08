@@ -63,8 +63,8 @@
               </div>
             </div>
             <div class="col-md-12 form-row">
-              <div *ngIf="allLabels" class="col-md-10">
-                <mat-form-field class="example-chip-list">
+              <div *ngIf="labelList" class="col-md-10">
+                <mat-form-field class="example-chip-list" (focusout) ="updateLables()">
                   <mat-chip-list  #chipList aria-label="Label selection">
                     <mat-chip
 
@@ -76,16 +76,15 @@
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
                     <input
-                      formControlname="labels"
-                      placeholder="New label..."
                       #labelInput
+                      formControlName="labels"
                       [matAutocomplete]="auto"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      [matChipInputAddOnBlur]="true"
+                      [matChipInputAddOnBlur]="false"
                       (matChipInputTokenEnd)="addLabel($event)">
                   </mat-chip-list>
-                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedLabel($event);labelInput.value = ''">
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedLabel($event);">
                     <mat-option *ngFor="let label of filteredLabels | async" [value]="label">
                       {{label}}
                     </mat-option>
