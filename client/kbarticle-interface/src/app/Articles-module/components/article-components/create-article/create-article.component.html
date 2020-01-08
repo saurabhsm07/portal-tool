@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="create_article_div offset-md-1 col-md-10">
-      <h4>Create KB article</h4>
+      <h4>Create Article</h4>
       <form [formGroup]='article_form' (ngSubmit)="onSubmit()">
         <div class="form-row">
           <div formGroupName='article_header' class="article_form_header col-md-12">
@@ -46,6 +46,17 @@
                 </div>
               </div>
             </div>
+      
+          </div>
+
+          <div *ngIf="article_form.get('article_body')" class="article_form_body col-md-12">
+
+            <ng-container *ngComponentOutlet="dynamicFormComponent;
+                        ngModuleFactory: dynamicFormModule;"></ng-container>
+
+
+          </div>
+          <div *ngIf="article_form.get('article_body')" formGroupName = "article_footer" class="article_form_footer col-md-12">
             <div class = "col-md-12 form-row">
               <div class="col-md-6">
                 <mat-form-field class="col-md-10">
@@ -78,6 +89,7 @@
                     <input
                       #labelInput
                       formControlName="labels"
+                      placeholder="Article Labels"
                       [matAutocomplete]="auto"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -94,13 +106,6 @@
             </div>
           </div>
 
-          <div *ngIf="article_form.get('article_body')" class="article_form_body col-md-12">
-
-            <ng-container *ngComponentOutlet="dynamicFormComponent;
-                        ngModuleFactory: dynamicFormModule;"></ng-container>
-
-
-          </div>
           <div class="create-article col-md-12">
             <button mat-button type="submit" color="primary"  [disabled] = 'article_form.invalid'>Create Article</button>
             <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button>

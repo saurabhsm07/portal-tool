@@ -1,7 +1,7 @@
 export class Article {
     id?: number;
     title: string;
-    section: string;
+    section: {};
     article_form_id?: number;
     url?: Text;
     author:{};

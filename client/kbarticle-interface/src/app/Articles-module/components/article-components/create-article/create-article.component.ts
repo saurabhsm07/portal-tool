@@ -112,11 +112,13 @@ export class CreateArticleComponent implements OnInit {
         title: ['', [Validators.required]],
         form: ['', [Validators.required]],
         section: ['', [Validators.required]],
+      }),
+      // article_body: this.fb.group({
+  
+      // }),
+      article_footer: this.fb.group({
         segment: ['', [Validators.required]],
         labels: [[]]
-      }),
-      article_body: this.fb.group({
-  
       })
   
     });
@@ -143,8 +145,8 @@ export class CreateArticleComponent implements OnInit {
   get title()   { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
-  get segment()    { return this.article_form.get('article_header').get('segment'); }  //return current user segment selected in the article form
-  get labels() { return this.article_form.get('article_header').get('labels'); }
+  get segment()    { return this.article_form.get('article_footer').get('segment'); }  //return current user segment selected in the article form
+  get labels() { return this.article_form.get('article_footer').get('labels'); }
 
 
 
@@ -217,8 +219,8 @@ export class CreateArticleComponent implements OnInit {
    * update field values 
    */
   updateLables(val: string){
-    console.log(this.selectedLabels)
-    this.article_form.get('article_header').get('labels').setValue(this.selectedLabels);
+    if(this.selectedLabels.length > 0)
+      this.article_form.get('article_footer').get('labels').setValue(this.selectedLabels);
   }
 
   ngOnInit() {
@@ -307,13 +309,13 @@ export class CreateArticleComponent implements OnInit {
   
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
-      section: JSON.stringify({
+      section: {
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
-      }),
+      },
       author: { id: 112323, name: 'saurabh' },
       draft: { status: true, type: 'Draft' },
-      labels: this.article_form.value.article_header.labels,
+      labels: this.article_form.value.article_footer.labels,
       article_form_id: this.article_form.value.article_header.form,
       user_segment_id: this.article_form.value.article_header.segment,
       body: this.article_form.controls.article_body.value,
