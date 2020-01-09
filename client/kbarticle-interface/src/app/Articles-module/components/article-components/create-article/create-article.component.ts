@@ -325,7 +325,7 @@ export class CreateArticleComponent implements OnInit {
     }
 
     console.log(articleObj)
-    this.articleService.postArticle({ 'article': articleObj })
+    this.articleService.postArticle( articleObj)
       .subscribe((data) => {
         console.log("succesfully created the article");
         this.router.navigate(['/articles/list']);

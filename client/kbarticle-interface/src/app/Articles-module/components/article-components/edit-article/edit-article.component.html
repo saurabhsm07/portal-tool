@@ -51,7 +51,7 @@
               <div class="col-md-6">
                 <mat-form-field class="col-md-10">
                   <mat-label>Select User Segment</mat-label>
-                  <mat-select formControlName='segment'>
+                  <mat-select formControlName='user_segment'>
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let segment of userSegmentList" [value]="segment.id">{{segment.name}}</mat-option>
                   </mat-select>
@@ -96,7 +96,7 @@
           </div>
           <div class="update-article col-md-12">
             <button mat-button type="submit" color="primary">Update Article</button>
-            <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+            <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button>
           </div>
         </div>
 

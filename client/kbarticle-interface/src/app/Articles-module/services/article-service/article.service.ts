@@ -32,8 +32,7 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   postArticle(article: Article) : Observable<Article> {
-    console.log(article)
-    return this.http.post<Article>(this.requestUri.postArticle,  article , this.headersOptions)
+    return this.http.post<Article>(this.requestUri.postArticle, {article: article}  , this.headersOptions)
                     .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
 
   }
@@ -54,7 +53,7 @@ export class ArticleService {
   }
 
   updateArticle(article: Article): Observable<Article>{
-    return this.http.put<Article>(this.requestUri.updateArticle,article, this.headersOptions)
+    return this.http.put<Article>(this.requestUri.updateArticle,{article: article}, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.putArticleError))
   }
 

@@ -125,7 +125,7 @@ export class EditArticleComponent implements OnInit {
 
     // }),
     article_footer: this.fb.group({
-      segment: ['', [Validators.required]],
+      user_segment: ['', [Validators.required]],
       labels: [[]]
     })
 
@@ -153,7 +153,7 @@ export class EditArticleComponent implements OnInit {
   get title() { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
   get form() { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
-  get segment() { return this.article_form.get('article_footer').get('segment'); }  //return current user segment selected in the article form
+  get segment() { return this.article_form.get('article_footer').get('user_segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_footer').get('labels'); }
 
   /**
@@ -225,6 +225,7 @@ export class EditArticleComponent implements OnInit {
    * update field values 
    */
   updateLables(val: string) {
+    console.log(this.selectedLabels)
     if (this.selectedLabels.length > 0)
       this.article_form.get('article_footer').get('labels').setValue(this.selectedLabels);
   }
@@ -337,15 +338,14 @@ export class EditArticleComponent implements OnInit {
   private updateFormFooter() {
     this.selectedLabels = this.selectedLabels.concat(this.article_object.label_names); 
     this.article_form.controls.article_footer.patchValue({
-      segment: this.article_object.user_segment_id,
+      user_segment: this.article_object.user_segment_id,
       labels: this.article_object.label_names,
 
     });
   }
 
   public updateArticle() {
-
-    let article: Article = {
+    const article: Article = {
       id: this.article_object.id,
       title: this.article_form.value.article_header.title,
       section: JSON.stringify({
@@ -356,9 +356,12 @@ export class EditArticleComponent implements OnInit {
       draft: { status: true, type: 'Draft' },
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
+      label_names: this.article_form.value.article_footer.labels,
+      user_segment_id: this.article_form.value.article_footer.user_segment,
       updated_at: new Date(Date.now())
     }
-    this.articleService.updateArticle({ 'article': article })
+    console.log(article)
+    this.articleService.updateArticle(article)
       .subscribe((data) => {
         console.log(data)
         this.router.navigate(['/article/id/', article.id]);
@@ -522,5 +525,9 @@ export class EditArticleComponent implements OnInit {
 
     }
     return DynamicFormComponent;
+  }
+
+  validateData(){
+    console.log(this.article_form.value)
   }
 }

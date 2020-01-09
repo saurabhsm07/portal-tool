@@ -79,7 +79,7 @@ articles.get('/max/id', (req, res) => {
  * POST: api path to create a article record to the database.
  */
 articles.post('/', (req, res) => {
-    console.log(req.body.article)
+    console.log(req.body)
     const data = {
         url: 'http://localhost:4200/article/',
         html_url: 'http://localhost:5000/api/article/',
@@ -133,6 +133,7 @@ articles.put('/', (req, res) => {
         down_vote: 0,
         section: JSON.parse(req.body.article.section),
         user_segment_id: req.body.article.user_segment_id,
+        label_names: req.body.article.label_names,
         permission_group_id: 1526652,
         updated_at: req.body.article.updated_at,
         edited_at:  req.body.article.updated_at,
@@ -142,10 +143,7 @@ articles.put('/', (req, res) => {
     Article.findAll({where : {id: req.body.article.id}})
            .then((article_obj)=> {
                if(article_obj.length == 1){
-                   if(updateData.label_names){
-                     updateData.label_names = Array.from(new Set (updateData.label_names.concat(article_obj[0].dataValues.label_names)))
-                   }
-                   Article.update(updateData, {where : {id: req.body.article.id}})
+                            Article.update(updateData, {where : {id: req.body.article.id}})
                           .then((data) => {
                             if(data == 1){
                                 console.log('update successfull');
