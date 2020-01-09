@@ -9,6 +9,11 @@
               <mat-form-field class="col-md-12">
                 <input matInput formControlName='title' placeholder="Article Title">
               </mat-form-field>
+              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+                <small *ngIf="title.errors.required">
+                  Article Title required
+                </small>
+              </div>
             </div>
             <div class="col-md-12 form-row">
               <div *ngIf="selectedForm" class="col-md-6">
@@ -27,12 +32,14 @@
                     <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
+                <div *ngIf="section.invalid && (section.dirty || section.touched)" class="alert alert-danger">
+                  <small *ngIf="section.errors.required">
+                    Select Section
+                  </small>
+                </div>
               </div>
             </div>
           </div>
-          <mat-form-field *ngIf="article_form.get('title1')" class="col-md-12">
-            <input matInput formControlName='title1' placeholder="Article Title 1">
-          </mat-form-field>
           <div *ngIf="article_form.get('article_body')" class="article_form_body col-md-12">
 
             <ng-container *ngComponentOutlet="dynamicFormComponent;
@@ -58,14 +65,25 @@
             </div>
             <div class="col-md-12 form-row">
               <div *ngIf="labelList" class="col-md-10">
-                <mat-form-field class="example-chip-list" (focusout)="updateLables()">
+                <mat-form-field class="labels-chip-list" (focusout)="updateLables()">
                   <mat-chip-list #chipList aria-label="Label selection">
-                    <mat-chip *ngFor="let label of selectedLabels" [selectable]="true" [removable]="true" (removed)="removeLabel(label)">
+                    <mat-chip 
+                      *ngFor="let label of selectedLabels" 
+                      [selectable]="true" 
+                      [removable]="true" 
+                      (removed)="removeLabel(label)">
                       {{label}}
                       <mat-icon matChipRemove>cancel</mat-icon>
                     </mat-chip>
-                    <input #labelInput formControlName="labels" placeholder="Article Labels" [matAutocomplete]="auto" [matChipInputFor]="chipList"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="false" (matChipInputTokenEnd)="addLabel($event)">
+                    <input 
+                        #labelInput 
+                        formControlName="labels" 
+                        placeholder="Article Labels" 
+                        [matAutocomplete]="auto" 
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                        [matChipInputAddOnBlur]="false" 
+                        (matChipInputTokenEnd)="addLabel($event)">
                   </mat-chip-list>
                   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedLabel($event);">
                     <mat-option *ngFor="let label of filteredLabels | async" [value]="label">

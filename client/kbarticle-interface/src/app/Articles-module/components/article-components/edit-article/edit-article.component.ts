@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 import { Article } from './../../../classes/article';
 import { Article_Form } from './../../../classes/article_form';
@@ -40,16 +40,16 @@ export class EditArticleComponent implements OnInit {
 
   article$: Observable<Article>;
   @Input()
-  article_object : Article;
+  article_object: Article;
 
   sectionList: Section[]; //list of section available to select
   formList: Article_Form[]; //list of forms available to create article
   userSegmentList: Segment[]; //list of user permission segments available 
   labelList: Article_Label[]; //list of article labels available to add to article
   articleAttachmentId: number; // folder Number to save article attachment in
-  selectedForm: Article_Form[];
+  selectedForm: Article_Form;
 
-  
+
   /**
    *  dynamically created form components
    */
@@ -68,15 +68,15 @@ export class EditArticleComponent implements OnInit {
   allLabels: string[];
   selectedLabels: string[] = [];
 
-  @ViewChild('labelInput', {static: false}) labelInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('labelInput', { static: false }) labelInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
   /**
    * Tiny MCE congiguration object : configuration object for tiny mce rich text editor 
    *  which replaces the normal textarea in angular form component
    **/
   tiny_mce_editor_config = {
-    base_url: '/assets/', 
+    base_url: '/assets/',
     suffix: '.min',
     plugins: ` preview fullpage paste autolink autosave save 
               code  fullscreen image link media template codesample 
@@ -88,32 +88,34 @@ export class EditArticleComponent implements OnInit {
               numlist bullist | forecolor backcolor removeformat | pagebreak | 
               charmap emoticons | fullscreen  preview save print 
               | insertfile image media template link anchor codesample | ltr rtl`,
-    menubar:  false,
+    menubar: false,
     height: 300,
     max_height: 500,
 
     images_upload_handler: (blobInfo, success, failure) => {
-     
+
       console.log(blobInfo.blob())
-    
-      this.articleAttachmentService.postArticleAttachment({ 'file_data' :blobInfo.blob(), 
-                                                             'inline': true,
-                                                             'article_id' : 155442 })
-                                   .subscribe((data) => {
-                                     console.log("successfully saved file")
-                                     success(data.url)
-                                   },
-                                   (error) => {
-                                     console.log(error)
-                                   })
-    
+
+      this.articleAttachmentService.postArticleAttachment({
+        'file_data': blobInfo.blob(),
+        'inline': true,
+        'article_id': 155442
+      })
+        .subscribe((data) => {
+          console.log("successfully saved file")
+          success(data.url)
+        },
+          (error) => {
+            console.log(error)
+          })
+
     }
-}
+  }
 
   /**    
    * Reactive article form to create new article
     */
-   article_form = this.fb.group({
+  article_form = this.fb.group({
     article_header: this.fb.group({
       title: ['', [Validators.required]],
       form: ['', [Validators.required]],
@@ -139,26 +141,25 @@ export class EditArticleComponent implements OnInit {
     private segmentService: SegmentService,
     private router: Router,
     private route: ActivatedRoute,
-    private compiler: Compiler) { 
-      this.filteredLabels = this.labels.valueChanges.pipe(
-        startWith(null),
-        map((label: string | null) => this.filterLabels(label)))
-    }
+    private compiler: Compiler) {
+    this.filteredLabels = this.labels.valueChanges.pipe(
+      startWith(null),
+      map((label: string | null) => this.filterLabels(label)))
+  }
 
-   /**
-   * Article form value getters 
-   */
-  get formId() { return this.article_form.value.article_header.form; }  //return current form selected in the article form
-  get title()   { return this.article_form.get('article_header').get('title'); }
+  /**
+  * Article form value getters 
+  */
+  get title() { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
-  get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
-  get segment()    { return this.article_form.get('article_footer').get('segment'); }  //return current user segment selected in the article form
+  get form() { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
+  get segment() { return this.article_form.get('article_footer').get('segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_footer').get('labels'); }
 
-/**
-   *  add a article label to the labels array in article form
-   * @param event add chip event object
-   */
+  /**
+     *  add a article label to the labels array in article form
+     * @param event add chip event object
+     */
   addLabel(event: MatChipInputEvent): void {
     // Add label only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
@@ -167,21 +168,21 @@ export class EditArticleComponent implements OnInit {
       const input = event.input;
       const value = event.value;
       // Add our label
-      if ((value || '').trim())  {
-         if((this.selectedLabels.filter( val => val.toLowerCase() == value.trim().toLowerCase()).length == 0)){
+      if ((value || '').trim()) {
+        if ((this.selectedLabels.filter(val => val.toLowerCase() == value.trim().toLowerCase()).length == 0)) {
           this.selectedLabels.push(value.trim());
-         }
-         else{
-           console.log(`label "${value}" already exists`);
-         }
-        
+        }
+        else {
+          console.log(`label "${value}" already exists`);
+        }
+
       }
 
       // Reset the input value
       if (input) {
         input.value = '';
       }
-    this.labels.setValue('')
+      this.labels.setValue('')
     }
 
   }
@@ -215,16 +216,16 @@ export class EditArticleComponent implements OnInit {
    * @param value value used to filter out label value
    */
   filterLabels(val: string | null): string[] {
-   
-    const matches = typeof val === 'string' ? this.allLabels.filter(label => label.toLowerCase().indexOf(val.toLowerCase())!= -1) : this.allLabels;
+
+    const matches = typeof val === 'string' ? this.allLabels.filter(label => label.toLowerCase().indexOf(val.toLowerCase()) != -1) : this.allLabels;
     return matches.filter(x => !this.selectedLabels.find(y => y === x));
   }
 
   /**
    * update field values 
    */
-  updateLables(val: string){
-    if(this.selectedLabels.length > 0)
+  updateLables(val: string) {
+    if (this.selectedLabels.length > 0)
       this.article_form.get('article_footer').get('labels').setValue(this.selectedLabels);
   }
 
@@ -240,11 +241,11 @@ export class EditArticleComponent implements OnInit {
     this.fetchUserSegmentList();
     this.fetchArticleAutoIncrementId();
     this.fetchArticleData();
-}
+  }
 
- /**
-   * Get list of all user article label objects from the database
-   */
+  /**
+    * Get list of all user article label objects from the database
+    */
   private fetchArticleLabels() {
     this.articleLabelsService.getArticleLabels()
       .subscribe((labels) => {
@@ -302,23 +303,26 @@ export class EditArticleComponent implements OnInit {
       this.setArticleObjValues(data);
       console.log(this.article_object)
       this.updateFormHeader();
+      this.updateFormFooter();
+      console.log(this.article_form.value)
       this.renderArticleForm();
     });
   }
 
   private setArticleObjValues(data: Article) {
     this.article_object = data;
-    this.article_object.body = Object.keys(JSON.parse(<string> data.body)).map((key) => { return { key: key, value: JSON.parse(<string>data.body)[key] }; });
-    this.article_object.author = JSON.parse(<string> data.author);
-    this.article_object.draft = JSON.parse(<string> data.draft);
-    this.article_object.review_state = JSON.parse(<string> data.review_state);
-    this.article_object.section = JSON.parse(<string> data.section);
+    this.article_object.body = Object.keys(JSON.parse(<string>data.body)).map((key) => { return { key: key, value: JSON.parse(<string>data.body)[key] }; });
+    this.article_object.author = JSON.parse(<string>data.author);
+    this.article_object.draft = JSON.parse(<string>data.draft);
+    this.article_object.review_state = JSON.parse(<string>data.review_state);
+    this.article_object.section = JSON.parse(<string>data.section);
+    this.article_object.label_names = JSON.parse(<string>data.label_names)
   }
 
 
-/**
- * Updates form header information
- */
+  /**
+   * Updates form header information
+   */
   private updateFormHeader() {
     this.article_form.controls.article_header.patchValue({
       title: this.article_object.title,
@@ -327,7 +331,19 @@ export class EditArticleComponent implements OnInit {
     });
   }
 
-  public updateArticle(){
+  /**
+ * Updates form footer information
+ */
+  private updateFormFooter() {
+    this.selectedLabels = this.selectedLabels.concat(this.article_object.label_names); 
+    this.article_form.controls.article_footer.patchValue({
+      segment: this.article_object.user_segment_id,
+      labels: this.article_object.label_names,
+
+    });
+  }
+
+  public updateArticle() {
 
     let article: Article = {
       id: this.article_object.id,
@@ -342,47 +358,46 @@ export class EditArticleComponent implements OnInit {
       review_state: { state: 'Non Technical Review State', value: 1 },
       updated_at: new Date(Date.now())
     }
-    this.articleService.updateArticle({'article': article})
-                       .subscribe((data) => {
-                        console.log(data)
-                        this.router.navigate(['/article/id/', article.id]);
-                       },
-                                  (error) => {
-                                    console.log(error)
-                        console.log(error.error_on_req)
-                        console.log(error.error)
-                                  })
+    this.articleService.updateArticle({ 'article': article })
+      .subscribe((data) => {
+        console.log(data)
+        this.router.navigate(['/article/id/', article.id]);
+      }, (error) => {
+        console.log(error)
+        console.log(error.error_on_req)
+        console.log(error.error)
+      })
   }
 
-  public fiterArticleBody(attribute, name: string)  : Object{
+  public fiterArticleBody(attribute, name: string): Object {
     return attribute.name == name;
   }
 
-    /**
-   * Event function : called when user selects a form from the select form dropdown menu,
-   *                  in create_article form 
-   */
+  /**
+ * Event function : called when user selects a form from the select form dropdown menu,
+ *                  in create_article form 
+ */
   protected renderArticleForm() {
 
-    
+
     let formFields: Article_Field[];
     this.articleFormsService.getArticleFormById(this.article_object.article_form_id.toString())
-                            .subscribe((form)=>{
-                              this.selectedForm = form;
-                              this.articleFieldService.listArticleFieldByIds(this.selectedForm.article_fields)
-                              .subscribe((fields) => {
-                                formFields = fields;
-                                formFields = this.UpdateFieldSequence(this.selectedForm, formFields);
-                                this.renderComponent(formFields);
-                              }, (error) => {
-                                console.log(error);
-                              })
-                            },(error) => {
-                              console.log(error);
-                            })
+      .subscribe((form) => {
+        this.selectedForm = form;
+        this.articleFieldService.listArticleFieldByIds(this.selectedForm.article_fields)
+          .subscribe((fields) => {
+            formFields = fields;
+            formFields = this.UpdateFieldSequence(this.selectedForm, formFields);
+            this.renderComponent(formFields);
+          }, (error) => {
+            console.log(error);
+          })
+      }, (error) => {
+        console.log(error);
+      })
 
-   
-}
+
+  }
 
 
 
@@ -396,8 +411,8 @@ export class EditArticleComponent implements OnInit {
     let formFieldsArranged: Article_Field[] = [];
     JSON.parse(selectedForm.article_fields).forEach(element => {
       formFieldsArranged.push(formFields.filter((field) => {
-      if (field.id == element)
-        return field;
+        if (field.id == element)
+          return field;
       })[0]);
     });
     formFields = formFieldsArranged;
@@ -413,7 +428,7 @@ export class EditArticleComponent implements OnInit {
     console.log(this.article_form.controls);
     let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
     this.dynamicFormTemplate = formBodyTemplate;
-    this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup>this.article_form.controls['article_body'], this.article_object);
+    this.dynamicFormComponent = this.createNewComponent(this.dynamicFormTemplate, formFields, <FormGroup>this.article_form.get('article_body'), this.article_object);
     this.dynamicFormModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicFormComponent));
   }
 
@@ -425,7 +440,7 @@ export class EditArticleComponent implements OnInit {
    */
   protected createComponentModule(componentType: any) {
     @NgModule({
-      imports: [MaterialModule, EditorModule, ReactiveFormsModule],
+      imports: [CommonModule, MaterialModule, EditorModule, ReactiveFormsModule],
       declarations: [
         componentType
       ],
@@ -447,7 +462,10 @@ export class EditArticleComponent implements OnInit {
 
     @Component({
       selector: 'dynamic-form-component',
-      template: formTemplate
+      template: formTemplate,
+      styles: [`.article-body-attr {
+                  padding: 10px 0px 10px 0px;
+                }`]
     })
     class DynamicFormComponent implements OnInit {
       template: any;
@@ -457,25 +475,42 @@ export class EditArticleComponent implements OnInit {
 
       ngOnInit() {
         this.template = template;
-        let fieldInformation = {}
-        console.log(fields);
-        if(Array.isArray(this.article.body)){
-          this.article.body.forEach(field => {
-          let field_name = field.key;
-          
-          this.article_body.addControl(field_name, new FormControl(field.value));
-        
-          
-          // fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
-        });
+        this.addFieldFormControls();
+        this.setArticleBodyValues();
       }
-        // this.article_body.addControl('fieldValues', new FormControl({}));
-        // this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
+      private addFieldFormControls() {
+        let fieldInformation = {}
+        fields.forEach(field => {
+
+          if (field.required) {
+            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl('',Validators.required));
+          } else {
+            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl(''));
+          }
+          fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
+        });
+
+        
+        this.article_body.addControl('fieldValues', new FormControl({}));
+        this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
+
+        
+        
       }
 
-      //  validateVals(){
-      //    console.log(this.article_body.value)
-      //  }
+
+      
+
+      /**
+       * Sets article form body values
+       */
+      private setArticleBodyValues() {
+        if (Array.isArray(this.article.body)) {
+          this.article.body.forEach(field => {
+            this.article_body.get(field.key).setValue(field.value);
+          });
+        }
+      }
 
       updateFieldValueArray(event) {
         let values = {};

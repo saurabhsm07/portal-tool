@@ -117,7 +117,7 @@ export class CreateArticleComponent implements OnInit {
   
       // }),
       article_footer: this.fb.group({
-        segment: ['', [Validators.required]],
+        user_segment: ['', [Validators.required]],
         labels: [[]]
       })
   
@@ -145,7 +145,7 @@ export class CreateArticleComponent implements OnInit {
   get title()   { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
-  get segment()    { return this.article_form.get('article_footer').get('segment'); }  //return current user segment selected in the article form
+  get segment()    { return this.article_form.get('article_footer').get('user_segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_footer').get('labels'); }
 
 
@@ -311,13 +311,13 @@ export class CreateArticleComponent implements OnInit {
       title: this.article_form.value.article_header.title,
       section: {
         id: this.article_form.value.article_header.section,
-        name: this.sectionList.find(section => section.id == this.article_form.value.article_header.section)[0].name
+        name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
       },
       author: { id: 112323, name: 'saurabh' },
       draft: { status: true, type: 'Draft' },
-      labels: this.article_form.value.article_footer.labels,
+      label_names: this.article_form.value.article_footer.labels,
       article_form_id: this.article_form.value.article_header.form,
-      user_segment_id: this.article_form.value.article_header.segment,
+      user_segment_id: this.article_form.value.article_footer.user_segment,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
       created_at: new Date(Date.now()),
@@ -450,9 +450,7 @@ export class CreateArticleComponent implements OnInit {
         this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
       }
 
-      //  validateVals(){
-      //    console.log(this.article_form.value)
-      //  }
+
 
       updateFieldValueArray(event) {
         let values = {};
