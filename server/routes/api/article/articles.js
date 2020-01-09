@@ -79,7 +79,7 @@ articles.get('/max/id', (req, res) => {
  * POST: api path to create a article record to the database.
  */
 articles.post('/', (req, res) => {
-    
+    console.log(req.body.article)
     const data = {
         url: 'http://localhost:4200/article/',
         html_url: 'http://localhost:5000/api/article/',
@@ -95,7 +95,7 @@ articles.post('/', (req, res) => {
         up_vote: 0,
         down_vote: 0,
         section: req.body.article.section,
-        user_segment_id: req.body.article.user_segment,
+        user_segment_id: req.body.article.user_segment_id,
         label_names: req.body.article.label_names,
         permission_group_id: 1526652,
         created_at: req.body.article.created_at,
@@ -132,10 +132,10 @@ articles.put('/', (req, res) => {
         up_vote: 12,
         down_vote: 0,
         section: JSON.parse(req.body.article.section),
-        user_segment_id: 624226,
+        user_segment_id: req.body.article.user_segment_id,
         permission_group_id: 1526652,
-        updated_at: req.body.article.updatedAt,
-        edited_at:  req.body.article.updatedAt,
+        updated_at: req.body.article.updated_at,
+        edited_at:  req.body.article.updated_at,
         review_state: req.body.article.review_state
     }
 

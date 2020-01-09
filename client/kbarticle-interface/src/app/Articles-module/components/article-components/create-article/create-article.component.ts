@@ -324,7 +324,7 @@ export class CreateArticleComponent implements OnInit {
       updated_at: new Date(Date.now())
     }
 
-
+    console.log(articleObj)
     this.articleService.postArticle({ 'article': articleObj })
       .subscribe((data) => {
         console.log("succesfully created the article");
