@@ -118,7 +118,8 @@ export class CreateArticleComponent implements OnInit {
       // }),
       article_footer: this.fb.group({
         user_segment: ['', [Validators.required]],
-        labels: [[]]
+        labels: [[]],
+        submit_as: ['']
       })
   
     });
@@ -147,7 +148,7 @@ export class CreateArticleComponent implements OnInit {
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
   get segment()    { return this.article_form.get('article_footer').get('user_segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_footer').get('labels'); }
-
+  get submit_as() { return this.article_form.get('article_footer').get('submit_as'); }
 
 
   /**
