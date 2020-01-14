@@ -78,14 +78,14 @@ $submit-btn-color: #00bcd4;
         grid-column-end: 4;
     }
     small{
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 3;
         float: right;
     }
    
     div{
         border: 1px solid grey;
-        margin: 5px 20px 5px 20px;
+        margin: 5px 10px 5px 10px;
         
         display: inline-grid;
         span{
@@ -111,6 +111,7 @@ $submit-btn-color: #00bcd4;
     justify-items: end ;
     padding-bottom: 10px;
     padding-top: 10px;
+    
     // display: flex;
     button{
         // text-align: right;
@@ -123,16 +124,17 @@ $submit-btn-color: #00bcd4;
     border-top: 1px grey dotted;
     border-bottom: 1px grey dotted;
     grid-template-columns: auto auto auto;
-    padding-top:20px;
-    padding-bottom: 20px;
+    padding-top:15px;
+    padding-bottom: 50px;
     small{
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 4;
     }
     div{
         grid-column-start: 1;
         grid-column-end: 4;
-        padding-top:10px;
-        padding-bottom:10px;
+        padding-top:3px;
+        padding-bottom:3px;
+        margin-left: 5px;
     }
 }

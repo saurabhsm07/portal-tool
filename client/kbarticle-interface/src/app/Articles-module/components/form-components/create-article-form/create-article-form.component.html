@@ -5,7 +5,7 @@
                 <h4> Article Form : </h4>
                 <form>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Form Name</label>
+                          <label>Form Name</label>
                           <input [formControl] = 'form_name' type="text" class="form-control" name="formName"  placeholder="Enter form name">
 
                           <span *ngIf="form_name.invalid && (form_name.dirty || form_name.touched)" class="alert alert-danger">
@@ -33,33 +33,15 @@
                 <div class="  col-md-11">
                            <span>
                                 <i class="fa fa-caret-square-o-down"></i>
-                                <p> Article Section</p>
+                                <p> Article Form</p>
                            </span>
                 </div>
                 <div class=" col-md-11">
                            <span>
                                 <i class="fa fa-list"></i>
-                                <p> Product Versions</p>
+                                <p> Article Section</p>
                            </span>
                 </div>
-                <div class=" col-md-11">
-                           <span >
-                                <i class="fa fa-list"></i>
-                                <p> Operating Systems</p>
-                           </span>
-                </div>
-                <div class=" col-md-11 referenceField">
-                        <span >
-                             <i class="fa fa-text-width"></i>
-                             <p> Ticket Id</p>
-                        </span>
-             </div>
-             <div class=" col-md-11">
-                    <span >
-                         <i class="fa fa-text-width"></i>
-                         <p>Jira Ticket Id</p>
-                    </span>
-         </div>
         </div>
         <div class="col-md-12 form-custom-div">
                 <small>Drag fields from the fields section to customise form</small>
@@ -77,7 +59,25 @@
             </div>
         </div>
         </div>
-     
+     <div class="form-required-div col-md-12">
+                <small>Fields in this section cannot be changed</small>
+        <div class="title-req-field col-md-8">
+                <span>
+                     <i class="fa fa-caret-square-o-down"></i>
+                     <p> Article Labels</p>
+                </span>
+     </div>
+
+     <div class="title-req-field col-md-8">
+        <span>
+             <i class="fa fa-caret-square-o-down"></i>
+             <p> User Segments</p>
+        </span>
+</div>
+     </div>
+     <div class="submit-form-div col-md-12">
+                <button class="col-md-2" mat-raised-button color="primary" (click)="createForm($event)" [disabled] = 'form_name.invalid'>Submit Form</button>
+        </div>
        </div>
        
        <div class="col-md-4 ">
@@ -99,9 +99,7 @@
         </div>
           
        </div>
-       <div class="submit-form-div col-md-8">
-        <button class="col-md-2" mat-raised-button color="primary" (click)="createForm($event)" [disabled] = 'form_name.invalid'>Submit Form</button>
-</div>
+
      
 </div>
 

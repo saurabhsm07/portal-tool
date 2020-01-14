@@ -93,11 +93,18 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="update-article col-md-12">
+                <button mat-button type="submit" color="primary">Update Article</button>
+                <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+                <mat-slide-toggle
+                formControlName="submit_as"
+                class="submit-as-slider"
+                color=warn>
+              Publish
+            </mat-slide-toggle>
+              </div>
           </div>
-          <div class="update-article col-md-12">
-            <button mat-button type="submit" color="primary">Update Article</button>
-            <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button>
-          </div>
+
         </div>
 
 

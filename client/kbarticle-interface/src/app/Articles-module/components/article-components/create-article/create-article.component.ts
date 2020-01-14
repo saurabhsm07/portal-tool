@@ -315,7 +315,7 @@ export class CreateArticleComponent implements OnInit {
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
       },
       author: { id: 112323, name: 'saurabh' },
-      draft: { status: true, type: 'Draft' },
+      draft: this.submit_as.value? {status: false, type: 'publish'} : {status: true, type: 'draft'} ,
       label_names: this.article_form.value.article_footer.labels,
       article_form_id: this.article_form.value.article_header.form,
       user_segment_id: this.article_form.value.article_footer.user_segment,

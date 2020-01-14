@@ -9,6 +9,9 @@ const fields = require('./form data/fields');
 const forms = require('./form data/forms');
 const labels = require('./labels/labels');
 
+const preprocessors = require('./../../../middleware/preprocessors');
+
+
 /**
  * GET: api path to get list of articles from the database.
  */
@@ -39,7 +42,8 @@ articles.get('/id/:id', (req, res) => {
            .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched Article with id : ${data[0].id}`);
-                    res.status(200).send(data[0]);
+                    const article_obj = preprocessors.processArticleObj(data[0]);
+                    res.status(200).send(article_obj);
                 }
                 else{
                     console.log(`Article with id : ${req.params.id} does not exist`);
@@ -131,7 +135,7 @@ articles.put('/', (req, res) => {
         position: 0,
         up_vote: 12,
         down_vote: 0,
-        section: JSON.parse(req.body.article.section),
+        section: req.body.article.section,
         user_segment_id: req.body.article.user_segment_id,
         label_names: req.body.article.label_names,
         permission_group_id: 1526652,

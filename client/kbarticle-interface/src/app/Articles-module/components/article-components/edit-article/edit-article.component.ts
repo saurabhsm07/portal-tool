@@ -126,7 +126,8 @@ export class EditArticleComponent implements OnInit {
     // }),
     article_footer: this.fb.group({
       user_segment: ['', [Validators.required]],
-      labels: [[]]
+      labels: [[]],
+      submit_as: ['']
     })
 
   });
@@ -155,6 +156,8 @@ export class EditArticleComponent implements OnInit {
   get form() { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
   get segment() { return this.article_form.get('article_footer').get('user_segment'); }  //return current user segment selected in the article form
   get labels() { return this.article_form.get('article_footer').get('labels'); }
+  get submit_as() { return this.article_form.get('article_footer').get('submit_as'); }
+
 
   /**
      *  add a article label to the labels array in article form
@@ -312,12 +315,8 @@ export class EditArticleComponent implements OnInit {
 
   private setArticleObjValues(data: Article) {
     this.article_object = data;
-    this.article_object.body = Object.keys(JSON.parse(<string>data.body)).map((key) => { return { key: key, value: JSON.parse(<string>data.body)[key] }; });
-    this.article_object.author = JSON.parse(<string>data.author);
-    this.article_object.draft = JSON.parse(<string>data.draft);
-    this.article_object.review_state = JSON.parse(<string>data.review_state);
-    this.article_object.section = JSON.parse(<string>data.section);
-    this.article_object.label_names = JSON.parse(<string>data.label_names)
+    this.article_object.body = Object.keys(data.body).map((key) => { return { key: key, value: data.body[key] }; });
+
   }
 
 
@@ -340,6 +339,7 @@ export class EditArticleComponent implements OnInit {
     this.article_form.controls.article_footer.patchValue({
       user_segment: this.article_object.user_segment_id,
       labels: this.article_object.label_names,
+      submit_as: !this.article_object.draft.status,
 
     });
   }
@@ -348,12 +348,12 @@ export class EditArticleComponent implements OnInit {
     const article: Article = {
       id: this.article_object.id,
       title: this.article_form.value.article_header.title,
-      section: JSON.stringify({
+      section: {
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
-      }),
+      },
       author: { id: 112323, name: 'saurabh' },
-      draft: { status: true, type: 'Draft' },
+      draft: this.submit_as.value? {status: false, type: 'publish'} : {status: true, type: 'draft'} ,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
       label_names: this.article_form.value.article_footer.labels,
