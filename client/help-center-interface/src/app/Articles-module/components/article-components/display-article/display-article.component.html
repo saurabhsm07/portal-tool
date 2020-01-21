@@ -5,6 +5,7 @@
           {{article_object.title}}
       </h1>
   </div>
+  <ng-container *ngIf="article_object.article_form_id != 0; else new_design_template">
  <div *ngIf="fieldValues" class="article-body col-md-9">
    <span *ngFor="let obj of article_object.body">
      <span *ngIf="(obj.key!= 'fieldValues' && obj.key!= 'fieldInformation')">
@@ -20,12 +21,19 @@
 
    </span>
  </div>
+</ng-container>
+<ng-template #new_design_template>
+  <div class="article-body col-md-9">
+      <span [innerHtml] = "article_object.body"></span>
+  </div>
+
+</ng-template >
  <div class="article-sidebar col-md-3">
    <div class="kb-article-opt">
       <button type="button" class="btn btn-primary" (click)="editArticle()">Edit</button>
       <button type="button" class="btn btn-primary">Delete</button>
   </div>
-   <span class="review_state">Status : <span> {{article_object.review_state.state}}</span></span>
+   <span *ngIf="article_object.review_state != null" class="review_state">Status : <span> {{article_object.review_state.state}}</span></span>
   <span>
     <h3 class="col-md-12">Document Id:</h3>
     <p class="col-md-12">{{article_object.id}}</p>

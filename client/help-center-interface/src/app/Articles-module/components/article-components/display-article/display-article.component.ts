@@ -36,7 +36,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
     
     this.article$.subscribe((data : Article) => {
       this.article_object = data;
-      this.article_object.body = Object.keys(data.body).map((key) => { return { key: key, value: data.body[key] }; });
+      // this.article_object.body = Object.keys(data.body).map((key) => { return { key: key, value: data.body[key] }; });
       console.log(this.article_object);
 
       if(Array.isArray(this.article_object.body)){
