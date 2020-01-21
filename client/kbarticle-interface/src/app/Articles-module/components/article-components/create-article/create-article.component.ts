@@ -112,11 +112,14 @@ export class CreateArticleComponent implements OnInit {
         title: ['', [Validators.required]],
         form: ['', [Validators.required]],
         section: ['', [Validators.required]],
-        segment: ['', [Validators.required]],
-        labels: [[]]
       }),
-      article_body: this.fb.group({
+      // article_body: this.fb.group({
   
+      // }),
+      article_footer: this.fb.group({
+        user_segment: ['', [Validators.required]],
+        labels: [[]],
+        submit_as: ['']
       })
   
     });
@@ -143,9 +146,9 @@ export class CreateArticleComponent implements OnInit {
   get title()   { return this.article_form.get('article_header').get('title'); }
   get section() { return this.article_form.get('article_header').get('section'); }
   get form()    { return this.article_form.get('article_header').get('form'); }  //return current form selected in the article form
-  get segment()    { return this.article_form.get('article_header').get('segment'); }  //return current user segment selected in the article form
-  get labels() { return this.article_form.get('article_header').get('labels'); }
-
+  get segment()    { return this.article_form.get('article_footer').get('user_segment'); }  //return current user segment selected in the article form
+  get labels() { return this.article_form.get('article_footer').get('labels'); }
+  get submit_as() { return this.article_form.get('article_footer').get('submit_as'); }
 
 
   /**
@@ -217,8 +220,8 @@ export class CreateArticleComponent implements OnInit {
    * update field values 
    */
   updateLables(val: string){
-    console.log(this.selectedLabels)
-    this.article_form.get('article_header').get('labels').setValue(this.selectedLabels);
+    if(this.selectedLabels.length > 0)
+      this.article_form.get('article_footer').get('labels').setValue(this.selectedLabels);
   }
 
   ngOnInit() {
@@ -307,23 +310,23 @@ export class CreateArticleComponent implements OnInit {
   
     let articleObj: Article = {
       title: this.article_form.value.article_header.title,
-      section: JSON.stringify({
+      section: {
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
-      }),
+      },
       author: { id: 112323, name: 'saurabh' },
-      draft: { status: true, type: 'Draft' },
-      labels: this.article_form.value.article_header.labels,
+      draft: this.submit_as.value? {status: false, type: 'publish'} : {status: true, type: 'draft'} ,
+      label_names: this.article_form.value.article_footer.labels,
       article_form_id: this.article_form.value.article_header.form,
-      user_segment_id: this.article_form.value.article_header.segment,
+      user_segment_id: this.article_form.value.article_footer.user_segment,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },
       created_at: new Date(Date.now()),
       updated_at: new Date(Date.now())
     }
 
-
-    this.articleService.postArticle({ 'article': articleObj })
+    console.log(articleObj)
+    this.articleService.postArticle( articleObj)
       .subscribe((data) => {
         console.log("succesfully created the article");
         this.router.navigate(['/articles/list']);
@@ -448,9 +451,7 @@ export class CreateArticleComponent implements OnInit {
         this.article_body.addControl('fieldInformation', new FormControl(fieldInformation));
       }
 
-      //  validateVals(){
-      //    console.log(this.article_form.value)
-      //  }
+
 
       updateFieldValueArray(event) {
         let values = {};

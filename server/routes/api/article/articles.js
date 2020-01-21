@@ -9,6 +9,9 @@ const fields = require('./form data/fields');
 const forms = require('./form data/forms');
 const labels = require('./labels/labels');
 
+const preprocessors = require('./../../../middleware/preprocessors');
+
+
 /**
  * GET: api path to get list of articles from the database.
  */
@@ -39,7 +42,8 @@ articles.get('/id/:id', (req, res) => {
            .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched Article with id : ${data[0].id}`);
-                    res.status(200).send(data[0]);
+                    const article_obj = preprocessors.processArticleObj(data[0]);
+                    res.status(200).send(article_obj);
                 }
                 else{
                     console.log(`Article with id : ${req.params.id} does not exist`);
@@ -79,7 +83,7 @@ articles.get('/max/id', (req, res) => {
  * POST: api path to create a article record to the database.
  */
 articles.post('/', (req, res) => {
-    
+    console.log(req.body)
     const data = {
         url: 'http://localhost:4200/article/',
         html_url: 'http://localhost:5000/api/article/',
@@ -96,7 +100,7 @@ articles.post('/', (req, res) => {
         down_vote: 0,
         section: req.body.article.section,
         user_segment_id: req.body.article.user_segment_id,
-        label_names: req.body.article.labels,
+        label_names: req.body.article.label_names,
         permission_group_id: 1526652,
         created_at: req.body.article.created_at,
         updated_at: req.body.article.updated_at,
@@ -131,21 +135,19 @@ articles.put('/', (req, res) => {
         position: 0,
         up_vote: 12,
         down_vote: 0,
-        section: JSON.parse(req.body.article.section),
-        user_segment_id: 624226,
+        section: req.body.article.section,
+        user_segment_id: req.body.article.user_segment_id,
+        label_names: req.body.article.label_names,
         permission_group_id: 1526652,
-        updated_at: req.body.article.updatedAt,
-        edited_at:  req.body.article.updatedAt,
+        updated_at: req.body.article.updated_at,
+        edited_at:  req.body.article.updated_at,
         review_state: req.body.article.review_state
     }
 
     Article.findAll({where : {id: req.body.article.id}})
            .then((article_obj)=> {
                if(article_obj.length == 1){
-                   if(updateData.label_names){
-                     updateData.label_names = Array.from(new Set (updateData.label_names.concat(article_obj[0].dataValues.label_names)))
-                   }
-                   Article.update(updateData, {where : {id: req.body.article.id}})
+                            Article.update(updateData, {where : {id: req.body.article.id}})
                           .then((data) => {
                             if(data == 1){
                                 console.log('update successfull');

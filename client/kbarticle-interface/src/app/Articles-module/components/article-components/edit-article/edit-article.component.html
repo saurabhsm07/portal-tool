@@ -1,55 +1,114 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class = "create_article_div offset-md-1 col-md-10">
-            <h4>Update Article</h4>
-            <form [formGroup] = 'article_form'  (ngSubmit)="updateArticle()">
-                <div class ="form-row">
-                  <div formGroupName ='article_header' class = "article_form_header col-md-12">
-                    <div class="col-md-12 form-group">
-                      <mat-form-field class="col-md-12">
-                        <input matInput formControlName= 'title' placeholder="Article Title">
-                      </mat-form-field>
-
-
-                    </div>
-                      <div class="col-md-12 form-row">
-                        <div *ngIf="selectedForm" class="col-md-6">
-                          <mat-form-field class="col-md-10">
-                            <mat-label>Article Form</mat-label>
-                            <mat-select formControlName = 'form' >
-                              <mat-option [value]="selectedForm.id">{{selectedForm.name}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                          <mat-form-field class="col-md-10">
-                           <mat-label>Section</mat-label>
-                           <mat-select formControlName = 'section'>
-                             <mat-option>None</mat-option>
-                             <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
-                           </mat-select>
-                         </mat-form-field>
-                         </div>
-                      </div>
-                      </div>
-                      <mat-form-field *ngIf = "article_form.get('title1')" class="col-md-12">
-                        <input matInput formControlName= 'title1' placeholder="Article Title 1">
-                      </mat-form-field>
-                      <div *ngIf = "article_form.get('article_body')"  class="article_form_body col-md-12">
-
-                        <ng-container *ngComponentOutlet="dynamicFormComponent;
-                        ngModuleFactory: dynamicFormModule;"></ng-container>
-      
-
+  <div class="row">
+    <div class="update_article_div offset-md-1 col-md-10">
+      <h4>Update Article</h4>
+      <form [formGroup]='article_form' (ngSubmit)="updateArticle()">
+        <div class="form-row">
+          <div formGroupName='article_header' class="article_form_header col-md-12">
+            <div class="col-md-12 form-group">
+              <mat-form-field class="col-md-12">
+                <input matInput formControlName='title' placeholder="Article Title">
+              </mat-form-field>
+              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+                <small *ngIf="title.errors.required">
+                  Article Title required
+                </small>
               </div>
-            <div class="update-article col-md-12" >
-                <button mat-button type="submit" color="primary">Update Article</button>
-                <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+            </div>
+            <div class="col-md-12 form-row">
+              <div *ngIf="selectedForm" class="col-md-6">
+                <mat-form-field class="col-md-10">
+                  <mat-label>Article Form</mat-label>
+                  <mat-select formControlName='form'>
+                    <mat-option [value]="selectedForm.id">{{selectedForm.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="col-md-10">
+                  <mat-label>Section</mat-label>
+                  <mat-select formControlName='section'>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let section of sectionList" [value]="section.id">{{section.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="section.invalid && (section.dirty || section.touched)" class="alert alert-danger">
+                  <small *ngIf="section.errors.required">
+                    Select Section
+                  </small>
+                </div>
+              </div>
             </div>
           </div>
-          
+          <div *ngIf="article_form.get('article_body')" class="article_form_body col-md-12">
 
-        </form>
-        </div>    
+            <ng-container *ngComponentOutlet="dynamicFormComponent;
+                        ngModuleFactory: dynamicFormModule;">
+            </ng-container>
+          </div>
+          <div *ngIf="article_form.get('article_body')" formGroupName="article_footer" class="article_form_footer col-md-12">
+            <div class="col-md-12 form-row">
+              <div class="col-md-6">
+                <mat-form-field class="col-md-10">
+                  <mat-label>Select User Segment</mat-label>
+                  <mat-select formControlName='user_segment'>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let segment of userSegmentList" [value]="segment.id">{{segment.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="segment.invalid && (segment.dirty || segment.touched)" class="alert alert-danger">
+                  <small *ngIf="segment.errors.required">
+                    Select segment form
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 form-row">
+              <div *ngIf="labelList" class="col-md-10">
+                <mat-form-field class="labels-chip-list" (focusout)="updateLables()">
+                  <mat-chip-list #chipList aria-label="Label selection">
+                    <mat-chip 
+                      *ngFor="let label of selectedLabels" 
+                      [selectable]="true" 
+                      [removable]="true" 
+                      (removed)="removeLabel(label)">
+                      {{label}}
+                      <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input 
+                        #labelInput 
+                        formControlName="labels" 
+                        placeholder="Article Labels" 
+                        [matAutocomplete]="auto" 
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                        [matChipInputAddOnBlur]="false" 
+                        (matChipInputTokenEnd)="addLabel($event)">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedLabel($event);">
+                    <mat-option *ngFor="let label of filteredLabels | async" [value]="label">
+                      {{label}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="update-article col-md-12">
+                <button mat-button type="submit" color="primary">Update Article</button>
+                <!-- <button mat-button type="button" color="yellow" (click) = "validateData()" >Validate Data</button> -->
+                <mat-slide-toggle
+                formControlName="submit_as"
+                class="submit-as-slider"
+                color=warn>
+              Publish
+            </mat-slide-toggle>
+              </div>
+          </div>
+
+        </div>
+
+
+      </form>
     </div>
- </div>
+  </div>
+</div>

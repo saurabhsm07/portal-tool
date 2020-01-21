@@ -23,15 +23,28 @@ mat-radio-button{
   padding-bottom: $pad-ten;
 }
 
-.create-article > button {
-  background-color: $createArticleBackCol;
-  color: white
-  
-}
+// .create-article > 
   
 .create-article {
   padding: $pad-ten $pad-ten $pad-ten $pad-ten;
   text-align: center;
+  button {
+    background-color: $createArticleBackCol;
+    color: white;
+ }
+
+ .mat-button{
+  height: 40px;
+ }
+  .mat-icon-button {
+    border-radius: 12%;
+    margin-left: 5px;
+  }
+
+  .submit-as-slider{
+    margin-left: 10px;
+    margin-top: 5px;
+  }
 }
 
 .article-body-attr{
@@ -49,7 +62,7 @@ mat-radio-button{
   border: 1px solid rgba(174, 174, 181, 0.58);
 }
 
-.example-chip-list {
+.labels-chip-list {
   width: 100%;
 }
 

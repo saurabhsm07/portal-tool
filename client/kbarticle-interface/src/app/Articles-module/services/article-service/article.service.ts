@@ -31,8 +31,8 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  postArticle({article: Article}) : Observable<Article> {
-    return this.http.post<Article>(this.requestUri.postArticle, {article : Article} , this.headersOptions)
+  postArticle(article: Article) : Observable<Article> {
+    return this.http.post<Article>(this.requestUri.postArticle, {article: article}  , this.headersOptions)
                     .pipe(catchError(ArticleRequestErrorHandlersService.postArticleError));
 
   }
@@ -52,8 +52,8 @@ export class ArticleService {
                 .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
   }
 
-  updateArticle({article: Article}): Observable<Article>{
-    return this.http.put<Article>(this.requestUri.updateArticle, {article : Article}, this.headersOptions)
+  updateArticle(article: Article): Observable<Article>{
+    return this.http.put<Article>(this.requestUri.updateArticle,{article: article}, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.putArticleError))
   }
 

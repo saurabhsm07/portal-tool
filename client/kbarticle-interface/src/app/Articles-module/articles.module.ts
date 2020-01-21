@@ -38,7 +38,6 @@ import { ListArticleFormComponent } from './components/form-components/list-arti
 import { SearchFieldPipe } from './pipes/search-article-field/search-field.pipe';
 import { SearchArticleFormPipe } from './pipes/search-article-form/search-article-form.pipe';
 import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
-import { SearchArticleLabelPipe } from './pipes/search-article-label/search-article-label.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +58,6 @@ import { SearchArticleLabelPipe } from './pipes/search-article-label/search-arti
     ListArticleFormComponent,
     SearchArticleFormPipe,
     SearchArticlePipe,
-    SearchArticleLabelPipe,
   ],
   imports: [
     BrowserModule,

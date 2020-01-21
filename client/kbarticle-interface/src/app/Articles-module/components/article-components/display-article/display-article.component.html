@@ -1,12 +1,12 @@
 <div class="container-fluid">
-<div *ngIf = "articleObj" class="display-article-home row">
+<div *ngIf = "article_object" class="display-article-home row">
   <div class="article-header col-md-12">
       <h1 class="article-title">
-          {{articleObj.title}}
+          {{article_object.title}}
       </h1>
   </div>
  <div *ngIf="fieldValues" class="article-body col-md-9">
-   <span *ngFor="let obj of articleObj.body">
+   <span *ngFor="let obj of article_object.body">
      <span *ngIf="(obj.key!= 'fieldValues' && obj.key!= 'fieldInformation')">
         <h3 class="body-title col-md-12">{{obj.key}}</h3>
         <span *ngIf="(fieldValues[obj.value]); else displayVal">
@@ -25,22 +25,22 @@
       <button type="button" class="btn btn-primary" (click)="editArticle()">Edit</button>
       <button type="button" class="btn btn-primary">Delete</button>
   </div>
-   <span class="review_state">Status : <span> {{articleObj.review_state.state}}</span></span>
+   <span class="review_state">Status : <span> {{article_object.review_state.state}}</span></span>
   <span>
     <h3 class="col-md-12">Document Id:</h3>
-    <p class="col-md-12">{{articleObj.id}}</p>
+    <p class="col-md-12">{{article_object.id}}</p>
   </span>
  </div> 
  <div class="col-md-12 article-footer">
-   <span>Created By : <a class="creator-name" href="">{{articleObj.author.name}}</a> - <span class="update-time">{{articleObj.updated_at | date: 'medium'}}</span></span>
+   <span>Created By : <a class="creator-name" href="">{{article_object.author.name}}</a> - <span class="update-time">{{article_object.updated_at | date: 'medium'}}</span></span>
  </div>
 </div>
 </div>
 
 <!-- edit article modal starts -->
-<!-- <div *ngIf="articleObj" class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div *ngIf="article_object" class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     
-         <app-edit-article [article] = articleObj (articleChange) = "this.articleObjVal = $event"></app-edit-article>
+         <app-edit-article [article] = article_object (articleChange) = "this.article_objectVal = $event"></app-edit-article>
        
   </div> -->
   <!-- edit article modal ends -->

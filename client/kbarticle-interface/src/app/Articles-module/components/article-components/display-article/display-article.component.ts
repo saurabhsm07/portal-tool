@@ -15,7 +15,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
 
   article$: Observable<Article>;
   @Input()
-  articleObj : Article;
+  article_object : Article;
   
 
 
@@ -35,20 +35,17 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
     );
     
     this.article$.subscribe((data : Article) => {
-      this.articleObj = data
-      this.articleObj.body = Object.keys(JSON.parse(<string> data.body)).map((key) => { return {key: key, value: JSON.parse(<string> data.body)[key]}});
-      this.articleObj.author = JSON.parse(<string> data.author)
-      this.articleObj.draft = JSON.parse(<string> data.draft)
-      this.articleObj.review_state = JSON.parse(<string> data.review_state)
-      console.log(this.articleObj)
+      this.article_object = data;
+      this.article_object.body = Object.keys(data.body).map((key) => { return { key: key, value: data.body[key] }; });
+      console.log(this.article_object);
 
-      if(Array.isArray(this.articleObj.body)){
-        this.fieldInformation = this.articleObj.body.filter(obj => obj.key == "fieldInformation")[0].value;
-        this.fieldValues = this.articleObj.body.filter(obj => obj.key == "fieldValues")[0].value;
+      if(Array.isArray(this.article_object.body)){
+        this.fieldInformation = this.article_object.body.filter(obj => obj.key == "fieldInformation")[0].value;
+        this.fieldValues = this.article_object.body.filter(obj => obj.key == "fieldValues")[0].value;
       }
 
-    if(Array.isArray(this.articleObj.body)){
-      this.articleObj.body.forEach(element => {
+    if(Array.isArray(this.article_object.body)){
+      this.article_object.body.forEach(element => {
         if(Array.isArray(element.value)){
           element.value = element.value.map(ele => this.fieldValues[ele])
         }
@@ -67,15 +64,15 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
   }
 
   preProcessArticleData(article){
-    this.articleObj = article
-    this.articleObj.body = JSON.parse(<string> article.body)
-    this.articleObj.author = JSON.parse(<string> article.author)
-    this.articleObj.draft = JSON.parse(<string> article.draft)
-    this.articleObj.review_state = JSON.parse(<string> article.review_state)
+    this.article_object = article
+    this.article_object.body = JSON.parse(<string> article.body)
+    this.article_object.author = JSON.parse(<string> article.author)
+    this.article_object.draft = JSON.parse(<string> article.draft)
+    this.article_object.review_state = JSON.parse(<string> article.review_state)
   }
 
   editArticle(){
-    this.router.navigate(['/article/edit/id/'+this.articleObj.id])
+    this.router.navigate(['/article/edit/id/'+this.article_object.id])
   }
 
 }
