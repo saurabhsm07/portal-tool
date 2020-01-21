@@ -104,10 +104,10 @@ export class EditSegmentComponent implements OnInit {
                 this.segment_form.setValue({
                   name: this.userSegment.name,
                   user_type: this.userSegment.user_type.toString(),
-                  organization_ids: JSON.parse(this.userSegment.organization_ids),
-                  tags: JSON.parse(this.userSegment.tags),
-                  or_tags: JSON.parse(this.userSegment.or_tags),
-                  group_ids: JSON.parse(this.userSegment.group_ids)
+                  organization_ids: this.userSegment.organization_ids,
+                  tags: this.userSegment.tags,
+                  or_tags: this.userSegment.or_tags,
+                  group_ids: this.userSegment.group_ids
                 })
 
                 console.log(this.segment_form.value)

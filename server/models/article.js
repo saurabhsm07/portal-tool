@@ -43,10 +43,10 @@ const Article = client.define('Articles', {
                                             position: {
                                                 type: Sequelize.NUMBER
                                             },
-                                            up_vote: {
+                                            vote_sum: {
                                                 type: Sequelize.NUMBER
                                             },
-                                            down_vote: {
+                                            vote_count: {
                                                 type: Sequelize.NUMBER
                                             },
                                             section: {
