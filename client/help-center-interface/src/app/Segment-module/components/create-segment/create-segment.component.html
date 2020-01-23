@@ -51,7 +51,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <mat-label>Select (And) Tags</mat-label>
                         <mat-select formControlName="tags" multiple>
                             <mat-option>None</mat-option>
@@ -61,8 +61,19 @@
                                 </ng-container>
                             </ng-container>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
+                    <mat-form-field>
+                        <mat-select formControlName ="tags" placeholder="Tagsssss" [multiple]="true" #multiSelect>
+                                    <ngx-mat-select-search [formControl]="tagsMultiFilterControl"></ngx-mat-select-search>
+                           <ng-container  >
+                                <mat-option *ngFor="let tag of filteredTagsMulti | async" value={{tag.id}}>
+                                        {{tag.tag_name}}
+                                      </mat-option>
+                           </ng-container>
+        
+                        </mat-select>
+                      </mat-form-field>
                 </div>
 
 
@@ -73,14 +84,14 @@
                     <h6> Users and organizations matching Any of these tags</h6>
                     <p>Users must have any of the tags to be included.</p>
                 </div>
-                <div class="col-md-4">
+                <div *ngIf = 'tagList' class="col-md-4">
                     <mat-form-field>
                         <mat-label>Select (Or) Tags</mat-label>
                         <mat-select formControlName="or_tags" multiple>
                             <mat-option>None</mat-option>
                             <ng-container *ngIf="tagList">
                                 <ng-container *ngFor="let tag of tagList">
-                                    <mat-option value={{tag.id}}>{{tag.name}}</mat-option>
+                                    <mat-option value={{tag.id}}>{{tag.tag_name}}</mat-option>
                                 </ng-container>
                             </ng-container>
                         </mat-select>

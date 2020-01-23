@@ -6,7 +6,12 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { Segment } from './../../classes/segment';
+import { Organization } from './../../classes/organization';
+import { Tag } from './../../classes/tag';
 import { SegmentService } from './../../services/segment-service/segment.service';
+import { OrganizationService } from './../../services/organization-service/organization.service';
+import { TagService } from './../../services/tag-service/tag.service';
+
 import { CustomValidators } from './../../../imports/custom-form-validators'
 
 
@@ -45,37 +50,18 @@ export class EditSegmentComponent implements OnInit {
   get tags() {return this.segment_form.get('or_tags');}
   get user_type() {return this.segment_form.get('user_type');}
 
-
-
     //dummy data values for organizations and tags
-    private organizationList = [
-      {id: 1, name: 'org-1'},
-      {id: 2, name: 'org-2'},
-      {id: 3, name: 'org-3'},
-      {id: 4, name: 'org-4'},
-      {id: 5, name: 'org-5'},
-      {id: 6, name: 'org-6'},
-      {id: 7, name: 'org-7'},
-      {id: 8, name: 'org-8'},
-      {id: 9, name: 'org-9'},
-      {id: 10, name: 'org-10'},
-    ]
+    private organizationList : Organization[];
 
-    private tagList = [
-      {id: 1, name: 'tag-1'},
-      {id: 2, name: 'tag-2'},
-      {id: 3, name: 'tag-3'},
-      {id: 4, name: 'tag-4'},
-      {id: 5, name: 'tag-5'},
-      {id: 6, name: 'tag-6'},
-      {id: 7, name: 'tag-7'},
-      {id: 8, name: 'tag-8'},
-      {id: 9, name: 'tag-9'},
-      {id: 10, name: 'tag-10'},
-    ]
+    private tagList : Tag[];
+
+
+
 
   constructor(private fb: FormBuilder,
               private segmentService: SegmentService,
+              private organizationService: OrganizationService,
+              private tagService: TagService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -94,6 +80,21 @@ export class EditSegmentComponent implements OnInit {
                                           (error) => {
                                             console.log(error);
                                           })
+                
+                this.tagService.listTags()
+                .subscribe((tags) =>{
+                    this.tagList = tags;
+                }, (error) => {
+                  console.log(error)
+                })
+            
+                this.organizationService.listOrganizations()
+                                          .subscribe((organizations) => {
+                                            this.organizationList = organizations;
+                                          }, (error) => {
+                                            console.log(error);
+                                          })
+        
               }
 
                             

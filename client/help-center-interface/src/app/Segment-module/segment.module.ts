@@ -10,6 +10,7 @@ import { ListSegmentsComponent } from './components/list-segments/list-segments.
 import { SegmentHomeComponent } from './components/segment-home/segment-home.component';
 import { SearchSegmentPipe } from './pipes/search-segment/search-segment.pipe';
 
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [CreateSegmentComponent, 
@@ -21,7 +22,8 @@ import { SearchSegmentPipe } from './pipes/search-segment/search-segment.pipe';
     SegmentRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMatSelectSearchModule
   ]
 })
 export class SegmentModule { }

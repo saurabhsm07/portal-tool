@@ -1,17 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field'
 import { FormBuilder, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
 
 import { Segment } from './../../classes/segment';
+import { Organization } from './../../classes/organization';
+import { Tag } from './../../classes/tag';
 import { SegmentService } from './../../services/segment-service/segment.service';
+import { OrganizationService } from './../../services/organization-service/organization.service';
+import { TagService } from './../../services/tag-service/tag.service';
 
+import {take, takeUntil } from 'rxjs/operators';
+import {ReplaySubject, Subject} from 'rxjs';
+import { MatSelect } from '@angular/material/';
 @Component({
   selector: 'app-create-segment',
   templateUrl: './create-segment.component.html',
   styleUrls: ['./create-segment.component.scss']
 })
-export class CreateSegmentComponent implements OnInit {
+export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
@@ -28,7 +35,7 @@ export class CreateSegmentComponent implements OnInit {
       user_type:['', [Validators.required]],
       organization_ids: [],
       group_ids: [],
-      tags: [],
+      tags: [[]],
       or_tags: []
     });
 
@@ -37,44 +44,117 @@ export class CreateSegmentComponent implements OnInit {
    */
   get name() { return this.segment_form.get('name'); }
   get organization_ids() {return this.segment_form.get('organization_ids');}
-  get or_tags() {return this.segment_form.get('tags');}
-  get tags() {return this.segment_form.get('or_tags');}
+  get tags() {return this.segment_form.get('tags');}
+  get or_tags() {return this.segment_form.get('or_tags');}
   get user_type() {return this.segment_form.get('user_type');}
 
 
 
     //dummy data values for organizations and tags
-    private organizationList = [
-      {id: 1, name: 'org-1'},
-      {id: 2, name: 'org-2'},
-      {id: 3, name: 'org-3'},
-      {id: 4, name: 'org-4'},
-      {id: 5, name: 'org-5'},
-      {id: 6, name: 'org-6'},
-      {id: 7, name: 'org-7'},
-      {id: 8, name: 'org-8'},
-      {id: 9, name: 'org-9'},
-      {id: 10, name: 'org-10'},
-    ]
+    private organizationList : Organization[];
 
-    private tagList = [
-      {id: 1, name: 'tag-1'},
-      {id: 2, name: 'tag-2'},
-      {id: 3, name: 'tag-3'},
-      {id: 4, name: 'tag-4'},
-      {id: 5, name: 'tag-5'},
-      {id: 6, name: 'tag-6'},
-      {id: 7, name: 'tag-7'},
-      {id: 8, name: 'tag-8'},
-      {id: 9, name: 'tag-9'},
-      {id: 10, name: 'tag-10'},
-    ]
+    private tagList : Tag[];
+
+  
+    //multiselect with 
+      /** list of banks */
+
+
+  /** control for the selected bank for multi-selection */
+
+  /** control for the MatSelect filter keyword multi-selection */
+  public tagsMultiFilterControl = this.fb.control([]);
+
+  /** list of banks filtered by search keyword */
+  public filteredTagsMulti: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(1);
+
+  @ViewChild('multiSelect', { static: false }) multiSelect: MatSelect;
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
+
 
   constructor(private fb: FormBuilder,
               private segmentService: SegmentService,
+              private organizationService: OrganizationService,
+              private tagService: TagService,
               private router: Router) { }
 
   ngOnInit() {
+
+        // load the initial bank list
+    
+    this.tagService.listTags()
+                    .subscribe((tagData) =>{
+                        console.log(tagData);
+                        this.tagList = tagData;
+                        this.filteredTagsMulti.next(this.tagList.slice());
+                    }, (error) => {
+                      console.log(error)
+                    })
+
+    this.organizationService.listOrganizations()
+                              .subscribe((organizations) => {
+                                this.organizationList = organizations;
+                              }, (error) => {
+                                console.log(error);
+                              })
+        
+     // listen for search field value changes
+     this.tagsMultiFilterControl.valueChanges
+     .pipe(takeUntil(this._onDestroy))
+     .subscribe(() => {
+       console.log("yeye")
+       console.log(this.tags.value)
+       this.filterTagsMulti();
+     });
+  }
+
+  ngAfterViewInit() {
+    this.setInitialValue();
+  }
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+    /**
+   * Sets the initial value after the filteredBanks are loaded initially
+   */
+  protected setInitialValue() {
+    console.log("initial value")
+    this.filteredTagsMulti
+      .pipe(take(1), takeUntil(this._onDestroy))
+      .subscribe(() => {
+        console.log("yes i an here")
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.multiSelect.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+
+      console.log(this.tags.value)
+      });
+  }
+
+  protected filterTagsMulti() {
+    if (!this.tagList) {
+      return;
+    }
+    // get the search keyword
+    let search = this.tagsMultiFilterControl.value;
+    if (search.length == 0) {
+      this.filteredTagsMulti.next(this.tagList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredTagsMulti.next(
+      this.tagList.filter(tag => tag.tag_name.toLowerCase().indexOf(search) > -1)
+    );
   }
 
    /**

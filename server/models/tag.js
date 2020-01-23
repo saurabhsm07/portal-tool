@@ -7,7 +7,7 @@ const Tag = client.define('tags', {
                                             primaryKey: true,
                                             autoIncrement: true
                                         },
-                                        name: {
+                                        tag_name: {
                                             type: Sequelize.STRING,
                                         }
 

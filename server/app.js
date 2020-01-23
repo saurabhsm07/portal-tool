@@ -11,6 +11,7 @@ const categories = require('./routes/api/category/categories');
 const sections = require('./routes/api/section/sections');
 const segments = require('./routes/api/segment/segments');
 const organizations = require('./routes/api/organization/organizations');
+const tags = require('./routes/api/tag/tags');
 const PORT = process.env.PORT  || 5000;
 
 
@@ -53,5 +54,6 @@ app.use('/api/categories/', categories);    // routes for category APIs
 app.use('/api/sections/', sections);         // routes for sections APIs
 app.use('/api/segments/', segments);         // routes for user segment APIs
 app.use('/api/organizations/', organizations) // routes for organizations APIs
+app.use('/api/tags/', tags) // routes for organizations APIs
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })

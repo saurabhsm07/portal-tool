@@ -1,10 +1,7 @@
 const express = require('express')
 const organizations = express.Router()
-const client = require("./../../../config/connections").client;
+// const client = require("./../../../config/connections").client;
 const Organization = require("./../../../models/organization");
-
-
-const labels = require('./labels/labels');
 
 const preprocessors = require('./../../../middleware/preprocessors');
 
@@ -18,7 +15,7 @@ organizations.get('/', (req, res) => {
     })
            .then((data) => {
                if(data.length > 0){
-                console.log(data[0].dataValues);
+                console.log(`fetch ${data.length} organization records`);
                 res.status(200).send(data);
                }else{
                     console.log('no data exists in the organization table');
@@ -56,3 +53,5 @@ organizations.get('/id/:id', (req, res) => {
                 res.status(500).send(err);
            })
 })
+
+module.exports = organizations                       // Exporting Organizations APIs module
