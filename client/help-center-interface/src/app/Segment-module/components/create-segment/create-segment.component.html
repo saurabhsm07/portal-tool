@@ -66,11 +66,14 @@
                     <mat-form-field>
                         <mat-select formControlName ="tags" placeholder="Tagsssss" [multiple]="true" #multiSelect>
                                     <ngx-mat-select-search [formControl]="tagsMultiFilterControl"></ngx-mat-select-search>
-                           <ng-container  >
-                                <mat-option *ngFor="let tag of filteredTagsMulti | async" value={{tag.id}}>
+                          <ng-container *ngIf="tagList">
+
+                                <mat-option *ngFor="let tag of filteredTagsMulti | async" [value] = "tag">
                                         {{tag.tag_name}}
                                       </mat-option>
-                           </ng-container>
+                       
+                          </ng-container>
+                            
         
                         </mat-select>
                       </mat-form-field>

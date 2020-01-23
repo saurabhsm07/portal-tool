@@ -89,6 +89,9 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
                         console.log(tagData);
                         this.tagList = tagData;
                         this.filteredTagsMulti.next(this.tagList.slice());
+                        console.log("tags initialized")
+                        this.setInitialValue();
+                        
                     }, (error) => {
                       console.log(error)
                     })
@@ -104,14 +107,14 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
      this.tagsMultiFilterControl.valueChanges
      .pipe(takeUntil(this._onDestroy))
      .subscribe(() => {
-       console.log("yeye")
-       console.log(this.tags.value)
+
        this.filterTagsMulti();
      });
   }
 
   ngAfterViewInit() {
-    this.setInitialValue();
+    console.log("after view init")
+   
   }
 
   ngOnDestroy() {
@@ -135,7 +138,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
         // and after the mat-option elements are available
         this.multiSelect.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
 
-      console.log(this.tags.value)
+        console.log(this.tags.value)
       });
   }
 
