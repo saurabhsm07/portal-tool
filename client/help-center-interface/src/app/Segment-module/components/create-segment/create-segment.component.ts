@@ -63,12 +63,18 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
   /** control for the selected bank for multi-selection */
 
   /** control for the MatSelect filter keyword multi-selection */
-  public tagsMultiFilterControl = this.fb.control([]);
+  public andTagsMultiFilterControl = this.fb.control([]);
+  public orTagsMultiFilterControl  = this.fb.control([]);
+  public organizationMultiFilterControl = this.fb.control([]);
 
   /** list of banks filtered by search keyword */
-  public filteredTagsMulti: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(1);
+  public filteredTagsMultiAnd: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(1);
+  public filteredTagsMultiOr: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(0);
+  public filteredOrgsMulti: ReplaySubject<Organization[]> = new ReplaySubject<Organization[]>(1);
 
-  @ViewChild('multiSelect', { static: false }) multiSelect: MatSelect;
+  @ViewChild('multiSelectAndTag', { static: false }) multiSelectAndTag: MatSelect;
+  @ViewChild('multiSelectOrTag', { static: false }) multiSelectOrTag: MatSelect;
+  @ViewChild('multiSelectOrganization', { static: false }) multiSelectOrganization: MatSelect;
 
   /** Subject that emits when the component has been destroyed. */
   protected _onDestroy = new Subject<void>();
@@ -86,11 +92,12 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
     
     this.tagService.listTags()
                     .subscribe((tagData) =>{
-                        console.log(tagData);
+                  
                         this.tagList = tagData;
-                        this.filteredTagsMulti.next(this.tagList.slice());
-                        console.log("tags initialized")
-                        this.setInitialValue();
+                        this.filteredTagsMultiAnd.next(this.tagList.slice());
+                        this.filteredTagsMultiOr.next(this.tagList.slice());
+                     
+                        this.setInitialValueTagFilters();
                         
                     }, (error) => {
                       console.log(error)
@@ -99,22 +106,36 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
     this.organizationService.listOrganizations()
                               .subscribe((organizations) => {
                                 this.organizationList = organizations;
+                                this.filteredOrgsMulti.next(this.organizationList.slice());
+                                this.setInitialValueOrganizationFilters();
                               }, (error) => {
                                 console.log(error);
                               })
         
      // listen for search field value changes
-     this.tagsMultiFilterControl.valueChanges
+     this.andTagsMultiFilterControl.valueChanges
      .pipe(takeUntil(this._onDestroy))
      .subscribe(() => {
-
-       this.filterTagsMulti();
+      this.filterTagsMultiAnd();
      });
+
+      // listen for search field value changes
+      this.orTagsMultiFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+      this.filterTagsMultiOr();
+      });
+
+      
+      this.organizationMultiFilterControl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+      this.filterOrganizationsMulti();
+      });
   }
 
   ngAfterViewInit() {
     console.log("after view init")
-   
   }
 
   ngOnDestroy() {
@@ -125,38 +146,82 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
     /**
    * Sets the initial value after the filteredBanks are loaded initially
    */
-  protected setInitialValue() {
+  protected setInitialValueTagFilters() {
     console.log("initial value")
-    this.filteredTagsMulti
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        console.log("yes i an here")
-        // setting the compareWith property to a comparison function
-        // triggers initializing the selection according to the initial value of
-        // the form control (i.e. _initializeSelection())
-        // this needs to be done after the filteredBanks are loaded initially
-        // and after the mat-option elements are available
-        this.multiSelect.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+    this.filteredTagsMultiAnd
+        .pipe(take(1), takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.multiSelectAndTag.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+        });
 
-        console.log(this.tags.value)
-      });
+    this.filteredTagsMultiOr
+        .pipe(take(0), takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.multiSelectOrTag.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+        });
   }
 
-  protected filterTagsMulti() {
+  protected setInitialValueOrganizationFilters() {
+    console.log("initial value")
+    this.filteredOrgsMulti
+        .pipe(take(1), takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.multiSelectOrganization.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+        });
+
+  }
+
+  protected filterTagsMultiAnd() {
     if (!this.tagList) {
       return;
     }
     // get the search keyword
-    let search = this.tagsMultiFilterControl.value;
+    let search = this.andTagsMultiFilterControl.value;
     if (search.length == 0) {
-      this.filteredTagsMulti.next(this.tagList.slice());
+      this.filteredTagsMultiAnd.next(this.tagList.slice());
       return;
     } else {
       search = search.toLowerCase();
     }
     // filter the banks
-    this.filteredTagsMulti.next(
+    this.filteredTagsMultiAnd.next(
       this.tagList.filter(tag => tag.tag_name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+
+  protected filterTagsMultiOr() {
+    if (!this.tagList) {
+      return;
+    }
+    // get the search keyword
+    let search = this.orTagsMultiFilterControl.value;
+    if (search.length == 0) {
+      this.filteredTagsMultiOr.next(this.tagList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredTagsMultiOr.next(
+      this.tagList.filter(tag => tag.tag_name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+
+  protected filterOrganizationsMulti() {
+    if (!this.organizationList) {
+      return;
+    }
+    // get the search keyword
+    let search = this.organizationMultiFilterControl.value;
+    if (search.length == 0) {
+      this.filteredOrgsMulti.next(this.organizationList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredOrgsMulti.next(
+      this.organizationList.filter(org => org.name.toLowerCase().indexOf(search) > -1)
     );
   }
 

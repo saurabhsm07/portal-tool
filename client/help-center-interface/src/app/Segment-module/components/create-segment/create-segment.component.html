@@ -64,11 +64,11 @@
                     </mat-form-field> -->
 
                     <mat-form-field>
-                        <mat-select formControlName ="tags" placeholder="Tagsssss" [multiple]="true" #multiSelect>
-                                    <ngx-mat-select-search [formControl]="tagsMultiFilterControl"></ngx-mat-select-search>
+                        <mat-select formControlName ="tags" placeholder="Select Tags" [multiple]="true" #multiSelectAndTag>
+                                    <ngx-mat-select-search [formControl]="andTagsMultiFilterControl"></ngx-mat-select-search>
                           <ng-container *ngIf="tagList">
 
-                                <mat-option *ngFor="let tag of filteredTagsMulti | async" [value] = "tag">
+                                <mat-option *ngFor="let tag of filteredTagsMultiAnd | async" [value] = "tag">
                                         {{tag.tag_name}}
                                       </mat-option>
                        
@@ -88,7 +88,7 @@
                     <p>Users must have any of the tags to be included.</p>
                 </div>
                 <div *ngIf = 'tagList' class="col-md-4">
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <mat-label>Select (Or) Tags</mat-label>
                         <mat-select formControlName="or_tags" multiple>
                             <mat-option>None</mat-option>
@@ -98,8 +98,22 @@
                                 </ng-container>
                             </ng-container>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
+                    <mat-form-field>
+                        <mat-select formControlName ="or_tags" placeholder="Select Tags" [multiple]="true" #multiSelectOrTag>
+                                    <ngx-mat-select-search [formControl]="orTagsMultiFilterControl"></ngx-mat-select-search>
+                          <ng-container *ngIf="tagList">
+
+                                <mat-option *ngFor="let tag of filteredTagsMultiOr | async" [value] = "tag">
+                                        {{tag.tag_name}}
+                                      </mat-option>
+                       
+                          </ng-container>
+                            
+        
+                        </mat-select>
+                      </mat-form-field>
                 </div>
 
 
@@ -113,16 +127,19 @@
                 </div>
                 <div class="col-md-4">
                     <mat-form-field>
-                        <mat-label>Select Organizations</mat-label>
-                        <mat-select formControlName="organization_ids" multiple>
-                            <mat-option>None</mat-option>
-                            <ng-container>
-                                <ng-container *ngFor="let organization of organizationList">
-                                    <mat-option value={{organization.id}}>{{organization.name}}</mat-option>
-                                </ng-container>
-                            </ng-container>
+                        <mat-select formControlName ="organization_ids" placeholder="Select Organizations" [multiple]="true" #multiSelectOrganization>
+                                    <ngx-mat-select-search [formControl]="organizationMultiFilterControl"></ngx-mat-select-search>
+                          <ng-container *ngIf="organizationList">
+
+                                <mat-option *ngFor="let org of filteredOrgsMulti | async" [value] = "org">
+                                        {{org.name}}
+                                      </mat-option>
+                       
+                          </ng-container>
+                            
+        
                         </mat-select>
-                    </mat-form-field>
+                      </mat-form-field>
 
                 </div>
 
