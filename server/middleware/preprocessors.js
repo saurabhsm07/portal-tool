@@ -21,7 +21,7 @@ preprocessors.processArticleObj = (article) => {
 
 preprocessors.processSegmentObj = (segment) => {
 
-    if((segment.group_ids != null) && (segment.group_ids != "")){
+    if((segment.group_ids != null) && (segment.group_ids != '') && (segment.group_ids != 'null')){
         segment.group_ids = JSON.parse(segment.group_ids);
     }
     if((segment.organization_ids != null) && (segment.organization_ids != '')){

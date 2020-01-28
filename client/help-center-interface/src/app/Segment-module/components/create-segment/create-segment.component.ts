@@ -12,7 +12,7 @@ import { TagService } from './../../services/tag-service/tag.service';
 
 import {take, takeUntil } from 'rxjs/operators';
 import {ReplaySubject, Subject} from 'rxjs';
-import { MatSelect } from '@angular/material/';
+import { MatSelect } from '@angular/material';
 @Component({
   selector: 'app-create-segment',
   templateUrl: './create-segment.component.html',
@@ -56,8 +56,6 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
     private tagList : Tag[];
 
   
-    //multiselect with 
-      /** list of banks */
 
 
   /** control for the selected bank for multi-selection */

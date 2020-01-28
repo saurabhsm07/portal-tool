@@ -50,7 +50,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <mat-label>Select (And) Tags</mat-label>
                         <mat-select formControlName="tags" multiple>
                             <mat-option disabled>None</mat-option>
@@ -61,7 +61,22 @@
                                 </ng-container>
                             </ng-container>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
+
+                    <mat-form-field>
+                        <mat-select formControlName ="tags" placeholder="Select Tags" [multiple]="true" #multiSelectAndTag>
+                                    <ngx-mat-select-search [formControl]="andTagsMultiFilterControl"></ngx-mat-select-search>
+                          <ng-container *ngIf="tagList">
+
+                                <mat-option *ngFor="let tag of filteredTagsMultiAnd | async" [value] = "tag">
+                                        {{tag.tag_name}}
+                                      </mat-option>
+                       
+                          </ng-container>
+                            
+        
+                        </mat-select>
+                      </mat-form-field>
 
                 </div>
 
@@ -75,16 +90,19 @@
                 </div>
                 <div class="col-md-4">
                     <mat-form-field>
-                        <mat-label>Select (Or) Tags</mat-label>
-                        <mat-select formControlName="or_tags" multiple>
-                            <mat-option disabled>None</mat-option>
-                            <ng-container *ngIf="tagList">
-                                <ng-container *ngFor="let tag of tagList">
-                                    <mat-option value={{tag.id}}>{{tag.tag_name}}</mat-option>
-                                </ng-container>
-                            </ng-container>
+                        <mat-select formControlName ="or_tags" placeholder="Select Tags" [multiple]="true" #multiSelectOrTag>
+                                    <ngx-mat-select-search [formControl]="orTagsMultiFilterControl"></ngx-mat-select-search>
+                          <ng-container *ngIf="tagList">
+
+                                <mat-option *ngFor="let tag of filteredTagsMultiOr | async" [value] = "tag">
+                                        {{tag.tag_name}}
+                                      </mat-option>
+                       
+                          </ng-container>
+                            
+        
                         </mat-select>
-                    </mat-form-field>
+                      </mat-form-field>
 
                 </div>
 
@@ -98,7 +116,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <mat-label>Select Organizations</mat-label>
                         <mat-select formControlName="organization_ids" multiple>
                             <mat-option>None</mat-option>
@@ -108,14 +126,28 @@
                                 </ng-container>
                             </ng-container>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
+                    <mat-form-field>
+                        <mat-select formControlName ="organization_ids" placeholder="Select Organizations" [multiple]="true" #multiSelectOrganization>
+                                    <ngx-mat-select-search [formControl]="organizationMultiFilterControl"></ngx-mat-select-search>
+                          <ng-container *ngIf="organizationList">
 
+                                <mat-option *ngFor="let org of filteredOrgsMulti | async" [value] = "org">
+                                        {{org.name}}
+                                      </mat-option>
+                       
+                          </ng-container>
+                            
+        
+                        </mat-select>
+                      </mat-form-field>
                 </div>
 
 
             </div>
             <div class="update-segment-footer col-md-12">
                 <button type="submit" class="btn btn-default" [disabled]="segment_form.invalid"> Update segment</button>
+                <button type="button" class="btn btn-default" (click)="validate()" > Validate segment</button>
             </div>
         </form>
 

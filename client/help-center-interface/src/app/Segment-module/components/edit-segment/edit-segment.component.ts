@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -12,6 +12,9 @@ import { SegmentService } from './../../services/segment-service/segment.service
 import { OrganizationService } from './../../services/organization-service/organization.service';
 import { TagService } from './../../services/tag-service/tag.service';
 
+import {take, takeUntil } from 'rxjs/operators';
+import {ReplaySubject, Subject} from 'rxjs';
+import { MatSelect } from '@angular/material';
 import { CustomValidators } from './../../../imports/custom-form-validators'
 
 
@@ -46,14 +49,34 @@ export class EditSegmentComponent implements OnInit {
    */
   get name() { return this.segment_form.get('name'); }
   get organization_ids() {return this.segment_form.get('organization_ids');}
-  get or_tags() {return this.segment_form.get('tags');}
-  get tags() {return this.segment_form.get('or_tags');}
+  get or_tags() {return this.segment_form.get('or_tags');}
+  get tags() {return this.segment_form.get('tags');}
   get user_type() {return this.segment_form.get('user_type');}
 
     //dummy data values for organizations and tags
     private organizationList : Organization[];
 
     private tagList : Tag[];
+
+
+  /** control for the selected bank for multi-selection */
+
+  /** control for the MatSelect filter keyword multi-selection */
+  public andTagsMultiFilterControl = this.fb.control([]);
+  public orTagsMultiFilterControl  = this.fb.control([]);
+  public organizationMultiFilterControl = this.fb.control([]);
+
+  /** list of banks filtered by search keyword */
+  public filteredTagsMultiAnd: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(1);
+  public filteredTagsMultiOr: ReplaySubject<Tag[]> = new ReplaySubject<Tag[]>(2);
+  public filteredOrgsMulti: ReplaySubject<Organization[]> = new ReplaySubject<Organization[]>(1);
+
+  @ViewChild('multiSelectAndTag', { static: false }) multiSelectAndTag: MatSelect;
+  @ViewChild('multiSelectOrTag', { static: false }) multiSelectOrTag: MatSelect;
+  @ViewChild('multiSelectOrganization', { static: false }) multiSelectOrganization: MatSelect;
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
 
 
 
@@ -82,8 +105,11 @@ export class EditSegmentComponent implements OnInit {
                                           })
                 
                 this.tagService.listTags()
-                .subscribe((tags) =>{
-                    this.tagList = tags;
+                .subscribe((tagData) =>{
+                    this.tagList = tagData;
+                    this.filteredTagsMultiAnd.next(this.tagList.slice());
+                    this.filteredTagsMultiOr.next(this.tagList.slice());
+                    this.setInitialValueTagFilters();
                 }, (error) => {
                   console.log(error)
                 })
@@ -91,25 +117,139 @@ export class EditSegmentComponent implements OnInit {
                 this.organizationService.listOrganizations()
                                           .subscribe((organizations) => {
                                             this.organizationList = organizations;
+                                            this.filteredOrgsMulti.next(this.organizationList.slice());
+                                            this.setInitialValueOrganizationFilters();
                                           }, (error) => {
                                             console.log(error);
                                           })
-        
+
+                                               // listen for search field value changes
+                      this.andTagsMultiFilterControl.valueChanges
+                      .pipe(takeUntil(this._onDestroy))
+                      .subscribe(() => {
+                        this.filterTagsMultiAnd();
+                      });
+
+                        // listen for search field value changes
+                        this.orTagsMultiFilterControl.valueChanges
+                        .pipe(takeUntil(this._onDestroy))
+                        .subscribe(() => {
+                        this.filterTagsMultiOr();
+                        });
+
+                        
+                        this.organizationMultiFilterControl.valueChanges
+                        .pipe(takeUntil(this._onDestroy))
+                        .subscribe(() => {
+                        this.filterOrganizationsMulti();
+                        });
+                          
               }
 
+              ngAfterViewInit() {
+                console.log("after view init")
+              }
+            
+              ngOnDestroy() {
+                this._onDestroy.next();
+                this._onDestroy.complete();
+              }
+            
+                /**
+               * Sets the initial value after the filteredBanks are loaded initially
+               */
+              protected setInitialValueTagFilters() {
+                console.log("initial value")
+                this.filteredTagsMultiAnd
+                    .pipe(take(1), takeUntil(this._onDestroy))
+                    .subscribe(() => {
+                      this.multiSelectAndTag.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+                    });
+            
+                this.filteredTagsMultiOr
+                    .pipe(take(2), takeUntil(this._onDestroy))
+                    .subscribe(() => {
+                      this.multiSelectOrTag.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+                    });
+              }
+            
+              protected setInitialValueOrganizationFilters() {
+                console.log("initial value")
+                this.filteredOrgsMulti
+                    .pipe(take(1), takeUntil(this._onDestroy))
+                    .subscribe(() => {
+                      this.multiSelectOrganization.compareWith = (a: Tag, b: Tag) => a && b && a.id === b.id;
+                    });
+            
+              }
+            
+              protected filterTagsMultiAnd() {
+                if (!this.tagList) {
+                  return;
+                }
+                // get the search keyword
+                let search = this.andTagsMultiFilterControl.value;
+                if (search.length == 0) {
+                  this.filteredTagsMultiAnd.next(this.tagList.slice());
+                  return;
+                } else {
+                  search = search.toLowerCase();
+                }
+                // filter the banks
+                this.filteredTagsMultiAnd.next(
+                  this.tagList.filter(tag => tag.tag_name.toLowerCase().indexOf(search) > -1)
+                );
+              }
+            
+              protected filterTagsMultiOr() {
+                if (!this.tagList) {
+                  return;
+                }
+                // get the search keyword
+                let search = this.orTagsMultiFilterControl.value;
+                if (search.length == 0) {
+                  this.filteredTagsMultiOr.next(this.tagList.slice());
+                  return;
+                } else {
+                  search = search.toLowerCase();
+                }
+                // filter the banks
+                this.filteredTagsMultiOr.next(
+                  this.tagList.filter(tag => tag.tag_name.toLowerCase().indexOf(search) > -1)
+                );
+              }
+            
+              protected filterOrganizationsMulti() {
+                if (!this.organizationList) {
+                  return;
+                }
+                // get the search keyword
+                let search = this.organizationMultiFilterControl.value;
+                if (search.length == 0) {
+                  this.filteredOrgsMulti.next(this.organizationList.slice());
+                  return;
+                } else {
+                  search = search.toLowerCase();
+                }
+                // filter the banks
+                this.filteredOrgsMulti.next(
+                  this.organizationList.filter(org => org.name.toLowerCase().indexOf(search) > -1)
+                );
+              }
+            
                             
               /**
                * set values of the edit segment form
                */
               setSegmentFormValues() {
-                this.segment_form.setValue({
-                  name: this.userSegment.name,
-                  user_type: this.userSegment.user_type.toString(),
-                  organization_ids: this.userSegment.organization_ids,
-                  tags: this.userSegment.tags,
-                  or_tags: this.userSegment.or_tags,
-                  group_ids: this.userSegment.group_ids
-                })
+              
+                  this.name.setValue(this.userSegment.name);
+                  this.user_type.setValue(this.userSegment.user_type.toString());
+                  this.organization_ids.setValue(this.userSegment.organization_ids);
+                  this.or_tags.setValue(this.userSegment.or_tags);
+                  this.tags.setValue(this.userSegment.tags);
+                  // group_ids: (this.userSegment.group_ids);
+                
 
                 console.log(this.segment_form.value)
               }
@@ -143,6 +283,10 @@ export class EditSegmentComponent implements OnInit {
                                     (error) => {
                                     console.log(error);
                                     })
+              }
+
+              validate(){
+                console.log(this.segment_form.value);
               }
 
 }
