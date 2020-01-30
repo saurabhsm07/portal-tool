@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'KB article module';
+  title = 'Help Center Module';
   primarySidebarOptions = { home :     [{sectionName: 'published', sectionUrl: '#'}, 
                                         {sectionName: 'drafts', sectionUrl: '#'}, 
                                         {sectionName: 'archived', sectionUrl: '#'}],
