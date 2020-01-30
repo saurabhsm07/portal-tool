@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
+import { GuideadminModule } from './Guideadmin-module/guideadmin.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SegmentModule } from './Segment-module/segment.module';
     SectionModule,
     SegmentModule,
     ArticlesModule,
+    GuideadminModule,
     AppRoutingModule,
     EditorModule,
     MaterialModule
