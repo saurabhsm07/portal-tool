@@ -1,3 +1,9 @@
+<app-main-header></app-main-header>
+<div class="row">
+<div class="col-lg-3">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-9 work-component">
 <div *ngIf="sectionList" class="col-md-12">
     <div class="edit-section-div">
             <form class="edit-section-form" [formGroup] = 'section_form'  (ngSubmit)="onSubmitForm()">
@@ -69,4 +75,6 @@
             </form>
 
     </div>
+</div>
+</div>
 </div>

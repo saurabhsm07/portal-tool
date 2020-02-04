@@ -1,4 +1,9 @@
-<div class="container-fluid">
+<app-main-header></app-main-header>
+<div class="row">
+<div class="col-lg-3">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-9 work-component">
 <div *ngIf = "article_object" class="display-article-home row">
   <div class="article-header col-md-12">
       <h1 class="article-title">
@@ -44,11 +49,4 @@
  </div>
 </div>
 </div>
-
-<!-- edit article modal starts -->
-<!-- <div *ngIf="article_object" class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    
-         <app-edit-article [article] = article_object (articleChange) = "this.article_objectVal = $event"></app-edit-article>
-       
-  </div> -->
-  <!-- edit article modal ends -->
+</div>

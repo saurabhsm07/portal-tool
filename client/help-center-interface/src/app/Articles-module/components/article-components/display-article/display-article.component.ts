@@ -72,7 +72,7 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
   }
 
   editArticle(){
-    this.router.navigate(['/article/edit/id/'+this.article_object.id])
+    this.router.navigate(['/articles/edit/id/'+this.article_object.id])
   }
 
 }

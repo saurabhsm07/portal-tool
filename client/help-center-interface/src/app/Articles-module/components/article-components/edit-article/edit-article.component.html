@@ -1,5 +1,9 @@
-<div class="container-fluid">
-  <div class="row">
+<app-main-header></app-main-header>
+<div class="row">
+<div class="col-lg-3">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-9 work-component">
     <div class="update_article_div offset-md-1 col-md-10">
       <h4>Update Article</h4>
       <form [formGroup]='article_form' (ngSubmit)="updateArticle()">

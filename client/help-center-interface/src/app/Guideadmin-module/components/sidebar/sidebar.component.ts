@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,21 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  private menuList = ['segment', 'section', 'articles', 'categories','fields','forms', 'form', 'field'];
+  private selectedOption = '';
 
   ngOnInit() {
+    const currentUrl = this.router.url;
+    const currentSection = this.menuList.find(x => currentUrl.indexOf(x) !=-1);
+    if(currentSection != undefined){
+      this.selectedOption = currentSection;
+      console.log(currentSection)
+      this.updateSidebar('settings');
+    }
   }
-  primarySidebarOptions = { home :     [{sectionName: 'published', sectionUrl: '#'}, 
-                                        {sectionName: 'drafts', sectionUrl: '#'}, 
-                                        {sectionName: 'archived', sectionUrl: '#'}],
+  primarySidebarOptions = { home :     [{sectionName: 'published', name:'published', sectionUrl: '#'}, 
+                                        {sectionName: 'drafts', name: 'drafts', sectionUrl: '#'}, 
+                                        {sectionName: 'archived', name: 'archived', sectionUrl: '#'}],
                             // section: [{sectionName: 'Sectu', sectionUrl: '#' }, 
                             //             {sectionName: 'posts', sectionUrl: '#'}],
-                            settings : [{sectionName:'Articles', sectionUrl: '/articles/list' }, 
-                                        {sectionName: 'Article Fields', sectionUrl: '/article/fields/list'}, 
-                                        {sectionName: 'Article Forms', sectionUrl: '/article/forms/list'},
-                                        {sectionName: 'Sections', sectionUrl:'/sections/home'},
-                                        {sectionName: 'Categories', sectionUrl: '/categories/home'},
-                                        {sectionName: 'User Segments', sectionUrl: '/segments/home'}]};
+                            settings : [{sectionName:'Articles', name: 'articles', sectionUrl: '/articles/list' }, 
+                                        {sectionName: 'Article Fields', name: 'fields', sectionUrl: '/article/fields/list'}, 
+                                        {sectionName: 'Article Forms', name: 'forms', sectionUrl: '/article/forms/list'},
+                                        {sectionName: 'Sections', name: 'section', sectionUrl:'/sections/home'},
+                                        {sectionName: 'Categories', name:'categories', sectionUrl: '/categories/home'},
+                                        {sectionName: 'User Segments', name:'segment', sectionUrl: '/segments/home'}]};
   secondarySidebarOptions : String[];
   
  updateSidebar(option){

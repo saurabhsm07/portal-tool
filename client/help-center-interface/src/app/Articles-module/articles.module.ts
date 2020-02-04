@@ -7,7 +7,7 @@ import { MaterialModule } from './../imports/material-module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { EditorModule } from '@tinymce/tinymce-angular'
 import { FormsModule } from '@angular/forms';
-
+import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
 // routing components
 import { ArticleRoutingModule } from './routes/article-routing.module';
 import { ArticleFieldsRoutingModule } from './routes/article-fields-routing.module';
@@ -71,6 +71,7 @@ import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
     ArticleFieldsRoutingModule,
     ArticleFormsRoutingModule,
     ArticleRoutingModule,
+    GuideadminModule,
   ],
   providers: []
 })

@@ -9,6 +9,7 @@ import { CreateSectionComponent } from './components/create-section/create-secti
 import { EditSectionComponent } from './components/edit-section/edit-section.component';
 import { ListSectionsComponent } from './components/list-sections/list-sections.component';
 import { SearchSectionPipe } from './pipes/search-section/search-section.pipe';
+import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SearchSectionPipe } from './pipes/search-section/search-section.pipe';
     SectionRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GuideadminModule
   ]
 })
 export class SectionModule { }

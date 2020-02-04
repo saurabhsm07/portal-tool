@@ -9,7 +9,7 @@ import { EditSegmentComponent } from './components/edit-segment/edit-segment.com
 import { ListSegmentsComponent } from './components/list-segments/list-segments.component';
 import { SegmentHomeComponent } from './components/segment-home/segment-home.component';
 import { SearchSegmentPipe } from './pipes/search-segment/search-segment.pipe';
-
+import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
@@ -23,7 +23,8 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    GuideadminModule
   ]
 })
 export class SegmentModule { }

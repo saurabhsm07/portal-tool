@@ -12,7 +12,7 @@ import { EditArticleFormFieldsComponent } from './../components/fields-component
 const articleFieldsRoutes: Routes = [
   { path: 'article/fields/list', component: ListArticleFormFieldsComponent },
   { path: 'article/fields/create', component: CreateArticleFormFieldsComponent },
-  { path: 'article/field/edit/:id', component: EditArticleFormFieldsComponent },
+  { path: 'article/fields/edit/:id', component: EditArticleFormFieldsComponent },
 //   { path: '', redirectTo: 'article/fields', pathMatch: 'full',},
 //   { path: '**', component: ArticleNotFoundComponent}
 ];

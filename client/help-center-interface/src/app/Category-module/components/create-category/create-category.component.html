@@ -1,4 +1,9 @@
-<div class="col-md-12">
+<app-main-header></app-main-header>
+<div class="row">
+<div class="col-lg-3">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-9 work-component">
     <div class="create-category-div">
             <form class="create-category-form" [formGroup] = 'category_form'  (ngSubmit)="onSubmitForm()">
                 <div class = "category-name-div col-md-10">
@@ -33,4 +38,5 @@
             </form>
 
     </div>
+</div>
 </div>

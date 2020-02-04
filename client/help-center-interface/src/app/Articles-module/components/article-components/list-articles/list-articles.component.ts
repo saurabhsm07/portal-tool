@@ -62,7 +62,7 @@ export class ListArticlesComponent implements OnInit {
   }
 
   viewArticle(articleId){
-    this.route.navigate(['/article/id/'+articleId])
+    this.route.navigate(['/articles/id/'+articleId])
   }
 
 }

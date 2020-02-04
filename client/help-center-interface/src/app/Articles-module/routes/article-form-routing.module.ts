@@ -10,8 +10,8 @@ import { ListArticleFormComponent } from './../components/form-components/list-a
 const articleFormsRoutes: Routes = [
   { path: 'article/forms', component: ArticleFormComponent },
   { path: 'article/forms/list', component: ListArticleFormComponent },
-  { path: 'article/form/create', component: CreateArticleFormComponent },
-  { path: 'article/form/edit/:id', component: EditArticleFormComponent },
+  { path: 'article/forms/create', component: CreateArticleFormComponent },
+  { path: 'article/forms/edit/:id', component: EditArticleFormComponent },
 //   { path: '**', component: ArticleNotFoundComponent}
 ];
 

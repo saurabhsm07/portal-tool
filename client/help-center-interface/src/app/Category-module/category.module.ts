@@ -8,7 +8,7 @@ import { MaterialModule } from './../imports/material-module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { EditorModule } from '@tinymce/tinymce-angular'
 import { CommonModule } from '@angular/common';
-
+import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
 import { CategoryRoutingModule } from './routes/category-routing.module';
 import { CategoryHomeComponent } from './components/category-home/category-home.component';
 import { ListCategoriesComponent } from './components/list-categories/list-categories.component';
@@ -33,7 +33,8 @@ import { SearchCategoryPipe } from './pipes/search-category/search-category.pipe
     HttpClientModule,
     AngularFontAwesomeModule,
     EditorModule,
-    CategoryRoutingModule
+    CategoryRoutingModule,
+    GuideadminModule
   ]
 })
 export class CategoryModule { }

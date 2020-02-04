@@ -9,10 +9,10 @@ import { EditArticleComponent } from './../components/article-components/edit-ar
 
 const articleRoutes: Routes = [
   { path: 'articles/home', component: ArticleHomeComponent },
-  { path: 'article/create', component: CreateArticleComponent },
+  { path: 'articles/create', component: CreateArticleComponent },
   { path: 'articles/list', component: ListArticlesComponent },
-  { path: 'article/id/:id', component: DisplayArticleComponent },
-  { path: 'article/edit/id/:id', component: EditArticleComponent },
+  { path: 'articles/id/:id', component: DisplayArticleComponent },
+  { path: 'articles/edit/id/:id', component: EditArticleComponent },
   { path: '', redirectTo: '/articles/home', pathMatch: 'full',},
   { path: '**', component: ArticleNotFoundComponent}
 ];
