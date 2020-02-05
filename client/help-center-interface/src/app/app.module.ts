@@ -9,14 +9,15 @@ import { MaterialModule } from './imports/material-module'
 import { EditorModule } from '@tinymce/tinymce-angular'
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 
-
+import { GuideadminModule } from './Guideadmin-module/guideadmin.module';
+import { HelpcenterModule } from './Helpcenter-module/helpcenter.module';
 import { ArticlesModule} from './Articles-module/articles.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
-import { GuideadminModule } from './Guideadmin-module/guideadmin.module';
+
 
 
 @NgModule({
@@ -29,11 +30,12 @@ import { GuideadminModule } from './Guideadmin-module/guideadmin.module';
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    GuideadminModule,
+    HelpcenterModule,
     CategoryModule,
     SectionModule,
     SegmentModule,
     ArticlesModule,
-    GuideadminModule,
     AppRoutingModule,
     EditorModule,
     MaterialModule

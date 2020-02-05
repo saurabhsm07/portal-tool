@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { CategoryHomeComponent } from './../components/category-home/category-home.component';
-// import { EditCategoryComponent } from './../components/edit-category/edit-category.component';
-// import { CreateCategoryComponent } from './../components/create-category/create-category.component';
+import { HelpcenterHomeComponent } from './../components/helpcenter-home/helpcenter-home.component';
 
 const routes: Routes = [
-
+  { path: 'hc/home', component: HelpcenterHomeComponent},
 ];
 
 @NgModule({
