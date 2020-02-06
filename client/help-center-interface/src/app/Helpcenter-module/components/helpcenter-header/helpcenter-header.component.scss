@@ -1,0 +1,19 @@
+.home-main-navbar{
+    display: flex;
+    flex-direction: row;
+    float: right;
+li.dropdown{
+    padding-top: 10px;
+    ul {
+        position: absolute;
+        margin-top: 7px;
+        li{
+           
+            a{
+                display: block;
+            }
+        }
+        
+    }
+}
+}
