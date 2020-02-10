@@ -1,5 +1,6 @@
 const express = require('express')
 const articles = express.Router()
+const sequelize = require('sequelize');
 const client = require("./../../../config/connections").client;
 const Article = require("./../../../models/Article");
 
@@ -57,6 +58,31 @@ articles.get('/id/:id', (req, res) => {
                 res.status(500).send(err);
            })
 })
+
+/**
+ * GET: api path to get article record with section id.
+ */
+articles.get('/section/id/:id', (req, res) => {
+    Article.findAll({where : { section : { id: req.params.id}}})
+           .then((data) => {
+                if(data.length > 0){
+                    console.log(`fetched Articles with section id : ${req.params.id}`);
+                    const articleList = preprocessors.processArticlesList(data);
+                    res.status(200).send(articleList);
+                }
+                else{
+                    console.log(`Article with section id = ${req.params.id} does not exist`);
+                    res.status(404).send({status: 404,
+                        message: `Article with section id = ${req.params.id} does not exist`});
+                }
+           })
+           .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+           })
+})
+
 
 /**
  * GET: api path to get latest article id.

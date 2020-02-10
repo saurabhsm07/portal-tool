@@ -16,6 +16,7 @@ export class ArticleService {
    */
   private requestUri = {
     getArticles: 'http://localhost:5000/api/articles/',
+    getArticlesWithSectionId: 'http://localhost:5000/api/articles/section/id/',
     getArticleById: 'http://localhost:5000/api/articles/id/',
     getLastArticleId: 'http://localhost:5000/api/articles/max/id',
     postArticle: 'http://localhost:5000/api/articles/',
@@ -40,6 +41,11 @@ export class ArticleService {
   getArticle(id : String) : Observable<Article> {
     return this.http.get<Article>(this.requestUri.getArticleById+id, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.getArticleError));
+  }
+
+  getArticlesWithSectionId(id : String) : Observable<Article[]> {
+    return this.http.get<Article[]>(this.requestUri.getArticlesWithSectionId+id, this.headersOptions)
+                    .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
   }
 
   getLastRecordId(): Observable<{id : number}> {

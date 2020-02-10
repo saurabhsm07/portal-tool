@@ -1,0 +1,77 @@
+<app-category-header-hc></app-category-header-hc>
+<div id="realcatcontent" class="unqipad catcontbg">
+    <div class="row">
+        <div class="md-offset-1 col-md-10  sm-offset-1 col-sm-10 ">
+            <div class="fright expcont">
+                <a href="javascript:void(0);" class="exptext">Expand all</a>
+            </div>
+
+            <div class="section-tree">
+                <ng-container *ngFor="let section of sectionList">
+                    <div class="col-md-12 section col-sm-12 sectionblk" style="margin-top: -30px;">
+                        <h3>
+
+                            <a href='localhost:4200/hc/sections/id/section.id' class="sectionnameslink">{{section.name}}</a>
+                            <div class="catrgticon">
+                                <img src="//theme.zdassets.com/theme_assets/270851/8d97c5de53892722710b29f2cbd1686d3f79e87c.svg"
+                                    class="hidesect" (click) = "getArticlesfromSection(section.id)">
+                            </div>
+                            <div class="right">
+                                <input type="hidden" class="sectionid" name="sectionid[]" value={{section.id}}>
+                                <div class="section-subscribe dropdown section115001455183" aria-haspopup="true">
+                                    <span class="dropdown-menu menusub115001455183 subscribemenu" role="menu" aria-expanded="false" style="height: 90px;">
+                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=false', '115001455183', 'Subscribing..','Following');"
+                                            href="javascript:void(0);" class="menuitem-A subscribe-item">New articles</a>
+                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=true', '115001455183','Subscribing..', 'Following');"
+                                            href="javascript:void(0);" class="menuitem-AC subscribe-item">New articles and comments</a>
+                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="delete" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?to=section', '115001455183', 'Unfollowing..', 'Follow');"
+                                            href="javascript:void(0);" class="menuitem-U subscribe-item" style="display: none;">Unfollow</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="cboth"></div>
+                        </h3>
+
+                        <ul [@collapse]="isOpen ? 'open' : 'close'" class="article-list">
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/360000322206-Accelerite-EULA-Version-Two">Accelerite - EULA Version Two</a>
+                            </li>
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/115005876463-Accelerite-EULA-Version-One">Accelerite - EULA Version One</a>
+                            </li>
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/115002931386-Concert-End-User-License-Agreement">Concert - End User License Agreement</a>
+                            </li>
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/202042530-Radia-End-User-License-Agreement">Radia - End User License Agreement</a>
+                            </li>
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/209766583-CloudPlatform-End-User-License-Agreement">CloudPlatform – End User License Agreement</a>
+                            </li>
+
+                            <li>
+
+                                <a href="/hc/en-us/articles/205407446-Convirture-End-User-License-Agreement">Convirture – End User License Agreement</a>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                    <div class="sectsep cboth">&nbsp;</div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</div>

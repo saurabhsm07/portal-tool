@@ -14,14 +14,17 @@ import { CategoryHomeComponent } from './components/category-home/category-home.
 import { ListCategoriesComponent } from './components/list-categories/list-categories.component';
 import { EditCategoryComponent } from './components/edit-category/edit-category.component';
 import { CreateCategoryComponent } from './components/create-category/create-category.component';
+import { ViewCategoryHcComponent } from './components/view-category-hc/view-category-hc.component';
 import { SearchCategoryPipe } from './pipes/search-category/search-category.pipe';
+import { CategoryHeaderHcComponent } from './components/category-header-hc/category-header-hc.component';
+
 
 @NgModule({
   declarations: [
     CategoryHomeComponent, 
     ListCategoriesComponent, 
     EditCategoryComponent, 
-    CreateCategoryComponent, SearchCategoryPipe
+    CreateCategoryComponent, SearchCategoryPipe, ViewCategoryHcComponent, CategoryHeaderHcComponent
   ],
   imports: [
     CommonModule,

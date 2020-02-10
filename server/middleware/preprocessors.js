@@ -19,6 +19,36 @@ preprocessors.processArticleObj = (article) => {
     return article;
 }
 
+/**
+ * 
+ * @param  articles : articles array to be processed before returning to the client  
+ */
+preprocessors.processArticlesList = (articles) => {
+    articles.map((article) => {
+        article.author = JSON.parse(article.author);
+        if(article.review_state != null){
+            article.review_state = JSON.parse(article.review_state);
+        }
+        if(article.label_names != ''){
+            article.label_names = JSON.parse(article.label_names);
+        }
+    
+        if(article.article_form_id != 0){
+            article.body = JSON.parse(article.body);
+        }
+        article.draft = JSON.parse(article.draft);
+        article.section = JSON.parse(article.section);
+       
+    })
+
+
+    
+
+    return articles;
+}
+
+
+
 preprocessors.processSegmentObj = (segment) => {
 
     if((segment.group_ids != null) && (segment.group_ids != '') && (segment.group_ids != 'null')){
