@@ -38,6 +38,8 @@ import { ListArticleFormComponent } from './components/form-components/list-arti
 import { SearchFieldPipe } from './pipes/search-article-field/search-field.pipe';
 import { SearchArticleFormPipe } from './pipes/search-article-form/search-article-form.pipe';
 import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
+import { ViewArticleHcComponent } from './components/article-components/view-article-hc/view-article-hc.component';
+import { ArticleHeaderHcComponent } from './components/article-components/article-header-hc/article-header-hc.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
     ListArticleFormComponent,
     SearchArticleFormPipe,
     SearchArticlePipe,
+    ViewArticleHcComponent,
+    ArticleHeaderHcComponent,
   ],
   imports: [
     BrowserModule,

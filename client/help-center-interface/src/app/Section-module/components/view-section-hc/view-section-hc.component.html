@@ -1,0 +1,54 @@
+<app-section-header-hc></app-section-header-hc>
+<div class="row">
+    <!-- <div class="col-md-10 breadcrumbsdiv">
+        <ol class="breadcrumbs">
+
+            <li title="Accelerite Support">
+
+                <a href="/hc/en-us">Accelerite Support</a>
+
+            </li>
+
+
+        </ol>
+
+    </div> -->
+    <!-- <div class="col-md-2 text-right" style="margin-top:-14px;padding-right:90px;">
+        <span>
+            <div class="section-subscribe dropdown" aria-haspopup="true">
+                <a class="dropdown-toggle" role="button" aria-selected="false" href="#">Follow</a>
+                <span class="dropdown-menu" role="menu" aria-expanded="false">
+                    <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" href="/hc/en-us/sections/115001455183-Archived-EULA/subscription.html?subscribe_to_grandchildren=false">New articles</a>
+                    <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" href="/hc/en-us/sections/115001455183-Archived-EULA/subscription.html?subscribe_to_grandchildren=true">New articles and comments</a>
+                </span>
+            </div>
+        </span>
+    </div> -->
+    <div class="cboth">&nbsp;</div>
+    <div class="col-md-12 " id="resultcontent" style="display:none;">
+        <h1 tabindex="1" class="wow fadeInUp animated animated" style="visibility: visible; -webkit-animation-delay: 0.0s;float:left;width: 87%;font-size: 18px;">
+            <span class="rcount"></span> results for "
+            <span class="rquery"></span>"</h1>
+
+        <section class="search-results-column" style="  width: 100%;">
+            <h2 class="search-results-subheading wow fadeInUp animated animated" style="visibility: visible; -webkit-animation-delay: 0.0s;">Knowledge Base
+                <a href="javascript:void();" class="backtolist" style="padding: 2px 19px;color: white;margin-left: 41px;font-size: 14px;background: #388ECF;"
+                    role="button">Back to listing</a>
+            </h2>
+            <ul class="search-results-list">
+
+            </ul>
+        </section>
+    </div>
+    <div *ngIf="article_list" class="col-md-12 nopad" id="sectioncontent">
+
+        <ul class="article-list">
+
+            <li *ngFor="let article of article_list">
+                <a href="hc/en-us/articles/id/{{article.id}}"> {{article.title}} </a>
+            </li>
+        </ul>
+
+
+    </div>
+</div>

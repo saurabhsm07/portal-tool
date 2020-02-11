@@ -10,6 +10,8 @@ import { EditSectionComponent } from './components/edit-section/edit-section.com
 import { ListSectionsComponent } from './components/list-sections/list-sections.component';
 import { SearchSectionPipe } from './pipes/search-section/search-section.pipe';
 import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
+import { ViewSectionHcComponent } from './components/view-section-hc/view-section-hc.component';
+import { SectionHeaderHcComponent } from './components/section-header-hc/section-header-hc.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
                  CreateSectionComponent, 
                  EditSectionComponent,
                  ListSectionsComponent,
-                 SearchSectionPipe],
+                 SearchSectionPipe,
+                 ViewSectionHcComponent,
+                 SectionHeaderHcComponent],
   imports: [
     CommonModule,
     SectionRoutingModule,

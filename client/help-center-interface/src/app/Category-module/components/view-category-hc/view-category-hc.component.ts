@@ -19,36 +19,42 @@ import { Article } from '../../../Articles-module/classes/article';
   animations: [
               trigger('collapse', [
                 state('close', style({
-                  height: '200px',
-                  opacity: 1,
-                  backgroundColor: 'yellow',
-                  display: 'none',
+                  height: '',
+                  opacity: 0,
+                  backgroundColor: '',
+                  display: 'none'
                 })),
               state('open', style({
-                height: '400px',
+                height: '',
                 opacity: 1,
-                backgroundColor: 'yellow',
-                display: 'block'
+                backgroundColor: ''
               })),
-          transition('close=>open',[ animate(2000)])])
+          transition('close => open', [animate('0.5s')]),
+          transition('open => close', [animate('0.5s')])])
           ]
               
 })
 export class ViewCategoryHcComponent implements OnInit {
   category$: Observable<Category>;  // observable to map category i.d from angular route path and call get category by id API
   category: Category;               // category object to store category record field values
-  sectionList: Section[];
-  articleList: Article[];
+  section_list: Section[];          // list of sections in the specific category
+  article_list: Article[];          // list of articles in perticular section
+  current_section: number;
+  section_articles_obj: {}          // data structure to map articles to section for template generation in UI
 
-  isOpen = false;
-  toggle() {
-    this.isOpen = !this.isOpen;
+
+
+  toggle(section_id) {
+    this.section_articles_obj[section_id].isOpen = !this.section_articles_obj[section_id].isOpen;
+
   }
   constructor(private router: Router,
     private categoryService: CategoryService,
     private sectionService: SectionService,
     private articleService: ArticleService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+      this.section_articles_obj = {};
+    }
 
   ngOnInit() {
     this.category$ = this.route.paramMap.pipe(
@@ -66,22 +72,51 @@ export class ViewCategoryHcComponent implements OnInit {
   }
 
 
+  /**
+   * Get all sections with perticular category i.d
+   */
   private getSectionsFromCategory() {
     this.sectionService.getSectionInCategory(this.category.id.toString())
       .subscribe((sectionsList) => {
-        this.sectionList = sectionsList;
-        console.log(this.sectionList);
+        this.section_list = sectionsList;
+        this.current_section = this.section_list[0].id;
+        console.log(this.section_list);
+        this.initializeSectionArticleObject();
+        // console.log(this.section_articles_obj);
       }, (error) => {
         console.log(error);
       });
   }
 
-   public getArticlesfromSection(sectionId) {
-    this.toggle();
-    this.articleService.getArticlesWithSectionId(sectionId)
-                       .subscribe((articles) => {
-                         this.articleList = articles;
-                         console.log(this.articleList);
-                       })
+  /**
+   * initializes section article object for rendering in template
+   */
+  private initializeSectionArticleObject() {
+    this.section_list.forEach((section, index) => {
+      this.section_articles_obj[section.id] = { articles: [], see_more: section.html_url, isOpen: false };
+    });
+  }
+
+  /**
+   * fetch articles with section id if not already fetched
+   * @param section_id : id of the section from which articles are to be fetched
+   */
+   public getArticlesfromSection(section_id) {
+     this.current_section = section_id;
+
+    
+    // console.log(this.section_articles_obj[section_id].articles.length);
+    this.toggle(section_id);
+    if(this.section_articles_obj[section_id].articles.length == 0){
+      this.articleService.getArticlesWithSectionId(section_id)
+      .subscribe((articles) => {
+        this.article_list = articles;
+        this.section_articles_obj[section_id].articles = this.article_list;
+        
+        console.log(this.section_articles_obj[section_id].articles.length);
+      })
+    }
+  
+
   }
 }
