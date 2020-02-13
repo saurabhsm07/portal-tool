@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-section-header-hc',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionHeaderHcComponent implements OnInit {
 
+  @Input() section_name: string;
   constructor() { }
 
   ngOnInit() {

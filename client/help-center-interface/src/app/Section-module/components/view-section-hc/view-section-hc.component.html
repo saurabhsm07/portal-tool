@@ -1,4 +1,6 @@
-<app-section-header-hc></app-section-header-hc>
+<ng-container *ngIf="section">
+        <app-section-header-hc [section_name] = "section.name"></app-section-header-hc>
+</ng-container>
 <div class="row">
     <!-- <div class="col-md-10 breadcrumbsdiv">
         <ol class="breadcrumbs">

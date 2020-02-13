@@ -1,1 +1,14 @@
-<p>view-article-hc works!</p>
+<ng-container *ngIf="article">
+<app-article-header-hc [section_name] = "article.section.name"></app-article-header-hc>
+</ng-container>
+<ng-container *ngIf="article">
+    <div class="articlecont row">
+        <div class="offset-md-1 col-md-10 arthdline" style="padding-left:0;">
+            <h1 class="art-hdline" id="articleheadline" [innerHtml] = "article.title | sanitizeArticle"></h1>
+        </div>
+        <div class="article-body offset-md-1 col-md-10" [innerHtml]="article.body| sanitizeArticle">
+
+        </div>
+    </div>
+</ng-container>
+<app-helpcenter-footer></app-helpcenter-footer>

@@ -8,6 +8,7 @@ import { HelpcenterHeaderComponent } from './components/helpcenter-header/helpce
 
 @NgModule({
   declarations: [HelpcenterHomeComponent, HelpcenterFooterComponent, HelpcenterHeaderComponent],
+  exports: [HelpcenterFooterComponent],
   imports: [
     CommonModule,
     HelpcenterRoutingModule

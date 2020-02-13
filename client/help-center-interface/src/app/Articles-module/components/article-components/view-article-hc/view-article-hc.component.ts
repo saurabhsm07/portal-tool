@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { Article } from './../../../classes/article';
+import { ArticleService } from './.././../../services/article-service/article.service';
 @Component({
   selector: 'app-view-article-hc',
   templateUrl: './view-article-hc.component.html',
@@ -7,9 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewArticleHcComponent implements OnInit {
 
-  constructor() { }
+  article$: Observable<Article>;  //object used to create a observable of type Article for fetching data based on Url parameter
+  article: Article; // object of type article
+  constructor( private articleService: ArticleService,
+               private router: Router,
+               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.fetchArticleData();
+  }
+
+
+    /**
+   * Gets current article data from the URL i.d
+   */
+  private fetchArticleData() {
+    this.article$ = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.articleService.getArticle(params.get('id'))));
+    this.article$.subscribe((article: Article) => {
+      this.article = article;
+      console.log(this.article);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 }

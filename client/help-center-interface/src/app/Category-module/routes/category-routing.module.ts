@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'categories/home', component: CategoryHomeComponent },
   { path: 'categories/id/:id', component: EditCategoryComponent },
   { path: 'categories/create', component: CreateCategoryComponent },
-  { path: 'hc/categories/id/:id', component: ViewCategoryHcComponent}
+  { path: 'hc/en-us/categories/id/:id', component: ViewCategoryHcComponent}
 
 ];
 

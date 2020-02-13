@@ -38,7 +38,7 @@ import { FieldComponentCreators } from './../../../../imports/field-component-cr
 })
 export class EditArticleComponent implements OnInit {
 
-  article$: Observable<Article>;
+  article$: Observable<Article>;  //object used to create a observable of type Article for fetching data based on Url parameter
   @Input()
   article_object: Article;
 
@@ -305,11 +305,13 @@ export class EditArticleComponent implements OnInit {
     this.article$ = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.articleService.getArticle(params.get('id'))));
     this.article$.subscribe((data: Article) => {
       this.setArticleObjValues(data);
-      console.log(this.article_object)
+      console.log(this.article_object);
       this.updateFormHeader();
       this.updateFormFooter();
-      console.log(this.article_form.value)
+      console.log(this.article_form.value);
       this.renderArticleForm();
+    }, (error) => {
+      console.log(error);
     });
   }
 
