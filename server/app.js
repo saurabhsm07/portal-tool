@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const handlebars = require('express-handlebars');
+// const handlebars = require('express-handlebars');
 const loggers = require('./middleware/loggers');
 const app = express();
 const cors = require('cors');
@@ -11,6 +11,7 @@ const categories = require('./routes/api/category/categories');
 const sections = require('./routes/api/section/sections');
 const segments = require('./routes/api/segment/segments');
 const organizations = require('./routes/api/organization/organizations');
+const users = require('./routes/api/user/users');
 const tags = require('./routes/api/tag/tags');
 const PORT = process.env.PORT  || 5000;
 
@@ -30,8 +31,8 @@ app.use(express.static(path.join(__dirname,"public")));
 
 // Handlebars Middleware
 app.set('views', path.join(__dirname,'views'));
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-app.set('view engine','handlebars');
+// app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+// app.set('view engine','handlebars');
 
 
 //get home path -  rendered
@@ -54,6 +55,6 @@ app.use('/api/categories/', categories);    // routes for category APIs
 app.use('/api/sections/', sections);         // routes for sections APIs
 app.use('/api/segments/', segments);         // routes for user segment APIs
 app.use('/api/organizations/', organizations) // routes for organizations APIs
-app.use('/api/tags/', tags) // routes for organizations APIs
-
+app.use('/api/users/', users) //routes for User Apis
+app.use('/api/tags/', tags) // routes for tagss APIs
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })
