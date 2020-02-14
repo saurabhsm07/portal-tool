@@ -3,7 +3,7 @@ const organizations = express.Router()
 // const client = require("./../../../config/connections").client;
 const Organization = require("./../../../models/organization");
 
-const preprocessors = require('./../../../middleware/preprocessors');
+const preprocessors = require('./../../../helpers/preprocessors');
 
 
 /**

@@ -3,7 +3,6 @@ const tags = express.Router()
 // const client = require("./../../../config/connections").client;
 const Tag = require("./../../../models/tag");
 
-const preprocessors = require('./../../../middleware/preprocessors');
 
 
 /**

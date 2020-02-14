@@ -1,10 +1,9 @@
 const express = require('express');
 const users = express.Router();
+const md5 = require('md5');
 const User = require("./../../../models/user");
-const preprocessors = require('./../../../middleware/preprocessors');
-const md5 = require('md5')
-
-
+const preprocessors = require('./../../../helpers/preprocessors');
+const jwt_token = require('./../../../helpers/token_generator');
 /**
  * GET: api path to get user record with specific id.
  */
@@ -41,7 +40,8 @@ users.post('/login', (req, res) => {
                 const user = data[0];
                 console.log(`fetched user with id = ${user.id}`);
                 if(user.password == md5(req.body.user.password)){
-                    res.status(200).send({message: 'authenticated user'});
+                    const token = jwt_token.create_token(user.id);
+                    res.status(200).send({token});
                 }else{
                     res.status(401).send({message: 'unauthorized user'});
                 }
@@ -75,8 +75,10 @@ users.post('/', (req, res) => {
             
                 User.create(user)
                     .then((resp) => {
+                        const token = jwt_token.create_token(resp)
+
                         console.log(resp);
-                        res.status(200).send(resp);
+                        res.status(200).send({token : token});
                     })
                     .catch((err) => {
                         console.log("ERROR :");

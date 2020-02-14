@@ -10,7 +10,7 @@ const fields = require('./form data/fields');
 const forms = require('./form data/forms');
 const labels = require('./labels/labels');
 
-const preprocessors = require('./../../../middleware/preprocessors');
+const preprocessors = require('./../../../helpers/preprocessors');
 
 
 /**

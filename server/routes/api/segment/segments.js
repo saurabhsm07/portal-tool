@@ -1,7 +1,7 @@
 const express = require('express');
 const segments = express.Router();
 const Segment = require("./../../../models/user_segment");
-const preprocessors = require('./../../../middleware/preprocessors');
+const preprocessors = require('./../../../helpers/preprocessors');
 
 /**
  * GET: api path to get list of segments from the database.
