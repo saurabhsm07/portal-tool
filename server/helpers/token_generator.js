@@ -6,12 +6,12 @@ const config = require('./../config/config');
 const jwt_token = {};
 
 
-jwt_token.create_token = (user) => {
+jwt_token.create_token = (userid) => {
     return jwt.sign({
         iss: config.jwt.issuer,
-        sub: user.id,
+        sub: userid,
         lat: new Date().getTime(),
-        exp: new Date().setDate(new Date().getTime() + 1)
+        exp: Math.floor(Date.now() / 1000) + (60 * 60*3)
     }, config.jwt.secret);
 }
 
