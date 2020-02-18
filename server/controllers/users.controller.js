@@ -1,7 +1,6 @@
-const express = require('express');
 const md5 = require('md5');
-const User = require("./../../models/user");
-const jwt_token = require('./../../helpers/token_generator');
+const User = require("./../models/user");
+const jwt_token = require('./../helpers/encoders/token_generator');
 
 module.exports = {
 
@@ -25,10 +24,6 @@ module.exports = {
             })
     },
 
-
-    loadByEmail: async (req, res, next) => {
-
-    },
 
     login: async (req, res, next) => {
         const { email, password } = req.body.user;
@@ -54,7 +49,7 @@ module.exports = {
             })
     },
 
-    create: async (req, res, nest) => {
+    create: async (req, res, next) => {
         User.findAll({ where: { email: req.body.user.email } })
             .then((data) => {
                 if (data.length == 1) {
@@ -84,7 +79,7 @@ module.exports = {
             })
     },
 
-    update: async (req, res, nest) => {
+    update: async (req, res, next) => {
         console.log(req.body.user)
         const userObj = req.body.user;
         const updateData = {
@@ -128,7 +123,7 @@ module.exports = {
             })
     },
 
-    delete: async (req, res, nest) => {
+    delete: async (req, res, next) => {
         const id = req.params.id
         User.destroy({ where: { id } })
             .then((data) => {

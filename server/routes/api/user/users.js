@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const passportConfig = require('./../../../config/passport');
-const users = require('./../../../controllers/users/users');
+const users = require('./../../../controllers/users.controller');
 
 /**
  * GET: api path to get user record with specific id.

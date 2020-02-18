@@ -1,7 +1,7 @@
 const express = require('express');
 const segments = express.Router();
 const Segment = require("./../../../models/user_segment");
-const preprocessors = require('./../../../helpers/preprocessors');
+const preprocessors = require('./../../../helpers/preprocessors/segments.preprocessors');
 
 /**
  * GET: api path to get list of segments from the database.
@@ -34,7 +34,7 @@ segments.get('/id/:id', (req, res) => {
            .then((data) => {
                 if(data.length == 1){
                     console.log(`fetched segment with id : ${data[0].id}`);
-                    const segment = preprocessors.processSegmentObj(data[0]);
+                    const segment = preprocessors.clientSegmentObj(data[0]);
                     console.log(segment)
                     res.status(200).send(segment);
                 }
