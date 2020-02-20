@@ -1,7 +1,7 @@
 const md5 = require('md5');
 const User = require("./../models/user");
 const jwt_token = require('./../helpers/encoders/token_generator');
-
+const preprocessor = require('./../helpers/preprocessors/users.preprocessors');
 module.exports = {
 
     load: (req, res, next) => {
@@ -30,11 +30,13 @@ module.exports = {
         User.findAll({ where: { email: email } })
             .then((data) => {
                 if (data.length == 1) {
-                    const user = data[0];
+                    let user = data[0];
                     console.log(`fetched user with id = ${user.id}`);
                     if (user.password == md5(password)) {
                         const token = 'Bearer ' + jwt_token.create_token(user.id);
-                        res.status(200).send({ token });
+                        user.remember_token = token;
+                        user = preprocessor.clientUserObj(user);
+                        res.status(200).send({ user });
                     } else {
                         res.status(401).send({ message: 'unauthorized user' });
                     }
@@ -65,10 +67,11 @@ module.exports = {
 
                     User.create(user)
                         .then((resp) => {
-                            const token = jwt_token.create_token(resp)
-
-                            console.log(resp);
-                            res.status(200).send({ token: token });
+                            let userObj = resp
+                            const token = 'Bearer ' + jwt_token.create_token(resp)
+                            userObj.remember_token = token;
+                            userObj = preprocessor.clientUserObj(userObj);
+                            res.status(200).send({ userObj });
                         })
                         .catch((err) => {
                             console.log("ERROR :");

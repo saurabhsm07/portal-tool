@@ -12,44 +12,55 @@ export class CategoryService {
   /**
    * List of primary CRUD APIs for Category data
    */
-private requestUri = {
+  private requestUri = {
     getCategories: 'http://localhost:5000/api/categories/',
     getCategoryById: 'http://localhost:5000/api/categories/id/',
     postCategory: 'http://localhost:5000/api/categories/',
     updateCategory: 'http://localhost:5000/api/categories/',
     deleteCategory: 'http://localhost:5000/api/categories/',
-};
+  };
 
-private headersOptions = {
-  headers: new HttpHeaders({
-  'Content-Type':  'application/json',
-})
-};
+  private headersOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
-  postCategory(category : Category) : Observable<Category> {
-    return this.http.post<Category>(this.requestUri.postCategory, {category : category}, this.headersOptions)
-               .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
+  /**
+   * postCategory: saves a category object to the database
+   * @param category : category object to be saved in the database
+   */
+  postCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.requestUri.postCategory, { category: category }, this.headersOptions)
+      .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
   }
 
-  getCategory(id : String) : Observable<Category> {
-    return this.http.get<Category>(this.requestUri.getCategoryById+id, this.headersOptions)
-               .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
+  /**
+   * getCategory: gets a single category based on id
+   * @param id : unique id of the category
+   */
+  getCategory(id: String): Observable<Category> {
+    return this.http.get<Category>(this.requestUri.getCategoryById + id, this.headersOptions)
+      .pipe(catchError(CategoryRequestErrorHandlersService.getCategoryError));
   }
 
-  listCategories() : Observable<Category[]>{
+  /**
+   * 
+   */
+  listCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.requestUri.getCategories, this.headersOptions)
-                .pipe(catchError(CategoryRequestErrorHandlersService.listCategoriesError));
+      .pipe(catchError(CategoryRequestErrorHandlersService.listCategoriesError));
   }
 
-  updateCategory(category: Category): Observable<any>{
-    return this.http.put<any>(this.requestUri.updateCategory, {category : category}, this.headersOptions)
-               .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
+  updateCategory(category: Category): Observable<any> {
+    return this.http.put<any>(this.requestUri.updateCategory, { category: category }, this.headersOptions)
+      .pipe(catchError(CategoryRequestErrorHandlersService.putCategoryError))
   }
 
-  deleteCategory(id: String) : Observable<any> {
-    return this.http.delete<any>(this.requestUri.deleteCategory + id, this.headersOptions )
-                // .pipe(catchError(CategoryRequestErrorHandlersService.))
+  deleteCategory(id: String): Observable<any> {
+    return this.http.delete<any>(this.requestUri.deleteCategory + id, this.headersOptions)
+    // .pipe(catchError(CategoryRequestErrorHandlersService.))
   }
 }

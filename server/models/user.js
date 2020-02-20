@@ -8,16 +8,16 @@ const User = client.define('user', {
         autoIncrement: true
     },
     name: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.TEXT,
     },
     email: {
         type: Sequelize.TEXT,
     },
     email_verified_status: {
-        type: Sequelize.TEXT,
+        type: Sequelize.BOOLEAN,
     },
     email_verified_at: {
-        type: Sequelize.TEXT,
+        type: Sequelize.DATE,
     },
     password: {
         type: Sequelize.TEXT,
@@ -26,37 +26,37 @@ const User = client.define('user', {
         type: Sequelize.TEXT,
     },
     alias: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
     },
     signature: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
     },
     details: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
     },
     is_admin: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     remember_token: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
     },
     role_id: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     ticket_access: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     language_id: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
     },
     timezone_id: {
-        type: Sequelize.DATE,
+        type: Sequelize.BIGINT,
     },
     suspend_status: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     delete_status: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     created_at: {
         type: Sequelize.DATE,
@@ -65,10 +65,10 @@ const User = client.define('user', {
         type: Sequelize.DATE,
     },
     status: {
-        type: Sequelize.DATE,
+        type: Sequelize.BOOLEAN,
     },
     user_type: {
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT,
     },
     last_login_at: {
         type: Sequelize.DATE,

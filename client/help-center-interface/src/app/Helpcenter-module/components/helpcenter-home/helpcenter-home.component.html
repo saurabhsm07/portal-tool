@@ -171,7 +171,7 @@
 						<button class="hmdwnldbtn" onclick="location.href='/hc/en-us/categories/201273853';">Click here to download</button>
 					</div>
 				</div>
-				<div class="col-md-6" style="    border-left: 1px solid #fa6400;">
+				<div class="col-md-6" style="border-left: 1px solid #fa6400;">
 					<div class="center">
 						<img src="./assets/images/kbhome.png" width="80" height="76">
 					</div>
@@ -293,15 +293,15 @@
 							<ng-container *ngIf="loginMode; else registerMode">
 							<div  class="col-md-12 padLogin" id="loginDivForm">
 								<div id="errorDiv"> </div>
-								<form action="#" class="request-form" method="POST" id="frmlogin" name="frmlogin" novalidate="novalidate" autocomplete=off>
+								<form  class="request-form" [formGroup] = 'login_form' id="frmlogin" name="loginfrm" autocomplete=off (ngSubmit)='loginFormSubmit()'>
 									<div class="user-input-wrp">
-										<input type="text" class="txtbxWidth" name="email" id="email" value="" required />
+										<input formControlName='email' type="text" class="txtbxWidth" name="email" id="email" value="" required />
 										<img class="appendiconeml" src="#" width="22" />
 										<span class="floating-label lbl-email">Email</span>
 									</div>
 									<div class="hgt25">&nbsp;</div>
 									<div class="user-input-wrp">
-										<input type="password" class='txtbxWidth' name="password" id="password" value="" required />
+										<input formControlName='password' type="password" class='txtbxWidth' name="password" id="password" value="" required />
 										<img class="appendiconpwd" src="#" width="16" />
 										<span class="floating-label lbl-passwords">Password</span>
 									</div>
@@ -332,33 +332,33 @@
 							<div class="col-md-12 padLogin" id="registerDivForm">
 								<div id="successmsg"></div>
 								<div id="regfrmDiv">
-									<form action="#" class="request-form" method="POST" id="UserRegForm" name="UserRegForm" novalidate="novalidate">
+									<form [formGroup] = 'register_form' class="request-form" id="UserRegForm" (ngSubmit) = 'registerFormSubmit()'>
 										<div class="user-input-wrp">
-											<input type="text" name="UserRegForm_name" id="UserRegForm_name" class='txtbxWidth' value="" required>
+											<input formControlName='full_name' type="text" name="UserRegForm_name" id="UserRegForm_name" class='txtbxWidth' value="" required>
 											<img class="appendiconreg" src="#" width="21" />
 											<span class="floating-label">User Full Name</span>
 										</div>
 										<div class="hgt25">&nbsp;</div>
 										<div class="user-input-wrp">
-											<input type="email" name="UserRegForm_email" id="UserRegForm_email" class='txtbxWidth' required />
+											<input formControlName='email' type="email" name="UserRegForm_email" id="UserRegForm_email" class='txtbxWidth' required />
 											<img class="appendiconeml" src="#" width="21" />
 											<span class="floating-label">Email Address</span>
 										</div>
 										<div class="hgt25">&nbsp;</div>
 										<div class="user-input-wrp">
-											<input type="password" name="UserRegForm_password" id="UserRegForm_password" class='txtbxWidth' required />
+											<input formControlName='password' type="password" name="UserRegForm_password" id="UserRegForm_password" class='txtbxWidth' required />
 											<img class="appendiconpwd" src="#" width="16" />
 											<span class="floating-label">Password</span>
 										</div>
 										<div class="hgt25">&nbsp;</div>
 										<div class="user-input-wrp">
-											<input type="password" name="UserRegForm_cpassword" id="UserRegForm_cpassword" class='txtbxWidth' required />
+											<input formControlName='confirm_password' type="password" name="UserRegForm_cpassword" id="UserRegForm_cpassword" class='txtbxWidth' required />
 											<img class="appendiconpwd" src="#" width="16" />
 											<span class="floating-label">Confirm Password</span>
 										</div>
 										<div class="hgt25">&nbsp;</div>
 										<div class="user-input-wrp">
-											<input type="text" name="UserRegForm_phone" id="UserRegForm_phone" class='txtbxWidth' required />
+											<input formControlName='phone_number' type="text" name="UserRegForm_phone" id="UserRegForm_phone" class='txtbxWidth' required />
 											<img class="appendiconreg" src="#" width="23" />
 											<span class="floating-label">Phone Number</span>
 										</div>

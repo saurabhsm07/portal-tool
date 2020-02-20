@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-helpcenter-header',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpcenterHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
+  search_hc_form = this.fb.group({
+    search: ['']
+  })
   ngOnInit() {
   }
 
