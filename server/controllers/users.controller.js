@@ -36,7 +36,7 @@ module.exports = {
                         const token = 'Bearer ' + jwt_token.create_token(user.id);
                         user.remember_token = token;
                         user = preprocessor.clientUserObj(user);
-                        res.status(200).send({ user });
+                        res.status(200).send(user);
                     } else {
                         res.status(401).send({ message: 'unauthorized user' });
                     }

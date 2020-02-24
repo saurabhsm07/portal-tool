@@ -17,3 +17,34 @@ li.dropdown{
     }
 }
 }
+
+.user-header-opt{
+    margin-bottom: 10px;
+    span{
+        display: inline-block;
+        vertical-align: top;
+        .toptext{
+            padding-top: 4px;
+            display: inline;
+            vertical-align: top;
+
+        }
+        button{
+            display: inline-block;
+            vertical-align: top;
+            i{
+                padding-bottom: 12px;
+            }
+        }
+    }
+
+    mat-menu{
+        button{
+            mat-icon{
+                margin-top: 0px;
+            }
+        }
+    }
+
+    
+}

@@ -10,7 +10,7 @@ export class User {
     signature?: Text;
     details?: Text;
     is_admin?: Boolean;
-    remember_token?: Text;
+    remember_token?: string;
     role_id?: Boolean;
     ticket_access?:Boolean;
     language_id?: number;

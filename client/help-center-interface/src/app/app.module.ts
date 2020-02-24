@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
+import { AuthGuard } from './authentication/auth.guard';
 
 
 
@@ -40,7 +41,7 @@ import { SegmentModule } from './Segment-module/segment.module';
     EditorModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

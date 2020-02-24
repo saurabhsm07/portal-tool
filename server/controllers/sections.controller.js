@@ -32,7 +32,7 @@ module.exports = {
  * getByCategory: get section record for specific category id.
  */
     getByCategory: (req, res, next) => {
-        categoryId = req.params.category_id;
+        categoryId = req.params.id;
         Section.findAll({ where: { category_id: categoryId } })
             .then((data) => {
                 if (data.length > 0) {

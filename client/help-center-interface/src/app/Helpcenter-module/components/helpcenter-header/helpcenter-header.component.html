@@ -8,7 +8,7 @@
 		</div>
 		<div class="col-md-9 col-sm-9 text-right">
 			<div class="padtop20">
-				<div class="toptext hg27 right padleft35">
+				<!-- <div class="toptext hg27 right padleft35">
 
 					<span class="dropdown language-selector" aria-haspopup="true">
 						<a class="dropdown-toggle toprgtlink">&nbsp;&nbsp;English (US)
@@ -27,12 +27,38 @@
 						</span>
 					</span>
 
-				</div>
+				</div> -->
+				<ng-container *ngIf='user; else loginTemplate'>
+					<div class="hg27 right user-header-opt padleftrgt35">
+						<span>
+								<h3 class="toptext">{{user.name}} </h3>
 
-				<div class="hg27 right padleftrgt35">
-					<a href="#" class="toptext" data-toggle="modal" data-target="#loginModal">Login/Register</a>
-				</div>
-
+								<button mat-icon-button [matMenuTriggerFor]="userMenu" >
+									<i class="fa fa-angle-down iconsize"></i>
+								</button>
+						</span>
+						
+						<mat-menu #userMenu="matMenu">
+							<button mat-menu-item>
+								<mat-icon>assignment_ind</mat-icon>
+								<span>User profile</span>
+							</button>
+							<button mat-menu-item>
+								<mat-icon>textsms</mat-icon>
+								<span>Change password</span>
+							</button>
+							<button mat-menu-item>
+								<mat-icon>notifications_off</mat-icon>
+								<span>Sign out</span>
+							</button>
+						</mat-menu>
+					</div>
+				</ng-container>
+				<ng-template #loginTemplate>
+					<div class="hg27 right user-header-opt padleftrgt35">
+						<a href="#" #loginBtnLink class="toptext" data-toggle="modal" data-target="#loginModal">Login/Register</a>
+					</div>
+				</ng-template>
 				<div class="toptext hg27 right padleftrgt35">
 					<div>
 						<a href="#" data-toggle="modal" data-target="#contactModal" class="toptext">Contact</a>
@@ -147,7 +173,7 @@
 										</ul>
 									</li>
 
-									<li id="partnerTopMnlink" class= "dropdown" >
+									<li id="partnerTopMnlink" class="dropdown">
 										<a href="//support.accelerite.com/hc/en-us/categories/115000078683-Partner-Portal">Partners</a>
 									</li>
 
@@ -176,9 +202,9 @@
 			<div class="hgt20">&nbsp;</div>
 			<div class="row nopad">
 				<div class="offset-sm-2 offset-md-2 col-md-8 col-sm-8" style="padding:0;">
-					<form [formGroup] = 'search_hc_form' class="form-inline header-search" name="searchfrom" action="/hc/en-us/search" method="GET">
+					<form [formGroup]='search_hc_form' class="form-inline header-search" name="searchfrom" action="/hc/en-us/search" method="GET">
 						<img class="searchhmicon hmsrchicon" src="./assets/images/searchicon.png">
-						<input formGroupName = 'search' type="text" class="hmsearchbox" name="query" placeholder="Search">
+						<input formGroupName='search' type="text" class="hmsearchbox" name="query" placeholder="Search">
 					</form>
 				</div>
 			</div>

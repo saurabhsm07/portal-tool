@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user-service/user.service';
+import { AuthService } from './../../services/auth-service/auth.service';
 import { User } from './../../classes/user';
 @Component({
   selector: 'app-helpcenter-home',
@@ -10,16 +11,20 @@ import { User } from './../../classes/user';
 })
 export class HelpcenterHomeComponent implements OnInit {
 
+
+
   @ViewChild('loginLink', { static: false }) loginLink: ElementRef;
   @ViewChild('registerLink', { static: false }) registerLink: ElementRef;
+  @ViewChild('modalCancelBtn', { static: false }) modalCancelBtn: ElementRef;
 
   public loginMode = true;
-
+  public authenticating = false;
   private userObj: User;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
 
   //Reactive login form
@@ -51,7 +56,16 @@ export class HelpcenterHomeComponent implements OnInit {
 
 
   ngOnInit() {
-  }
+    this.userObj = JSON.parse(localStorage.getItem('user'));
+    console.log(this.userObj)
+    if(this.userObj){
+      console.log(this.userObj);
+      
+    }
+  
+    }
+
+      
 
   public toggleMode(type: string) {
     console.log(type)
@@ -71,35 +85,41 @@ export class HelpcenterHomeComponent implements OnInit {
 
   public registerFormSubmit() {
 
-    this.userService.registerUser({
+    this.authService.registerUser({
       name: this.name.value,
       email: this.email.value,
       password: this.password.value,
       phone: this.password.value
     }).subscribe((user) => {
       this.iniHcData(user);
-      console.log(this.userObj)
     }, (error) => {
       console.log(error);
     })
   }
 
   public loginFormSubmit() {
-    console.log(this.login_email.value)
-    this.userService
-        .loginUser({ email: this.login_email.value, 
-                      password: this.login_password.value })
-        .subscribe((user) => {
-          this.iniHcData(user);
-          console.log(this.userObj);
-        })
+    this.authenticating = true;
+    this.authService
+      .loginUser({
+        email: this.login_email.value,
+        password: this.login_password.value
+      })
+      .subscribe((user) => {
+        this.iniHcData(user);
+        this.authenticating = false;
+        this.modalCancelBtn.nativeElement.click();
+      }, (error) => {
+        this.authenticating = false;
+        console.log(error);
+      })
   }
   /**
    * 
    * @param user : user object recieved from the database
    */
   private iniHcData(user: User) {
-    this.userObj = user
-    let token = user.remember_token;
+    this.userObj = user;
+    localStorage.setItem('token', user.remember_token);
+    localStorage.setItem('user', JSON.stringify(this.userObj));
   }
 }

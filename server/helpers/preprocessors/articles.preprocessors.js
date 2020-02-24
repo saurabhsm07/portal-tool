@@ -5,16 +5,22 @@ const preprocessors = {};
  * @param  article : article object to be processed before returning to the client  
  */
 preprocessors.clientArticleObj = (article) => {
-    article.author = JSON.parse(article.author);
-    article.review_state = JSON.parse(article.review_state);
-    article.draft = JSON.parse(article.draft);
-    article.section = JSON.parse(article.section);
-    article.label_names = JSON.parse(article.label_names);
-    if(article.article_form_id != 0){
-        article.body = JSON.parse(article.body);
-    }
-
+    const article_json_fields = ['author', 'review_state', 'draft', 'section', 'label_names', 'article_body'];
     
+        for(let i=0; i<article_json_fields.length; i++){
+            try{
+                if(article[article_json_fields[i]] != undefined)
+                if(article[article_json_fields[i]] != null){
+                    article[article_json_fields[i]] = JSON.parse(article[article_json_fields[i]]);
+                }
+            }
+            catch(error){
+                console.log(article_json_fields[i]);
+            }
+          
+        }
+    
+
 
     return article;
 }

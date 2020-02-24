@@ -1,4 +1,4 @@
-<app-helpcenter-header></app-helpcenter-header>
+<app-helpcenter-header [user] = "userObj"></app-helpcenter-header>
 <div class="maindiv">
 	<!-- Page Content -->
 	<div class="container">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="centerBlock">
-							<a href="/hc/en-us/articles/210807183-Product-Lifecycle-Matrix" class="supportbox" disply="gear">
+							<a href="/hc/en-us/articles/id/210807183-Product-Lifecycle-Matrix" class="supportbox" disply="gear">
 								<div class="center supboxpad2">
 									<div class="bg-noun_gear">&nbsp;</div>
 								</div>
@@ -312,16 +312,15 @@
 									<div class="cboth hgt25">&nbsp;</div>
 									<div class="col-md-6 nopadleft inline-display-cls">
 										<div id="logincancelbutton">
-											<input type="button" class="logcancelbtn" value="Cancel" name="log_cancel" id="log_cancel">
+											<input #modalCancelBtn type="button" class="logcancelbtn" value="Cancel" data-dismiss="modal">
 										</div>
 									</div>
 									<div class="col-md-6 nopadrgt inline-display-cls">
 										<div id="loginbutton">
-											<input type="hidden" name="returnUrl" id="returnUrl" value="">
 											<input type="submit" class="sublogbtn" value="Login" name="submit_log" id="sub_login">
 										</div>
 									</div>
-									<div id="errmessage" style="display:none">Authenticating....</div>
+									<div *ngIf="" id="errmessage" style="display:none">Authenticating....</div>
 									<div class="cboth">&nbsp;</div>
 								</form>
 							</div>
@@ -407,7 +406,8 @@
 					<div class="modal-header modal-header-bord">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-					<div class="modal-body modal-body-pad" style="padding: 0px 60px 30px 60px !important;    margin-bottom: 20px; margin-top: 30px;">
+					<div class="modal-body modal-body-pad row" style="padding: 0px 60px 30px 60px !important;    margin-bottom: 20px; margin-top: 30px;">
+						<div class="col-md-12 contacts-details-div">
 						<h1 class="submnhed">
 							<img src="./assets/images/contact.svg" style='margin-right:15px;' /> Telephone Support</h1>
 						<hr class='popuphr' />
@@ -522,6 +522,7 @@
 
 							<div class="cboth"></div>
 						</div>
+					</div>
 					</div>
 					<div class="modal-footer modal-footer-bord modal-footer-pad"></div>
 				</div>

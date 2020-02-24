@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const passportConfig = require('./../../../config/passport');
+const passportConfig = require('./../../../helpers/auth/passport');
+const authorize = require('./../../../helpers/auth/autherize');
 const users = require('./../../../controllers/users.controller');
 
 /**
  * GET: api path to get user record with specific id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), users.load);
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), authorize.isAdmin, users.load);
 
 /**
  * POST: api path to log in to the db.
