@@ -109,6 +109,7 @@ export class HelpcenterHomeComponent implements OnInit {
         this.authenticating = false;
         this.modalCancelBtn.nativeElement.click();
       }, (error) => {
+        console.log("in error")
         this.authenticating = false;
         console.log(error);
       })

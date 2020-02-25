@@ -4,7 +4,7 @@ import { CategoryHomeComponent } from './../components/category-home/category-ho
 import { EditCategoryComponent } from './../components/edit-category/edit-category.component';
 import { CreateCategoryComponent } from './../components/create-category/create-category.component';
 import { ViewCategoryHcComponent } from './../components/view-category-hc/view-category-hc.component';
-import { AuthGuard } from './../../authentication/auth.guard';
+import { AuthGuard } from './../../helpers/authentication/auth.guard';
 
 const routes: Routes = [
   { path: 'categories/home', component: CategoryHomeComponent },

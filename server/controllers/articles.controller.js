@@ -95,7 +95,7 @@ module.exports = {
     WHERE TABLE_SCHEMA = 'helpcenter_database'
     AND   TABLE_NAME   = 'articles'`, {})
             .then((data) => {
-
+                console.log(data)
                 console.log(`last article id : ${data[0][0].AUTO_INCREMENT}`);
                 res.status(200).send({ 'id': data[0][0].AUTO_INCREMENT });
 
@@ -112,7 +112,7 @@ module.exports = {
     */
     create: (req, res, next) => {
         const { article } = req.body;
-        const article_object = preprocessors.dbArticleObj(article);
+        const article_object = preprocessors.saveArticleObj(article);
         Article.create(article_object)
             .then((resp) => {
                 console.log(resp)

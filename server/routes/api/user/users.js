@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const passportConfig = require('./../../../helpers/auth/passport');
-const authorize = require('./../../../helpers/auth/autherize');
+const passportConfig = require('./../../../auth/passport.config');
+const authorize = require('./../../../auth/autherize.controller');
 const users = require('./../../../controllers/users.controller');
 
 /**

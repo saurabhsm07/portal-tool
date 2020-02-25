@@ -317,8 +317,6 @@ export class EditArticleComponent implements OnInit {
 
   private setArticleObjValues(data: Article) {
     this.article_object = data;
-    this.article_object.body = Object.keys(data.body).map((key) => { return { key: key, value: data.body[key] }; });
-
   }
 
 
@@ -366,7 +364,7 @@ export class EditArticleComponent implements OnInit {
     this.articleService.updateArticle(article)
       .subscribe((data) => {
         console.log(data)
-        this.router.navigate(['/article/id/', article.id]);
+        this.router.navigate(['/articles/id/', article.id]);
       }, (error) => {
         console.log(error)
         console.log(error.error_on_req)
@@ -511,6 +509,7 @@ export class EditArticleComponent implements OnInit {
        */
       private setArticleBodyValues() {
         if (Array.isArray(this.article.body)) {
+          console.log(this.article.body);
           this.article.body.forEach(field => {
             this.article_body.get(field.key).setValue(field.value);
           });

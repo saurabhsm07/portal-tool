@@ -50,8 +50,8 @@ registerUser(user: User): Observable<User> {
     /**
      * Returns currently logged in user
      */
-    isAgent(){
-      return !!localStorage.getItem('user') 
+    getToken(){
+      return localStorage.getItem('token'); 
     }
 
 }

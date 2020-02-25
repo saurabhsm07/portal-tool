@@ -1,28 +1,18 @@
 const express = require('express')
-const labels = express.Router()
-const Label = require("./../../../../models/article_label");
+const router = express.Router()
 
+const labels = require('./../../../../controllers/article.labels.controller');
 /**
  * GET: api path to get list of labels from the database.
  */
-labels.get('/', (req, res) => {
-    Label.findAll()
-           .then((data) => {
-               if(data.length > 0){
-                console.log(`fetched ${data.length} labels`);
-                res.status(200).send(data);
-               }else{
-                    console.log('no data exists in the label table');
-                    res.status(404).send({status: 404,
-                                          message: `No Label data available`});
-            }
-           })
-           .catch((err) => {
-                console.log("ERROR :");
-                console.log(err.stack);
-                res.status(500).send(err)
-           })
-})
+router.route('/').get(labels.getAll);
+
+/**
+ * POST: api path to create bulk create article label  record to the database.
+ */
+router.route('/').post(labels.create);
+
+
 
 /**
  * GET: api path to get label record with id.
@@ -47,24 +37,4 @@ labels.get('/', (req, res) => {
 //            })
 // })
 
-/**
- * POST: api path to create bulk create article label  record to the database.
- */
-labels.post('/', (req, res) => {
-    console.log(req.body.labels);
-    const data = {
-
-    };
-    Label.create(data)
-           .then((resp) => {
-                console.log(resp)
-                res.status(200).send(resp)
-               })
-          .catch((err)=>{
-                console.log("ERROR :");
-                console.log(err.stack);
-                res.status(500).send(err);
-          })
-})
-
-module.exports = labels;
+module.exports = router;
