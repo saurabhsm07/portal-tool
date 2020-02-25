@@ -18,6 +18,9 @@ import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
 import { AuthGuard } from './helpers/authentication/auth.guard';
+import { AdminGuard } from './helpers/autherization/admin/admin.guard';
+import { AgentGuard } from './helpers/autherization/agent/agent.guard';
+
 import {TokenInterceptorService } from './helpers/interceptor/token-interceptor/token-interceptor.service';
 
 
@@ -41,7 +44,7 @@ import {TokenInterceptorService } from './helpers/interceptor/token-interceptor/
     EditorModule,
     MaterialModule
   ],
-  providers: [AuthGuard, 
+  providers: [AuthGuard,AdminGuard,AgentGuard, 
               {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })

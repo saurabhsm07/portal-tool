@@ -5,9 +5,10 @@ import { EditCategoryComponent } from './../components/edit-category/edit-catego
 import { CreateCategoryComponent } from './../components/create-category/create-category.component';
 import { ViewCategoryHcComponent } from './../components/view-category-hc/view-category-hc.component';
 import { AuthGuard } from './../../helpers/authentication/auth.guard';
+import { AdminGuard } from '../../helpers/autherization/admin/admin.guard';
 
 const routes: Routes = [
-  { path: 'categories/home', component: CategoryHomeComponent },
+  { path: 'categories/home', component: CategoryHomeComponent ,  canActivate: [AuthGuard, AdminGuard]},
   { path: 'categories/id/:id', component: EditCategoryComponent },
   { path: 'categories/create', component: CreateCategoryComponent },
   { path: 'hc/en-us/categories/id/:id', component: ViewCategoryHcComponent, canActivate: [AuthGuard]}

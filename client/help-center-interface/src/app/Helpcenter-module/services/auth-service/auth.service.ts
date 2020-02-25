@@ -11,6 +11,9 @@ export class AuthService {
   private requestUri = {
     loginUser: 'http://localhost:5000/api/users/login',
     registerUser: 'http://localhost:5000/api/users/',
+    authorizedAdmin: 'http://localhost:5000/api/users/auth/admin',
+    authorizedAgent: 'http://localhost:5000/api/users/auth/agent',
+    authorizedAgentOrAdmin: 'http://localhost:5000/api/users/auth/custom'
   };
   private headersOptions = {
     headers: new HttpHeaders({
@@ -35,9 +38,31 @@ registerUser(user: User): Observable<User> {
    * @param user : user object to be used for authenticating the user with the web application
    */
   loginUser(user: User): Observable<User> {
-    return this.http.post<User>(this.requestUri.loginUser, {user}, this.headersOptions)
+    return this.http.post<User>(this.requestUri.loginUser, {user}, this.headersOptions);
     // .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
     
+    }
+
+
+        /**
+     * Returns true if a user user has agent autherization
+     */
+    isAdmin(): Observable<boolean> {
+      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
+    }
+
+    /**
+     * Returns true if a user user has agent autherization
+     */
+    isAgent(): Observable<boolean> {
+      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
+    }
+    
+    /**
+     * Returns true if a user has custom role autherization
+     */
+    isCustomAuthorized(): Observable<boolean> {
+      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
     }
 
     /**
@@ -47,8 +72,10 @@ registerUser(user: User): Observable<User> {
       return !!localStorage.getItem('token');
     }
 
+    
+
     /**
-     * Returns currently logged in user
+     * Returns currently logged in user token
      */
     getToken(){
       return localStorage.getItem('token'); 
