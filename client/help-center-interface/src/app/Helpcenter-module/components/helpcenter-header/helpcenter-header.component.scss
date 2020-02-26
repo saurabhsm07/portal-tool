@@ -20,13 +20,14 @@ li.dropdown{
 
 .user-header-opt{
     margin-bottom: 10px;
-    span{
+    div{
         display: inline-block;
         vertical-align: top;
         .toptext{
+            padding-left: 20px;
+            
             padding-top: 4px;
             display: inline;
-            vertical-align: top;
 
         }
         button{

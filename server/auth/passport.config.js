@@ -19,7 +19,6 @@ passport.use(new JwtStrategy({
     secretOrKey: config.jwt.secret,
 },
     async (payload, done) => {
-console.log(payload)
         try {
             let user = {}
              User.findAll({ where: { id: payload.sub } })

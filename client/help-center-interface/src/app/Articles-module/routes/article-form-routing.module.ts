@@ -6,12 +6,15 @@ import { ArticleFormComponent } from './../components/form-components/article-fo
 import { EditArticleFormComponent } from './../components/form-components/edit-article-form/edit-article-form.component';
 import { ListArticleFormComponent } from './../components/form-components/list-article-form/list-article-form.component';
 
+import { AuthGuard } from './../../helpers/authentication/auth.guard';
+import { AdminGuard } from '../../helpers/autherization/admin/admin.guard';
+import { AgentGuard } from './../../helpers/autherization/agent/agent.guard'
 //replace below route in the future
 const articleFormsRoutes: Routes = [
-  { path: 'article/forms', component: ArticleFormComponent },
-  { path: 'article/forms/list', component: ListArticleFormComponent },
-  { path: 'article/forms/create', component: CreateArticleFormComponent },
-  { path: 'article/forms/edit/:id', component: EditArticleFormComponent },
+  { path: 'guide/article/forms', component: ArticleFormComponent, canActivate: [AuthGuard, AgentGuard] },
+  { path: 'guide/article/forms/list', component: ListArticleFormComponent, canActivate: [AuthGuard, AgentGuard] },
+  { path: 'guide/article/forms/create', component: CreateArticleFormComponent, canActivate: [AuthGuard, AgentGuard] },
+  { path: 'guide/article/forms/edit/:id', component: EditArticleFormComponent, canActivate: [AuthGuard, AgentGuard] },
 //   { path: '**', component: ArticleNotFoundComponent}
 ];
 

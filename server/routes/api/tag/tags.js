@@ -13,11 +13,11 @@ const tags = require('./../../../controllers/tags.controller');
 /**
  * GET: api path to get list of tags from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), tags.getAll);
+router.route('/').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, tags.getAll);
 
 /**
  * GET: api path to get tag record with id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), tags.getById);
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, tags.getById);
 
 module.exports = router                       // Exporting Tags APIs module

@@ -13,7 +13,7 @@ export class AuthService {
     registerUser: 'http://localhost:5000/api/users/',
     authorizedAdmin: 'http://localhost:5000/api/users/auth/admin',
     authorizedAgent: 'http://localhost:5000/api/users/auth/agent',
-    authorizedAgentOrAdmin: 'http://localhost:5000/api/users/auth/custom'
+    authorizedCustom: 'http://localhost:5000/api/users/auth/custom'
   };
   private headersOptions = {
     headers: new HttpHeaders({
@@ -47,22 +47,22 @@ registerUser(user: User): Observable<User> {
         /**
      * Returns true if a user user has agent autherization
      */
-    isAdmin(): Observable<boolean> {
-      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
+    isAdmin(): Observable<any> {
+      return this.http.get<any>(this.requestUri.authorizedAdmin, this.headersOptions);
     }
 
     /**
      * Returns true if a user user has agent autherization
      */
     isAgent(): Observable<boolean> {
-      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
+      return this.http.get<boolean>(this.requestUri.authorizedAgent, this.headersOptions);
     }
     
     /**
      * Returns true if a user has custom role autherization
      */
     isCustomAuthorized(): Observable<boolean> {
-      return this.http.get<boolean>(this.requestUri.authorizedAdmin, this.headersOptions);
+      return this.http.get<boolean>(this.requestUri.authorizedCustom, this.headersOptions);
     }
 
     /**

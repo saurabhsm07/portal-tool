@@ -7,31 +7,31 @@ const fields = require('./../../../../controllers/article.fields.controller');
 /**
  * GET: api path to get list of article fields from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}),fields.getAll);
+router.route('/').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.getAll);
 
 /**
  * GET: api path to get article field record with id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), fields.getById)
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.getById)
 
 /**
  * GET: api path to get article field record with list of ids.
  */
-router.route('/list').get(passport.authenticate('jwt', {session: false}), fields.getList)
+router.route('/list').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.getList)
 
 /**
  * POST: api path to create a article field record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), fields.create)
+router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.create)
 
 /**
  * PUT: api path to update a article field record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), fields.update)
+router.route('/').put(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.update)
 
 /**
  * DELETE: api path to delete Article Field with specific i.d 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), fields.delete)
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), authorize.isAgent, fields.delete)
 
 module.exports = router // exporting article fields api module

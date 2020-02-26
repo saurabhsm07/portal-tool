@@ -20,8 +20,11 @@ preprocessors.clientArticleObj = (article) => {
             }
           
         }
-        let article_body = JSON.parse(article['body']);
-        article.body = Object.keys(article_body).map((key) => { return {key: key, value: article_body[key]}} );
+        if(article.article_form_id != 0){
+            let article_body = JSON.parse(article['body']);
+            article.body = Object.keys(article_body).map((key) => { return {key: key, value: article_body[key]}} );
+        }
+        
     
 
 

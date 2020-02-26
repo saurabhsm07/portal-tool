@@ -29,14 +29,14 @@
 
 				</div> -->
 				<ng-container *ngIf='user; else loginTemplate'>
-					<div class="hg27 right user-header-opt padleftrgt35">
-						<span>
+					<div class="hg27 right user-header-opt">
+						<div>
 								<h3 class="toptext">{{user.name}} </h3>
 
 								<button mat-icon-button [matMenuTriggerFor]="userMenu" >
 									<i class="fa fa-angle-down iconsize"></i>
 								</button>
-						</span>
+							</div>
 						
 						<mat-menu #userMenu="matMenu">
 							<button mat-menu-item>

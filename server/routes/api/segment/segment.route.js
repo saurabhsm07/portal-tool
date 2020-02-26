@@ -8,27 +8,27 @@ const segments = require('./../../../controllers/segments.controller');
 /**
  * GET: api path to get list of segments from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), segments.getAll)
+router.route('/').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, segments.getAll)
 
 /**
  * GET: api path to get segment record with specific id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), segments.getById)
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, segments.getById)
 
 /**
  * POST: api path to add a segment record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), segments.create)
+router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, segments.create)
 
 /**
  * PUT: api path to update a segment record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), segments.update)
+router.route('/').put(passport.authenticate('jwt', {session: false}), authorize.isAgent, segments.update)
 
 /**
  * DELETE: api path to delete segment with specific id 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), segments.delete)
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), authorize.isAgent, segments.delete)
 
 
 /**

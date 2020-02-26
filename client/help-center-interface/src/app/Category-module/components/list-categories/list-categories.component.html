@@ -15,7 +15,7 @@
           <input [(ngModel)] = "searchString" placeholder="Search categories"  />
         </div>
           <div class="create-div col-md-4">
-            <a routerLink='/categories/create' class="btn btn-info">Add Category </a>
+            <a routerLink='guide/categories/create' class="btn btn-info">Add Category </a>
     </div>
 </div>
 <div *ngIf="dataSource | searchCategory:searchString : categories" class="categories-body-div col-md-12">

@@ -8,26 +8,26 @@ const forms = require('./../../../../controllers/article.forms.controller');
 /**
  * GET: api path to get list of categories from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), forms.getAll);
+router.route('/').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, forms.getAll);
 
 /**
  * GET: api path to get article form record with id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), forms.getById);
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), authorize.isAgent, forms.getById);
 
 /**
  * POST: api path to create a article form record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), forms.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, forms.create);
 
 /**
  * PUT: api path to update a article form record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), forms.update);
+router.route('/').put(passport.authenticate('jwt', {session: false}), authorize.isAgent, forms.update);
 
 /**
  * DELETE: api path to delete article form with specific i.d 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), forms.delete);
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), authorize.isAgent, forms.delete);
 
 module.exports = router; // exporting article forms api module

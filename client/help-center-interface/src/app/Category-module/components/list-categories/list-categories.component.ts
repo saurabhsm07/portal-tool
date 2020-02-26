@@ -45,7 +45,7 @@ export class ListCategoriesComponent implements OnInit {
   }
 
   viewCategory(categoryId){
-    this.route.navigate(['/categories/id/'+categoryId])
+    this.route.navigate(['/guide/categories/id/'+categoryId])
   }
 
 }

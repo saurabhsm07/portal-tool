@@ -9,11 +9,11 @@ const organizations = require('./../../../controllers/organizations.controller')
 /**
  * GET: api path to get list of organizations from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), organizations.getAll);
+router.route('/').get(passport.authenticate('jwt', {session: false}),authorize.isAgent, organizations.getAll);
 
 /**
  * GET: api path to get organization record with id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), organizations.getById);
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}),authorize.isAgent, organizations.getById);
 
 module.exports = router                       // Exporting Organizations APIs module

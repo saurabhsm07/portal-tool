@@ -4,10 +4,11 @@ import { MainHeaderComponent } from './components/main-header/main-header.compon
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GuideRoutingModule } from './routes/guide-routing.module';
 import { GuideadminHomeComponent } from './components/guideadmin-home/guideadmin-home.component';
+import { UnauthorizedAccessComponent } from './components/unauthorized-access/unauthorized-access.component';
 
 
 @NgModule({
-  declarations: [MainHeaderComponent, SidebarComponent, GuideadminHomeComponent],
+  declarations: [MainHeaderComponent, SidebarComponent, GuideadminHomeComponent, UnauthorizedAccessComponent],
   imports: [
     CommonModule,
     GuideRoutingModule

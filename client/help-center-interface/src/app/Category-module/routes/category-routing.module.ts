@@ -6,11 +6,17 @@ import { CreateCategoryComponent } from './../components/create-category/create-
 import { ViewCategoryHcComponent } from './../components/view-category-hc/view-category-hc.component';
 import { AuthGuard } from './../../helpers/authentication/auth.guard';
 import { AdminGuard } from '../../helpers/autherization/admin/admin.guard';
+import { AgentGuard } from './../../helpers/autherization/agent/agent.guard'
+
 
 const routes: Routes = [
-  { path: 'categories/home', component: CategoryHomeComponent ,  canActivate: [AuthGuard, AdminGuard]},
-  { path: 'categories/id/:id', component: EditCategoryComponent },
-  { path: 'categories/create', component: CreateCategoryComponent },
+  { path: 'guide/categories/home', component: CategoryHomeComponent ,  canActivate: [AuthGuard, AgentGuard]},
+  { path: 'categories', redirectTo: 'guide/categories/home', pathMatch: 'full'},
+  { path: 'guide/categories', redirectTo: 'guide/categories/home', pathMatch: 'full'},
+  { path: 'categories/home', redirectTo: 'guide/categories/home', pathMatch: 'full'},
+
+  { path: 'guide/categories/id/:id', component: EditCategoryComponent, canActivate: [AuthGuard, AgentGuard] },
+  { path: 'guide/categories/create', component: CreateCategoryComponent, canActivate: [AuthGuard, AgentGuard] },
   { path: 'hc/en-us/categories/id/:id', component: ViewCategoryHcComponent, canActivate: [AuthGuard]}
 
 ];

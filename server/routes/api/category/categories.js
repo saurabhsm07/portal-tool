@@ -9,7 +9,7 @@ const categories = require('./../../../controllers/categories.controller');
 /**
  * GET: api path to get list of categories from the database.
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), categories.getAll);
+router.route('/').get(passport.authenticate('jwt', {session: false}),authorize.isAgent, categories.getAll);
 
 /**
  * GET: api path to get category record with id.
@@ -19,16 +19,16 @@ router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), cate
 /**
  * POST: api path to add a category record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), categories.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}),authorize.isAgent, categories.create);
 
 /**
  * PUT: api path to update a category record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), categories.update);
+router.route('/').put(passport.authenticate('jwt', {session: false}),authorize.isAgent, categories.update);
 
 /**
  * DELETE: api path to delete category with specific i.d 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), categories.delete);
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}),authorize.isAgent, categories.delete);
 
 module.exports = router; // exporting category APIs module

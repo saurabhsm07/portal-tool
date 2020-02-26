@@ -3,21 +3,23 @@ module.exports = {
     isAdmin : (req, res, next) => {
         const {user_type, role_id} = req.user.dataValues;
         if((user_type == "admin") && (role_id == 1)){
-            console.log("here")
             req.accessInfo = true;
-            next();
+            next()
         }else{
-            res.status(403).send(false);
+            req.accessInfo = false;
+            res.status(403).send("Unauthorized request");
         }
     },
 
     isAdminOrAgent: (req, res, next) => {
         const {user_type, role_id} = req.user.dataValues;
         if((user_type == "admin") && (role_id == 1)){
-            next({accessInfo: {role: 'admin', allowedAccess: true}});
+            req.accessInfo = true;
+            next();
         }
         else if ((user_type == "agent") && (['776500', '884641', '884651'].indexOf(role_id) != -1)){
-            next({accessInfo: {role: 'agent', allowedAccess: true}});
+            req.accessInfo = true;
+            next();
         }
         else{
             res.status(403).send("Unauthorized request");
@@ -26,8 +28,13 @@ module.exports = {
 
     isAgent: (req, res, next) => {
         const {user_type, role_id} = req.user.dataValues;
-        if((user_type == "agent") && (['776500', '884641', '884651'].indexOf(role_id) != -1)){
-            next({accessInfo: {role: 'agent', allowedAccess: true}});
+        if((user_type == "admin") && (role_id == 1)){
+            req.accessInfo = true;
+            next()
+        }
+        else if((user_type == "agent") && (['776500', '884641', '884651'].indexOf(role_id) != -1)){
+            req.accessInfo = true;;
+            next()
         }else{
             res.status(403).send("Unauthorized request");
         }

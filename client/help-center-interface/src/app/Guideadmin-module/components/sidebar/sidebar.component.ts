@@ -26,12 +26,12 @@ export class SidebarComponent implements OnInit {
                                         {sectionName: 'archived', name: 'archived', sectionUrl: '#'}],
                             // section: [{sectionName: 'Sectu', sectionUrl: '#' }, 
                             //             {sectionName: 'posts', sectionUrl: '#'}],
-                            settings : [{sectionName:'Articles', name: 'articles', sectionUrl: '/articles/list' }, 
-                                        {sectionName: 'Article Fields', name: 'fields', sectionUrl: '/article/fields/list'}, 
-                                        {sectionName: 'Article Forms', name: 'forms', sectionUrl: '/article/forms/list'},
-                                        {sectionName: 'Sections', name: 'section', sectionUrl:'/sections/home'},
-                                        {sectionName: 'Categories', name:'categories', sectionUrl: '/categories/home'},
-                                        {sectionName: 'User Segments', name:'segment', sectionUrl: '/segments/home'}]};
+                            settings : [{sectionName:'Articles', name: 'articles', sectionUrl: '/guide/articles/list' }, 
+                                        {sectionName: 'Article Fields', name: 'fields', sectionUrl: '/guide/article/fields/list'}, 
+                                        {sectionName: 'Article Forms', name: 'forms', sectionUrl: '/guide/article/forms/list'},
+                                        {sectionName: 'Sections', name: 'section', sectionUrl:'/guide/sections/home'},
+                                        {sectionName: 'Categories', name:'categories', sectionUrl: '/guide/categories/home'},
+                                        {sectionName: 'User Segments', name:'segment', sectionUrl: '/guide/segments/home'}]};
   secondarySidebarOptions : String[];
   
  updateSidebar(option){

@@ -36,17 +36,17 @@ router.route('/max/id').get(passport.authenticate('jwt', {session: false}), arti
 /**
  * POST: api path to create a article record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), articles.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, articles.create);
 
 /**
  * PUT: api path to update a article record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), articles.update);
+router.route('/').put(passport.authenticate('jwt', {session: false}), authorize.isAgent, articles.update);
 
 /**
  * DELETE: api path to delete article with specific i.d 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), articles.delete);
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), authorize.isAgent, articles.delete);
 
 
 router.use('/:id/attachments/', attachments)  // Routes to article attachments APIs

@@ -35,11 +35,11 @@ import {TokenInterceptorService } from './helpers/interceptor/token-interceptor/
     AngularFontAwesomeModule,
     HttpClientModule,
     GuideadminModule,
-    HelpcenterModule,
     CategoryModule,
     SectionModule,
     SegmentModule,
     ArticlesModule,
+    HelpcenterModule,
     AppRoutingModule,
     EditorModule,
     MaterialModule

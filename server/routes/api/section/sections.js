@@ -23,16 +23,16 @@ router.route('/category/id/:id').get(passport.authenticate('jwt', {session: fals
 /**
  * POST: api path to add a section record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), sections.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, sections.create);
 
 /**
  * PUT: api path to update a section record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt', {session: false}), sections.update);
+router.route('/').put(passport.authenticate('jwt', {session: false}), authorize.isAgent, sections.update);
 
 /**
  * DELETE: api path to delete section with specific id 
  */
-router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), sections.delete);
+router.route('/id/:id').delete(passport.authenticate('jwt', {session: false}), authorize.isAgent, sections.delete);
 
 module.exports = router; // exporting sections APIs module

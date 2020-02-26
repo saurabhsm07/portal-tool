@@ -8,7 +8,7 @@ const users = require('./../../../controllers/users.controller');
 /**
  * GET: api path to get user record with specific id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), authorize.isAdmin, users.load);
+router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), users.load);
 
 /**
  * POST: api path to log in to the db.
@@ -22,11 +22,11 @@ router.route('/auth/admin').get(passport.authenticate('jwt', { session: false })
 /**
  * GET: check if user is agent authorized
  */
-router.route('/auth/admin').get(passport.authenticate('jwt', { session: false }),);
+router.route('/auth/agent').get(passport.authenticate('jwt', { session: false }), authorize.isAgent, authorize.verifyAccess);
 /**
  * GET: check if user is custom role autherized
  */
-router.route('/auth/admin').get(passport.authenticate('jwt', { session: false }),);
+router.route('/auth/custom').get(passport.authenticate('jwt', { session: false }), authorize.isAdminOrAgent, authorize.verifyAccess);
 /**
  * POST: api path to add a user record to the database.
  */
