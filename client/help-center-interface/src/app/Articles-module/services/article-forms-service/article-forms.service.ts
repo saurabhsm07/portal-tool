@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
-import { ArticleFormErrorHandlerService } from './../error-handler-service/article-form-error-handlers/article-form-error-handler.service';
+import { ArticleFormErrorHandlerService } from '../error-handler-service/article-form-error-handlers/article-form-error-handler.service';
 
 
-import { Article_Form } from './../../classes/article_form';
+import { Article_Form } from '../../classes/article_form';
 
 @Injectable({
   providedIn: 'root'

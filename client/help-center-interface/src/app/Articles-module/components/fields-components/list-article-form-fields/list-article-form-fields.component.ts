@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Article_Field } from '../../../classes/article_fields';
-import {ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service'
+import {ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service'
 
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';

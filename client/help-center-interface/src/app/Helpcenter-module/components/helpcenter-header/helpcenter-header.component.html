@@ -28,10 +28,11 @@
 					</span>
 
 				</div> -->
-				<ng-container *ngIf='user; else loginTemplate'>
+				<ng-container *ngIf='userObj; else loginTemplate'>
+
 					<div class="hg27 right user-header-opt">
 						<div>
-								<h3 class="toptext">{{user.name}} </h3>
+								<h3 class="toptext">{{userObj.name}} </h3>
 
 								<button mat-icon-button [matMenuTriggerFor]="userMenu" >
 									<i class="fa fa-angle-down iconsize"></i>
@@ -47,7 +48,7 @@
 								<mat-icon>textsms</mat-icon>
 								<span>Change password</span>
 							</button>
-							<button mat-menu-item>
+							<button mat-menu-item (click)='logoutUser()'> 
 								<mat-icon>notifications_off</mat-icon>
 								<span>Sign out</span>
 							</button>
@@ -64,154 +65,414 @@
 						<a href="#" data-toggle="modal" data-target="#contactModal" class="toptext">Contact</a>
 					</div>
 				</div>
+
+				<div *ngIf='isAgent' class="toptext hg27 guideAdminLink padleftrgt35">
+						<div>
+							<a href="guide/home" target="_blank">Guide Admin</a>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<header>
-	<div class="unqipad subnavmndiv">
-		<div id="spacDiv" style="display: none;">&nbsp;</div>
-		<div id="supdiv">
-			<div class="row">
-				<div class="col-md-2 col-sm-1 ">
-					<a href="/hc/en-us/" class="suptext">Support</a>
+	<!-- START CONTACT POPUP -->
+<div id="contactModal" aria-hidden="false" class="modal fade" role="dialog">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-dialog-width55per vertical-align-center">
+			<!-- Modal content-->
+			<div class="modal-content modal-content-bg">
+				<div class="modal-header modal-header-bord">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="col-md-10 col-sm-11 text-right">
-					<div id="navbar" class="col-md-12 nopad">
-						<nav class="navbar" role="navigation">
-							<div class="navbar-header" style="display:none;">
-								<button type="button" id="mobbutton" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1" style="height:auto !important;">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
+				<div class="modal-body modal-body-pad row" style="padding: 0px 60px 30px 60px !important;    margin-bottom: 20px; margin-top: 30px;">
+					<div class="col-md-12 contacts-details-div">
+					<h1 class="submnhed">
+						<img src="./assets/images/contact.svg" style='margin-right:15px;' /> Telephone Support</h1>
+					<hr class='popuphr' />
+					<div class="cboth">&nbsp;</div>
+					<div class="col-md-12 nopad">
+						<div class="col-md-6 nopad">
+							<div class="left">
+								<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/spain.jpg" class="contdataImg" />
 							</div>
-							<div class="navbar-collapse " id="navbar-collapse-1">
-								<ul class="nav navbar-nav cusnav home-main-navbar">
-									<li class="dropdown">
-										<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Support</a>
-										<ul class="dropdown-menu subnavbg topmnnavi" id="myinfodetails">
-											<li>
-												<a href="/hc/en-us/articles/115005625283">My Dashboard</a>
-											</li>
-											<li>
-												<a href=" /hc/en-us/requests?output_type=table " id="reqlink">My Requests</a>
-											</li>
-											<li>
-												<a href=" /hc/contributions/posts?locale=en-us " id="reqlink">My Articles</a>
-											</li>
-											<li>
-												<a href=" /hc/en-us/subscriptions " id="subslink">My Subscriptions</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/profiles/361040981-Administrator" class="myinfonew">My Profile</a>
-											</li>
-
-											<li>
-												<a href="/hc/en-us/articles/360006729632" id="entitlement">My Entitlement</a>
-											</li>
-
-											<li>
-												<a href="/hc/en-us/articles/115005882026">My Projects </a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Knowledge Base</a>
-										<ul class="dropdown-menu subnavbg topmnnavi" id="knowledgebsecrow">
-											<li>
-												<a href="/hc/en-us/categories/201273823">Help Articles</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201273833">Product Manuals</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201273843">Announcements</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201273883">Support Documentation</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201264926">Agent only </a>
-											</li>
-											<li>
-												<a href="/hc/en-us/articles/115000852106">Create KB Article</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Community</a>
-										<ul class="dropdown-menu subnavbg topmnnavi">
-											<li>
-												<a href="/hc/en-us/community/topics?prodtype=radia">Radia</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/community/topics?prodtype=cloudplatform">CloudPlatform</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/community/topics?prodtype=cloudportalbusinessmanager">CPBM</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/community/topics?prodtype=shareinsights">ShareInsights</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Downloads</a>
-										<ul class="dropdown-menu subnavbg topmnnavi" id="downloadtopmenu">
-											<li>
-												<a href="/hc/en-us/categories/201273853">Product Downloads</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201258686">Patches</a>
-											</li>
-											<li>
-												<a href="/hc/en-us/categories/201273863">Hotfixes</a>
-											</li>
-										</ul>
-									</li>
-
-									<li id="partnerTopMnlink" class="dropdown">
-										<a href="//support.accelerite.com/hc/en-us/categories/115000078683-Partner-Portal">Partners</a>
-									</li>
-
-									<li>
-										<button class="subrerlink" id="submit_a_request" href="javascript:void(0)" data-toggle="modal" data-target="#subrequestModal">Submit a request</button>
-									</li>
-								</ul>
+							<div class="left cnNmWidth">
+								<h5 class="countryNm countypad">Spain</h5>
 							</div>
-							<!-- /.navbar-collapse -->
-						</nav>
+							<div class="left cnNoWidth">
+								<h5 class="countryNm"> +34-51888-0092 </h5>
+							</div>
+						</div>
+						<div class="col-md-6 nopad">
+							<div class="right">
+								<div class="left">
+									<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/france.jpg" class="contdataImg" />
+								</div>
+								<div class="left cnNmWidth">
+									<h5 class="countryNm countypad">France</h5>
+								</div>
+								<div class="left cnNoWidth">
+									<h5 class="countryNm"> +33-975-185-485 </h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hgt40 cboth">&nbsp;</div>
+					<div class="col-md-12 nopad">
+						<div class="col-md-6 nopad">
+							<div class="left">
+								<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/germany.jpg" class="contdataImg" />
+							</div>
+							<div class="left cnNmWidth">
+								<h5 class="countryNm countypad">Germany</h5>
+							</div>
+							<div class="left cnNoWidth">
+								<h5 class="countryNm"> +49-322-2109-3384 </h5>
+							</div>
+						</div>
+						<div class="col-md-6 nopad">
+							<div class="right">
+								<div class="left">
+									<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/japan.jpg" class="contdataImg" />
+								</div>
+								<div class="left cnNmWidth">
+									<h5 class="countryNm countypad">Japan</h5>
+								</div>
+								<div class="left cnNoWidth">
+									<h5 class="countryNm"> +81-368-635-424 </h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hgt40 cboth">&nbsp;</div>
+					<div class="col-md-12 nopad">
+						<div class="col-md-6 nopad">
+							<div class="left">
+								<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/united_kingdom.jpg" class="contdataImg" />
+							</div>
+							<div class="left cnNmWidth">
+								<h5 class="countryNm countypad">UK</h5>
+							</div>
+							<div class="left cnNoWidth">
+								<h5 class="countryNm"> +44-203-514-1417 </h5>
+							</div>
+						</div>
+						<div class="col-md-6 nopad">
+							<div class="right">
+								<div class="left">
+									<img src="//p2.zdassets.com/hc/theme_assets/270851/200042364/united_states_of_america.jpg" class="contdataImg" />
+								</div>
+								<div class="left cnNmWidth">
+									<h5 class="countryNm countypad">USA</h5>
+								</div>
+								<div class="left cnNoWidth">
+									<h5 class="countryNm"> +1-800-260-4174 </h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hgt40 cboth">&nbsp;</div>
+					<div class="col-md-12 nopad">
+						<div class="col-md-6 nopad">
+							<div class="left">
+								<img src="//p4.zdassets.com/hc/theme_assets/270851/200042364/Australia.png" class="contdataImg" />
+							</div>
+							<div class="left cnNmWidth">
+								<h5 class="countryNm countypad">Australia</h5>
+							</div>
+							<div class="left cnNoWidth">
+								<h5 class="countryNm">+61-280466570</h5>
+							</div>
+						</div>
+						<div class="col-md-6 nopad">
+							<div class="right">
+								<div class="left">
+									<img src="#" class="contdataImg">
+								</div>
+								<div class="left cnNmWidth">
+									<h5 class="countryNm countypad">Mexico</h5>
+								</div>
+								<div class="left cnNoWidth">
+									<h5 class="countryNm"> &nbsp; &nbsp; &nbsp; 800-681-8030 </h5>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="cboth"></div>
 					</div>
 				</div>
-				<div class="cboth"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="borderline">&nbsp;</div>
+				</div>
+				<div class="modal-footer modal-footer-bord modal-footer-pad"></div>
 			</div>
 		</div>
 	</div>
-	<div class="homebg" style="height:100vh">
-		<div class="unqipad">
-			<div class="hgt150">&nbsp;</div>
-			<div class="hlputext">How can we help you today?</div>
-			<div class="hgt20">&nbsp;</div>
-			<div class="row nopad">
-				<div class="offset-sm-2 offset-md-2 col-md-8 col-sm-8" style="padding:0;">
-					<form [formGroup]='search_hc_form' class="form-inline header-search" name="searchfrom" action="/hc/en-us/search" method="GET">
-						<img class="searchhmicon hmsrchicon" src="./assets/images/searchicon.png">
-						<input formGroupName='search' type="text" class="hmsearchbox" name="query" placeholder="Search">
-					</form>
+</div>
+<div class="unqipad subnavmndiv">
+	<div id="spacDiv" style="display: none;">&nbsp;</div>
+	<div id="supdiv">
+		<div class="row">
+			<div class="col-md-2 col-sm-1 ">
+				<a href="/hc/en-us/" class="suptext">Support</a>
+			</div>
+			<div class="col-md-10 col-sm-11 text-right">
+				<div id="navbar" class="col-md-12 nopad">
+					<nav class="navbar" role="navigation">
+						<div class="navbar-header" style="display:none;">
+							<button type="button" id="mobbutton" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1" style="height:auto !important;">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="navbar-collapse " id="navbar-collapse-1">
+							<ul class="nav navbar-nav cusnav home-main-navbar">
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">My Support</a>
+									<ul class="dropdown-menu subnavbg topmnnavi" id="myinfodetails">
+										<li>
+											<a href="/hc/en-us/articles/115005625283">My Dashboard</a>
+										</li>
+										<li>
+											<a href=" /hc/en-us/requests?output_type=table " id="reqlink">My Requests</a>
+										</li>
+										<li>
+											<a href=" /hc/contributions/posts?locale=en-us " id="reqlink">My Articles</a>
+										</li>
+										<li>
+											<a href=" /hc/en-us/subscriptions " id="subslink">My Subscriptions</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/profiles/361040981-Administrator" class="myinfonew">My Profile</a>
+										</li>
+
+										<li>
+											<a href="/hc/en-us/articles/360006729632" id="entitlement">My Entitlement</a>
+										</li>
+
+										<li>
+											<a href="/hc/en-us/articles/115005882026">My Projects </a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Knowledge Base</a>
+									<ul class="dropdown-menu subnavbg topmnnavi" id="knowledgebsecrow">
+										<li>
+											<a href="/hc/en-us/categories/201273823">Help Articles</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201273833">Product Manuals</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201273843">Announcements</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201273883">Support Documentation</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201264926">Agent only </a>
+										</li>
+										<li>
+											<a href="/hc/en-us/articles/115000852106">Create KB Article</a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Community</a>
+									<ul class="dropdown-menu subnavbg topmnnavi">
+										<li>
+											<a href="/hc/en-us/community/topics?prodtype=radia">Radia</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/community/topics?prodtype=cloudplatform">CloudPlatform</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/community/topics?prodtype=cloudportalbusinessmanager">CPBM</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/community/topics?prodtype=shareinsights">ShareInsights</a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Downloads</a>
+									<ul class="dropdown-menu subnavbg topmnnavi" id="downloadtopmenu">
+										<li>
+											<a href="/hc/en-us/categories/201273853">Product Downloads</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201258686">Patches</a>
+										</li>
+										<li>
+											<a href="/hc/en-us/categories/201273863">Hotfixes</a>
+										</li>
+									</ul>
+								</li>
+
+								<li id="partnerTopMnlink" class="dropdown">
+									<a href="//support.accelerite.com/hc/en-us/categories/115000078683-Partner-Portal">Partners</a>
+								</li>
+
+								<li>
+									<button class="subrerlink" id="submit_a_request" href="javascript:void(0)" data-toggle="modal" data-target="#subrequestModal">Submit a request</button>
+								</li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
 				</div>
 			</div>
-			<div class="hgt20">&nbsp;</div>
-			<div class="poputext">Popular topics:
-				<span class="poputextnorm">Radia, Product manual, Rovius</span>
+			<div class="cboth"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="borderline">&nbsp;</div>
+		</div>
+	</div>
+</div>
+	<!-- END CONTACT POPUP-->
+<!-- LOGIN/REGISTER POPUP START-->
+<div id="loginModal" class="modal fade poplogin" aria-hidden="false">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog modal-dialog-login-width vertical-align-center">
+			<!-- Modal content-->
+			<div class="modal-content modal-content-bg">
+				<div class="modal-header modal-header-bord login-pad">
+					<div class="text-right col-md-12">
+						<button type="button" class="close-login" data-dismiss="modal">&times;</button>
+					</div>
+				</div>
+				<div class="modal-body nopad">
+					<div class="row nopad">
+						<div class="col-md-6 nopad text-center" (click)="toggleMode('login')">
+							<h1 [ngClass] = "{'submnhed': loginMode, 'submnhedgrey': !loginMode}" class="showloginjs">
+								<img #loginLink src="./assets/images/loginblueicon.svg" class="padrgt20" />Login</h1>
+						</div>
+						<div class="col-md-6 nopad text-center" (click)="toggleMode('register')">
+							<h1 [ngClass] = "{'submnhed': !loginMode, 'submnhedgrey': loginMode}" class="showPointcursor showregisterjs">
+								<img #registerLink src="./assets/images/registergreyicon.svg" class="padrgt20" />Register</h1>
+						</div>
+					</div>
+					<div class="cboth hgt20">&nbsp;</div>
+					<div class="row nopad">
+						<div class="col-md-6 nopad">
+							<div [ngClass] = "{'logselbg': loginMode, 'lognonselbg': !loginMode}" id="loginbg">&nbsp;</div>
+						</div>
+						<div class="col-md-6 nopad">
+							<div [ngClass] = "{'logselbg': !loginMode, 'lognonselbg': loginMode}" id="registerbg">&nbsp;</div>
+						</div>
+					</div>
+					<div class="cboth hgt30">&nbsp;</div>
+					<div class="row">
+						<!-- START LOGIN POPUP -->
+						<ng-container *ngIf="loginMode; else registerMode">
+						<div  class="col-md-12 padLogin" id="loginDivForm">
+							<div id="errorDiv"> </div>
+							<form  class="request-form" [formGroup] = 'login_form' id="frmlogin" name="loginfrm" autocomplete=off (ngSubmit)='loginFormSubmit()'>
+								<div class="user-input-wrp">
+									<input formControlName='email' type="text" class="txtbxWidth" name="email" id="email" value="" required />
+									<img class="appendiconeml" src="#" width="22" />
+									<span class="floating-label lbl-email">Email</span>
+								</div>
+								<div class="hgt25">&nbsp;</div>
+								<div class="user-input-wrp">
+									<input formControlName='password' type="password" class='txtbxWidth' name="password" id="password" value="" required />
+									<img class="appendiconpwd" src="#" width="16" />
+									<span class="floating-label lbl-passwords">Password</span>
+								</div>
+								<div class="cboth hgt20">&nbsp;</div>
+								<div class="text-right">
+									<a href="/access/help" target="_blank" class="fgpwdlink">Forgot Password ?</a>
+								</div>
+								<div class="cboth hgt25">&nbsp;</div>
+								<div class="col-md-6 nopadleft inline-display-cls">
+									<div id="logincancelbutton">
+										<input #modalCancelBtn type="button" class="logcancelbtn" value="Cancel" data-dismiss="modal">
+									</div>
+								</div>
+								<div class="col-md-6 nopadrgt inline-display-cls">
+									<div id="loginbutton">
+										<input type="submit" class="sublogbtn" value="Login" name="submit_log" id="sub_login">
+									</div>
+								</div>
+								<div *ngIf="" id="errmessage" style="display:none">Authenticating....</div>
+								<div class="cboth">&nbsp;</div>
+							</form>
+						</div>
+					</ng-container>
+						<!-- END  LOGIN POPUP -->
+						<!-- START REGISTER POPUP -->
+						<ng-template #registerMode>
+						<div class="col-md-12 padLogin" id="registerDivForm">
+							<div id="successmsg"></div>
+							<div id="regfrmDiv">
+								<form [formGroup] = 'register_form' class="request-form" id="UserRegForm" (ngSubmit) = 'registerFormSubmit()'>
+									<div class="user-input-wrp">
+										<input formControlName='full_name' type="text" name="UserRegForm_name" id="UserRegForm_name" class='txtbxWidth' value="" required>
+										<img class="appendiconreg" src="#" width="21" />
+										<span class="floating-label">User Full Name</span>
+									</div>
+									<div class="hgt25">&nbsp;</div>
+									<div class="user-input-wrp">
+										<input formControlName='email' type="email" name="UserRegForm_email" id="UserRegForm_email" class='txtbxWidth' required />
+										<img class="appendiconeml" src="#" width="21" />
+										<span class="floating-label">Email Address</span>
+									</div>
+									<div class="hgt25">&nbsp;</div>
+									<div class="user-input-wrp">
+										<input formControlName='password' type="password" name="UserRegForm_password" id="UserRegForm_password" class='txtbxWidth' required />
+										<img class="appendiconpwd" src="#" width="16" />
+										<span class="floating-label">Password</span>
+									</div>
+									<div class="hgt25">&nbsp;</div>
+									<div class="user-input-wrp">
+										<input formControlName='confirm_password' type="password" name="UserRegForm_cpassword" id="UserRegForm_cpassword" class='txtbxWidth' required />
+										<img class="appendiconpwd" src="#" width="16" />
+										<span class="floating-label">Confirm Password</span>
+									</div>
+									<div class="hgt25">&nbsp;</div>
+									<div class="user-input-wrp">
+										<input formControlName='phone_number' type="text" name="UserRegForm_phone" id="UserRegForm_phone" class='txtbxWidth' required />
+										<img class="appendiconreg" src="#" width="23" />
+										<span class="floating-label">Phone Number</span>
+									</div>
+									<div class="cboth hgt25">&nbsp;</div>
+									<div>
+										<div class="left">
+											<input type="checkbox" value="1" name="reg_agree_term[]" />
+										</div>
+										<div class="left agreeregtext">I agree and accept the
+											<a href='https://support.accelerite.com/hc/en-us/articles/203473150-Accelerite-Data-Privacy-Policy'
+											 target='_blank' style="color:#9b9b9b;text-decoration:underline;">Terms and Conditions</a>
+										</div>
+									</div>
+									<div class="cboth hgt25">&nbsp;</div>
+									<div class="col-md-6 nopadleft inline-display-cls">
+										<div>
+											<input type="button" class="logcancelbtn" value="Cancel" name="reg_cancel" id="reg_cancel">
+										</div>
+									</div>
+									<div class="col-md-6 nopadrgt inline-display-cls">
+										<div id="loginbutton">
+											<input type="submit" class="sublogbtn" value="Register" name="submit_reg" id="register">
+										</div>
+									</div>
+									<div id="errmessage" style="display:none;">Authenticating....</div>
+								</form>
+							</div>
+						</div>
+					</ng-template>
+						<!-- END  REGISTER POPUP -->
+					</div>
+				</div>
+				<div class="modal-footer modal-footer-bord modal-footer-pad"></div>
 			</div>
 		</div>
 	</div>
-</header>
+</div>
+
+	<!-- LOGIN/REGISTER POPUP ENDS HERE -->
+	<!-- LOGIN/REGISTER POPUP ENDS HERE -->

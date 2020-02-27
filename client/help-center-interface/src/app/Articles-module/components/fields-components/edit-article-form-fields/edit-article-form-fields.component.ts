@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators'
-import { Article_Field } from './../../../classes/article_fields';
+import { Article_Field } from '../../../classes/article_fields';
 
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
+import { ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service';
 import { Observable } from 'rxjs';
 import { Article } from '../../../classes/article';
 

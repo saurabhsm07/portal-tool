@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './../imports/material-module';
+import { MaterialModule } from '../imports/material-module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { EditorModule } from '@tinymce/tinymce-angular'
 import { FormsModule } from '@angular/forms';
 
-import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
-import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
+import { GuideadminModule } from '../Guideadmin-module/guideadmin.module';
+import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
 // routing components
 import { ArticleRoutingModule } from './routes/article-routing.module';
 import { ArticleFieldsRoutingModule } from './routes/article-fields-routing.module';

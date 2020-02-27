@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Article_Form } from './../../classes/article_form';
+import { Article_Form } from '../../classes/article_form';
 
 @Pipe({
   name: 'searchArticleForm'

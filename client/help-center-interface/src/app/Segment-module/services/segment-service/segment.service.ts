@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Segment } from './../../classes/segment';
-import { SegmentRequestErrorHandlersService } from './../error-handlers/segment-request/segment-request-error-handlers.service';
+import { Segment } from '../../classes/segment';
+import { SegmentRequestErrorHandlersService } from '../error-handlers/segment-request/segment-request-error-handlers.service';
 
 @Injectable({
   providedIn: 'root'

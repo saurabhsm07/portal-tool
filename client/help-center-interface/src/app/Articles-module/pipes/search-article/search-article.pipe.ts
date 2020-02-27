@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Article } from './../../classes/article';
+import { Article } from '../../classes/article';
 
 @Pipe({
   name: 'searchArticle'

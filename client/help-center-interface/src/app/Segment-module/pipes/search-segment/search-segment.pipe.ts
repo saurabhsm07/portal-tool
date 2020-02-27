@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Segment } from './../../classes/segment';
+import { Segment } from '../../classes/segment';
 
 @Pipe({
   name: 'searchSegment'

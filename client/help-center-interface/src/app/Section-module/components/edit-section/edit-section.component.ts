@@ -5,11 +5,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Section } from './../../classes/section';
-import { SectionService } from './../../services/section-service/section.service';
-import { Category } from './../../../Category-module/classes/category';
-import { CategoryService } from './../../../Category-module/services/category-service/category.service';
-import { CustomValidators } from './../../../imports/custom-form-validators'
+import { Section } from '../../classes/section';
+import { SectionService } from '../../services/section-service/section.service';
+import { Category } from '../../../Category-module/classes/category';
+import { CategoryService } from '../../../Category-module/services/category-service/category.service';
+import { CustomValidators } from '../../../imports/custom-form-validators'
 
 // import { } from './../../../'
 

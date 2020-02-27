@@ -3,12 +3,12 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field'
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Segment } from './../../classes/segment';
-import { Organization } from './../../classes/organization';
-import { Tag } from './../../classes/tag';
-import { SegmentService } from './../../services/segment-service/segment.service';
-import { OrganizationService } from './../../services/organization-service/organization.service';
-import { TagService } from './../../services/tag-service/tag.service';
+import { Segment } from '../../classes/segment';
+import { Organization } from '../../classes/organization';
+import { Tag } from '../../classes/tag';
+import { SegmentService } from '../../services/segment-service/segment.service';
+import { OrganizationService } from '../../services/organization-service/organization.service';
+import { TagService } from '../../services/tag-service/tag.service';
 
 import { take, takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subject } from 'rxjs';

@@ -2,8 +2,8 @@ import { Component, OnInit, OnChanges,SimpleChanges, Input  } from '@angular/cor
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
-import { ArticleService } from './../../../services/article-service/article.service'
-import { Article} from './../../../classes/article'
+import { ArticleService } from '../../../services/article-service/article.service'
+import { Article} from '../../../classes/article'
 import { Observable } from 'rxjs'
 
 @Component({

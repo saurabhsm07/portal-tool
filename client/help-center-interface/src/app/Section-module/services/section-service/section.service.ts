@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Section } from './../../classes/section';
-import { SectionRequestErrorHandlersService } from './../error-handlers/section-request/section-request-error-handlers.service';
+import { Section } from '../../classes/section';
+import { SectionRequestErrorHandlersService } from '../error-handlers/section-request/section-request-error-handlers.service';
 
 @Injectable({
   providedIn: 'root'

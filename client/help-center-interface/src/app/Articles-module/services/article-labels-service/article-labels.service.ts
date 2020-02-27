@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
-import { Article_Label } from './../../classes/article_label';
-import {ArticleLabelErrorHandlerService } from './../error-handler-service/article-label-error-handlers/article-label-error-handler.service';
+import { Article_Label } from '../../classes/article_label';
+import {ArticleLabelErrorHandlerService } from '../error-handler-service/article-label-error-handlers/article-label-error-handler.service';
 
 @Injectable({
   providedIn: 'root'

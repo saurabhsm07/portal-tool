@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Segment } from './../../classes/segment';
-import { SegmentService } from './../../services/segment-service/segment.service';
+import { Segment } from '../../classes/segment';
+import { SegmentService } from '../../services/segment-service/segment.service';
 
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';

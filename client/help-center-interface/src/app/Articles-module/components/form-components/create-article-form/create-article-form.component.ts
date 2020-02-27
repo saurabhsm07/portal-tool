@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
-import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
-import { Article_Field } from './../../../classes/article_fields';
-import { Article_Form } from './../.././../classes/article_form';
+import { ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service';
+import { ArticleFormsService } from '../../../services/article-forms-service/article-forms.service';
+import { Article_Field } from '../../../classes/article_fields';
+import { Article_Form } from '../../../classes/article_form';
 import { FormControl, Validators } from '@angular/forms';
 
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { User } from './../../classes/user';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { User } from '../../classes/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class AuthService {
 
   private requestUri = {
     loginUser: 'http://localhost:5000/api/users/login',
+    logoutUser: 'http://localhost:5000/api/users/logout',
     registerUser: 'http://localhost:5000/api/users/',
     authorizedAdmin: 'http://localhost:5000/api/users/auth/admin',
     authorizedAgent: 'http://localhost:5000/api/users/auth/agent',
@@ -43,6 +44,16 @@ registerUser(user: User): Observable<User> {
     
     }
 
+  
+ /**
+   * login user: saves user object in the database and registers the user with the web application
+   * @param user : user object to be used for authenticating the user with the web application
+   */
+  logoutUser(): Observable<any> {
+    return this.http.get<any>(this.requestUri.logoutUser, this.headersOptions);
+    // .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
+    
+    }
 
         /**
      * Returns true if a user user has agent autherization
@@ -70,6 +81,21 @@ registerUser(user: User): Observable<User> {
      */
     isLoggedIn(){
       return !!localStorage.getItem('token');
+    }
+
+    /**
+     * Removes jwt token used for authentication
+     */
+    removeAuthTokens(){
+      try{
+        localStorage.clear();
+        return true;
+      }catch (error){
+        console.log('error while clearing tokens');
+        console.log(error);
+        return false;
+      }
+      
     }
 
     

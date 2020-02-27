@@ -3,11 +3,11 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field'
 import { FormBuilder, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
 
-import { Section } from './../../classes/section'
-import { SectionService } from './../../services/section-service/section.service';
-import { CategoryService } from './../../../Category-module/services/category-service/category.service';
-import { Category } from './../../../Category-module/classes/category';
-import { CustomValidators } from './../../../imports/custom-form-validators';
+import { Section } from '../../classes/section'
+import { SectionService } from '../../services/section-service/section.service';
+import { CategoryService } from '../../../Category-module/services/category-service/category.service';
+import { Category } from '../../../Category-module/classes/category';
+import { CustomValidators } from '../../../imports/custom-form-validators';
 
 @Component({
   selector: 'app-create-section',

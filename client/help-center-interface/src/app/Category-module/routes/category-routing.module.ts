@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoryHomeComponent } from './../components/category-home/category-home.component';
-import { EditCategoryComponent } from './../components/edit-category/edit-category.component';
-import { CreateCategoryComponent } from './../components/create-category/create-category.component';
-import { ViewCategoryHcComponent } from './../components/view-category-hc/view-category-hc.component';
-import { AuthGuard } from './../../helpers/authentication/auth.guard';
+import { CategoryHomeComponent } from '../components/category-home/category-home.component';
+import { EditCategoryComponent } from '../components/edit-category/edit-category.component';
+import { CreateCategoryComponent } from '../components/create-category/create-category.component';
+import { ViewCategoryHcComponent } from '../components/view-category-hc/view-category-hc.component';
+import { AuthGuard } from '../../helpers/authentication/auth.guard';
 import { AdminGuard } from '../../helpers/autherization/admin/admin.guard';
-import { AgentGuard } from './../../helpers/autherization/agent/agent.guard'
+import { AgentGuard } from '../../helpers/autherization/agent/agent.guard'
 
 
 const routes: Routes = [

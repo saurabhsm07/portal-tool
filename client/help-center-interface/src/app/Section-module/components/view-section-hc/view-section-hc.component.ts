@@ -4,11 +4,11 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
-import { Section } from './../../classes/section';
-import { Article } from './../../../Articles-module/classes/article';
+import { Section } from '../../classes/section';
+import { Article } from '../../../Articles-module/classes/article';
 
-import { SectionService } from './../../services/section-service/section.service';
-import { ArticleService } from './../../../Articles-module/services/article-service/article.service';
+import { SectionService } from '../../services/section-service/section.service';
+import { ArticleService } from '../../../Articles-module/services/article-service/article.service';
 
 
 @Component({

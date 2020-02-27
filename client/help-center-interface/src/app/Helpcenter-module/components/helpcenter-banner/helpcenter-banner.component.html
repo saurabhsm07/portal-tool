@@ -1,0 +1,22 @@
+<header>
+
+	<div [ngClass] = "{'non-home-page': currentPage!= 'home'}" class="homebg">
+		<div class="unqipad">
+			<div class="hgt150">&nbsp;</div>
+			<div [ngClass] = "{'hlputext-non-home': currentPage!= 'home'}" class="hlputext">How can we help you today?</div>
+			<div class="hgt20">&nbsp;</div>
+			<div class="row nopad">
+				<div class="offset-sm-2 offset-md-2 col-md-8 col-sm-8" style="padding:0;">
+					<form [formGroup]='search_hc_form' class="form-inline header-search" name="searchfrom" action="/hc/en-us/search" method="GET">
+						<img class="searchhmicon hmsrchicon" src="./assets/images/searchicon.png">
+						<input formGroupName='search' type="text" class="hmsearchbox" name="query" placeholder="Search">
+					</form>
+				</div>
+			</div>
+			<div class="hgt20">&nbsp;</div>
+			<div class="poputext">Popular topics:
+				<span class="poputextnorm">Radia, Product manual, Rovius</span>
+			</div>
+		</div>
+	</div>
+</header>

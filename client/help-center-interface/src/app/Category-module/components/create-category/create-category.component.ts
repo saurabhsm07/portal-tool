@@ -3,8 +3,8 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field'
 import { FormBuilder, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
 
-import { Category } from './../../classes/category'
-import { CategoryService } from './../../services/category-service/category.service';
+import { Category } from '../../classes/category'
+import { CategoryService } from '../../services/category-service/category.service';
 
 @Component({
   selector: 'app-create-category',

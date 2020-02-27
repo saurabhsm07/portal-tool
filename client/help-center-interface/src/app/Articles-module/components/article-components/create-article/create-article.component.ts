@@ -8,25 +8,25 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
-import { Article } from './../../../classes/article';
-import { Article_Form } from './../../../classes/article_form';
-import { Article_Field } from './../../../classes/article_fields'
-import { Article_Label } from './../../../classes/article_label';
-import { Section } from './../../../../Section-module/classes/section';
-import { Segment } from './../../../../Segment-module/classes/segment';
+import { Article } from '../../../classes/article';
+import { Article_Form } from '../../../classes/article_form';
+import { Article_Field } from '../../../classes/article_fields'
+import { Article_Label } from '../../../classes/article_label';
+import { Section } from '../../../../Section-module/classes/section';
+import { Segment } from '../../../../Segment-module/classes/segment';
 
-import { ArticleService } from './../../../services/article-service/article.service';
-import { ArticleAttachmentsService } from './../../../services/article-attachments-service/article-attachments.service';
-import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
-import { ArticleLabelsService } from './../../../services/article-labels-service/article-labels.service';
-import { SectionService } from './../../../../Section-module/services/section-service/section.service';
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
-import { SegmentService } from './../../../../Segment-module/services/segment-service/segment.service';
+import { ArticleService } from '../../../services/article-service/article.service';
+import { ArticleAttachmentsService } from '../../../services/article-attachments-service/article-attachments.service';
+import { ArticleFormsService } from '../../../services/article-forms-service/article-forms.service';
+import { ArticleLabelsService } from '../../../services/article-labels-service/article-labels.service';
+import { SectionService } from '../../../../Section-module/services/section-service/section.service';
+import { ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service';
+import { SegmentService } from '../../../../Segment-module/services/segment-service/segment.service';
 import { Router } from '@angular/router';
 
-import { MaterialModule } from './../../../../imports/material-module';
+import { MaterialModule } from '../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { FieldComponentCreators } from './../../../../imports/field-component-creators';
+import { FieldComponentCreators } from '../../../../imports/field-component-creators';
 
 @Component({
   selector: 'app-article-fields',

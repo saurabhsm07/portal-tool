@@ -4,11 +4,11 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
-import { Category } from './../../classes/category';
+import { Category } from '../../classes/category';
 import { Section } from '../../../Section-module/classes/section';
-import { CategoryService } from './../../services/category-service/category.service';
-import { SectionService } from './../../../Section-module/services/section-service/section.service';
-import { ArticleService } from './../../../Articles-module/services/article-service/article.service';
+import { CategoryService } from '../../services/category-service/category.service';
+import { SectionService } from '../../../Section-module/services/section-service/section.service';
+import { ArticleService } from '../../../Articles-module/services/article-service/article.service';
 import { Article } from '../../../Articles-module/classes/article';
 
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Section } from './../../classes/section';
+import { Section } from '../../classes/section';
 
 
 @Pipe({

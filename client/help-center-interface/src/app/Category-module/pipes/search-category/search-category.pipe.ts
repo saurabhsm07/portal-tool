@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Category } from './../../classes/category';
+import { Category } from '../../classes/category';
 
 @Pipe({
   name: 'searchCategory'

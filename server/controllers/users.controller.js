@@ -51,6 +51,24 @@ module.exports = {
             })
     },
 
+    logout: (req, res) => {
+        const {user} = req;
+        console.log(user);
+        user.last_login_at = new Date().getTime();
+       
+        User.update(user, {where: { id: user.id}})
+            .then((data) =>{
+                if(data.length == 1){
+                    res.status(200).send({logoutStatus: true});
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+            })
+    },
+
     create: async (req, res, next) => {
         User.findAll({ where: { email: req.body.user.email } })
             .then((data) => {

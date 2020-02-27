@@ -5,17 +5,17 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Segment } from './../../classes/segment';
-import { Organization } from './../../classes/organization';
-import { Tag } from './../../classes/tag';
-import { SegmentService } from './../../services/segment-service/segment.service';
-import { OrganizationService } from './../../services/organization-service/organization.service';
-import { TagService } from './../../services/tag-service/tag.service';
+import { Segment } from '../../classes/segment';
+import { Organization } from '../../classes/organization';
+import { Tag } from '../../classes/tag';
+import { SegmentService } from '../../services/segment-service/segment.service';
+import { OrganizationService } from '../../services/organization-service/organization.service';
+import { TagService } from '../../services/tag-service/tag.service';
 
 import { take, takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material';
-import { CustomValidators } from './../../../imports/custom-form-validators'
+import { CustomValidators } from '../../../imports/custom-form-validators'
 
 
 @Component({

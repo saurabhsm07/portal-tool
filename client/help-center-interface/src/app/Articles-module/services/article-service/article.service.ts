@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Article } from './../../classes/article';
+import { Article } from '../../classes/article';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import {ArticleRequestErrorHandlersService } from './../error-handler-service/article-request-error-handlers/article-request-error-handlers.service'
+import {ArticleRequestErrorHandlersService } from '../error-handler-service/article-request-error-handlers/article-request-error-handlers.service'
 
 @Injectable({
   providedIn: 'root'

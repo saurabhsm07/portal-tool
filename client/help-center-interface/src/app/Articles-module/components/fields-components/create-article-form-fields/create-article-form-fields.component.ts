@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import {Router } from'@angular/router';
-import { Article_Field } from './../../../classes/article_fields';
+import { Article_Field } from '../../../classes/article_fields';
 
 
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
+import { ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service';
 // import { validateStyleParams } from '../../../../../../node_modules/@angular/animations/browser/src/util';
 
 @Component({

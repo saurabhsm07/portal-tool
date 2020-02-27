@@ -15,6 +15,11 @@ router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), us
  */
 router.route('/login').post(users.login);
 
+
+/**
+ * GET: api path to log out a user.
+ */
+router.route('/logout').get(passport.authenticate('jwt', { session: false }), users.logout);
 /**
  * GET: check if user is admin authorized
  */

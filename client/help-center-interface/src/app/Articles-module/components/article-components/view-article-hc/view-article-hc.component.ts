@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Article } from './../../../classes/article';
-import { ArticleService } from './.././../../services/article-service/article.service';
+import { Article } from '../../../classes/article';
+import { ArticleService } from '../../../services/article-service/article.service';
 @Component({
   selector: 'app-view-article-hc',
   templateUrl: './view-article-hc.component.html',

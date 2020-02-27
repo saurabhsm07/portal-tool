@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Article_Field } from './../../../classes/article_fields';
-import { ArticleFieldService } from './../../../services/article-fields-service/article-field-service.service';
-import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { Article_Field } from '../../../classes/article_fields';
+import { ArticleFieldService } from '../../../services/article-fields-service/article-field-service.service';
+import { ArticleFormsService } from '../../../services/article-forms-service/article-forms.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';

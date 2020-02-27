@@ -5,8 +5,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Category } from './../../classes/category';
-import { CategoryService } from './../../services/category-service/category.service';
+import { Category } from '../../classes/category';
+import { CategoryService } from '../../services/category-service/category.service';
 
 @Component({
   selector: 'app-edit-category',

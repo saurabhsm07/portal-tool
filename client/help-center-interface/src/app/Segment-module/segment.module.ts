@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from './../imports/material-module';
+import { MaterialModule } from '../imports/material-module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SegmentRoutingModule } from './routes/segment-routing.module';
@@ -9,7 +9,7 @@ import { EditSegmentComponent } from './components/edit-segment/edit-segment.com
 import { ListSegmentsComponent } from './components/list-segments/list-segments.component';
 import { SegmentHomeComponent } from './components/segment-home/segment-home.component';
 import { SearchSegmentPipe } from './pipes/search-segment/search-segment.pipe';
-import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
+import { GuideadminModule } from '../Guideadmin-module/guideadmin.module';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({

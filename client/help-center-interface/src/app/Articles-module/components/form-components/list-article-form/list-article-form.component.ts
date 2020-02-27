@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { ArticleFormsService } from './../../../services/article-forms-service/article-forms.service';
+import { ArticleFormsService } from '../../../services/article-forms-service/article-forms.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { Article_Form } from 'src/app/Articles-module/classes/article_form';
+import { Article_Form } from '../../../classes/article_form';
 import { Router } from '@angular/router';
 
 
