@@ -9,8 +9,8 @@ import { NgClass } from '@angular/common';
 export class SidebarComponent implements OnInit {
 
   constructor(private router: Router) { }
-  private menuList = ['segment', 'section', 'articles', 'categories','fields','forms', 'form', 'field'];
-  private selectedOption = '';
+  public menuList = ['segment', 'section', 'articles', 'categories','fields','forms', 'form', 'field'];
+  public selectedOption = '';
 
   ngOnInit() {
     const currentUrl = this.router.url;

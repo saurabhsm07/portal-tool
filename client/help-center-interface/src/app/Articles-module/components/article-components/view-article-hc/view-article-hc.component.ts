@@ -12,8 +12,8 @@ import { ArticleService } from '../../../services/article-service/article.servic
 })
 export class ViewArticleHcComponent implements OnInit {
 
-  article$: Observable<Article>;  //object used to create a observable of type Article for fetching data based on Url parameter
-  article: Article; // object of type article
+  public article$: Observable<Article>;  //object used to create a observable of type Article for fetching data based on Url parameter
+  public article: Article; // object of type article
   constructor( private articleService: ArticleService,
                private router: Router,
                private route: ActivatedRoute) { }
@@ -26,7 +26,7 @@ export class ViewArticleHcComponent implements OnInit {
     /**
    * Gets current article data from the URL i.d
    */
-  private fetchArticleData() {
+  public fetchArticleData() {
     this.article$ = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.articleService.getArticle(params.get('id'))));
     this.article$.subscribe((article: Article) => {
       this.article = article;

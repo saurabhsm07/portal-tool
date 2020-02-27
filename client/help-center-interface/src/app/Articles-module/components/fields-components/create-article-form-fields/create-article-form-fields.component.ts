@@ -15,8 +15,8 @@ import { ArticleFieldService } from '../../../services/article-fields-service/ar
 export class CreateArticleFormFieldsComponent implements OnInit {
 
   
-  selectedType: number;                 //current selected field type
-  hasValues: boolean = false;           // current selected field has option to add values or not
+  public selectedType: number;                 //current selected field type
+  public hasValues: boolean = false;           // current selected field has option to add values or not
 
 
   /**
@@ -134,7 +134,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
    * Function gives a unique value id to the field value name string
    * @param index = index of a field value object in the field value form array
    */
-  private setFieldValueAttr(index: any) {
+  public setFieldValueAttr(index: any) {
     this.field_value.value[index].value = this.field_value
                                               .value[index].name
                                               .split('')

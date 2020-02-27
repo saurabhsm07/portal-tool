@@ -26,19 +26,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //static files
-app.use(express.static(path.join(__dirname,"assets/files/article_data")));
-app.use(express.static(path.join(__dirname,"public")));
+// app.use(express.static(path.join(__dirname,"assets/files/article_data")));
+app.use(express.static(path.join(__dirname,"public/help-center-app")));
 
 // Handlebars Middleware
-app.set('views', path.join(__dirname,'views'));
+// app.set('views', path.join(__dirname,'views'));
 // app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 // app.set('view engine','handlebars');
 
 
 //get home path -  rendered
-app.get('/', (req, res) =>{
+app.get('/*', (req, res) =>{
     // client.connect()
-    res.render('index');
+    res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
 })
 
 

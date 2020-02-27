@@ -16,12 +16,12 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditArticleFormComponent implements OnInit {
 
-  private article_fields_incl: Article_Field[];
-  private article_fields_excl: Article_Field[];
-  private article_form$: Observable<Article_Form>;
-  private article_form : Article_Form;
+  public article_fields_incl: Article_Field[];
+  public article_fields_excl: Article_Field[];
+  public article_form$: Observable<Article_Form>;
+  public article_form : Article_Form;
 
-  private form_name = new  FormControl('', [Validators.required, Validators.minLength(10)]);
+  public form_name = new  FormControl('', [Validators.required, Validators.minLength(10)]);
   
   protected field_type_icon = {
     text : 'fa fa-text-width',

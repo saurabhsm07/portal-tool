@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ListCategoriesComponent implements OnInit {
 
   categories: Category[];   // List of Category objects
-  private searchString = '';
+  public searchString = '';
 
   dataSource = new MatTableDataSource<Category>(); // datasource of type 'Category' for mat-table 
   displayedColumns: string[];     // saves column names of the article table

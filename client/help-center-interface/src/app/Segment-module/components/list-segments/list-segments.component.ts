@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ListSegmentsComponent implements OnInit {
   userSegments: Segment[];   // List of Segment objects
-  private searchString = ''; //string used to filter SegmentsList on section name
+  public searchString = ''; //string used to filter SegmentsList on section name
 
   dataSource = new MatTableDataSource<Segment>(); // datasource of type 'Segment' for mat-table 
   displayedColumns: string[];     // saves column names of the segment table

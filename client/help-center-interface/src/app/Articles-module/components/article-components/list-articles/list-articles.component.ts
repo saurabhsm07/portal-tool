@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class ListArticlesComponent implements OnInit {
 
-  articles : Article[];   // List of Article objects
-  private searchString = '';   // parameter for dynamic search articles table
+  public articles : Article[];   // List of Article objects
+  public searchString = '';   // parameter for dynamic search articles table
 
   dataSource = new MatTableDataSource<Article>(); // datasource of type 'Article' for mat-table 
   displayedColumns: string[];     // saves column names of the article fields table

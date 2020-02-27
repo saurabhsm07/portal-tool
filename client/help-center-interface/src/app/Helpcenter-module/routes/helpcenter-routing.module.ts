@@ -7,6 +7,7 @@ import { HelpcenterLogoutComponent } from '../components/helpcenter-logout/helpc
 const routes: Routes = [
   {path: 'hc/en-us/home', component: HelpcenterHomeComponent},
   {path: 'home', redirectTo: '/hc/en-us/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/hc/en-us/home', pathMatch: 'full'},
   {path: 'hc/en-us/logout', component: HelpcenterLogoutComponent},
 ];
 

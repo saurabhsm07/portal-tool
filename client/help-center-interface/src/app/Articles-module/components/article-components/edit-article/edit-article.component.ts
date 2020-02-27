@@ -250,7 +250,7 @@ export class EditArticleComponent implements OnInit {
   /**
     * Get list of all user article label objects from the database
     */
-  private fetchArticleLabels() {
+  public fetchArticleLabels() {
     this.articleLabelsService.getArticleLabels()
       .subscribe((labels) => {
         this.labelList = labels;
@@ -263,7 +263,7 @@ export class EditArticleComponent implements OnInit {
   /**
    * Get list of all user segment objects from the database
    */
-  private fetchUserSegmentList() {
+  public fetchUserSegmentList() {
     this.segmentService.listSegments()
       .subscribe((segments) => {
         this.userSegmentList = segments;
@@ -275,7 +275,7 @@ export class EditArticleComponent implements OnInit {
   /**
  * get i.d of the article to be created using auto increment for the Article Table on ID column
  */
-  private fetchArticleAutoIncrementId() {
+  public fetchArticleAutoIncrementId() {
     this.articleService.getLastRecordId()
       .subscribe((data) => {
         console.log(data);
@@ -288,7 +288,7 @@ export class EditArticleComponent implements OnInit {
   /**
  * gets a list of sections from the database
  */
-  private fetchSectionsList() {
+  public fetchSectionsList() {
     this.sectionService.listSections()
       .subscribe((sections) => {
         console.log(sections);
@@ -301,7 +301,7 @@ export class EditArticleComponent implements OnInit {
   /**
    * Gets current article data from the URL i.d
    */
-  private fetchArticleData() {
+  public fetchArticleData() {
     this.article$ = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.articleService.getArticle(params.get('id'))));
     this.article$.subscribe((data: Article) => {
       this.setArticleObjValues(data);
@@ -315,7 +315,7 @@ export class EditArticleComponent implements OnInit {
     });
   }
 
-  private setArticleObjValues(data: Article) {
+  public setArticleObjValues(data: Article) {
     this.article_object = data;
   }
 
@@ -323,7 +323,7 @@ export class EditArticleComponent implements OnInit {
   /**
    * Updates form header information
    */
-  private updateFormHeader() {
+  public updateFormHeader() {
     this.article_form.controls.article_header.patchValue({
       title: this.article_object.title,
       form: this.article_object.article_form_id,
@@ -334,7 +334,7 @@ export class EditArticleComponent implements OnInit {
   /**
  * Updates form footer information
  */
-  private updateFormFooter() {
+  public updateFormFooter() {
     this.selectedLabels = this.selectedLabels.concat(this.article_object.label_names); 
     this.article_form.controls.article_footer.patchValue({
       user_segment: this.article_object.user_segment_id,
@@ -410,7 +410,7 @@ export class EditArticleComponent implements OnInit {
    * @param selectedForm : form object element from list of available article forms array
    * @param formFields  : list of fields required to render the selected article form
    */
-  private UpdateFieldSequence(selectedForm: Article_Form, formFields: Article_Field[]) {
+  public UpdateFieldSequence(selectedForm: Article_Form, formFields: Article_Field[]) {
     let formFieldsArranged: Article_Field[] = [];
     JSON.parse(selectedForm.article_fields).forEach(element => {
       formFieldsArranged.push(formFields.filter((field) => {
@@ -426,7 +426,7 @@ export class EditArticleComponent implements OnInit {
    * Function renders article body component based on form fields provided.
    * @param formFields : 
    */
-  private renderComponent(formFields: Article_Field[]) {
+  public renderComponent(formFields: Article_Field[]) {
     this.article_form.setControl('article_body', this.fb.group([]));
     console.log(this.article_form.controls);
     let formBodyTemplate = FieldComponentCreators.createFieldComponent(formFields);
@@ -481,7 +481,7 @@ export class EditArticleComponent implements OnInit {
         this.addFieldFormControls();
         this.setArticleBodyValues();
       }
-      private addFieldFormControls() {
+      public addFieldFormControls() {
         let fieldInformation = {}
         fields.forEach(field => {
 
@@ -507,7 +507,7 @@ export class EditArticleComponent implements OnInit {
       /**
        * Sets article form body values
        */
-      private setArticleBodyValues() {
+      public setArticleBodyValues() {
         if (Array.isArray(this.article.body)) {
           console.log(this.article.body);
           this.article.body.forEach(field => {

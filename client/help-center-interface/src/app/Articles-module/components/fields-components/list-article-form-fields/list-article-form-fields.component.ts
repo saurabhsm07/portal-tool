@@ -19,8 +19,8 @@ export class ListArticleFormFieldsComponent implements OnInit {
   constructor(private articleFieldService: ArticleFieldService,
     private router: Router) { }
 
-private searchString: string = '';   // arameter for dynamic search article fields table
-private articleFields: Article_Field[]; // article fields list
+public searchString: string = '';   // arameter for dynamic search article fields table
+public articleFields: Article_Field[]; // article fields list
 
 dataSource = new MatTableDataSource<Article_Field>(); // datasource
 displayedColumns: string[];     // saves column names of the article fields table

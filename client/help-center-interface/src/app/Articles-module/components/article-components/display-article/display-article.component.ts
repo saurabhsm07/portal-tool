@@ -19,8 +19,8 @@ export class DisplayArticleComponent implements OnInit, OnChanges {
   
 
 
-  private fieldValues = {};
-  private fieldInformation = {};
+  public fieldValues = {};
+  public fieldInformation = {};
 
   constructor(
     private route: ActivatedRoute,

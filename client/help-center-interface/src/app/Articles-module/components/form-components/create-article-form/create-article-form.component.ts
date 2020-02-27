@@ -17,11 +17,11 @@ export class CreateArticleFormComponent implements OnInit {
 
   
 
-  private article_fields_incl: Article_Field[];    // custom fields that are included in the custom article form
-  private article_fields_excl: Article_Field[];    // custom fields that are not included in the custom article form 
+  public article_fields_incl: Article_Field[];    // custom fields that are included in the custom article form
+  public article_fields_excl: Article_Field[];    // custom fields that are not included in the custom article form 
   
 
-  private form_name = new FormControl('', [Validators.required, Validators.minLength(10)]);
+  public form_name = new FormControl('', [Validators.required, Validators.minLength(10)]);
 
   /**
    * font awesome icons to used in field display UI

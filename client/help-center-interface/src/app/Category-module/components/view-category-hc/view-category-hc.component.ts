@@ -75,7 +75,7 @@ export class ViewCategoryHcComponent implements OnInit {
   /**
    * Get all sections with perticular category i.d
    */
-  private getSectionsFromCategory() {
+  public getSectionsFromCategory() {
     this.sectionService.getSectionInCategory(this.category.id.toString())
       .subscribe((sectionsList) => {
         this.section_list = sectionsList;
@@ -91,7 +91,7 @@ export class ViewCategoryHcComponent implements OnInit {
   /**
    * initializes section article object for rendering in template
    */
-  private initializeSectionArticleObject() {
+  public initializeSectionArticleObject() {
     this.section_list.forEach((section, index) => {
       this.section_articles_obj[section.id] = { articles: [], see_more: section.html_url, isOpen: false };
     });

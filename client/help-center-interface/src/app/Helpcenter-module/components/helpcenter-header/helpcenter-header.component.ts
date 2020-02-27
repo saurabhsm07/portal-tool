@@ -19,7 +19,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
 
   public loginMode = true;
   public authenticating = false;
-  private userObj: User;
+  public userObj: User;
   public isAgent = false;
 
   constructor(private fb: FormBuilder,
@@ -67,7 +67,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
     })
   }
 
-  private checkIfLoggedIn() {
+  public checkIfLoggedIn() {
     this.userObj = JSON.parse(localStorage.getItem('user'));
     if (this.userObj) {
       console.log("user logged in");
@@ -155,7 +155,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   /**
    * @param user : user object recieved from the database
    */
-  private iniHcData(user: User) {
+  public iniHcData(user: User) {
     this.userObj = user;
     localStorage.setItem('token', user.remember_token);
     localStorage.setItem('user', JSON.stringify(this.userObj));

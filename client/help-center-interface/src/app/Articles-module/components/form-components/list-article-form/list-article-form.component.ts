@@ -15,8 +15,8 @@ import { Router } from '@angular/router';
 export class ListArticleFormComponent implements OnInit {
 
 
-  private searchString = '';   // parameter for dynamic search article forms table
-  private articleForms: Article_Form[]; // article forms list
+  public searchString = '';   // parameter for dynamic search article forms table
+  public articleForms: Article_Form[]; // article forms list
 
   dataSource = new MatTableDataSource<Article_Form>(); // datasource
   displayedColumns: string[];     // saves column names of the article fields table

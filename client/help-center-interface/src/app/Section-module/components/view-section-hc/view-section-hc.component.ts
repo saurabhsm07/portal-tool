@@ -20,8 +20,8 @@ export class ViewSectionHcComponent implements OnInit {
 
 
   section$: Observable<Section>;     // observable to map section i.d from angular route path and call get section by id API
-  private section : Section;
-  protected article_list : Article[];
+  public section : Section;
+  public article_list : Article[];
   constructor(private router: Router,
               private route: ActivatedRoute,
               private sectionService: SectionService,
@@ -46,7 +46,7 @@ export class ViewSectionHcComponent implements OnInit {
   /**
    * Get articles in perticular section
    */
-  private getArticlesInSection() {
+  public getArticlesInSection() {
     this.articleService.getArticlesWithSectionId(this.section.id.toString())
       .subscribe((articles) => {
         this.article_list = articles;

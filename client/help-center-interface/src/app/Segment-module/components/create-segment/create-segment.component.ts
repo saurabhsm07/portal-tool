@@ -51,9 +51,9 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   //dummy data values for organizations and tags
-  private organizationList: Organization[];
+  public organizationList: Organization[];
 
-  private tagList: Tag[];
+  public tagList: Tag[];
 
 
 
@@ -214,7 +214,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
    *  based on the 'search' keyword and all the tags selected in other 'or tag' condition
    * @param search
    */
-  private getFiteredAndTagListWithSearch(search: any) {
+  public getFiteredAndTagListWithSearch(search: any) {
     this.filteredTagsMultiAnd.next(this.tagList.filter((tag) => {
       if ((tag.tag_name.toLowerCase().indexOf(search) > -1)) {
         if ((this.or_tags.value != null) && (this.or_tags.value.length > 0)) {
@@ -233,7 +233,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
    *  based on the tags selected in other 'or tag' condition which i removed in this filter function
    *  
    */
-  private getFilteredAndTagList() {
+  public getFilteredAndTagList() {
     this.filteredTagsMultiOr.next(this.tagList.filter((tag) => {
       if ((this.or_tags.value != null) && (this.or_tags.value.length > 0)) {
         if (this.or_tags.value.map(tag => tag.tag_name).indexOf(tag) == -1)
@@ -250,7 +250,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
  *  based on the 'search' keyword and all the tags selected in other 'and tag' condition
  * @param search
  */
-  private getFilteredOrTagListWithSearch(search: string) {
+  public getFilteredOrTagListWithSearch(search: string) {
     this.filteredTagsMultiOr.next(this.tagList.filter((tag) => {
       {
         if ((tag.tag_name.toLowerCase().indexOf(search) > -1)) {
@@ -270,7 +270,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
   * Gets a subset of available tag values for selection
   *  based on the 'search' keyword and all the tags selected in other 'or tag' condition
   */
-  private getFilteredOrTagList() {
+  public getFilteredOrTagList() {
     this.filteredTagsMultiOr.next(this.tagList.filter((tag) => {
       if ((this.tags.value != null) && (this.tags.value.length > 0)) {
         if (this.tags.value.map(tag => tag.tag_name).indexOf(tag) == -1)
