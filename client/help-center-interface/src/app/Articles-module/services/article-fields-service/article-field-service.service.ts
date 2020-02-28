@@ -14,12 +14,12 @@ import { Article_Field } from '../../classes/article_fields'
 export class ArticleFieldService {
 
   private requestUri = {
-    getArticleFields: 'http://localhost:5000/api/articles/fields',
-    getArticleFieldById: 'http://localhost:5000/api/articles/fields/id',
-    listArticleFieldsByIds: 'http://localhost:5000/api/articles/fields/list?ids=',
-    postArticleField: 'http://localhost:5000/api/articles/fields/',
-    updateArticleField: 'http://localhost:5000/api/articles/fields/',
-    deleteArticleField: 'http://localhost:5000/api/articles/fields/',
+    getArticleFields: 'api/articles/fields',
+    getArticleFieldById: 'api/articles/fields/id',
+    listArticleFieldsByIds: 'api/articles/fields/list?ids=',
+    postArticleField: 'api/articles/fields/',
+    updateArticleField: 'api/articles/fields/',
+    deleteArticleField: 'api/articles/fields/',
 };
 
 private headersOptions = {

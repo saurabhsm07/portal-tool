@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private requestUri = {
-    loginUser: 'http://localhost:5000/api/users/login',
-    logoutUser: 'http://localhost:5000/api/users/logout',
-    registerUser: 'http://localhost:5000/api/users/',
-    authorizedAdmin: 'http://localhost:5000/api/users/auth/admin',
-    authorizedAgent: 'http://localhost:5000/api/users/auth/agent',
-    authorizedCustom: 'http://localhost:5000/api/users/auth/custom'
+    loginUser: 'api/users/login',
+    logoutUser: 'api/users/logout',
+    registerUser: 'api/users/',
+    authorizedAdmin: 'api/users/auth/admin',
+    authorizedAgent: 'api/users/auth/agent',
+    authorizedCustom: 'api/users/auth/custom'
   };
   private headersOptions = {
     headers: new HttpHeaders({

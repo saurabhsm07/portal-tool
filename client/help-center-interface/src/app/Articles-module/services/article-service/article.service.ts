@@ -15,13 +15,13 @@ export class ArticleService {
    * List of primary CRUD APIs for Article Data
    */
   private requestUri = {
-    getArticles: 'http://localhost:5000/api/articles/',
-    getArticlesWithSectionId: 'http://localhost:5000/api/articles/section/id/',
-    getArticleById: 'http://localhost:5000/api/articles/id/',
-    getLastArticleId: 'http://localhost:5000/api/articles/max/id',
-    postArticle: 'http://localhost:5000/api/articles/',
-    updateArticle: 'http://localhost:5000/api/articles/',
-    deleteArticle: 'http://localhost:5000/api/articles/id/',
+    getArticles: 'api/articles/',
+    getArticlesWithSectionId: 'api/articles/section/id/',
+    getArticleById: 'api/articles/id/',
+    getLastArticleId: 'api/articles/max/id',
+    postArticle: 'api/articles/',
+    updateArticle: 'api/articles/',
+    deleteArticle: 'api/articles/id/',
 };
 
   private headersOptions = {

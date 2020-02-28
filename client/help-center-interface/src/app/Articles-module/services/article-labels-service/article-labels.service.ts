@@ -11,11 +11,11 @@ import {ArticleLabelErrorHandlerService } from '../error-handler-service/article
 })
 export class ArticleLabelsService {
   private requestUri = {
-    getArticleLabels: 'http://localhost:5000/api/articles/labels/',
-    getArticleLabelById: 'http://localhost:5000/api/articles/labels/id/',
-    postArticleLabel: 'http://localhost:5000/api/articles/labels/',
-    updateArticleLabel: 'http://localhost:5000/api/articles/labels/',
-    deleteArticleLabel: 'http://localhost:5000/api/articles/labels/id/'
+    getArticleLabels: 'api/articles/labels/',
+    getArticleLabelById: 'api/articles/labels/id/',
+    postArticleLabel: 'api/articles/labels/',
+    updateArticleLabel: 'api/articles/labels/',
+    deleteArticleLabel: 'api/articles/labels/id/'
   }
 
   private headersOptions = {

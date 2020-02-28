@@ -15,6 +15,7 @@ module.exports = {
         const {user_type, role_id} = req.user.dataValues;
         if((user_type == "admin") && (role_id == 1)){
             req.accessInfo = true;
+            console.log("is admin or agent")
             next();
         }
         else if ((user_type == "agent") && (['776500', '884641', '884651'].indexOf(role_id) != -1)){
@@ -30,6 +31,7 @@ module.exports = {
         const {user_type, role_id} = req.user.dataValues;
         if((user_type == "admin") && (role_id == 1)){
             req.accessInfo = true;
+            console.log("is admin or agent")
             next()
         }
         else if((user_type == "agent") && (['776500', '884641', '884651'].indexOf(role_id) != -1)){

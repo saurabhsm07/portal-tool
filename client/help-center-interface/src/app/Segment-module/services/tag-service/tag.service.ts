@@ -13,8 +13,8 @@ export class TagService {
    * List of primary CRUD APIs for Tags data
    */
   private requestUri = {
-    getTags: 'http://localhost:5000/api/tags/',
-    getTagById: 'http://localhost:5000/api/tags/id/',
+    getTags: 'api/tags/',
+    getTagById: 'api/tags/id/',
   };
   
   private headersOptions = {

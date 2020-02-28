@@ -13,12 +13,12 @@ export class SegmentService {
    * List of primary CRUD APIs for Segment data
    */
   private requestUri = {
-    getSegments: 'http://localhost:5000/api/segments/',
-    getSegmentById: 'http://localhost:5000/api/segments/id/',
-    // getSegmentInCategory: 'http://localhost:5000/api/segments/category/id/',
-    postSegment: 'http://localhost:5000/api/segments/',
-    updateSegment: 'http://localhost:5000/api/segments/',
-    deleteSegment: 'http://localhost:5000/api/segments/',
+    getSegments: 'api/segments/',
+    getSegmentById: 'api/segments/id/',
+    // getSegmentInCategory: 'api/segments/category/id/',
+    postSegment: 'api/segments/',
+    updateSegment: 'api/segments/',
+    deleteSegment: 'api/segments/',
   };
   
   private headersOptions = {

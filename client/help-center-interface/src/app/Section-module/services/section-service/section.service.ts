@@ -14,12 +14,12 @@ export class SectionService {
    * List of primary CRUD APIs for Section data
    */
 private requestUri = {
-  getSections: 'http://localhost:5000/api/sections/',
-  getSectionById: 'http://localhost:5000/api/sections/id/',
-  getSectionInCategory: 'http://localhost:5000/api/sections/category/id/',
-  postSection: 'http://localhost:5000/api/sections/',
-  updateSection: 'http://localhost:5000/api/sections/',
-  deleteSection: 'http://localhost:5000/api/sections/',
+  getSections: 'api/sections/',
+  getSectionById: 'api/sections/id/',
+  getSectionInCategory: 'api/sections/category/id/',
+  postSection: 'api/sections/',
+  updateSection: 'api/sections/',
+  deleteSection: 'api/sections/',
 };
 
 private headersOptions = {

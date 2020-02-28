@@ -12,11 +12,11 @@ import { Article_Attachment } from '../../classes/article_attachment'
 export class ArticleAttachmentsService {
 
   private requestUri = {
-    getArticleAttachments: 'http://localhost:5000/api/articles/',
-    getArticleAttachmentById: 'http://localhost:5000/api/articles/id/',
-    postArticleAttachment: 'http://localhost:5000/api/articles/',
-    updateArticleAttachment: 'http://localhost:5000/api/articles/',
-    deleteArticleAttachment: 'http://localhost:5000/api/articles/',
+    getArticleAttachments: 'api/articles/',
+    getArticleAttachmentById: 'api/articles/id/',
+    postArticleAttachment: 'api/articles/',
+    updateArticleAttachment: 'api/articles/',
+    deleteArticleAttachment: 'api/articles/',
 };
 
   private article_id: string;

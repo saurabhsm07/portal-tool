@@ -14,8 +14,8 @@ export class OrganizationService {
    * List of primary CRUD APIs for Organization data
    */
 private requestUri = {
-  getOrganizations: 'http://localhost:5000/api/organizations/',
-  getOrganizationById: 'http://localhost:5000/api/organizations/id/',
+  getOrganizations: 'api/organizations/',
+  getOrganizationById: 'api/organizations/id/',
 };
 
 private headersOptions = {

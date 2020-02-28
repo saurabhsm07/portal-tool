@@ -14,11 +14,11 @@ import { Article_Form } from '../../classes/article_form';
 export class ArticleFormsService {
 
   private requestUri = {
-    getArticleForms: 'http://localhost:5000/api/articles/forms/',
-    getArticleFormById: 'http://localhost:5000/api/articles/forms/id/',
-    postArticleForm: 'http://localhost:5000/api/articles/forms/',
-    updateArticleForm: 'http://localhost:5000/api/articles/forms/',
-    deleteArticleForm: 'http://localhost:5000/api/articles/forms/id/'
+    getArticleForms: 'api/articles/forms/',
+    getArticleFormById: 'api/articles/forms/id/',
+    postArticleForm: 'api/articles/forms/',
+    updateArticleForm: 'api/articles/forms/',
+    deleteArticleForm: 'api/articles/forms/id/'
   }
 
   private headersOptions = {

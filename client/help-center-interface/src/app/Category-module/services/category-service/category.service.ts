@@ -13,11 +13,11 @@ export class CategoryService {
    * List of primary CRUD APIs for Category data
    */
   private requestUri = {
-    getCategories: 'http://localhost:5000/api/categories/',
-    getCategoryById: 'http://localhost:5000/api/categories/id/',
-    postCategory: 'http://localhost:5000/api/categories/',
-    updateCategory: 'http://localhost:5000/api/categories/',
-    deleteCategory: 'http://localhost:5000/api/categories/',
+    getCategories: 'api/categories/',
+    getCategoryById: 'api/categories/id/',
+    postCategory: 'api/categories/',
+    updateCategory: 'api/categories/',
+    deleteCategory: 'api/categories/',
   };
 
   private headersOptions = {

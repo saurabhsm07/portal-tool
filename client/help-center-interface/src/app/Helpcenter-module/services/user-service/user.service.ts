@@ -12,11 +12,11 @@ export class UserService {
    * List of primary CRUD APIs for User data
    */
 private requestUri = {
-  createUser: 'http://localhost:5000/api/users',
-  getUserById: 'http://localhost:5000/api/users/id/',
-  updateUser: 'http://localhost:5000/api/users/',
-  signoutUser: 'http://localhost:5000/api/users/signout',
-  deleteUser: 'http://localhost:5000/api/users/',
+  createUser: 'api/users',
+  getUserById: 'api/users/id/',
+  updateUser: 'api/users/',
+  signoutUser: 'api/users/signout',
+  deleteUser: 'api/users/',
 };
 
 private headersOptions = {
