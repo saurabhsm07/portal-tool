@@ -17,6 +17,8 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('loginLink', { static: false }) loginLink: ElementRef;
   @ViewChild('registerLink', { static: false }) registerLink: ElementRef;
   @ViewChild('modalCancelBtn', { static: false }) modalCancelBtn: ElementRef;
+  @ViewChild('modalCancelBtnR', { static: false }) modalCancelBtnR: ElementRef;
+  
 
   public loginMode = true;
   public authenticating = false;
@@ -68,12 +70,16 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
 
     this.checkIfLoggedIn();
 
+    this.checkIfAgent();
+  }
+
+  private checkIfAgent() {
     this.authService.isAgent().subscribe((status) => {
       this.isAgent = status;
     }, (error) => {
       this.isAgent = false;
       console.log(error);
-    })
+    });
   }
 
   public checkIfLoggedIn() {
@@ -135,6 +141,9 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
       phone: this.password.value
     }).subscribe((user) => {
       this.iniHcData(user);
+      this.modalCancelBtnR.nativeElement.click();
+      this.checkIfAgent();
+      
     }, (error) => {
       console.log(error);
       this.registrationError = true;
@@ -153,7 +162,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
         this.authenticating = false;
         this.modalCancelBtn.nativeElement.click();
         this.checkIfLoggedIn();
-        this.router.navigate(['/hc/en-us/home'])
+        this.checkIfAgent();
       }, (error) => {
         console.log("in error")
         this.authenticating = false;
@@ -168,9 +177,9 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
    */
   public iniHcData(user: User) {
     this.userObj = user;
-    console.log(this.userObj.remember_token.toString());
+    console.log(this.userObj);
     console.log(this.userObj.remember_token);
-    localStorage.setItem('token', this.userObj.remember_token.toString());
+    localStorage.setItem('token', this.userObj.remember_token);
     localStorage.setItem('user', JSON.stringify(this.userObj));
   }
 }

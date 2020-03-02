@@ -91,7 +91,7 @@ module.exports = {
                                 const token = 'Bearer ' + jwt_token.create_token(resp)
                                 userObj.remember_token = token;
                                 userObj = preprocessor.clientUserObj(userObj);
-                                res.status(200).send({ userObj });
+                                res.status(200).send(userObj);
                             })
                             .catch((err) => {
                                 console.log("ERROR :");
