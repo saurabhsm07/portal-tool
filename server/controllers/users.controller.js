@@ -75,27 +75,33 @@ module.exports = {
                 if (data.length == 1) {
                     res.status(422).send({ message: 'unparessable entity, user already exists' });
                 } else {
-                    const user = {
-                        name: req.body.user.name,
-                        email: req.body.user.email,
-                        password: md5(req.body.user.password),
-                        created_at: req.body.user.created_at,
-                        updated_at: req.body.user.updated_at,
+                 
+                    if(preprocessor.verifyUserObj(req.body.user) == true){
+                        const user = {
+                            name: req.body.user.name,
+                            email: req.body.user.email,
+                            password: md5(req.body.user.password),
+                            created_at: req.body.user.created_at,
+                            updated_at: req.body.user.updated_at,
+                        }
+    
+                        User.create(user)
+                            .then((resp) => {
+                                let userObj = resp
+                                const token = 'Bearer ' + jwt_token.create_token(resp)
+                                userObj.remember_token = token;
+                                userObj = preprocessor.clientUserObj(userObj);
+                                res.status(200).send({ userObj });
+                            })
+                            .catch((err) => {
+                                console.log("ERROR :");
+                                console.log(err.stack);
+                                res.status(500).send(err);
+                            })
+                    }else{
+                        res.status(400).send({message: 'improper field values'});
                     }
-
-                    User.create(user)
-                        .then((resp) => {
-                            let userObj = resp
-                            const token = 'Bearer ' + jwt_token.create_token(resp)
-                            userObj.remember_token = token;
-                            userObj = preprocessor.clientUserObj(userObj);
-                            res.status(200).send({ userObj });
-                        })
-                        .catch((err) => {
-                            console.log("ERROR :");
-                            console.log(err.stack);
-                            res.status(500).send(err);
-                        })
+                
                 }
             })
     },

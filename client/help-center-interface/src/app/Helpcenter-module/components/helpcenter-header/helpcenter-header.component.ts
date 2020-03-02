@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { User } from '../../classes/user';
+import { CustomValidators } from './../../../imports/custom-form-validators';
 @Component({
   selector: 'app-helpcenter-header',
   templateUrl: './helpcenter-header.component.html',
@@ -19,6 +20,9 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
 
   public loginMode = true;
   public authenticating = false;
+  public authenticationError = false;
+  public registrationError = false;
+
   public userObj: User;
   public isAgent = false;
 
@@ -29,16 +33,18 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
 
       //Reactive login form
   login_form = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
 
   //Reactive register form
   register_form = this.fb.group({
     full_name: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confirm_password: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password_group: this.fb.group({
+      password: ['', [Validators.minLength(8)]],
+      confirm_password: ['', [Validators.required]],
+    },  {validators: CustomValidators.valueMatch} ),
     phone_number: ['', [Validators.required]]
   });
 
@@ -49,9 +55,12 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   //Getters register form
   get name() { return this.register_form.get('full_name'); }
   get email() { return this.register_form.get('email'); }
-  get password() { return this.register_form.get('password'); }
-  get confirm_password() { return this.register_form.get('confirm_password') }
+  get password_group() { return this.register_form.get('password_group');}
+  get password() { return this.register_form.get('password_group').get('password'); }
+  get confirm_password() { return this.register_form.get('password_group').get('confirm_password') }
+
   get phone_number() { return this.register_form.get('phone_number'); }
+  
 
 
 
@@ -128,6 +137,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
       this.iniHcData(user);
     }, (error) => {
       console.log(error);
+      this.registrationError = true;
     })
   }
 
@@ -147,6 +157,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
       }, (error) => {
         console.log("in error")
         this.authenticating = false;
+        this.authenticationError = true;
         console.log(error);
       })
   }
@@ -157,7 +168,9 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
    */
   public iniHcData(user: User) {
     this.userObj = user;
-    localStorage.setItem('token', user.remember_token);
+    console.log(this.userObj.remember_token.toString());
+    console.log(this.userObj.remember_token);
+    localStorage.setItem('token', this.userObj.remember_token.toString());
     localStorage.setItem('user', JSON.stringify(this.userObj));
   }
 }

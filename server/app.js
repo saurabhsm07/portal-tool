@@ -26,27 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //static files
-// app.use(express.static(path.join(__dirname,"assets/files/article_data")));
 app.use(express.static(path.join(__dirname,"public/help-center-app")));
-
-// Handlebars Middleware
-// app.set('views', path.join(__dirname,'views'));
-// app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-// app.set('view engine','handlebars');
-
-
-//get home path -  rendered
-app.get('/*', (req, res) =>{
-    // client.connect()
-    res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
-})
-
-
-
-//get home path -  static
-// app.get('/', (req, res) =>{
-//     res.sendFile(__dirname, 'public', 'index.html')
-// })
 
 //API: routes
 app.use('/api/ticket/',tickets);            // routes for ticket APIs
@@ -57,4 +37,18 @@ app.use('/api/segments/', segments);         // routes for user segment APIs
 app.use('/api/organizations/', organizations) // routes for organizations APIs
 app.use('/api/users/', users) //routes for User Apis
 app.use('/api/tags/', tags) // routes for tagss APIs
+
+
+//get home path -  rendered
+app.get('/*', (req, res) =>{
+    // client.connect()
+    res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
+})
+
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })
+
+//get home path -  static
+// app.get('/', (req, res) =>{
+//     res.sendFile(__dirname, 'public', 'index.html')
+// })
+
