@@ -6,30 +6,32 @@ const authorize = require('./../../../auth/autherize.controller');
 const tickets = require('./../../../controllers/tickets.controller');
 const attachments = require('./attachments/attachments');
 const comments = require('./comments/comments');
-const fields = require('./form data/fields');
-const forms = require('./form data/forms');
-const labels = require('./labels/labels');
+const forms = require('./forms/forms');
 
 
 /**
  * Security: very high
  * GET: api path to get list of tickets for perticular requester
  */
-router('/').get(passport.authenticate('jwt', {session: false}), tickets.getAllByRequester);
+router.route('/').get(passport.authenticate('jwt', {session: false}));
 
 /**
  * Security: very high
  * GET: api path to get ticket by id and requester 
  */
-router('id/:id').get(passport.authenticate('jwt', {session: false}), tickets.getByIdForRequester);
+router.route('id/:id').get(passport.authenticate('jwt', {session: false}));
 
 /**
  * Security: very high
  */
-router('/').post(passport.authenticate('jwt', {session: false}))
+router.route('/').post(passport.authenticate('jwt', {session: false}))
 
 /**
  * Security: high
  * PUT:
  */
-router('/').put(passport.authenticate('jwt', {session: false}))
+router.route('/').put(passport.authenticate('jwt', {session: false}))
+
+router.use('/forms', forms);
+
+module.exports = router;

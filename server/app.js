@@ -29,7 +29,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,"public/help-center-app")));
 
 //API: routes
-app.use('/api/ticket/',tickets);            // routes for ticket APIs
+app.use('/api/tickets/',tickets);            // routes for ticket APIs
 app.use('/api/articles/', articles);        // routes for article APIs
 app.use('/api/categories/', categories);    // routes for category APIs
 app.use('/api/sections/', sections);         // routes for sections APIs
