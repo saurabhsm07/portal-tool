@@ -14,18 +14,18 @@ const fields = require('./fields/fields');
  * Security: very high
  * GET: api path to get list of tickets for perticular requester
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}));
+router.route('/').get(passport.authenticate('jwt', {session: false}), tickets.getTicketsByRequester);
 
 /**
  * Security: very high
  * GET: api path to get ticket by id and requester 
  */
-router.route('id/:id').get(passport.authenticate('jwt', {session: false}));
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), tickets.getById);
 
 /**
  * Security: very high
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}))
+router.route('/').post(passport.authenticate('jwt', {session: false}), tickets.create);
 
 /**
  * Security: high
@@ -35,5 +35,6 @@ router.route('/').put(passport.authenticate('jwt', {session: false}))
 
 router.use('/forms', forms);
 router.use('/fields', fields);
+router.use('/comments', comments);
 
 module.exports = router;

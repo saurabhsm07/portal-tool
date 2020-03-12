@@ -6,7 +6,7 @@ const client = require("./../config/connections").client;
 
 module.exports = {
     /**
-     * GET: get list of articles from database
+     * GET: get list of article forms from database
      */
     getAll: (req, res, next) => {
         const product_ids = req.product_ids

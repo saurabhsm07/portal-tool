@@ -72,12 +72,10 @@ const Ticket = client.define('Tickets', {
     },
     product_id:{
         type: Sequelize.BIGINT,
-
     },
-    schedule_id:{
-        type: Sequelize.BIGINT,
-
-    },
+    // schedule_id:{
+    //     type: Sequelize.BIGINT,
+    // },
     sla_id:{
         type: Sequelize.BIGINT,
 
