@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private requestUri = {
-    loginUser: 'api/users/login',
+    loginUser: 'http://localhost:5000/api/users/login',
     logoutUser: 'api/users/logout',
     registerUser: 'api/users/',
     authorizedAdmin: 'api/users/auth/admin',

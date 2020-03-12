@@ -4,7 +4,7 @@ import { MaterialModule } from '../imports/material-module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { GuideadminModule } from '../Guideadmin-module/guideadmin.module';
+import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
 import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
 
 import { SectionRoutingModule } from './routes/section-routing.module';

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { User } from '../../classes/user';
-import { CustomValidators } from './../../../imports/custom-form-validators';
+import { CustomValidators } from '../../../imports/custom-form-validators';
 @Component({
   selector: 'app-helpcenter-header',
   templateUrl: './helpcenter-header.component.html',
@@ -27,6 +27,8 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
 
   public userObj: User;
   public isAgent = false;
+
+  public ticketForms: object;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,

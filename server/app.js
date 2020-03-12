@@ -25,8 +25,6 @@ app.use(loggers.requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-//static files
-app.use(express.static(path.join(__dirname,"public/help-center-app")));
 
 //API: routes
 app.use('/api/tickets/',tickets);            // routes for ticket APIs
@@ -39,11 +37,18 @@ app.use('/api/users/', users) //routes for User Apis
 app.use('/api/tags/', tags) // routes for tagss APIs
 
 
-//get home path -  rendered
-app.get('/*', (req, res) =>{
-    // client.connect()
-    res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
-})
+/**
+ * Un comment below code when UI is deployed
+ */
+// //static files
+// app.use(express.static(path.join(__dirname,"public/help-center-app")));
+
+
+// //get home path -  rendered
+// app.get('/*', (req, res) =>{
+//     // client.connect()
+//     res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
+// })
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })
 
