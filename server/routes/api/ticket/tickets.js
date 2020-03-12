@@ -7,6 +7,7 @@ const tickets = require('./../../../controllers/tickets.controller');
 const attachments = require('./attachments/attachments');
 const comments = require('./comments/comments');
 const forms = require('./forms/forms');
+const fields = require('./fields/fields');
 
 
 /**
@@ -33,5 +34,6 @@ router.route('/').post(passport.authenticate('jwt', {session: false}))
 router.route('/').put(passport.authenticate('jwt', {session: false}))
 
 router.use('/forms', forms);
+router.use('/fields', fields);
 
 module.exports = router;
