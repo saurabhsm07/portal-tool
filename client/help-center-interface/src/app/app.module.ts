@@ -12,11 +12,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome'
 import { GuideadminModule } from './Guideadmin-module/guideadmin.module';
 import { HelpcenterModule } from './Helpcenter-module/helpcenter.module';
 import { ArticlesModule} from './Articles-module/articles.module'
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
+import { TicketModule } from './Tickets-module/ticket.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
 import { AuthGuard } from './helpers/authentication/auth.guard';
 import { AdminGuard } from './helpers/autherization/admin/admin.guard';
 import { AgentGuard } from './helpers/autherization/agent/agent.guard';
@@ -40,6 +42,7 @@ import {TokenInterceptorService } from './helpers/interceptor/token-interceptor/
     ArticlesModule,
     GuideadminModule,
     HelpcenterModule,
+    TicketModule,
     AppRoutingModule,
     EditorModule,
     MaterialModule
