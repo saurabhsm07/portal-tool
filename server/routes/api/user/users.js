@@ -11,10 +11,14 @@ const users = require('./../../../controllers/users.controller');
 router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), users.load);
 
 /**
+ * GET: api path to check if session exists for user.
+ */
+router.route('/token/valid').get(passport.authenticate('jwt', { session: false }), authorize.sessionExists);
+
+/**
  * POST: api path to log in to the db.
  */
 router.route('/login').post(users.login);
-
 
 /**
  * GET: api path to log out a user.

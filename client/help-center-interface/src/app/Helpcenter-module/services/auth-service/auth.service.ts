@@ -10,11 +10,12 @@ export class AuthService {
 
   private requestUri = {
     loginUser: 'http://localhost:5000/api/users/login',
-    logoutUser: 'api/users/logout',
-    registerUser: 'api/users/',
-    authorizedAdmin: 'api/users/auth/admin',
-    authorizedAgent: 'api/users/auth/agent',
-    authorizedCustom: 'api/users/auth/custom'
+    logoutUser: 'http://localhost:5000/api/users/logout',
+    registerUser: 'http://localhost:5000/api/users/',
+    authorizedAdmin: 'http://localhost:5000/api/users/auth/admin',
+    authorizedAgent: 'http://localhost:5000/api/users/auth/agent',
+    authorizedCustom: 'http://localhost:5000/api/users/auth/custom',
+    validateToken: 'http://localhost:5000/api/users/token/valid',
   };
   private headersOptions = {
     headers: new HttpHeaders({
@@ -55,7 +56,7 @@ registerUser(user: User): Observable<User> {
     
     }
 
-        /**
+    /**
      * Returns true if a user user has agent autherization
      */
     isAdmin(): Observable<any> {
@@ -74,6 +75,13 @@ registerUser(user: User): Observable<User> {
      */
     isCustomAuthorized(): Observable<boolean> {
       return this.http.get<boolean>(this.requestUri.authorizedCustom, this.headersOptions);
+    }
+
+    /**
+     * Returns true if user token is still valid, false otherwise
+     */
+    tokenIsValid(): Observable<boolean> {
+      return this.http.get<boolean>(this.requestUri.validateToken, this.headersOptions);
     }
 
     /**
@@ -97,6 +105,7 @@ registerUser(user: User): Observable<User> {
       }
       
     }
+
 
     
 

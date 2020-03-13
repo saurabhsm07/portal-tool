@@ -85,15 +85,20 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   }
 
   public checkIfLoggedIn() {
-    this.userObj = JSON.parse(localStorage.getItem('user'));
-    if (this.userObj) {
-      console.log("user logged in");
-    }
+    this.authService.tokenIsValid().subscribe((status) => {
+      console.log(status);
+      this.userObj = JSON.parse(localStorage.getItem('user'))
+    }, (error) => {
+      console.log(error);
+      this.authService.removeAuthTokens;
+      this.openLoginModal()
+      this.router.navigate(['/']);
+    })
   }
 
   ngAfterViewInit(): void {
 
-    this.openLoginModal()
+    
 
   }
 

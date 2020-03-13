@@ -46,5 +46,15 @@ module.exports = {
 
     verifyAccess: (req, res, next) => {
         res.send(req.accessInfo);
+    },
+
+    sessionExists: (req, res, next) => {
+        if(req.user != null){
+            console.log(`token valid for user ${req.user.dataValues.id}`);
+            res.status(200).send(true);
+        }else{
+            console.log(`token invalid for user ${req.user.dataValues.id}`);
+            res.status(401).send(false);
+        }
     }
 }
