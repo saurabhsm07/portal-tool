@@ -316,7 +316,15 @@
 								</li>
 
 								<li>
-									<button class="subrerlink" id="submit_a_request" href="javascript:void(0)" data-toggle="modal" data-target="#subrequestModal">Submit a request</button>
+									<button 
+										class="subrerlink" 
+										id="submit_a_request" 
+										href="javascript:void(0)" 
+										data-toggle="modal" 
+										data-target="#subrequestModal"
+										(click)="fetchFormData()">
+										Submit a request
+									</button>
 								</li>
 							</ul>
 						</div>
@@ -563,19 +571,22 @@
 			<button type="button" class="closesubreq" data-dismiss="modal">×</button>
 		  </div>
 		  <div class="modal-body modal-body-pad">
-			<h1 class="subreqHd"><img src="//theme.zdassets.com/theme_assets/270851/9568b25297e5c26705c255c59ce2f52a6e0108b3.svg" style="margin-right:20px;">Select a product
-</h1>
+			<h1 class="subreqHd">
+				<img src="//theme.zdassets.com/theme_assets/270851/9568b25297e5c26705c255c59ce2f52a6e0108b3.svg" style="margin-right:20px;">
+				Select a product
+			</h1>
 			<hr class="popuphr">
-			<div class="col-md-12 nopad" id="requestContent"><div class="col-md-6 col-sm-12">
-<div class="centerBlock">
-<a href="/hc/en-us/requests/new?ticket_form_id=16380" class="reqboxlink"><div class="logo_regbox"><img height="60" src="//theme.zdassets.com/theme_assets/270851/6c8408e7cb17faaa08bf0110b9b57bb32e9c1afc.png" width="153"></div></a>
-</div>
-</div>
-<div class="col-md-6 col-sm-12">
-<div class="centerBlock">
-<a href="/hc/en-us/requests/new?ticket_form_id=96763" class="reqboxlink"><div class="logo_regbox"><img height="60" src="//theme.zdassets.com/theme_assets/270851/68c05f73ede84a6779f41d3116e84207bc2c06b5.png" width="153"></div></a>
-</div>
-</div>
+			<div *ngIf="ticketForms" class="col-md-12 nopad" id="requestContent">
+				<div *ngFor="let form of ticketForms" class="col-md-6 col-sm-12">
+				<div class="centerBlock">
+					<a href="/hc/en-us/requests/new?ticket_form_id=16380" class="reqboxlink">
+				<div class="logo_regbox">
+				<img height="60" src="" width="153">
+				<h3>{{form.end_user_name}}</h3>
+				</div>
+				</a>
+				</div>
+				</div>
 <div class="cboth">&nbsp;</div>
 <div class="cboth">&nbsp;</div>
 </div>

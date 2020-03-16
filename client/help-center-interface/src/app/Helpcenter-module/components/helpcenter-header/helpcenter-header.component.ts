@@ -1,10 +1,14 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { UserService } from '../../services/user-service/user.service';
+import { FormService } from './../../../Tickets-module/services/ticket-forms-service/form.service';
 import { AuthService } from '../../services/auth-service/auth.service';
+
 import { User } from '../../classes/user';
-import { CustomValidators } from '../../../imports/custom-form-validators';
+import { Form } from './../../../Tickets-module/classes/form';
+import { CustomValidators } from './../../../imports/custom-form-validators';
 @Component({
   selector: 'app-helpcenter-header',
   templateUrl: './helpcenter-header.component.html',
@@ -28,10 +32,11 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   public userObj: User;
   public isAgent = false;
 
-  public ticketForms: object;
+  public ticketForms: Form[];
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
+    private ticketFormService: FormService,
     private router: Router,
     private authService: AuthService) { }
 
@@ -178,6 +183,18 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
       })
   }
 
+  /**
+   * Fetch product ticket forms for the perticular user 
+   */
+  public fetchFormData() {
+    this.ticketFormService.listForms()
+                          .subscribe((data) => {
+                            this.ticketForms = data;
+                            console.log(this.ticketForms);
+                          }, (error) => {
+                            console.log(error);
+                          })
+  }
 
   /**
    * @param user : user object recieved from the database
@@ -185,7 +202,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   public iniHcData(user: User) {
     this.userObj = user;
     console.log(this.userObj);
-    console.log(this.userObj.remember_token);
+    // console.log(this.userObj.remember_token);
     localStorage.setItem('token', this.userObj.remember_token);
     localStorage.setItem('user', JSON.stringify(this.userObj));
   }

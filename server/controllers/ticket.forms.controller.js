@@ -15,7 +15,9 @@ module.exports = {
                 if (data.length > 0) {
                     console.log(`fetched ${data.length} ticket forms`);
                     const form_field_list = Object.values((PHPUnserialize.unserialize(data[0].ticket_field_ids)))
-                    res.status(200).send({ data : data, form_fields: form_field_list});
+                    data[0].dataValues.ticket_field_ids = form_field_list;
+                    console.log(data[0].dataValues.ticket_field_ids)
+                    res.status(200).send(data);
                 } else {
                     console.log(`user is not assigned to any product`);
                     res.status(404).send({
