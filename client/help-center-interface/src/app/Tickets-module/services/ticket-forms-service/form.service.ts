@@ -29,7 +29,7 @@ export class FormService {
     return this.http.get<Form[]>(this.requestUri.getFormList, this.headersOptions);
   }
 
-  getForm(): Observable<any> {
-    return this.http.get<any>(this.requestUri.getFormById, this.headersOptions);
+  getForm(id: string): Observable<any> {
+    return this.http.get<any>(this.requestUri.getFormById+id, this.headersOptions);
   }
 }

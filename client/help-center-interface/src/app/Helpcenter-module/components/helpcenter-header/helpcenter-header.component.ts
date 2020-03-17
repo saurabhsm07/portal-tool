@@ -23,6 +23,13 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('modalCancelBtn', { static: false }) modalCancelBtn: ElementRef;
   @ViewChild('modalCancelBtnR', { static: false }) modalCancelBtnR: ElementRef;
   
+  public form_logos = {
+    16380: 'logo-radia.png',
+    89286: 'logo-aepona.png',
+    96763: 'logo-cp.png',
+    174446: 'logo-concert.png',
+    134266: 'logo-si.png'
+  }
 
   public loginMode = true;
   public authenticating = false;

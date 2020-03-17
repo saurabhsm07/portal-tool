@@ -579,9 +579,9 @@
 			<div *ngIf="ticketForms" class="col-md-12 nopad" id="requestContent">
 				<div *ngFor="let form of ticketForms" class="col-md-6 col-sm-12">
 				<div class="centerBlock">
-					<a href="/hc/en-us/requests/new?ticket_form_id=16380" class="reqboxlink">
+					<a href="/hc/en-us/tickets/create/form/id/{{form.id}}" class="reqboxlink" target="_blank">
 				<div class="logo_regbox">
-				<img height="60" src="" width="153">
+				<img height="60" src="./assets/images/{{form_logos[form.id]}}" width="153">
 				<h3>{{form.end_user_name}}</h3>
 				</div>
 				</a>

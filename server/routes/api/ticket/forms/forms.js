@@ -19,7 +19,7 @@ router.route('/').get(
 /**
  * GET: api path to get article field record with id.
  */
-router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), authorize.isAgent)
+router.route('/id/:id').get(passport.authenticate('jwt', { session: false }), forms.getById)
 
 
 
