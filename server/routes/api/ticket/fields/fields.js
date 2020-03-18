@@ -8,7 +8,7 @@ const fields = require('./../../../../controllers/ticket.fields.controller');
 /**
  * GET: api path to get list of article fields from the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), 
+router.route('/').get(passport.authenticate('jwt', {session: false}), 
                                 authorize.isAgent, 
                                 fields.getFieldsList, 
                                 fields.fieldValues);

@@ -7,7 +7,7 @@ export class Form {
     active: boolean;
     end_user_visible: boolean;
     default_status: boolean;
-    ticket_field_ids: Text;
+    ticket_field_ids: string[];
     created_at: Date;
     updated_at: Date;
     created_by: Date;
