@@ -9,53 +9,35 @@
                         <div class="form">
                           <form id="new_request" class="request-form">              
               
-                <div class="form-field string optional request_cc_emails"><label for="request_collaborators_">CC</label>
-              <ul tabindex="-1" data-hc-pills-container="true"><li><span style="display: none; width: auto; white-space: nowrap;">Add emails</span><input type="text" id="request_collaborators_" value="" autocomplete="off" aria-required="false" aria-describedby="request_collaborators_error" placeholder="Add emails" size="23" style="width: 114.688px;"></li></ul>
+                <div class="request_cc_emails">
+                  <label for="request_collaborators_">CC</label>
+              <ul >
+                <li>
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList aria-label="CC'd emails">
+                          <mat-chip *ngFor="let email of emails" [selectable]="selectable"
+                                   [removable]="removable" (removed)="remove(email)">
+                            {{email}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                          </mat-chip>
+                          <input placeholder="Add Emails"
+                                 [matChipInputFor]="chipList"
+                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                 [matChipInputAddOnBlur]="addOnBlur"
+                                 (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                      </mat-form-field>
+                </li>
+              </ul>
               <div class="notification notification-error notification-inline" aria-hidden="true"></div></div>
-              
+              <ng-container *ngIf="request_form_template">
+                  <div class="form-fields" [innerHTML] = "request_form_template | sanitizeRequestForm">
                 
-                  <div class="form-field string  required  request_subject">
-                    <label id="request_subject_label" for="request_subject">Subject</label>
-                    <input type="text" name="request[subject]" id="request_subject" maxlength="150" size="150" aria-required="true" aria-labelledby="request_subject_label">
-                    
-                    
-                  </div>
+                    </div>
+              </ng-container>
               
                   
-                    <div class="suggestion-list" data-hc-class="searchbox" data-hc-suggestion-list="true"><div class="searchbox" style="display: none;"><label>Suggested articles</label><div class="searchbox-suggestions"></div></div></div>
-                  
-                
-                  <div class="form-field text  required  request_description">
-                    <label id="request_description_label" for="request_description">Description</label>
-                    <textarea name="request[description]" id="request_description" aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
-                    
-                    <p id="request_description_hint">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
-                  </div>
-              
-                  
-                
-                  <div class="form-field select  required  request_priority">
-                    <label id="request_priority_label" for="request_priority">Priority</label>
-                    <a class="nesty-input" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="_wb6ighwz2" aria-labelledby="request_priority_label" aria-required="true" style="max-width: 100%;">-</a><select name="request[priority]" id="request_priority" aria-required="true" aria-labelledby="request_priority_label" style="display: none;"><option value="-">-</option>
-              <option value="low">Low</option>
-              <option value="normal">Normal</option>
-              <option value="high">High</option>
-              <option value="urgent">Urgent</option></select>
-                    
-                    
-                  </div>
-              
-                  
-                
-                  <div class="form-field string  required  request_custom_fields_22385458">
-                    <label id="request_custom_fields_22385458_label" for="request_custom_fields_22385458">Product</label>
-                    <input type="hidden" name="request[custom_fields][22385458]" id="request_custom_fields_22385458" autocomplete="off" data-tagger="[{&quot;label&quot;:&quot;-&quot;,&quot;value&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 5.x&quot;,&quot;value&quot;:&quot;radia_client_automation_v_5&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 7.x&quot;,&quot;value&quot;:&quot;radia_client_automation_v_7&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 8.x&quot;,&quot;value&quot;:&quot;radia_client_automation_v_8&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 9.0&quot;,&quot;value&quot;:&quot;radia_client_automation_v_9&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 9.1&quot;,&quot;value&quot;:&quot;radia_client_automation_v_9.1&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 9.2&quot;,&quot;value&quot;:&quot;radia_client_automation_v_9_2&quot;},{&quot;label&quot;:&quot;Radia Client Automation Version 10.0&quot;,&quot;value&quot;:&quot;radia_client_automation_version_10_0&quot;}]" aria-required="true" aria-labelledby="request_custom_fields_22385458_label"><a class="nesty-input" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="_sb9z2rfu2" aria-required="true" aria-labelledby="request_custom_fields_22385458_label" style="max-width: 100%;">-</a>
-                    
-                    
-                  </div>
-              
-                  
-                
+                <!-- 
               
                 <script data-conditional-fields="[]"></script>
               
@@ -88,7 +70,8 @@
                 <input type="hidden">
               </li>
               </script>
-              </div>
+              </div> -->
+                
                 <footer><input type="submit" name="commit" value="Submit"></footer>
               
             </form>

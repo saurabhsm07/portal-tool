@@ -6,15 +6,18 @@ import { ListTicketsComponent } from './components/list-tickets/list-tickets.com
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { TicketRequestHeaderComponent } from './components/ticket-request-header/ticket-request-header.component';
 import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
+import { MaterialModule } from './../imports/material-module';
+import { SanitizeRequestFormPipe } from './pipes/sanitize-request-form/sanitize-request-form.pipe';
 
 
 
 @NgModule({
-  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent],
+  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SanitizeRequestFormPipe],
   imports: [
     CommonModule,
     TicketRoutingModule,
-    HelpcenterModule
+    HelpcenterModule,
+    MaterialModule
   ]
 })
 export class TicketModule { }

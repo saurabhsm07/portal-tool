@@ -36,12 +36,14 @@ module.exports = {
                 let fieldValues = [];
                 field_ids.forEach(id => {
                     let field_data = fields_data.filter(data => data.id == id)[0].dataValues;
+                    if(field_data.show_status == true){
                     fieldValues.push({id: id, 
                                       type:field_data.field_type, 
                                       name: field_data.user_title, 
                                       values: data.filter((value) => {if(value.field_id == id) return value})
                                                   .map((value) => {return {key: value.id, 
                                                                  value: value.field_value}})});
+                                                                }
                 });
                 
                 res.send(fieldValues);
