@@ -37,7 +37,7 @@ export class RequestFieldCreators {
 public static createTextField(field: Field_value){
 return `<div class="form-field string  required  request_subject">
 <label for="${field.id}">${field.name}</label>
-<input type="text" name="${field.name}" id="${field.id}" maxlength="150" size="150">
+<input formControlName="${field.name}" type="text" name="${field.name}" id="${field.id}" maxlength="150" size="150">
 </div>`
 }
 
@@ -48,7 +48,7 @@ return `<div class="form-field string  required  request_subject">
 public static createTextAreaField(field: Field_value){
 return `<div class="form-field text  required  request_description">
 <label for="${field.id}">${field.name}</label>
-<textarea name="${field.name}" id="${field.id}" aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
+<textarea formControlName="${field.name}" name="${field.name}" id="${field.id}" aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
 <p id="request_description_hint">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
 </div>`
 }
@@ -71,7 +71,7 @@ public static createSelectField(field: Field_value){
    
 return `<div class="form-field select  required  request_priority">
 <label for="${field.id}">${field.name}</label>
-<select class="custom-select">
+<select formControlName="${field.name}" class="custom-select">
 <option value="-">-</option>`
 + fieldValues +
 `</select>

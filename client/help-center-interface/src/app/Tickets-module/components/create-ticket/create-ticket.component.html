@@ -1,52 +1,51 @@
 <app-ticket-request-header></app-ticket-request-header>
 <div class="create-req-body">
-        <div class="unqipad catcontbg">
-                <div class="hgt34 cboth">&nbsp;</div>
-                <div class="row">
-                  <div class="offset-md-1 col-md-10 ">
-                    <div class="whtbg">
-                        
-                        <div class="form">
-                          <form id="new_request" class="request-form">              
-              
-                <div class="request_cc_emails">
-                  <label for="request_collaborators_">CC</label>
-              <ul >
-                <li>
+  <div class="unqipad catcontbg">
+    <div class="hgt34 cboth">&nbsp;</div>
+    <div class="row">
+      <div class="offset-md-1 col-md-10 ">
+        <div class="whtbg">
+
+          <div class="form">
+            <form id="new_request" [formGroup]='ticket_request_form' class="request-form">
+
+              <div formGroupName='header' class="request_cc_emails">
+                <label for="request_collaborators_">CC</label>
+                <ul>
+                  <li>
                     <mat-form-field class="example-chip-list">
-                        <mat-chip-list #chipList aria-label="CC'd emails">
-                          <mat-chip *ngFor="let email of emails" [selectable]="selectable"
-                                   [removable]="removable" (removed)="remove(email)">
-                            {{email}}
-                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                          </mat-chip>
-                          <input placeholder="Add Emails"
-                                 [matChipInputFor]="chipList"
-                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                 [matChipInputAddOnBlur]="addOnBlur"
-                                 (matChipInputTokenEnd)="add($event)">
-                        </mat-chip-list>
-                      </mat-form-field>
-                </li>
-              </ul>
-              <div class="notification notification-error notification-inline" aria-hidden="true"></div></div>
+                      <mat-chip-list #chipList aria-label="CC'd emails">
+                        <mat-chip *ngFor="let email of emails" [selectable]="selectable" [removable]="removable" (removed)="remove(email)">
+                          {{email}}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add Emails" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                          (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                  </li>
+                </ul>
+                <div class="notification notification-error notification-inline" aria-hidden="true">
+
+                </div>
+              </div>
               <ng-container *ngIf="request_form_template">
-                  <div class="form-fields" [innerHTML] = "request_form_template | sanitizeRequestForm">
-                
-                    </div>
+                <div formGroupName='body' class="form-fields" [innerHTML]="request_form_template | sanitizeRequestForm">
+
+                </div>
               </ng-container>
+
+
               
-                  
-                <!-- 
               
-                <script data-conditional-fields="[]"></script>
+                <!-- <script data-conditional-fields="[]"></script> -->
               
-                <div class="form-field">
+                <div formGroupName="footer" class="form-field" style="display: none;">
                 <label for="request-attachments">
                   Attachments
                 </label>
                 <div id="upload-dropzone" class="upload-dropzone">
-                <input type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-us/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
+                <input formControlName = 'file_attachments' type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-us/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
                 <span>
                   <a>Add file</a> or drop files here
                 </span>
@@ -67,20 +66,22 @@
                 <p data-upload-issue class="notification notification-alert notification-inline" aria-hidden="true"></p>
                 <span class="upload-remove" data-upload-remove></span>
                 <div class="upload-progress" data-upload-progress></div>
-                <input type="hidden">
+                <input  type="hidden">
               </li>
               </script>
-              </div> -->
-                
-                <footer><input type="submit" name="commit" value="Submit"></footer>
-              
-            </form>
-                        </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="hgt34 cboth">&nbsp;</div>
               </div>
-   
+
+              <footer>
+                <input type="submit" name="commit" value="Submit">
+              </footer>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hgt34 cboth">&nbsp;</div>
+  </div>
+
 </div>
 <app-helpcenter-footer></app-helpcenter-footer>

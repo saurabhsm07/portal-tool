@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -20,16 +20,16 @@ import { RequestFieldCreators } from './../../../imports/request-field-component
 })
 export class CreateTicketComponent implements OnInit {
 
-  form$: Observable<any>;
-  ticket_form: Form;                       //current request form object      
-  ticket_form_fields: Field_value[];      //ticket request fields and values for current form
-  request_form_template = '';             //html form template generated from request form fields
-  emails : string[] = [];                 // email field used in form field material chip element 
+  public form$: Observable<any>;
+  public ticket_form: Form;                       //current request form object      
+  public ticket_form_fields: Field_value[];      //ticket request fields and values for current form
+  public request_form_template = '';             //html form template generated from request form fields
+  public emails : string[] = [];                 // email field used in form field material chip element 
   
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
+  public visible = true;
+  public selectable = true;
+  public removable = true;
+  public addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private router: Router,
@@ -39,19 +39,24 @@ export class CreateTicketComponent implements OnInit {
               private fb : FormBuilder) { }
   
 
-  ticket_request_form = this.fb.group({
+  public ticket_request_form = this.fb.group({
     header: this.fb.group({
-
+      cc_emails: [[]]
     }),
     body: this.fb.group({
-
+      
     }),
     footer: this.fb.group({
-      
+      file_attachments: []
     })
   })
 
-
+  get request_header() { return this.ticket_request_form.get('header');}
+  get request_body() { return this.ticket_request_form.get('body');}
+  get request_footer() { return this.ticket_request_form.get('footer');}
+  get get_emails() { return this.ticket_request_form.get('header').get('cc_email');}
+  
+  
 
   ngOnInit() {
     this.form$ = this.route.paramMap.pipe(
@@ -69,11 +74,12 @@ export class CreateTicketComponent implements OnInit {
   /**
    * Function gets field_value service to get field data 
    */
-  private getFieldValueData() {
+  public getFieldValueData() {
     this.ticketFieldService.getFieldsByIds(this.ticket_form.ticket_field_ids)
       .subscribe((data) => {
         this.ticket_form_fields = data;
-        this.create_request_form()
+        this.create_ticket_request_form(<FormGroup> this.request_body)
+        this.create_request_form_template()
       }, (error) => {
         console.log(error);
       });
@@ -81,11 +87,20 @@ export class CreateTicketComponent implements OnInit {
 
 
   /**
+   * Method to create request form body from the ticket request fields of the current form object
+   */
+  public create_ticket_request_form(request_body: FormGroup){
+    this.ticket_form_fields.forEach(field => {
+      request_body.addControl(field.name, this.fb.control([]))
+    })
+    console.log(this.ticket_request_form.controls)
+  }
+
+  /**
    * Method to create ticket request form template from request fields list
    */
-  public create_request_form(){
+  public create_request_form_template(){
    this.request_form_template = RequestFieldCreators.createFieldComponent(this.ticket_form_fields)
-   console.log(this.request_form_template)
   }
 
 
