@@ -16,5 +16,15 @@ module.exports = {
                          })
     },
 
-    
+    getOrgProducts: (req, res, next) => {
+        const organization_ids = req.params.organizationids;
+        Organization_products.findAll({where: {organization_id: organization_ids}})
+                         .then((data) =>{
+                             req.org_products = data.map(val => val.dataValues.product_id);
+                             next()
+                         })
+                         .catch((error) => {
+                            console.log(error);
+                         })
+    }
 }

@@ -1,7 +1,7 @@
 const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
-const User_organizations = client.define('organizationproducts', {
+const Organization_Products = client.define('organizationproducts', {
                                         id: {
                                             type: Sequelize.BIGINT,
                                             primaryKey: true,
@@ -17,4 +17,4 @@ const User_organizations = client.define('organizationproducts', {
                                 timestamps: false
                             });
 
-module.exports = User_organizations;                            
+module.exports = Organization_Products;                            

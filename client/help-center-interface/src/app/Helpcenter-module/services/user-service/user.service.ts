@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '../../classes/user';
 import { User_Organizations } from './../../classes/user_organizations';
 import { Observable } from 'rxjs';
+import { Organization_Products } from '../../classes/organization_products';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ private requestUri = {
   updateUser: 'api/users/',
   signoutUser: 'api/users/signout',
   deleteUser: 'api/users/',
-  getUserOrgs: 'http://localhost:5000/api/users/organizations'
+  getUserOrgs: 'http://localhost:5000/api/users/organizations',
+  getOrgsProducts: 'http://localhost:5000/api/users/products/organizationids/'
 };
 
 private headersOptions = {
@@ -75,6 +77,12 @@ getUserOrgs(): Observable<User_Organizations>{
   return this.http.get<User_Organizations>(this.requestUri.getUserOrgs, this.headersOptions);
 }
 
+/**
+ * getOrgProducts: get organization ids and product ids
+ */
+getOrgProducts(): Observable<Organization_Products[]>{
+  return this.http.get<Organization_Products[]>(this.requestUri.getOrgsProducts, this.headersOptions);
+}
 
 isLoggedIn(){
     return !!localStorage.getItem('token');
@@ -85,4 +93,11 @@ isLoggedIn(){
     console.log(user);
     return user.id;
   }
+
+  getOrganizationId(): number[]{
+    const organization_ids = JSON.parse(localStorage.getItem('organization_ids'));
+    return organization_ids;
+  }
+
+
 }

@@ -205,6 +205,12 @@ module.exports = {
                             console.log(err.stack);
                             res.status(500).send(err);
                         })
+    },
+
+    getProducts: (req, res) => {
+        console.log(req.params.organization_ids);
+        const org_products = req.org_products.dataValues.map(value => {value.organization_id, value.product_id});
+        res.send(org_products);
     }
 
 
