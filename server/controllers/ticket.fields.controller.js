@@ -39,7 +39,9 @@ module.exports = {
                     if(field_data.show_status == true){
                     fieldValues.push({id: id, 
                                       type:field_data.field_type, 
-                                      name: field_data.user_title, 
+                                      name: field_data.user_title,
+                                      description: field_data.user_description,
+                                      required: field_data.user_req_id, 
                                       values: data.filter((value) => {if(value.field_id == id) return value})
                                                   .map((value) => {return {key: value.id, 
                                                                  value: value.field_value}})});

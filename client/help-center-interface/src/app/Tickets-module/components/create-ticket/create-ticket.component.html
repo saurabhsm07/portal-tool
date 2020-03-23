@@ -7,7 +7,8 @@
         <div class="whtbg">
 
           <div class="form">
-            <form id="new_request" [formGroup]='ticket_request_form' class="request-form">
+            <form id="new_request" 
+                  [formGroup]='ticket_request_form' (ngSubmit) = "submitTicket()" class="request-form">
 
               <div formGroupName='header' class="request_cc_emails">
                 <label for="request_collaborators_">CC</label>

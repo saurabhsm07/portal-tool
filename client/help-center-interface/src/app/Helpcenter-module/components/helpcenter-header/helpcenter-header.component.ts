@@ -7,8 +7,10 @@ import { FormService } from './../../../Tickets-module/services/ticket-forms-ser
 import { AuthService } from '../../services/auth-service/auth.service';
 
 import { User } from '../../classes/user';
+import { User_Organizations } from '../../classes/user_organizations';
 import { Form } from './../../../Tickets-module/classes/form';
 import { CustomValidators } from './../../../imports/custom-form-validators';
+
 @Component({
   selector: 'app-helpcenter-header',
   templateUrl: './helpcenter-header.component.html',
@@ -37,6 +39,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   public registrationError = false;
 
   public userObj: User;
+  public user_organizations: User_Organizations;
   public isAgent = false;
 
   public ticketForms: Form[];
@@ -99,6 +102,7 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
   public checkIfLoggedIn() {
     this.authService.tokenIsValid().subscribe((status) => {
       console.log(status);
+      this.getUserOrganizations()
       this.userObj = JSON.parse(localStorage.getItem('user'))
     }, (error) => {
       console.log(error);
@@ -177,17 +181,29 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
         password: this.login_password.value
       })
       .subscribe((user) => {
+        this.getUserOrganizations();
         this.iniHcData(user);
         this.authenticating = false;
         this.modalCancelBtn.nativeElement.click();
         this.checkIfLoggedIn();
         this.checkIfAgent();
+
       }, (error) => {
         console.log("in error")
         this.authenticating = false;
         this.authenticationError = true;
         console.log(error);
       })
+  }
+
+  public getUserOrganizations() {
+    this.userService.getUserOrgs()
+      .subscribe((data) => {
+        this.user_organizations = data;
+       this.initOrgToken(this.user_organizations);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -212,5 +228,13 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
     // console.log(this.userObj.remember_token);
     localStorage.setItem('token', this.userObj.remember_token);
     localStorage.setItem('user', JSON.stringify(this.userObj));
+  }
+
+  /**
+   * @param user_organizations : user_organizations object recieved from the database
+   */
+  public initOrgToken(user_organizations: User_Organizations) {
+    
+    localStorage.setItem('organizations', JSON.stringify(user_organizations.organization_ids))
   }
 }

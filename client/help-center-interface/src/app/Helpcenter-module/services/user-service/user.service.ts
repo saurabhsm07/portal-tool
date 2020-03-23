@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../classes/user';
+import { User_Organizations } from './../../classes/user_organizations';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +18,7 @@ private requestUri = {
   updateUser: 'api/users/',
   signoutUser: 'api/users/signout',
   deleteUser: 'api/users/',
+  getUserOrgs: 'http://localhost:5000/api/users/organizations'
 };
 
 private headersOptions = {
@@ -65,7 +67,22 @@ updateUser(user: User): Observable<any> {
     // .pipe(catchError(CategoryRequestErrorHandlersService.))
   }
 
-  isLoggedIn(){
+
+/**
+ * getUserOrgs: get organization ids for a logged in user
+ */
+getUserOrgs(): Observable<User_Organizations>{
+  return this.http.get<User_Organizations>(this.requestUri.getUserOrgs, this.headersOptions);
+}
+
+
+isLoggedIn(){
     return !!localStorage.getItem('token');
+  }
+
+  getUserId(): number{
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    return user.id;
   }
 }

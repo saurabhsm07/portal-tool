@@ -24,6 +24,12 @@ router.route('/login').post(users.login);
  * GET: api path to log out a user.
  */
 router.route('/logout').get(passport.authenticate('jwt', { session: false }), users.logout);
+
+/**
+ * GET: api path to get all organizations for current logged in user.
+ */
+router.route('/organizations').get(passport.authenticate('jwt', { session: false }), users.getOrganizations);
+
 /**
  * GET: check if user is admin authorized
  */

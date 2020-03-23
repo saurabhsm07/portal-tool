@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const User = require("./../models/user");
+const UserOrganizations = require("./../models/user.organizations");
 const jwt_token = require('./../helpers/encoders/token_generator');
 const preprocessor = require('./../helpers/preprocessors/users.preprocessors');
 module.exports = {
@@ -175,6 +176,35 @@ module.exports = {
                 console.log(err.stack);
                 res.status(500).send(err);
             })
+    },
+
+    getOrganizations: (req, res) => {
+        console.log(req.user)
+        const user_id = req.user.id
+        UserOrganizations.findAll({where: {user_id : user_id}})
+                         .then((data) => {
+                            if (data.length > 0) {
+                                console.log(`user ${user_id} has ${data.length} organizations`);
+                                const user_organizations = {
+                                    user_id: user_id,
+                                    organization_ids : data.map(val => val.organization_id)
+                                }
+                                res.status(200).send(user_organizations);
+                            }
+                            else {
+                                console.log(`organizations for user id ${user_id} do not exist`);
+                                res.status(404).send({
+                                    status: 404,
+                                    message: `organizations for user id ${user_id} do not exist`
+                                });
+                            }
+            
+                        })
+                         .catch((err) => {
+                            console.log("ERROR :");
+                            console.log(err.stack);
+                            res.status(500).send(err);
+                        })
     }
 
 

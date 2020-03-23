@@ -6,12 +6,14 @@ import { Observable } from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 
+import { Ticket } from './../../classes/ticket'
 import { Form } from '../../classes/form';
 import { Field } from '../../classes/field';
 import { FormService } from './../../services/ticket-forms-service/form.service';
 import { FieldService } from './../../services/ticket-fields-service/field.service';
 import { Field_value } from '../../classes/field_value';
 import { RequestFieldCreators } from './../../../imports/request-field-component-creators';
+import { UserService } from './../../../Helpcenter-module/services/user-service/user.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -25,7 +27,8 @@ export class CreateTicketComponent implements OnInit {
   public ticket_form_fields: Field_value[];      //ticket request fields and values for current form
   public request_form_template = '';             //html form template generated from request form fields
   public emails : string[] = [];                 // email field used in form field material chip element 
-  
+  public ticket_object: Ticket;
+
   public visible = true;
   public selectable = true;
   public removable = true;
@@ -34,6 +37,7 @@ export class CreateTicketComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private userService: UserService,
               private ticketFormService: FormService,
               private ticketFieldService: FieldService,
               private fb : FormBuilder) { }
@@ -125,6 +129,18 @@ export class CreateTicketComponent implements OnInit {
 
     if (index >= 0) {
       this.emails.splice(index, 1);
+    }
+  }
+
+  submitTicket(){
+    console.log(this.ticket_request_form)
+    this.ticket_object = {
+      requester_id: this.userService.getUserId(),
+      email_cc_ids: this.get_emails.value,
+      description: this.request_body.value.description.value,
+      priority: this.request_body.value.priority.value,
+      organization_id: 11
+
     }
   }
 }
