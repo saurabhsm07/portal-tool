@@ -80,8 +80,8 @@ getUserOrgs(): Observable<User_Organizations>{
 /**
  * getOrgProducts: get organization ids and product ids
  */
-getOrgProducts(): Observable<Organization_Products[]>{
-  return this.http.get<Organization_Products[]>(this.requestUri.getOrgsProducts, this.headersOptions);
+getOrgProducts(organization_ids : number[]): Observable<Organization_Products[]>{
+  return this.http.get<Organization_Products[]>(this.requestUri.getOrgsProducts + organization_ids.toString(), this.headersOptions);
 }
 
 isLoggedIn(){
@@ -94,8 +94,8 @@ isLoggedIn(){
     return user.id;
   }
 
-  getOrganizationId(): number[]{
-    const organization_ids = JSON.parse(localStorage.getItem('organization_ids'));
+  getOrganizationIds(): number[]{
+    const organization_ids = JSON.parse(localStorage.getItem('organizations'));
     return organization_ids;
   }
 

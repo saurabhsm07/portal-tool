@@ -207,10 +207,8 @@ module.exports = {
                         })
     },
 
-    getProducts: (req, res) => {
-        console.log(req.params.organization_ids);
-        const org_products = req.org_products.dataValues.map(value => {value.organization_id, value.product_id});
-        res.send(org_products);
+    getUserOrgProducts: (req, res) => {
+        res.send(req.org_products);
     }
 
 

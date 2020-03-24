@@ -20,7 +20,7 @@ module.exports = {
         const organization_ids = req.params.organizationids;
         Organization_products.findAll({where: {organization_id: organization_ids}})
                          .then((data) =>{
-                             req.org_products = data.map(val => val.dataValues.product_id);
+                             req.org_products = data.map((val) => { return {product_ids: val.dataValues.product_id, organization_ids: val.dataValues.organization_id}});
                              next()
                          })
                          .catch((error) => {

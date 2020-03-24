@@ -26,8 +26,10 @@ export class CreateTicketComponent implements OnInit {
   public ticket_form: Form;                       //current request form object      
   public ticket_form_fields: Field_value[];      //ticket request fields and values for current form
   public request_form_template = '';             //html form template generated from request form fields
-  public emails : string[] = [];                 // email field used in form field material chip element 
+  public emails : string[] = [];                 // email field used in form field material chip element
+  public user_current_orgid : number 
   public ticket_object: Ticket;
+   
 
   public visible = true;
   public selectable = true;
@@ -58,21 +60,39 @@ export class CreateTicketComponent implements OnInit {
   get request_header() { return this.ticket_request_form.get('header');}
   get request_body() { return this.ticket_request_form.get('body');}
   get request_footer() { return this.ticket_request_form.get('footer');}
-  get get_emails() { return this.ticket_request_form.get('header').get('cc_email');}
+  get get_emails() { return this.ticket_request_form.get('header.cc_emails');}
   
   
 
   ngOnInit() {
-    this.form$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.ticketFormService.getForm(params.get('id')))
-    )
+    this.get_request_form_data();
 
+    this.getUserOrgProducts();
+  }
+
+  /**
+   * Gets current logged in users organization and associated products object
+   */
+  public getUserOrgProducts() {
+    const orgs = this.userService.getOrganizationIds();
+    this.userService.getOrgProducts(orgs).subscribe((data) => {
+      this.user_current_orgid = data.filter(val => val.product_id == this.ticket_form.product_id).map(val => val.organization_id)[0];
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Gets current selected form data to create ticket form template
+   */
+  public get_request_form_data() {
+    this.form$ = this.route.paramMap.pipe(switchMap((params: ParamMap) => this.ticketFormService.getForm(params.get('id'))));
     this.form$.subscribe((formData) => {
-      this.ticket_form = formData
+      this.ticket_form = formData;
       this.getFieldValueData();
     }, (error) => {
       console.log(error);
-    })
+    });
   }
 
   /**
@@ -122,7 +142,9 @@ export class CreateTicketComponent implements OnInit {
     if (input) {
       input.value = '';
     }
+    this.set_cc_emails_val()
   }
+
 
   remove(email: string): void {
     const index = this.emails.indexOf(email);
@@ -130,17 +152,26 @@ export class CreateTicketComponent implements OnInit {
     if (index >= 0) {
       this.emails.splice(index, 1);
     }
+    this.set_cc_emails_val()
   }
 
+  public set_cc_emails_val(){
+    this.get_emails.setValue(this.emails)
+  }
+
+  /**
+   *  create a ticket object from the form data on form submit
+   */
   submitTicket(){
-    console.log(this.ticket_request_form)
+    console.log(this.ticket_request_form.controls)
     this.ticket_object = {
       requester_id: this.userService.getUserId(),
       email_cc_ids: this.get_emails.value,
-      description: this.request_body.value.description.value,
+      description: this.request_body.value,
       priority: this.request_body.value.priority.value,
-      organization_id: 11
+      organization_id: this.user_current_orgid
 
     }
+    console.log(this.ticket_object);
   }
 }

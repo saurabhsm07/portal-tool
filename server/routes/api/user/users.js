@@ -33,7 +33,7 @@ router.route('/organizations').get(passport.authenticate('jwt', { session: false
 /**
  * GET: api path to get all organizations for current logged in user.
  */
-router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getProducts);
+router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getUserOrgProducts);
 
 /**
  * GET: check if user is admin authorized
