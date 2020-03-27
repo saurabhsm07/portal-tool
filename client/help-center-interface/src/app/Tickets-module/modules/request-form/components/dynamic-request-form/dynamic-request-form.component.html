@@ -1,0 +1,5 @@
+<ng-container *ngIf="request_form_template">
+<div class="form" [innerHTML] = 'request_form_template | sanitizeRequestForm'>
+  
+  </div>
+</ng-container>

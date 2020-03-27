@@ -8,15 +8,15 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
 import { TicketRequestHeaderComponent } from './components/ticket-request-header/ticket-request-header.component';
 import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
 import { MaterialModule } from './../imports/material-module';
-import { SanitizeRequestFormPipe } from './pipes/sanitize-request-form/sanitize-request-form.pipe';
-
+import { RequestFormModule } from './modules/request-form/request-form.module';
 
 
 
 @NgModule({
-  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SanitizeRequestFormPipe],
+  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent],
   imports: [
     CommonModule,
+    RequestFormModule,
     TicketRoutingModule,
     HelpcenterModule,
     FormsModule,

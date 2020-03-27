@@ -31,12 +31,6 @@ export class CreateTicketComponent implements OnInit {
   public ticket_object: Ticket;
    
 
-  public visible = true;
-  public selectable = true;
-  public removable = true;
-  public addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-
   constructor(private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
@@ -57,17 +51,12 @@ export class CreateTicketComponent implements OnInit {
     })
   })
 
-  get request_header() { return this.ticket_request_form.get('header');}
-  get request_body() { return this.ticket_request_form.get('body');}
-  get request_footer() { return this.ticket_request_form.get('footer');}
-  get get_emails() { return this.ticket_request_form.get('header.cc_emails');}
-  
-  
+ 
 
   ngOnInit() {
     this.get_request_form_data();
 
-    this.getUserOrgProducts();
+    
   }
 
   /**
@@ -90,6 +79,7 @@ export class CreateTicketComponent implements OnInit {
     this.form$.subscribe((formData) => {
       this.ticket_form = formData;
       this.getFieldValueData();
+      this.getUserOrgProducts();
     }, (error) => {
       console.log(error);
     });
@@ -128,50 +118,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
 
-  add(event: MatChipInputEvent): void {
-    console.log(event)
-    const input = event.input;
-    const value = event.value;
-
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.emails.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-    this.set_cc_emails_val()
-  }
+ 
 
 
-  remove(email: string): void {
-    const index = this.emails.indexOf(email);
-
-    if (index >= 0) {
-      this.emails.splice(index, 1);
-    }
-    this.set_cc_emails_val()
-  }
-
-  public set_cc_emails_val(){
-    this.get_emails.setValue(this.emails)
-  }
-
-  /**
-   *  create a ticket object from the form data on form submit
-   */
-  submitTicket(){
-    console.log(this.ticket_request_form.controls)
-    this.ticket_object = {
-      requester_id: this.userService.getUserId(),
-      email_cc_ids: this.get_emails.value,
-      description: this.request_body.value,
-      priority: this.request_body.value.priority.value,
-      organization_id: this.user_current_orgid
-
-    }
-    console.log(this.ticket_object);
-  }
 }
