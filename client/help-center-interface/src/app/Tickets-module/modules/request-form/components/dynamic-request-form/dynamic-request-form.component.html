@@ -1,5 +1,113 @@
-<ng-container *ngIf="request_form_template">
-<div class="form" [innerHTML] = 'request_form_template | sanitizeRequestForm'>
-  
+<ng-container *ngIf="request_form_object">
+<div class="form">
+        <form id="new_request" [formGroup]='request_form_object' (ngSubmit) = "submitTicket()" class="request-form">
+        <div formGroupName='header' class="request_cc_emails">
+      <label for="request_collaborators_">CC</label>
+      <ul>
+        <li>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="CC'd emails">
+              <mat-chip *ngFor="let email of emails" [selectable]="selectable" [removable]="removable" (removed)="remove(email)">
+                {{email}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input 
+                    placeholder="Add Emails" 
+                    [matChipInputFor]="chipList" 
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+        </li>
+      </ul>
+      <div class="notification notification-error notification-inline" aria-hidden="true">
+      </div>
+      </div>
+      <div formGroupName='body' class="form-fields">
+        <!-- dynamic body template -->
+        <ng-container *ngFor="let field of request_form_config">
+            <ng-container *ngIf="field.type == 'text'; then textTemplate"></ng-container>
+            <ng-template #textTemplate>
+                <div class="form-field string  required  request_subject">
+                    <label for={{field.id}}>{{field.name}}</label>
+                    <input formControlName={{field.name}} type="text" name={{field.name}} id={{field.id}} maxlength="150" size="150">
+                </div>
+            </ng-template>
+            <ng-container *ngIf="field.type == 'textarea'; then textareaTemplate"></ng-container>
+             <ng-template #textareaTemplate>
+                <div class="form-field text  required  request_description">
+                    <label for={{field.id}}>{{field.name}}</label>
+                    <textarea formControlName={{field.name}} name={{field.name}} id={{field.id}} aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
+                    <p id="request_description_hint">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
+                    </div>
+             </ng-template>   
+            <ng-container *ngIf="field.type == 'select'">
+                <ng-container *ngIf="field.id == '22367121'; then prioritySelectBlock else selectBlock"></ng-container>
+                <ng-template #prioritySelectBlock>
+                        <div class="form-field select  required  request_priority">
+                            <label for={{field.id}}>{{field.name}}</label>
+                                <select class="custom-select" formControlName={{field.name}} id={{field.id}}>
+                            <option value= "1">Urgent</option>
+                            <option value= "2">High</option>
+                            <option value= "3">Normal</option>
+                            <option value= "4">Low</option>
+                                </select>
+                                </div>
+                </ng-template>
+                <ng-template #selectBlock>
+                    <div class="form-field select  required  request_priority">
+                        <label for="field.id">{{field.name}}</label>
+                        <select formControlName={{field.name}} id={{field.id}} class="custom-select">
+                            <option value="-">-</option>
+                            <ng-container *ngFor="let option of field.value">
+                            <option value={{option.key}}>{{option.value}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </ng-template>
+
+                </ng-container>
+            
+        </ng-container>
+
+    </div>
+    <!-- <script data-conditional-fields="[]"></script> -->
+ 
+ <div formGroupName="footer" class="form-field" style="display: none;">
+ <label for="request-attachments">
+  Attachments
+ </label>
+ <div id="upload-dropzone" class="upload-dropzone">
+ <input formControlName = 'file_attachments' type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-us/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
+ <span>
+  <a>Add file</a> or drop files here
+ </span>
+ </div>
+ 
+ <div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+ <span data-upload-error-message=""></span>
+ </div>
+ 
+ 
+ <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template"></ul>
+ 
+ <script type="text/html" id="upload-template">
+ <li class="upload-item" data-upload-item>
+ <a class="upload-link" target="_blank" data-upload-link></a>
+ <p class="upload-path" data-upload-path></p>
+ <p class="upload-path" data-upload-size></p>
+ <p data-upload-issue class="notification notification-alert notification-inline" aria-hidden="true"></p>
+ <span class="upload-remove" data-upload-remove></span>
+ <div class="upload-progress" data-upload-progress></div>
+ <input  type="hidden">
+ </li>
+ </script>
+ </div>
+ 
+ <footer>
+ <input type="submit" name="commit" value="Submit">
+ </footer>
+</form>
   </div>
 </ng-container>

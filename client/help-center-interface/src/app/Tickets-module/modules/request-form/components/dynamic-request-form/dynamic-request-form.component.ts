@@ -4,7 +4,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Field_value } from './../../../../classes/field_value';
 import { RequestFieldCreators } from '../../../../../imports/request-field-component-creators';
-import { Ticket } from './../../../../classes/ticket';
+import { Ticket } from '../../../../classes/ticket';
 
 
 @Component({
@@ -18,15 +18,22 @@ export class DynamicRequestFormComponent implements OnInit {
   public request_form_config : Field_value[] = [];     // request form config array recieved from create ticket component
   public request_form_object : FormGroup;              // reactive form object for the create ticket request built using request field value array
   public request_form_template : string;               // request form template html string built using request field value array
-  public ticket_request = Ticket                      // request object to be returned to the parent create ticket component
+  public ticket_request : Ticket                      // request object to be returned to the parent create ticket component
   public emails : string[] = [];                 // email field used in form field material chip element
   
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    console.log(this.request_form_config)
     this.request_form_object = this.createRequestFormObject()
-    this.request_form_template = this.createRequestFormTemplate()
-    console.log(this.request_form_template);
+    console.log(this.request_form_object)
   }
 
 /**  
@@ -121,6 +128,8 @@ public set_cc_emails_val(){
       email_cc_ids: this.get_emails.value,
       description: this.request_body.value,
       priority: this.request_body.value.priority.value,
+      requester_id: 22,
+      organization_id: 33
     }
     console.log(this.ticket_request);
   }

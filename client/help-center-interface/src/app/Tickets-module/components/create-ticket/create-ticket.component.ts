@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -9,11 +9,14 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import { Ticket } from './../../classes/ticket'
 import { Form } from '../../classes/form';
 import { Field } from '../../classes/field';
+
+// import { DynamicRequestFormComponent } from './../../modules/request-form/components/dynamic-request-form/dynamic-request-form.component';
 import { FormService } from './../../services/ticket-forms-service/form.service';
 import { FieldService } from './../../services/ticket-fields-service/field.service';
 import { Field_value } from '../../classes/field_value';
 import { RequestFieldCreators } from './../../../imports/request-field-component-creators';
 import { UserService } from './../../../Helpcenter-module/services/user-service/user.service';
+
 
 @Component({
   selector: 'app-create-ticket',
@@ -29,9 +32,12 @@ export class CreateTicketComponent implements OnInit {
   public emails : string[] = [];                 // email field used in form field material chip element
   public user_current_orgid : number 
   public ticket_object: Ticket;
-   
+  
+  public dynamic_form;
 
-  constructor(private router: Router,
+  constructor(private resolver: ComponentFactoryResolver,
+              private container: ViewContainerRef,
+              private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
               private ticketFormService: FormService,
@@ -55,9 +61,8 @@ export class CreateTicketComponent implements OnInit {
 
   ngOnInit() {
     this.get_request_form_data();
-
     
-  }
+}
 
   /**
    * Gets current logged in users organization and associated products object
@@ -80,10 +85,17 @@ export class CreateTicketComponent implements OnInit {
       this.ticket_form = formData;
       this.getFieldValueData();
       this.getUserOrgProducts();
+
     }, (error) => {
       console.log(error);
     });
   }
+
+  // public createDynamicFormComponent(){
+  //   const factory = this.resolver.resolveComponentFactory<any>(DynamicRequestFormComponent);
+  //   this.dynamic_form = this.container.createComponent(factory);
+  //   this.dynamic_form.instance.request_form_config = this.ticket_form_fields
+  // }
 
   /**
    * Function gets field_value service to get field data 
@@ -92,8 +104,9 @@ export class CreateTicketComponent implements OnInit {
     this.ticketFieldService.getFieldsByIds(this.ticket_form.ticket_field_ids)
       .subscribe((data) => {
         this.ticket_form_fields = data;
-        this.create_ticket_request_form(<FormGroup> this.request_body)
+        // this.create_ticket_request_form(<FormGroup> this.request_body)
         this.create_request_form_template()
+        // this.createDynamicFormComponent()
       }, (error) => {
         console.log(error);
       });
@@ -120,5 +133,19 @@ export class CreateTicketComponent implements OnInit {
 
  
 
+  /**
+   *  create a ticket object from the form data on form submit
+   */
+  submitTicket(){
+    console.log(this.ticket_request_form.controls)
+    // this.ticket_object = {
+    //   requester_id: this.userService.getUserId(),
+    //   email_cc_ids: this.get_emails.value,
+    //   description: this.request_body.value,
+    //   priority: this.request_body.value.priority.value,
+    //   organization_id: this.user_current_orgid
 
+    // }
+    // console.log(this.ticket_object);
+  }
 }
