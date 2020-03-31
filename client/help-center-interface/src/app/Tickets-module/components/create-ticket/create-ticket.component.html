@@ -6,7 +6,7 @@
       <div class="offset-md-1 col-md-10 ">
         <div class="whtbg">
           <ng-container *ngIf="ticket_form_fields">
-              <app-dynamic-request-form [request_form_config] = "ticket_form_fields"> </app-dynamic-request-form>
+              <app-dynamic-request-form [request_form_config] = "ticket_form_fields" (request_event) = "createTicketRequest($event)"> </app-dynamic-request-form>
           </ng-container>
         </div>
       </div>

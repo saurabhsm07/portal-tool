@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Field_value } from './../../../../classes/field_value';
 import { RequestFieldCreators } from '../../../../../imports/request-field-component-creators';
-import { Ticket } from '../../../../classes/ticket';
 
 
 @Component({
@@ -16,9 +15,10 @@ export class DynamicRequestFormComponent implements OnInit {
   
   @Input()
   public request_form_config : Field_value[] = [];     // request form config array recieved from create ticket component
+  @Output()
+  public request_event = new EventEmitter<any>()               // send ticket request dynamic data backt to the parent create ticket component
   public request_form_object : FormGroup;              // reactive form object for the create ticket request built using request field value array
   public request_form_template : string;               // request form template html string built using request field value array
-  public ticket_request : Ticket                      // request object to be returned to the parent create ticket component
   public emails : string[] = [];                 // email field used in form field material chip element
   
 
@@ -42,7 +42,7 @@ export class DynamicRequestFormComponent implements OnInit {
  public createRequestFormObject(): FormGroup {
   let form_object = this.fb.group({
     header : this.fb.group({
-      cc_emails: [[]]
+      cc_emails: [[],]
     }),
     body : this.fb.group({
 
@@ -54,7 +54,14 @@ export class DynamicRequestFormComponent implements OnInit {
 
   let group =  <FormGroup> form_object.get('body');
   this.request_form_config.forEach((field) => {
-    group.addControl(field.name, this.fb.control([]));
+    if(field.required == 1){
+      group.addControl(field.key, this.fb.control('', Validators.required));
+    }
+    else{
+      group.addControl(field.key, this.fb.control(''))
+    }
+    
+    
   })
 
   return form_object;
@@ -122,15 +129,14 @@ public set_cc_emails_val(){
   /**
    *  create a ticket object from the form data on form submit
    */
-  submitTicket(){
-    console.log(this.request_form_object.controls)
-    this.ticket_request = {
+  submitRequestData(){
+    console.log(this.request_form_object.value)
+    let request_data_object = {
       email_cc_ids: this.get_emails.value,
-      description: this.request_body.value,
-      priority: this.request_body.value.priority.value,
-      requester_id: 22,
-      organization_id: 33
+      request_body: this.request_body.value,
+      attachment: this.request_footer.value
     }
-    console.log(this.ticket_request);
+    console.log(request_data_object);
+    this.request_event.emit(request_data_object);
   }
 }

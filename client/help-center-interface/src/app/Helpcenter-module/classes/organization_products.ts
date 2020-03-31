@@ -1,4 +1,4 @@
 export class Organization_Products {
-    organization_id: number;
-    product_id: number
+    organization_ids: number;
+    product_ids: number
 }

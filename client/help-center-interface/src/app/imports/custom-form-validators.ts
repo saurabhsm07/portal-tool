@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, Validators, FormControl } from '@angular/forms';
 
 /**
  * class with functions of custom validators to be used to validate reactive forms accross modules,
@@ -36,6 +36,19 @@ export class CustomValidators {
         else if(group.get('password').value != group.get('confirm_password').value){
             group.get('confirm_password').setErrors({'pwdMatch' : 'Password and Confirm Password do not match'})
             return {'validation' : false};
+        }else{
+            return null;
+        }
+    }
+
+    public static validateEmailListFormat(control: AbstractControl) : { [key: string] : any} | null {
+        const emails = control.value
+        console.log(emails)
+        emails.array.forEach(email => {
+            Validators.email(new FormControl(email))
+        });
+        if(true){
+            return {'validation': false}
         }else{
             return null;
         }

@@ -1,6 +1,6 @@
 <ng-container *ngIf="request_form_object">
 <div class="form">
-        <form id="new_request" [formGroup]='request_form_object' (ngSubmit) = "submitTicket()" class="request-form">
+        <form id="new_request" [formGroup]='request_form_object' (ngSubmit) = "submitRequestData()" class="request-form">
         <div formGroupName='header' class="request_cc_emails">
       <label for="request_collaborators_">CC</label>
       <ul>
@@ -31,14 +31,14 @@
             <ng-template #textTemplate>
                 <div class="form-field string  required  request_subject">
                     <label for={{field.id}}>{{field.name}}</label>
-                    <input formControlName={{field.name}} type="text" name={{field.name}} id={{field.id}} maxlength="150" size="150">
+                    <input formControlName={{field.key}} type="text" name={{field.name}} id={{field.id}} maxlength="150" size="150">
                 </div>
             </ng-template>
             <ng-container *ngIf="field.type == 'textarea'; then textareaTemplate"></ng-container>
              <ng-template #textareaTemplate>
                 <div class="form-field text  required  request_description">
                     <label for={{field.id}}>{{field.name}}</label>
-                    <textarea formControlName={{field.name}} name={{field.name}} id={{field.id}} aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
+                    <textarea formControlName={{field.key}} name={{field.name}} id={{field.id}} aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
                     <p id="request_description_hint">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
                     </div>
              </ng-template>   
@@ -47,7 +47,7 @@
                 <ng-template #prioritySelectBlock>
                         <div class="form-field select  required  request_priority">
                             <label for={{field.id}}>{{field.name}}</label>
-                                <select class="custom-select" formControlName={{field.name}} id={{field.id}}>
+                                <select class="custom-select" formControlName={{field.key}} id={{field.id}}>
                             <option value= "1">Urgent</option>
                             <option value= "2">High</option>
                             <option value= "3">Normal</option>
@@ -58,7 +58,7 @@
                 <ng-template #selectBlock>
                     <div class="form-field select  required  request_priority">
                         <label for="field.id">{{field.name}}</label>
-                        <select formControlName={{field.name}} id={{field.id}} class="custom-select">
+                        <select formControlName={{field.key}} id={{field.id}} class="custom-select">
                             <option value="-">-</option>
                             <ng-container *ngFor="let option of field.value">
                             <option value={{option.key}}>{{option.value}}</option>

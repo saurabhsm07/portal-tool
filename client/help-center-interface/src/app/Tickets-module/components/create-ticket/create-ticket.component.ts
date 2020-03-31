@@ -3,8 +3,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
 
 import { Ticket } from './../../classes/ticket'
 import { Form } from '../../classes/form';
@@ -32,7 +30,7 @@ export class CreateTicketComponent implements OnInit {
   public emails : string[] = [];                 // email field used in form field material chip element
   public user_current_orgid : number 
   public ticket_object: Ticket;
-  
+  public requester_id: number;
   public dynamic_form;
 
   constructor(private resolver: ComponentFactoryResolver,
@@ -61,7 +59,7 @@ export class CreateTicketComponent implements OnInit {
 
   ngOnInit() {
     this.get_request_form_data();
-    
+    this.requester_id = this.userService.getUserId();
 }
 
   /**
@@ -70,7 +68,8 @@ export class CreateTicketComponent implements OnInit {
   public getUserOrgProducts() {
     const orgs = this.userService.getOrganizationIds();
     this.userService.getOrgProducts(orgs).subscribe((data) => {
-      this.user_current_orgid = data.filter(val => val.product_id == this.ticket_form.product_id).map(val => val.organization_id)[0];
+      console.log(data)
+      this.user_current_orgid = data.filter(val => val.product_ids == this.ticket_form.product_id).map(val => val.organization_ids)[0];
     }, (error) => {
       console.log(error);
     });
@@ -132,20 +131,22 @@ export class CreateTicketComponent implements OnInit {
 
 
  
+  createTicketRequest($event){
+    this.ticket_object = {
+      email_cc_ids: $event.email_cc_ids,
+      organization_id: this.user_current_orgid,
+      description: $event.request_body.description,
+      priority: $event.request_body.priority,
+      subject: $event.request_body.subject,
+      requester_id: this.requester_id,
+    }
+    console.log(this.ticket_object)
+  }
 
   /**
    *  create a ticket object from the form data on form submit
    */
   submitTicket(){
     console.log(this.ticket_request_form.controls)
-    // this.ticket_object = {
-    //   requester_id: this.userService.getUserId(),
-    //   email_cc_ids: this.get_emails.value,
-    //   description: this.request_body.value,
-    //   priority: this.request_body.value.priority.value,
-    //   organization_id: this.user_current_orgid
-
-    // }
-    // console.log(this.ticket_object);
   }
 }
