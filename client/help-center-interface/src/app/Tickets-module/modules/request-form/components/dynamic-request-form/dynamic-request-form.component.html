@@ -5,7 +5,7 @@
       <label for="request_collaborators_">CC</label>
       <ul>
         <li>
-          <mat-form-field class="example-chip-list">
+          <mat-form-field   class="example-chip-list">
             <mat-chip-list #chipList aria-label="CC'd emails">
               <mat-chip *ngFor="let email of emails" [selectable]="selectable" [removable]="removable" (removed)="remove(email)">
                 {{email}}
@@ -21,8 +21,17 @@
           </mat-form-field>
         </li>
       </ul>
-      <div class="notification notification-error notification-inline" aria-hidden="true">
-      </div>
+      <div *ngIf="cc_emails.invalid && (cc_emails.dirty || cc_emails.touched)" class="alert alert-danger">
+
+        <small *ngIf="cc_emails.errors.required">
+        emails is required.
+        </small>
+        <small *ngIf="cc_emails.errors.invalidEmails">
+        All the emails in the cc'd email field must adhere to email structure
+        </small>
+  </div>
+      <!-- <div class="notification notification-error notification-inline" aria-hidden="true">
+      </div> -->
       </div>
       <div formGroupName='body' class="form-fields">
         <!-- dynamic body template -->
@@ -33,6 +42,7 @@
                     <label for={{field.id}}>{{field.name}}</label>
                     <input formControlName={{field.key}} type="text" name={{field.name}} id={{field.id}} maxlength="150" size="150">
                 </div>
+            <ng-container *ngIf="field.required == '1'; then requiredTemplate"> </ng-container>
             </ng-template>
             <ng-container *ngIf="field.type == 'textarea'; then textareaTemplate"></ng-container>
              <ng-template #textareaTemplate>
@@ -41,6 +51,7 @@
                     <textarea formControlName={{field.key}} name={{field.name}} id={{field.id}} aria-required="true" aria-describedby="request_description_hint" aria-labelledby="request_description_label"></textarea>
                     <p id="request_description_hint">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
                     </div>
+                    <ng-container *ngIf="field.required == '1'; then requiredTemplate"> </ng-container>
              </ng-template>   
             <ng-container *ngIf="field.type == 'select'">
                 <ng-container *ngIf="field.id == '22367121'; then prioritySelectBlock else selectBlock"></ng-container>
@@ -66,11 +77,18 @@
                         </select>
                     </div>
                 </ng-template>
-
+                <ng-container *ngIf="field.required == '1'; then requiredTemplate"> </ng-container>
                 </ng-container>
-            
+                <ng-template #requiredTemplate>
+                    
+                            <div *ngIf="request_body.get(field.key).invalid && (request_body.get(field.key).dirty || request_body.get(field.key).touched)" class="alert alert-danger">
+                                    <small *ngIf="request_body.get(field.key).errors.required">
+                                    {{field.name}} is required.
+                                    </small>
+                                    </div>
+                    </ng-template>
         </ng-container>
-
+ 
     </div>
     <!-- <script data-conditional-fields="[]"></script> -->
  

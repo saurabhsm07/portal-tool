@@ -43,14 +43,22 @@ export class CustomValidators {
 
     public static validateEmailListFormat(control: AbstractControl) : { [key: string] : any} | null {
         const emails = control.value
-        console.log(emails)
-        emails.array.forEach(email => {
-            Validators.email(new FormControl(email))
+        const email_regex = new RegExp(`^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$`)
+        let if_error = false;
+        emails.forEach(email => {
+           if(!email_regex.test(email)){
+            if_error = true;
+           } 
+           
+           
         });
-        if(true){
-            return {'validation': false}
+        if((if_error) && (emails.length > 0)){
+            control.markAsDirty()
+            control.markAsTouched()
+            return {invalidEmails: true}
         }else{
             return null;
         }
+        
     }
 }

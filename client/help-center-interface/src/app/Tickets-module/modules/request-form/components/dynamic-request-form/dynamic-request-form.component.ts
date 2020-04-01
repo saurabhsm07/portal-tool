@@ -4,6 +4,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { Field_value } from './../../../../classes/field_value';
 import { RequestFieldCreators } from '../../../../../imports/request-field-component-creators';
+import { CustomValidators } from '../../../../../imports/custom-form-validators';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class DynamicRequestFormComponent implements OnInit {
   ngOnInit() {
     console.log(this.request_form_config)
     this.request_form_object = this.createRequestFormObject()
-    console.log(this.request_form_object)
+    // console.log(this.request_form_object)
   }
 
 /**  
@@ -42,7 +43,7 @@ export class DynamicRequestFormComponent implements OnInit {
  public createRequestFormObject(): FormGroup {
   let form_object = this.fb.group({
     header : this.fb.group({
-      cc_emails: [[],]
+      cc_emails: [[], [Validators.required, CustomValidators.validateEmailListFormat]]
     }),
     body : this.fb.group({
 
@@ -84,7 +85,7 @@ export class DynamicRequestFormComponent implements OnInit {
  get request_header() { return this.request_form_object.get('header');}
  get request_body() { return this.request_form_object.get('body');}
  get request_footer() { return this.request_form_object.get('footer');}
- get get_emails() { return this.request_form_object.get('header.cc_emails');}
+ get cc_emails() { return this.request_form_object.get('header.cc_emails');}
  
  
  /**
@@ -122,7 +123,9 @@ remove(email: string): void {
 }
 
 public set_cc_emails_val(){
-  this.get_emails.setValue(this.emails)
+
+  this.cc_emails.setValue(this.emails)
+  console.log(this.cc_emails)
 }
 
 
@@ -132,7 +135,7 @@ public set_cc_emails_val(){
   submitRequestData(){
     console.log(this.request_form_object.value)
     let request_data_object = {
-      email_cc_ids: this.get_emails.value,
+      email_cc_ids: this.cc_emails.value,
       request_body: this.request_body.value,
       attachment: this.request_footer.value
     }
