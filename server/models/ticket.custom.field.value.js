@@ -3,21 +3,21 @@ const Sequelize = require('Sequelize');
 
 
 /**
- * table saves values for ticket fields for all tickets forms
+ * table saves created tickets custom fields values
  */
-const Ticket_field_value = client.define('ticket_field_values', {
+const Ticket_custom_field = client.define('ticket_custom_fields', {
                                         id: {
                                             type: Sequelize.BIGINT,
                                             primaryKey: true,
                                             autoIncrement: true
                                         },
-                                        field_id: {
+                                        ticket_id: {
                                             type: Sequelize.BIGINT,
                                         },
-                                        field_value: {
+                                        field_key: {
                                             type: Sequelize.STRING,
                                         },
-                                        order_no: {
+                                        field_value: {
                                             type: Sequelize.INTEGER,
                                         },
                                         delete_status: {
@@ -27,4 +27,4 @@ const Ticket_field_value = client.define('ticket_field_values', {
                                 timestamps: false
                             });
 
-module.exports = Ticket_field_value;                            
+module.exports = Ticket_custom_field;                            

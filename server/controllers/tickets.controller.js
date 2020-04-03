@@ -1,4 +1,5 @@
 const Ticket = require("./../models/ticket");
+const preprocessors = require("./../helpers/preprocessors/tickets.preprocessors");
 const PHPUnserialize = require('php-unserialize');
 const client = require("./../config/connections").client;
 
@@ -56,14 +57,24 @@ module.exports = {
     },
 
     /**
-     * create: create ticket
+     * create: method to save ticket request data to the database
      */
     create: (req, res, next) => {
-        const ticket_object = req.body.ticket;
-        Ticket.create(ticket_object)
+        const ticket_object = req.body.ticket_object;                              // ticket data request to be saved in the database
+
+        console.log(`REQUEST TICKET DATA: `,ticket_object)
+        console.log('REQUEST TICKET CUSTOM DATA: ', req.body.ticket_custom_fields);
+        Ticket.create(preprocessors.saveTicketObject(ticket_object))
         .then((resp) => {
              console.log(resp);
-             res.status(200).send(resp);
+             if(req.body.ticket_custom_fields != null){
+                req.ticket_id = resp[0].id                                   // ticket id of the forign key for the ticket custom fields entry
+                next()
+             }else{
+                 console.log(`created ticket with id = ${resp.id}`)
+                res.status(200).send({id: resp.id})
+             }
+             
         })
        .catch((err)=>{
              console.log("ERROR :");
@@ -71,6 +82,7 @@ module.exports = {
              res.status(500).send(err);
        })
     },
+
 
     /**
      * update: update ticket update time

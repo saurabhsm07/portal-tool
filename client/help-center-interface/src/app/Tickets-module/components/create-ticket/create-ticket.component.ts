@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { Ticket } from './../../classes/ticket'
 import { Form } from '../../classes/form';
-import { Field } from '../../classes/field';
 
 // import { DynamicRequestFormComponent } from './../../modules/request-form/components/dynamic-request-form/dynamic-request-form.component';
 import { FormService } from './../../services/ticket-forms-service/form.service';
 import { FieldService } from './../../services/ticket-fields-service/field.service';
 import { Field_value } from '../../classes/field_value';
-import { RequestFieldCreators } from './../../../imports/request-field-component-creators';
 import { UserService } from './../../../Helpcenter-module/services/user-service/user.service';
+import { Custom_field_value } from '../../classes/custom_field_value';
+import { TicketService } from '../../services/ticket-service/ticket.service';
 
 
 @Component({
@@ -24,38 +24,21 @@ import { UserService } from './../../../Helpcenter-module/services/user-service/
 export class CreateTicketComponent implements OnInit {
 
   public form$: Observable<any>;
-  public ticket_form: Form;                       //current request form object      
-  public ticket_form_fields: Field_value[];      //ticket request fields and values for current form
-  public request_form_template = '';             //html form template generated from request form fields
-  public emails : string[] = [];                 // email field used in form field material chip element
-  public user_current_orgid : number 
-  public ticket_object: Ticket;
+  public ticket_form: Form;                         //current request form object      
+  public ticket_form_fields: Field_value[];         //ticket request fields and values for current form
+  public user_current_orgid : number;               // current user organization id
+  public ticket_object: Ticket;                     // object saved to ticket table
+  public ticket_custom_fields: Custom_field_value[];   //array of values of custom fields data
   public requester_id: number;
   public dynamic_form;
 
-  constructor(private resolver: ComponentFactoryResolver,
-              private container: ViewContainerRef,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
+              private ticketService: TicketService,
               private userService: UserService,
               private ticketFormService: FormService,
               private ticketFieldService: FieldService,
               private fb : FormBuilder) { }
-  
-
-  public ticket_request_form = this.fb.group({
-    header: this.fb.group({
-      cc_emails: [[]]
-    }),
-    body: this.fb.group({
-      
-    }),
-    footer: this.fb.group({
-      file_attachments: []
-    })
-  })
-
- 
 
   ngOnInit() {
     this.get_request_form_data();
@@ -90,11 +73,6 @@ export class CreateTicketComponent implements OnInit {
     });
   }
 
-  // public createDynamicFormComponent(){
-  //   const factory = this.resolver.resolveComponentFactory<any>(DynamicRequestFormComponent);
-  //   this.dynamic_form = this.container.createComponent(factory);
-  //   this.dynamic_form.instance.request_form_config = this.ticket_form_fields
-  // }
 
   /**
    * Function gets field_value service to get field data 
@@ -103,34 +81,15 @@ export class CreateTicketComponent implements OnInit {
     this.ticketFieldService.getFieldsByIds(this.ticket_form.ticket_field_ids)
       .subscribe((data) => {
         this.ticket_form_fields = data;
-        // this.create_ticket_request_form(<FormGroup> this.request_body)
-        this.create_request_form_template()
-        // this.createDynamicFormComponent()
       }, (error) => {
         console.log(error);
       });
   }
 
-
   /**
-   * Method to create request form body from the ticket request fields of the current form object
+   * Method creates a ticket object to be saved to the database from the input gained of the dynamic request form
+   * @param $event : event data emmited from the ticket request form 
    */
-  public create_ticket_request_form(request_body: FormGroup){
-    this.ticket_form_fields.forEach(field => {
-      request_body.addControl(field.name, this.fb.control([]))
-    })
-    console.log(this.ticket_request_form.controls)
-  }
-
-  /**
-   * Method to create ticket request form template from request fields list
-   */
-  public create_request_form_template(){
-   this.request_form_template = RequestFieldCreators.createFieldComponent(this.ticket_form_fields)
-  }
-
-
- 
   createTicketRequest($event){
     this.ticket_object = {
       email_cc_ids: $event.email_cc_ids,
@@ -139,14 +98,48 @@ export class CreateTicketComponent implements OnInit {
       priority: $event.request_body.priority,
       subject: $event.request_body.subject,
       requester_id: this.requester_id,
+      ticket_form_id: this.ticket_form.id,
+      product_id: this.ticket_form.product_id,
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now())
     }
+
+    
+    Object.keys($event.request_body).forEach(key => {
+      if(['subject', 'description', 'priority'].indexOf(key) == -1){
+        this.ticket_custom_fields.push({field_key: key,
+                                      field_value: $event.request_body[key]})
+      }
+
+
+    });
+
+
+    
     console.log(this.ticket_object)
+    console.log(this.ticket_custom_fields)
+    this.submitTicket()
   }
 
   /**
-   *  create a ticket object from the form data on form submit
+   *  method saves the ticket to the database
    */
   submitTicket(){
-    console.log(this.ticket_request_form.controls)
+    if(this.ticket_custom_fields == null){
+      console.log(true)
+    }
+    else{
+      console.log(false)
+    }
+
+    this.ticketService.createTicket(this.ticket_object)
+                      .subscribe((data) => {
+                        console.log(data)
+                      }, (error) => {
+                        console.log(error)
+                      })
+
+
+    
   }
 }

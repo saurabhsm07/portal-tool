@@ -10,9 +10,9 @@ import { Field_value } from '../../classes/field_value';
 export class FieldService {
 
     /**
-   * List of primary CRUD APIs for Category data
+   * List of primary CRUD APIs for ticket fields data
    */
-  private requestUri = {
+  public requestUri = {
     getFieldList: 'http://localhost:5000/api/tickets/fields?ids=',
     getFieldById: 'http://localhost:5000/api/tickets/fields/id/',
     // updateCategory: 'http://localhost:5000/api/categories/',
@@ -21,14 +21,14 @@ export class FieldService {
 
 
 
-  private headersOptions = {
+  public headersOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
   };
 
   
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   getFieldsByIds(field_ids: string[]): Observable<Field_value[]> {
     return this.http.get<Field_value[]>(this.requestUri.getFieldList + field_ids.join(","), this.headersOptions);
