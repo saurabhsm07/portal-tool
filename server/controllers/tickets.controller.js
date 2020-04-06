@@ -5,16 +5,17 @@ const client = require("./../config/connections").client;
 
 module.exports = {
     /**
-     * getTicketsByRequester: get list of tickets for perticular requester
+     * getTickets: get list of tickets for perticular requester
      */
-    getTicketsByRequester: (req, res, next) => {
+    getTickets: (req, res, next) => {
         const {id, name} =  req.user.dataValues;
-        console.log(id);
-        Ticket.findAll({where: { requester_id: id}})
+        const findQuery = preprocessors.searchQueryObject(req.query['query']);
+        console.log(findQuery);
+        Ticket.findAll(findQuery)
         .then((data) => {
             if (data.length > 0) {
                 console.log(`fetched ${data.length} tickets`);
-                res.status(200).send({ tickets : data});
+                res.status(200).send(data);
             } else {
                 console.log(`no ticket data available for requester = ${id}, ${name}`);
                 res.status(404).send({

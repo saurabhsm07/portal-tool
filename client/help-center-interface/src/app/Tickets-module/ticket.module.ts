@@ -6,14 +6,15 @@ import { CreateTicketComponent } from './components/create-ticket/create-ticket.
 import { ListTicketsComponent } from './components/list-tickets/list-tickets.component';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { TicketRequestHeaderComponent } from './components/ticket-request-header/ticket-request-header.component';
-import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
-import { MaterialModule } from './../imports/material-module';
+import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
+import { MaterialModule } from '../imports/material-module';
 import { RequestFormModule } from './modules/request-form/request-form.module';
+import { SearchTicketPipe } from './pipes/search-ticket/search-ticket.pipe';
 
 
 
 @NgModule({
-  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent],
+  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SearchTicketPipe],
   imports: [
     CommonModule,
     RequestFormModule,

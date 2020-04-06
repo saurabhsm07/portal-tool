@@ -14,7 +14,7 @@ const fields = require('./fields/fields');
  * Security: very high
  * GET: api path to get list of tickets for perticular requester
  */
-router.route('/').get(passport.authenticate('jwt', {session: false}), tickets.getTicketsByRequester);
+router.route('/search').get(passport.authenticate('jwt', {session: false}), tickets.getTickets);
 
 /**
  * Security: very high

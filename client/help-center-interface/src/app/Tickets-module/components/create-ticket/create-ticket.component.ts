@@ -125,16 +125,10 @@ export class CreateTicketComponent implements OnInit {
    *  method saves the ticket to the database
    */
   submitTicket(){
-    if(this.ticket_custom_fields == null){
-      console.log(true)
-    }
-    else{
-      console.log(false)
-    }
-
     this.ticketService.createTicket(this.ticket_object)
                       .subscribe((data) => {
-                        console.log(data)
+                        console.log(`ticket created with ID = ${data.id}`)
+                        this.router.navigate(['/hc/en-us/tickets/list'])
                       }, (error) => {
                         console.log(error)
                       })

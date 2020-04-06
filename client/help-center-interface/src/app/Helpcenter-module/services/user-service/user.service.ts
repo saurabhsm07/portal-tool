@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../classes/user';
-import { User_Organizations } from './../../classes/user_organizations';
+import { User_Organizations } from '../../classes/user_organizations';
 import { Observable } from 'rxjs';
 import { Organization_Products } from '../../classes/organization_products';
 
