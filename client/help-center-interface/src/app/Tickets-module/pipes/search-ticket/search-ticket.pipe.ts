@@ -11,6 +11,7 @@ export class SearchTicketPipe implements PipeTransform {
     if (searchString.length === 0) {
       return value;
     } else {
+        console.log(tickets)
         value.data = tickets.filter((ticket) => { if(ticket.subject.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())) {
           return ticket;
         }});

@@ -11,7 +11,7 @@ const organizationProducts = require('./../../../../controllers/organization.pro
  */
 router.route('/').get(
                     passport.authenticate('jwt', { session: false }),
-                    authorize.isAgent,
+                    // authorize.isAgent,
                     userOrganizations.getOranizations,
                     organizationProducts.getProducts,
                     forms.getAll);

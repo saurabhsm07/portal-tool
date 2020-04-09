@@ -4,6 +4,7 @@ const passport = require('passport');
 const passportConfig = require('./../../../auth/passport.config');
 const authorize = require('./../../../auth/autherize.controller');
 const tickets = require('./../../../controllers/tickets.controller');
+const users = require('./../../../controllers/users.controller');
 const attachments = require('./attachments/attachments');
 const comments = require('./comments/comments');
 const forms = require('./forms/forms');
@@ -25,7 +26,7 @@ router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), tick
 /**
  * Security: very high
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), tickets.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}),users.getIdforemail, tickets.create);
 
 /**
  * Security: high

@@ -15,11 +15,11 @@ module.exports = {
         .then((data) => {
             if (data.length > 0) {
                 console.log(`fetched ${data.length} tickets`);
-                res.status(200).send(data);
+                res.status(200).send(preprocessors.sendTicketList(data));
             } else {
                 console.log(`no ticket data available for requester = ${id}, ${name}`);
-                res.status(404).send({
-                    status: 404,
+                res.status(200).send({
+                    status: 200,
                     message: `No ticket data available for requester = ${name}`
                 });
             }

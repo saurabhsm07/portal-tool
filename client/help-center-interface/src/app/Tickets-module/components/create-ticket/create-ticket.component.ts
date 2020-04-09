@@ -128,7 +128,7 @@ export class CreateTicketComponent implements OnInit {
     this.ticketService.createTicket(this.ticket_object)
                       .subscribe((data) => {
                         console.log(`ticket created with ID = ${data.id}`)
-                        this.router.navigate(['/hc/en-us/tickets/list'])
+                        this.router.navigate(['/hc/en-us/requests/list'])
                       }, (error) => {
                         console.log(error)
                       })

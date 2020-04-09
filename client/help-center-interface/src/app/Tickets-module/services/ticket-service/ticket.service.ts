@@ -38,9 +38,8 @@ export class TicketService {
     return this.http.get<Ticket>(this.requestUri.getTicketById, this.headersOptions);
   }
 
-  getTickets(query_on: string, key: string | number[], status: string): Observable<Ticket []> {
-
-    const queryString = TicketService.createSearchQueryString(query_on, key, status);
+  getTickets(query_on: string, query_value: number | number[]): Observable<Ticket []> {
+    const queryString = TicketService.createSearchQueryString(query_on, query_value);
     console.log(queryString);
     return this.http.get<Ticket []>(this.requestUri.getTickets + queryString, this.headersOptions);
   }
@@ -48,20 +47,19 @@ export class TicketService {
   /**
    * Method creates a query string to get tickets based on different request parameters
    * @param query_on : type of search request (get tickets where 'REQUESTER', 'FOLLOW_UP', 'organization id')
-   * @param key : values of the request type
-   * @param status : status of the tickets to be returned
+   * @param query_value : values of the request type
    */
-public static createSearchQueryString(query_on: string, key: string | number[], status: string): string {
+public static createSearchQueryString(query_on: string, query_value: number | number[]): string {
   let queryString = 'query=' 
   switch(query_on){
     case 'requester':
-      queryString = queryString + `type:requester requester_id:${key} status:${status}`;
+      queryString = queryString + `type:requester id:${query_value}`;
       break;
-    case 'cc_tickets':
-      queryString = queryString + `type:cc_tickets cc_id = ${key} status:${status}`;
+    case 'cc_requests':
+      queryString = queryString + `type:cc_requests id:${query_value}`;
       break;
-    case 'organization':
-      queryString = queryString + `type:organization organization_ids = ${key} status: ${status}`;
+    case 'org_requests':
+      queryString = queryString + `type:org_requests ids:${query_value}`;
       break;
     default:
     console.log(`INVALID QUERY \n or UNSUPPORTED search ticket query on attribute :  ${query_on}`)

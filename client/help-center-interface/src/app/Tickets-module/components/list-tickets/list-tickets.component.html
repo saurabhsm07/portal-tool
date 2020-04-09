@@ -11,25 +11,25 @@
           
             <li style="border-bottom: 3px solid rgb(16, 97, 128);">
             
-             <a href=" " (click) = "getTickets('requester')">My requests</a>             
+             <a href="javascript:void(0)" (click) = "createGetTicketsRequest('requester')">My requests</a>             
             </li>
           
             <li>
             
-              <a href=" " (click) = "getTickets('cc_requests')">Requests I'm CC'd on</a>
+              <a href="javascript:void(0)" (click) = "createGetTicketsRequest('cc_requests')">Requests I'm CC'd on</a>
             
             </li>
           
             <li>
             
-            <a href="_" (click) = "getTickets('requester')">Organization requests</a>
+            <a href="javascript:void(0)" (click) = "createGetTicketsRequest('org_requests')">Organization requests</a>
             
             </li>
           
           </ul>
         </nav>
 				<div class="request-table-toolbar">
-				  <input type="search" name="query" id="quick-search" value="" placeholder="Search requests" class="requests-search" aria-required="false">
+				  <input type="search" name="query" id="quick-search" [(ngModel)] = "searchString" placeholder="Search requests" class="requests-search" aria-required="false">
 				  
 				  
 				  <label class="request-filter" for="request-status-select">Status:</label>

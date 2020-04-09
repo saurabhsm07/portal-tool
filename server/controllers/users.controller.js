@@ -209,7 +209,35 @@ module.exports = {
 
     getUserOrgProducts: (req, res) => {
         res.send(req.org_products);
-    }
+    },
 
+
+    /**
+     * Method gets user ids mapped for specific email ids
+     * Used IN: create ticket method
+     */
+    getIdforemail : (req, res, next) => {
+        if(req.body.ticket_object.email_cc_ids.length > 0){
+            const email_ids = req.body.ticket_object.email_cc_ids
+            User.findAll({attributes : ['id'], where: {email : email_ids}})
+                .then((data) => {
+                    if(data.length > 0){
+                        
+                        req.body.ticket_object.email_cc_ids =  data.map((value) => value.dataValues.id);
+                        console.log(req.body.ticket_object.email_cc_ids);
+                    }
+                        next();
+
+                })
+                .catch((err) => {
+                    console.log("ERROR :");
+                    console.log(err.stack);
+                    res.status(500).send(err);
+                })
+        }
+        else{
+            next();
+        }
+    }
 
 }

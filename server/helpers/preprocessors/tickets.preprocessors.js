@@ -1,3 +1,5 @@
+sequelize = require('Sequelize')
+
 module.exports = {
 
     /**
@@ -24,6 +26,7 @@ module.exports = {
      * method to process the search tickets request and create a query object for sequelise find all query
      */
     searchQueryObject: (query) => {
+        
         // console.log(query);
         query_array_kv = query.split(" ").map((param) => {param_kv = param.split(':'); return {'key':param_kv[0], 'value':param_kv[1]}})
         // console.log(query_array_kv)
@@ -35,26 +38,43 @@ module.exports = {
         let findQuery = {}
         findQuery.attributes = ['id', 'subject', 'created_at', 'updated_at', 'status'];
         findQuery.where = {};
+        console.log(query_object)
         switch(query_object.type){
             case 'requester':
-                 findQuery.where = { requester_id: query_object.requester_id};
+                 findQuery.where = { requester_id: query_object.id};
                  break;
-            case 'cc_requester':
-                findQuery.where = { requester_id: query_object.requester_id};
+            case 'cc_requests':
+                findQuery.where = { email_cc_ids: {[sequelize.Op.like] :'%'+query_object.id+'%'}};
                 break;
-            case 'organization':
-                findQuery.where = { organization_id: query_object.organization_id};
+            case 'org_requests':
+                findQuery.where = { organization_id: query_object.ids.split(',')};
                 break;
             default:
                 console.log(`CANNOT CREATE query for type = ${findQuery.type}`)
 
         }
 
-        if(query_object.status != 'any'){
-            findQuery.where.status = query_object.status;
-        }
-
-        // console.log(findQuery);
+        console.log(findQuery);
         return findQuery;
-    }
+    },
+
+    /**
+     * method formats ticket list data to be sent on API request 
+     */
+
+     sendTicketList: (ticketList) => {
+         const ticket_status_values = {
+            1 :'New',
+            2 :'Open',
+            3 :'Pending',
+            4 :'On-hold',
+            5 :'Solved',
+            6 :'Closed',
+            7 :'Deleted' 
+         }
+        return ticketList.map((ticket) => {
+                ticket.status = ticket_status_values[ticket.status];
+                return ticket
+                })
+     }
 }
