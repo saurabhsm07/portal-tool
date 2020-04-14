@@ -35,7 +35,7 @@ export class TicketService {
   }
 
   getTicketById(id: number): Observable<Ticket> {
-    return this.http.get<Ticket>(this.requestUri.getTicketById, this.headersOptions);
+    return this.http.get<Ticket>(this.requestUri.getTicketById + id, this.headersOptions);
   }
 
   getTickets(query_on: string, query_value: number | number[]): Observable<Ticket []> {

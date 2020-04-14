@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-ticket-comments',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTicketCommentsComponent implements OnInit {
 
+  @Input() ticket_id: number
   constructor() { }
 
   ngOnInit() {
+    console.log(`in ticket comments: ${this.ticket_id}`)
   }
 
 }

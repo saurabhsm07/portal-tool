@@ -1,1 +1,47 @@
-<p>ticket-info works!</p>
+<section class="side-column-new">
+        <dl class="request-details">
+			<dt>{{ticket.requester_id}} submitted this request</dt>
+			
+
+			
+
+			<dt>Status</dt>
+			<dd>
+				<span class="request-status request-open" title="We are working on a response for you">
+				{{ticket.status}}
+				</span>
+			</dd>
+
+			
+
+			
+			<dt>Priority</dt>
+			<dd>
+			  <span>{{ticket.priority}}</span>
+			</dd>
+			
+
+          
+            <dt>Assigned to</dt>
+            <dd>
+              <span>{{ticket.assignee_id}}</span>
+            </dd>
+          
+
+          <ng-container *ngIf="ticket.product">
+                <dt>Product</dt>
+                <dd>
+                  <span>Radia Client Automation Version 9.2</span>
+                </dd>  
+          </ng-container>
+            
+          
+
+           <dt id="attachhd" style="display: none;">Attachments</dt>
+            <dd>
+              
+           </dd>
+         
+          
+        </dl>
+      </section>
