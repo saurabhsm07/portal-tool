@@ -1,15 +1,15 @@
 <app-ticket-request-header></app-ticket-request-header>
 <div *ngIf="ticket" class="request-view">
-    <div class='request-subject'>
-        <h1>{{ticket.subject}}</h1>
+    <div class='request-Subj col-md-12'>
+        {{ticket.subject}}
     </div>
-    <div class="col-md-9">
+    <div class=" reqestdet col-md-9">
         <app-list-ticket-comments [ticket_id] = 'getTicketId()'></app-list-ticket-comments>
     </div>
-    <div class="col-md-3">
+    <div class="ticket-meta col-md-3">
         <app-ticket-info [ticket] = "ticket"></app-ticket-info>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
         <app-add-comment [ticket_id] = "getTicketId()"></app-add-comment>
     </div>
     

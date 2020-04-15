@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable } from 'rxjs';
 import { Ticket } from './../../classes/ticket';
 import { Field_value } from '../../classes/field_value';
+import { Comment } from './../../classes/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class TicketService {
     getTickets: 'http://localhost:5000/api/tickets/search?',
     getTicketById: 'http://localhost:5000/api/tickets/id/',
     createTicket: 'http://localhost:5000/api/tickets/',
-    updateCategory: 'http://localhost:5000/api/categories/',
+    createComment: 'http://localhost:5000/api/tickets/comments/',
+    listComments: 'http://localhost:5000/api/tickets/comments/ticketid/',
   };
 
 
@@ -42,6 +44,14 @@ export class TicketService {
     const queryString = TicketService.createSearchQueryString(query_on, query_value);
     console.log(queryString);
     return this.http.get<Ticket []>(this.requestUri.getTickets + queryString, this.headersOptions);
+  }
+
+  createComment(comment: Comment): Observable<{id: number}> {
+    return this.http.post<{id: number}>(this.requestUri.createComment, {comment}, this.headersOptions);
+  }
+
+  listComments(ticket_id: number):  Observable<Comment[]>{
+    return this.http.get<Comment[]>(this.requestUri.listComments + ticket_id, this.headersOptions);
   }
 
   /**

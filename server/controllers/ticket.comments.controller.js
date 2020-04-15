@@ -8,7 +8,7 @@ module.exports = {
     getAll: (req, res, next) => {
         const ticket_id = req.params.ticket_id;
         
-        Comment.findAll({where: {id: ticket_id}})
+        Comment.findAll({where: {ticket_id: ticket_id}})
                .then((data) => {
                     if(data.length > 0){
                         console.log(`${data.length} comments fetched`);

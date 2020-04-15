@@ -1,1 +1,20 @@
-<p>list-ticket-comments works!</p>
+<ng-container *ngIf="comments">
+<ul  class="comment-list">
+    <ng-container *ngFor="let comment of comments">
+<li id="request_comment_{{comment.id}}" class="comment">
+    <div class="left">
+        <div class="comment-avatar  comment-avatar-agent ">
+            <img src="https://secure.gravatar.com/avatar/3f57a3df0438f623059526f051fc6489?default=https%3A%2F%2Fassets.zendesk.com%2Fhc%2Fassets%2Fdefault_avatar.png&amp;r=g" alt="Avatar">
+        </div>
+    </div>    
+    <div class="comment-container">
+        <span class="comment-author">{{comment.author_id}}</span>
+        <span class="comment-published"><time dateTime="{{comment.created_at}}" title="{{comment.created_at}}" data-datetime="calendar">{{comment.created_at}}</time></span>
+    </div>
+    <div class="reqtBord">&nbsp;</div>
+    <div class="comment-body"><div class="zd-comment" dir="auto"><p dir="auto">{{comment.body}}</p></div></div>
+    
+</li>
+</ng-container>
+</ul>
+</ng-container>

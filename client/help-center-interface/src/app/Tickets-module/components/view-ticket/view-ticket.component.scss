@@ -1,9 +1,17 @@
 .request-view{
-    margin : {
-        top: 15px;
-        bottom: 10px;
+    background: #F7F7F7;
+    padding : {
+        top: 25px;
+        bottom: 25px;
+        left: 50px;
+        right: 25px;
     }
     div{
         display: inline-block;
+        
     }
+}
+
+.ticket-meta{
+    vertical-align: top;
 }

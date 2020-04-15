@@ -10,7 +10,7 @@ const comments = require('./../../../../controllers/ticket.comments.controller')
 router.route('/ticketid/:ticket_id').get(passport.authenticate('jwt', {session: false}), comments.getAll);
 
 /**
- * GET: api path to get ticket field record with id.
+ * GET: api path to get ticket comment record with id.
  */
 router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), comments.getById);
 

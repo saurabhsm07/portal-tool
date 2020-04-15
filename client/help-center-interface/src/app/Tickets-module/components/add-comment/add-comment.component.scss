@@ -1,0 +1,34 @@
+.upload-dropzone{
+    font-size: 12px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+    }
+    span{
+        color: #d1d1d1;
+        display: inline-block;
+        line-height: 24px;
+        padding: 10px;
+    }
+    }
+
+    .feature-unavailable{
+        background: rgb(150, 146, 141);
+        width: 80%;
+        font-size: 15px;
+        
+    }
+
+    #uploadbtn{
+        .sublogbtn{
+            padding: 0 50px;
+        }
+    }

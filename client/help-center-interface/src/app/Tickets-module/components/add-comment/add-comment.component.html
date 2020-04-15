@@ -1,1 +1,30 @@
-<p>add-comment works!</p>
+<div id="showreqform">
+    <form [formGroup]='comment_form' enctype="multipart/form-data" id="ticket-form" (ngSubmit)="submitComment()">
+        <input type="hidden" name="ticketno" id="ticketno" value="70644">
+        <textarea formControlName='comment_body' class="uploadtxtarea" placeholder="Add your comment" name="ticket_awscomment" id="ticket_awscomment"></textarea>
+        <div *ngIf="comment.invalid && (comment.dirty || comment.touched)" class="alert alert-danger">
+
+            <small *ngIf="comment.errors.required">
+            please add a comment.
+            </small>
+      </div>
+        <div class="comment-attachments">
+            <div class="upload-dropzone">
+                <input matTooltip="feature  currently not available in help center" 
+                        matTooltipPosition="above" matTooltipClass="feature-unavailable" formControlName='ticket_attachment' type="file"
+                    name="files" id="files" multiple="" class="awsfileupload">
+                <span>
+                    <a>Add files here</a>
+                </span>
+            </div>
+            <div id="showfilename" style="padding-top: 10px;"></div>
+        </div>
+        <div>&nbsp;</div>
+        <div id="uploadbtn" style="text-align:right;">
+            <input name="editBtn" class="sublogbtn" [disabled] = "comment_form.invalid" id="editBtn" type="submit" value="Submit">
+        </div>
+        <div id="uploadawsmess" style="text-align:right;display:none;">
+            Adding the comment... please wait.
+        </div>
+    </form>
+</div>
