@@ -54,7 +54,7 @@ module.exports = {
 
     logout: (req, res) => {
         const {user} = req;
-        console.log(user);
+        // console.log(user);
         user.last_login_at = new Date().getTime();
        
         User.update(user, {where: { id: user.id}})
@@ -108,7 +108,7 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        console.log(req.body.user)
+        // console.log(req.body.user)
         const userObj = req.body.user;
         const updateData = {
             name: userObj.name,
@@ -179,7 +179,7 @@ module.exports = {
     },
 
     getOrganizations: (req, res) => {
-        console.log(req.user)
+        // console.log(req.user)
         const user_id = req.user.id
         UserOrganizations.findAll({where: {user_id : user_id}})
                          .then((data) => {
@@ -214,7 +214,7 @@ module.exports = {
 
     /**
      * Method gets user ids mapped for specific email ids
-     * Used IN: create ticket method
+     * Used IN: create ticket method (cc_email_ids field)
      */
     getIdforemail : (req, res, next) => {
         if(req.body.ticket_object.email_cc_ids.length > 0){
@@ -224,7 +224,7 @@ module.exports = {
                     if(data.length > 0){
                         
                         req.body.ticket_object.email_cc_ids =  data.map((value) => value.dataValues.id);
-                        console.log(req.body.ticket_object.email_cc_ids);
+                        // console.log(req.body.ticket_object.email_cc_ids);
                     }
                         next();
 
@@ -238,6 +238,32 @@ module.exports = {
         else{
             next();
         }
+    },
+
+    /**
+     * Method gets requester, assignee and submitter name and email for a perticular ticket
+     */
+    getTicketUserInfo: (req, res, next) => {
+        let ticket = req.ticket
+        User.findAll({attributes: ['id', 'name','email'], where: {id : [ticket.requester_id, ticket.assignee_id, ticket.submitter_id]}})
+            .then((data) => {
+                if(data.length > 0){
+                    ticket = preprocessor.updateRequesterAssigneeInfo(ticket, data);        // update ticket onject with user
+                    console.log(`Ticket requester: ${ticket.requester_name} \n assignee: ${ticket.assignee_name} \n submitter: ${ticket.submitter_name}`)
+                    console.log(ticket.dataValues)
+                    res.status(200).send(ticket)
+                }else {
+                    console.log(`No user data available for requester, submitter and assignee for ticket id = ${ticket.id}`);
+                    res.status(200).send({
+                        message: `No user data available for requester, submitter and assignee for ticket id = ${ticket.id}`
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+            })
     }
 
 }

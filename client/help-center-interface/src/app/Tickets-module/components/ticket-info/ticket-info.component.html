@@ -1,6 +1,6 @@
 <section class="side-column-new">
         <dl class="request-details">
-			<dt>{{ticket.requester_id}} submitted this request</dt>
+			<dt>{{ticket.requester_name}} submitted this request</dt>
 			
 
 			
@@ -8,7 +8,7 @@
 			<dt>Status</dt>
 			<dd>
 				<span class="request-status request-open" title="We are working on a response for you">
-				{{ticket.status}}
+				{{ticket.status | mapStatus}}
 				</span>
 			</dd>
 
@@ -17,14 +17,14 @@
 			
 			<dt>Priority</dt>
 			<dd>
-			  <span>{{ticket.priority}}</span>
+			  <span>{{ticket.priority | mapPriority}}</span>
 			</dd>
 			
 
           
             <dt>Assigned to</dt>
             <dd>
-              <span>{{ticket.assignee_id}}</span>
+              <span>{{ticket.assignee_name}}</span>
             </dd>
           
 

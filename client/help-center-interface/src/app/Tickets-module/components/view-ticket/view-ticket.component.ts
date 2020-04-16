@@ -28,8 +28,9 @@ export class ViewTicketComponent implements OnInit {
     )
   );
 
-    this.ticket$.subscribe((ticket) => {
-      this.ticket = ticket
+    this.ticket$.subscribe((data) => {
+      this.ticket = data
+      console.log(this.ticket.requester_name)
     },(error) => {
       console.log(error)
     })

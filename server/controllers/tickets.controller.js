@@ -40,8 +40,9 @@ module.exports = {
         Ticket.findAll({where: { id: id}})
         .then((data) => {
             if (data.length == 1) {
-                console.log(`fetched ${data[0].id} tickets`);
-                res.status(200).send(data[0]);
+                console.log(`fetched ticket with id = ${data[0].id}`);
+                req.ticket = data[0];
+                next();                
             } else {
                 console.log(`no ticket data available for ticket id = ${id}`);
                 res.status(404).send({

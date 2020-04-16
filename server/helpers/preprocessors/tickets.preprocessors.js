@@ -10,6 +10,7 @@ module.exports = {
             subject: ticket.subject,
             description: ticket.description,
             requester_id: ticket.requester_id,
+            submitter_id: ticket.requester_id,
             created_by: ticket.requester_id,
             updated_by: ticket.requester_id,
             product_id: ticket.product_id,

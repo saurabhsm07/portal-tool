@@ -30,8 +30,8 @@ module.exports = {
     verifyUserObj: (user) => {
         let validity = true;
         console.log("in user object validations");
-        console.log(user);
-        console.log(Object.keys(user))
+        // console.log(user);
+        // console.log(Object.keys(user))
         Object.keys(user).forEach(key => {
             if((user[key] == null) || (user[key] == '')){
                 validity = false;
@@ -40,6 +40,32 @@ module.exports = {
         });
         console.log(validity);
         return validity;
+    },
+
+    /**
+     * Method updates ticket object with requester and assignee information
+     */
+
+    updateRequesterAssigneeInfo: (ticket, user_info) => {
+        user_info.forEach((user) => {
+            if(user.id == ticket.requester_id){
+                ticket.dataValues.requester_name = user.name;
+                ticket.dataValues.requester_email = user.email;
+            }
+            if (user.id == ticket.assignee_id){
+                ticket.dataValues.assignee_name = user.name;
+                ticket.dataValues.assignee_email = user.email;
+            }
+            if (user.id == ticket.submitter_id){ // for submitter id 
+                ticket.dataValues.submitter_name = user.name;
+                ticket.dataValues.submitter_email = user.email;
+            }
+            // else{
+            //     console.log(`invalid user ID = ${user.id} for ticket = ${ticket.id}`)
+            // }
+        })
+
+        return ticket;
     }
 
 

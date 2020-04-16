@@ -19,12 +19,13 @@ router.route('/search').get(passport.authenticate('jwt', {session: false}), tick
 
 /**
  * Security: very high
- * GET: api path to get ticket by id and requester 
+ * GET: api path to get ticket data from the database by id 
  */
-router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), tickets.getById);
+router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), tickets.getById, users.getTicketUserInfo);
 
 /**
  * Security: very high
+ * POST: save 
  */
 router.route('/').post(passport.authenticate('jwt', {session: false}),users.getIdforemail, tickets.create);
 

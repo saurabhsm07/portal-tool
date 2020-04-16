@@ -6,8 +6,14 @@ export class Ticket{
     status?: string;
     recipient?: string;
     requester_id: number;
+    requester_name?: string;
+    requester_email?: string;
     submitter_id?: number;
+    submitter_name?: string;
+    submitter_email?: string;
     assignee_id?: number;
+    assignee_name?: string;
+    assignee_email?: string;
     organization_id: number;
     group_id?: number;
     collaborator_ids?: Text;

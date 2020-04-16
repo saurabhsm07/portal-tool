@@ -13,11 +13,13 @@ import { SearchTicketPipe } from './pipes/search-ticket/search-ticket.pipe';
 import { ViewTicketComponent } from './components/view-ticket/view-ticket.component';
 import { ListTicketCommentsComponent } from './components/list-ticket-comments/list-ticket-comments.component';
 import { TicketInfoComponent } from './components/ticket-info/ticket-info.component';
+import { MapStatusPipe } from './pipes/map-status/map-status.pipe';
+import { MapPriorityPipe } from './pipes/map-priority/map-priority.pipe';
 
 
 
 @NgModule({
-  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SearchTicketPipe, ViewTicketComponent, ListTicketCommentsComponent, TicketInfoComponent],
+  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SearchTicketPipe, ViewTicketComponent, ListTicketCommentsComponent, TicketInfoComponent, MapStatusPipe, MapPriorityPipe],
   imports: [
     CommonModule,
     RequestFormModule,
