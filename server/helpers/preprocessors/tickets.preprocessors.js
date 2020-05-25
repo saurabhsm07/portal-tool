@@ -39,7 +39,7 @@ module.exports = {
         let findQuery = {}
         findQuery.attributes = ['id', 'subject', 'created_at', 'updated_at', 'status'];
         findQuery.where = {};
-        console.log(query_object)
+        // console.log(query_object)
         switch(query_object.type){
             case 'requester':
                  findQuery.where = { requester_id: query_object.id};
@@ -64,18 +64,6 @@ module.exports = {
      */
 
      sendTicketList: (ticketList) => {
-         const ticket_status_values = {
-            1 :'New',
-            2 :'Open',
-            3 :'Pending',
-            4 :'On-hold',
-            5 :'Solved',
-            6 :'Closed',
-            7 :'Deleted' 
-         }
-        return ticketList.map((ticket) => {
-                ticket.status = ticket_status_values[ticket.status];
-                return ticket
-                })
-     }
+        return ticketList;            
+        }
 }

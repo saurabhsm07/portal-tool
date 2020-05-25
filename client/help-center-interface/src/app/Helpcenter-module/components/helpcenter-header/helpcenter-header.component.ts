@@ -107,8 +107,9 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
     }, (error) => {
       console.log(error);
       this.authService.removeAuthTokens;
+      // this.router.navigate(['/']);
       this.openLoginModal()
-      this.router.navigate(['/']);
+      
     })
   }
 
@@ -187,6 +188,8 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
         this.modalCancelBtn.nativeElement.click();
         this.checkIfLoggedIn();
         this.checkIfAgent();
+        this.router.navigate(['/']);
+   
 
       }, (error) => {
         console.log("in error")

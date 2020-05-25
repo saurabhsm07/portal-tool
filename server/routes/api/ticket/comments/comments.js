@@ -5,6 +5,7 @@ const passportConfig = require('./../../../../auth/passport.config');
 const authorize = require('./../../../../auth/autherize.controller');
 const comments = require('./../../../../controllers/ticket.comments.controller');
 const users = require('./../../../../controllers/users.controller.js');
+const ticket = require('./../../../../controllers/tickets.controller');
 /**
  * GET: api path to get list of ticket comments from the database.
  */
@@ -18,6 +19,6 @@ router.route('/id/:id').get(passport.authenticate('jwt', {session: false}), comm
 /**
  * POST: api path to create a ticket field record to the database.
  */
-router.route('/').post(passport.authenticate('jwt', {session: false}), comments.create);
+router.route('/').post(passport.authenticate('jwt', {session: false}), comments.create, ticket.getById, ticket.update);
 
 module.exports = router // exporting ticket comments api module

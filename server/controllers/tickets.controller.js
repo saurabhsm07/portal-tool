@@ -89,8 +89,25 @@ module.exports = {
     /**
      * update: update ticket update time
      */
-    update: () => {
+    update: (req, res, next) => {
+        let ticket = req.ticket;
+        ticket.dataValues.updated_at = new Date(Date.now());  
+        Ticket.update(ticket.dataValues, {where: {id: ticket.id}})
+              .then((data) => {
+             
+                  if(data == 1){
+                     res.status(200).send(req.resp);
+                  }
+                  else{
+                      res.status(404).send('failure');
+                  }
 
+              })
+              .catch((err)=>{
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+          })
     }
 
 }

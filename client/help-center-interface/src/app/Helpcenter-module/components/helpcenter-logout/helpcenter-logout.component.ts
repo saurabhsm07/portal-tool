@@ -10,6 +10,7 @@ export class HelpcenterLogoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("log out component");
   }
 
 }

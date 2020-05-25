@@ -55,11 +55,11 @@ module.exports = {
     logout: (req, res) => {
         const {user} = req;
         // console.log(user);
-        user.last_login_at = new Date().getTime();
+        user.dataValues.last_login_at = new Date(Date.now());
        
-        User.update(user, {where: { id: user.id}})
+        User.update(user.dataValues, {where: { id: user.id}})
             .then((data) =>{
-                if(data.length == 1){
+                if(data == 1){
                     res.status(200).send({logoutStatus: true});
                 }
             })
@@ -271,7 +271,7 @@ module.exports = {
      */
     getCommentUserInfo: (req, res, next) => {
         let comments = req.comments;
-        console.log(comments);
+        
         let authorIds = [... new Set(comments.map((comment) => { return comment.author_id}))];
         User.findAll({attributes: ['id', 'name', 'email'], where: {id : [authorIds]}})
             .then((users) => {
@@ -279,7 +279,7 @@ module.exports = {
                     comment.dataValues.author_name = users.filter(user => user.id == comment.author_id)[0].name;
                     return comment;
                 })
-                console.log(comments[0]);
+         
                 res.status(200).send(comments);
 
             })
