@@ -249,8 +249,8 @@ module.exports = {
             .then((data) => {
                 if(data.length > 0){
                     ticket = preprocessor.updateRequesterAssigneeInfo(ticket, data);        // update ticket onject with user
-                    console.log(`Ticket requester: ${ticket.requester_name} \n assignee: ${ticket.assignee_name} \n submitter: ${ticket.submitter_name}`)
-                    console.log(ticket.dataValues)
+                    // console.log(`Ticket requester: ${ticket.requester_name} \n assignee: ${ticket.assignee_name} \n submitter: ${ticket.submitter_name}`)
+                    // console.log(ticket.dataValues)
                     res.status(200).send(ticket)
                 }else {
                     console.log(`No user data available for requester, submitter and assignee for ticket id = ${ticket.id}`);
@@ -264,6 +264,29 @@ module.exports = {
                 console.log(err.stack);
                 res.status(500).send(err);
             })
-    }
+    },
 
+    /**
+     * Method names, * of people commenting on perticular ticket
+     */
+    getCommentUserInfo: (req, res, next) => {
+        let comments = req.comments;
+        console.log(comments);
+        let authorIds = [... new Set(comments.map((comment) => { return comment.author_id}))];
+        User.findAll({attributes: ['id', 'name', 'email'], where: {id : [authorIds]}})
+            .then((users) => {
+                comments = comments.map((comment) => {
+                    comment.dataValues.author_name = users.filter(user => user.id == comment.author_id)[0].name;
+                    return comment;
+                })
+                console.log(comments[0]);
+                res.status(200).send(comments);
+
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+            })
+    }
 }

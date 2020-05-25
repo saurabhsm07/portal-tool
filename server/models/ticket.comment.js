@@ -1,7 +1,7 @@
 const client = require('./../config/connections').client;
 const Sequelize = require('Sequelize');
 
-const Ticket_comment = client.define('Ticket_comments', {
+const Ticket_comment = client.define('ticket_comments', {
                                             id: {
                                                 type : Sequelize.BIGINT,
                                                 primaryKey: true,

@@ -8,11 +8,12 @@ module.exports = {
     getAll: (req, res, next) => {
         const ticket_id = req.params.ticket_id;
         
-        Comment.findAll({where: {ticket_id: ticket_id}})
+        Comment.findAll({where: {ticket_id: ticket_id, public: true}})
                .then((data) => {
                     if(data.length > 0){
                         console.log(`${data.length} comments fetched`);
-                        res.status(200).send(data);
+                        req.comments = data;
+                        next();
                     }
                     else{
                         console.log(`comments for ticket id : ${ticket_id} do not exist`);
@@ -56,6 +57,7 @@ module.exports = {
      */
     create: (req, res, next) =>{
         const comment_object = req.body.comment;
+        console.log(comment_object);
         Comment.create(comment_object)
         .then((resp) => {
              console.log(resp);

@@ -7,6 +7,7 @@ export class Comment {
     html_body?: string;
     plain_body?: string;
     author_id?: number;
+    author_name?: string;
     audit_id?: number;
     via?: string;
     attachments?: string;

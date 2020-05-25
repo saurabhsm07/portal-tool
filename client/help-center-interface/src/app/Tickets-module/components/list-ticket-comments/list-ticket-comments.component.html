@@ -8,8 +8,8 @@
         </div>
     </div>    
     <div class="comment-container">
-        <span class="comment-author">{{comment.author_id}}</span>
-        <span class="comment-published"><time dateTime="{{comment.created_at}}" title="{{comment.created_at}}" data-datetime="calendar">{{comment.created_at}}</time></span>
+        <span class="comment-author">{{comment.author_name}}</span>
+        <span class="comment-published"><time dateTime="{{comment.created_at}}" title="{{comment.created_at}}" data-datetime="calendar">{{comment.created_at | date: 'mediumDate'}}</time></span>
     </div>
     <div class="reqtBord">&nbsp;</div>
     <div class="comment-body"><div class="zd-comment" dir="auto"><p dir="auto">{{comment.body}}</p></div></div>

@@ -4,10 +4,11 @@ const passport = require('passport');
 const passportConfig = require('./../../../../auth/passport.config');
 const authorize = require('./../../../../auth/autherize.controller');
 const comments = require('./../../../../controllers/ticket.comments.controller');
+const users = require('./../../../../controllers/users.controller.js');
 /**
  * GET: api path to get list of ticket comments from the database.
  */
-router.route('/ticketid/:ticket_id').get(passport.authenticate('jwt', {session: false}), comments.getAll);
+router.route('/ticketid/:ticket_id').get(passport.authenticate('jwt', {session: false}), comments.getAll, users.getCommentUserInfo);
 
 /**
  * GET: api path to get ticket comment record with id.
