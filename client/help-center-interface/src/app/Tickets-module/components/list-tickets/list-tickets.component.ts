@@ -17,6 +17,7 @@ export class ListTicketsComponent implements OnInit {
 
   tickets: Ticket[];   // List of Ticket objects
   public searchString = ''; //string used to filter TicketList on ticket name
+  public requestStatus = 'any' //filter used to filter TicketLIst on ticket status
 
   dataSource = new MatTableDataSource<Ticket>(); // datasource of type 'Ticket' for mat-table 
   displayedColumns: string[];     // saves column names of the segment table
@@ -82,5 +83,7 @@ export class ListTicketsComponent implements OnInit {
     })
   }
 
-
+  public logStatus(){
+    console.log(this.requestStatus)
+  }
 }

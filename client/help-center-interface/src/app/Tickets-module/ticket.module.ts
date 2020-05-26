@@ -15,11 +15,12 @@ import { ListTicketCommentsComponent } from './components/list-ticket-comments/l
 import { TicketInfoComponent } from './components/ticket-info/ticket-info.component';
 import { MapStatusPipe } from './pipes/map-status/map-status.pipe';
 import { MapPriorityPipe } from './pipes/map-priority/map-priority.pipe';
+import { FilterStatusPipe } from './pipes/filter-status/filter-status.pipe';
 
 
 
 @NgModule({
-  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SearchTicketPipe, ViewTicketComponent, ListTicketCommentsComponent, TicketInfoComponent, MapStatusPipe, MapPriorityPipe],
+  declarations: [CreateTicketComponent, ListTicketsComponent, AddCommentComponent, TicketRequestHeaderComponent, SearchTicketPipe, ViewTicketComponent, ListTicketCommentsComponent, TicketInfoComponent, MapStatusPipe, MapPriorityPipe, FilterStatusPipe],
   imports: [
     CommonModule,
     RequestFormModule,

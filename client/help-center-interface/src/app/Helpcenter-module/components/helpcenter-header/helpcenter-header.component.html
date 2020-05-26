@@ -562,13 +562,16 @@
 <!-- LOGIN/REGISTER POPUP ENDS HERE -->
 
 <!-- select form modal -->
-<div id="subrequestModal" aria-hidden="true" class="modal fade" role="dialog" style="opacity: 1; display: none;">
+<div id="subrequestModal" aria-hidden="true" class="modal fade" role="dialog" tabindex="-1">
 	<div class="vertical-alignment-helper">
 	  <div class="modal-dialog modal-dialog-width55per vertical-align-center">
 		<!-- Modal content-->
 		<div class="modal-content modal-reqcontent-bg">
 		  <div class="modal-header modal-header-bord">
-			<button type="button" class="closesubreq" data-dismiss="modal">×</button>
+			  <div class="col">
+					<button type="button" class="closesubreq" data-dismiss="modal">×</button>
+			  </div>
+			
 		  </div>
 		  <div class="modal-body modal-body-pad">
 			<h1 class="subreqHd">

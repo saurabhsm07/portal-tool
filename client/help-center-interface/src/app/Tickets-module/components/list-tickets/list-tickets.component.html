@@ -33,11 +33,12 @@
 				  
 				  
 				  <label class="request-filter" for="request-status-select">Status:</label>
-				  <select name="status" id="request-status-select" class="request-filter" aria-required="false"><option value="">Any</option>
-<option value="open">Open</option>
-<option value="answered">Awaiting your reply</option>
-<option value="solved">Solved</option></select>
-				</div>
+				  <select [(ngModel)] = "requestStatus" name="status" id="request-status-select" class="request-filter" aria-required="false" (change)="logStatus()">
+					<option value="any">Any</option>
+					<option value="open">Open</option>
+					<option value="answered">Awaiting your reply</option>
+					<option value="solved">Solved</option></select>
+					</div>
 				<!-- <div class="my-activities-table request-table">
 					<div class="cboth">&nbsp;</div>
 					
@@ -82,7 +83,7 @@
 						</table>
                 </div> -->
                 
-                <div *ngIf="dataSource | searchTicket:searchString : tickets" class="tickets-body-div col-md-12">
+                <div *ngIf="dataSource | searchTicket:searchString : tickets: requestStatus" class="tickets-body-div col-md-12">
                     <!--- Note that these columns can be defined in any order.
                           The actual rendered columns are set as a property on the row definition" -->
                   
