@@ -15,11 +15,11 @@ export class TicketService {
    * List of primary CRUD APIs for Category data
    */
   public requestUri = {
-    getTickets: 'http://localhost:5000/api/tickets/search?',
-    getTicketById: 'http://localhost:5000/api/tickets/id/',
-    createTicket: 'http://localhost:5000/api/tickets/',
-    createComment: 'http://localhost:5000/api/tickets/comments/',
-    listComments: 'http://localhost:5000/api/tickets/comments/ticketid/',
+    getTickets: 'api/tickets/search?',
+    getTicketById: 'api/tickets/id/',
+    createTicket: 'api/tickets/',
+    createComment: 'api/tickets/comments/',
+    listComments: 'api/tickets/comments/ticketid/',
   };
 
 

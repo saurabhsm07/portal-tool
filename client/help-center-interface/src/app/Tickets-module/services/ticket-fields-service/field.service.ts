@@ -13,10 +13,10 @@ export class FieldService {
    * List of primary CRUD APIs for ticket fields data
    */
   public requestUri = {
-    getFieldList: 'http://localhost:5000/api/tickets/fields?ids=',
-    getFieldById: 'http://localhost:5000/api/tickets/fields/id/',
-    // updateCategory: 'http://localhost:5000/api/categories/',
-    // deleteCategory: 'http://localhost:5000/api/categories/',
+    getFieldList: 'api/tickets/fields?ids=',
+    getFieldById: 'api/tickets/fields/id/',
+    // updateCategory: 'api/categories/',
+    // deleteCategory: 'api/categories/',
   };
 
 

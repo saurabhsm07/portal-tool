@@ -11,10 +11,10 @@ export class FormService {
    * List of primary CRUD APIs for Category data
    */
   private requestUri = {
-    getFormList: 'http://localhost:5000/api/tickets/forms',
-    getFormById: 'http://localhost:5000/api/tickets/forms/id/',
-    // updateCategory: 'http://localhost:5000/api/categories/',
-    // deleteCategory: 'http://localhost:5000/api/categories/',
+    getFormList: 'api/tickets/forms',
+    getFormById: 'api/tickets/forms/id/',
+    // updateCategory: 'api/categories/',
+    // deleteCategory: 'api/categories/',
   };
 
   private headersOptions = {

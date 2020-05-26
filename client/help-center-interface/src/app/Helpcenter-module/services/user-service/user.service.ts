@@ -19,8 +19,8 @@ private requestUri = {
   updateUser: 'api/users/',
   signoutUser: 'api/users/signout',
   deleteUser: 'api/users/',
-  getUserOrgs: 'http://localhost:5000/api/users/organizations',
-  getOrgsProducts: 'http://localhost:5000/api/users/products/organizationids/'
+  getUserOrgs: 'api/users/organizations',
+  getOrgsProducts: 'api/users/products/organizationids/'
 };
 
 private headersOptions = {

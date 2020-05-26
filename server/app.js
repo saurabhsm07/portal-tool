@@ -40,15 +40,16 @@ app.use('/api/tags/', tags) // routes for tagss APIs
 /**
  * Un comment below code when UI is deployed
  */
-// //static files
-// app.use(express.static(path.join(__dirname,"public/help-center-app")));
+ 
+ //static files
+app.use(express.static(path.join(__dirname,"public/help-center-app")));
 
 
-// //get home path -  rendered
-// app.get('/*', (req, res) =>{
-//     // client.connect()
-//     res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
-// })
+//get home path -  rendered
+app.get('/*', (req, res) =>{
+    // client.connect()
+    res.sendFile(path.join(__dirname, 'public/help-center-app/index.html'));
+})
 
 app.listen(PORT, () => {console.log('Server Started on port :'+PORT) })
 
