@@ -10,6 +10,7 @@ import { HelpcenterHeaderComponent } from './components/helpcenter-header/helpce
 import { ComponentNotFoundComponent } from './components/component-not-found/component-not-found.component';
 import { HelpcenterLogoutComponent } from './components/helpcenter-logout/helpcenter-logout.component';
 import { HelpcenterBannerComponent } from './components/helpcenter-banner/helpcenter-banner.component';
+import { HelpcenterSearchComponent } from './components/helpcenter-search/helpcenter-search.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { HelpcenterBannerComponent } from './components/helpcenter-banner/helpce
                  HelpcenterHeaderComponent, 
                  ComponentNotFoundComponent, 
                  HelpcenterLogoutComponent, 
-                 HelpcenterBannerComponent],
+                 HelpcenterBannerComponent, HelpcenterSearchComponent],
                  
   exports: [HelpcenterFooterComponent, HelpcenterHeaderComponent],
   imports: [

@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  serverDomain = 'http://localhost:5000/' //base url of the serrer
+  
   private requestUri = {
-    loginUser: 'api/users/login',
-    logoutUser: 'api/users/logout',
-    registerUser: 'api/users/',
-    authorizedAdmin: 'api/users/auth/admin',
-    authorizedAgent: 'api/users/auth/agent',
-    authorizedCustom: 'api/users/auth/custom',
-    validateToken: 'api/users/token/valid',
+    loginUser: this.serverDomain + 'api/users/login',
+    logoutUser: this.serverDomain + 'api/users/logout',
+    registerUser: this.serverDomain + 'api/users/',
+    authorizedAdmin: this.serverDomain + 'api/users/auth/admin',
+    authorizedAgent: this.serverDomain + 'api/users/auth/agent',
+    authorizedCustom: this.serverDomain + 'api/users/auth/custom',
+    validateToken: this.serverDomain + 'api/users/token/valid',
   };
   private headersOptions = {
     headers: new HttpHeaders({

@@ -1,5 +1,7 @@
 const Article = require("./../models/article");
 const preprocessors = require('./../helpers/preprocessors/articles.preprocessors');
+const { Op } = require("sequelize");
+const sequelize = require('sequelize');
 const client = require("./../config/connections").client;
 
 module.exports = {
@@ -104,6 +106,41 @@ module.exports = {
                 console.log("ERROR :");
                 console.log(err.stack);
                 res.status(500).send(err);
+            })
+    },
+
+    /**
+     * GET: articles with string in title
+     */
+    getArticleWithTitle: (req, res, next) => {
+        const searchString = req.query.query;
+        console.log(searchString)
+        console.log(req.query);
+        Article.findAll({where: {
+            [Op.and]:{
+                title: {
+                    [Op.substring]: searchString
+                },
+                draft:{
+                    [Op.substring]: '"status":"true"'
+                }
+            }            
+            }})
+               .then((articles) => {
+                   if(articles.length > 0){
+                       console.log(articles[0])
+                    console.log(`fetched ${articles.length} articles from db `);
+                    res.status(200).send(articles);
+                   }else{
+                       console.log(`no articles exist with string in title: ${searchString}`);
+                       res.status(404).send({message: `no articles exist with string in title: ${searchString}`});
+                   }
+                    
+               })
+               .catch((err) => {
+                    console.log("ERROR :");
+                    console.log(err.stack);
+                    res.status(500).send(err);
             })
     },
 

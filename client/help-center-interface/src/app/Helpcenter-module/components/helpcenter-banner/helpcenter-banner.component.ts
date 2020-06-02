@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-helpcenter-banner',
@@ -8,16 +9,23 @@ import { FormBuilder } from '@angular/forms';
 })
 export class HelpcenterBannerComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   @Input() currentPage: string;
 
-  search_hc_form = this.fb.group({
+  public search_hc_form = this.fb.group({
     search: ['']
   })
+  
+  get searchString() { return this.search_hc_form.get('search').value}
   ngOnInit() {
     console.log(this.currentPage);
     
+  }
+
+  public onSubmit(){
+    // console.log(this.searchString)
+    this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString}})
   }
 
 }

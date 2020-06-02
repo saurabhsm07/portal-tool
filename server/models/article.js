@@ -35,7 +35,7 @@ const Article = client.define('Articles', {
                                                 type: Sequelize.JSON
                                             },
                                             draft: {
-                                                type: Sequelize.JSON
+                                                type: Sequelize.TEXT,
                                             },
                                             promoted: {
                                                 type: Sequelize.BOOLEAN

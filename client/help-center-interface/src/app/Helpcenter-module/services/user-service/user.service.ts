@@ -10,17 +10,20 @@ import { Organization_Products } from '../../classes/organization_products';
 })
 export class UserService {
 
+
+  serverDomain = 'http://localhost:5000/' //base url of the serrer
+
   /**
    * List of primary CRUD APIs for User data
    */
 private requestUri = {
-  createUser: 'api/users',
-  getUserById: 'api/users/id/',
-  updateUser: 'api/users/',
-  signoutUser: 'api/users/signout',
-  deleteUser: 'api/users/',
-  getUserOrgs: 'api/users/organizations',
-  getOrgsProducts: 'api/users/products/organizationids/'
+  createUser: this.serverDomain + 'api/users',
+  getUserById: this.serverDomain + 'api/users/id/',
+  updateUser: this.serverDomain + 'api/users/',
+  signoutUser: this.serverDomain + 'api/users/signout',
+  deleteUser: this.serverDomain + 'api/users/',
+  getUserOrgs: this.serverDomain + 'api/users/organizations',
+  getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
 };
 
 private headersOptions = {

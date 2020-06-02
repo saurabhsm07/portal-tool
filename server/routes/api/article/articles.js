@@ -34,6 +34,11 @@ router.route('/section/id/:id').get(passport.authenticate('jwt', {session: false
 router.route('/max/id').get(passport.authenticate('jwt', {session: false}), articles.getLatestId);
 
 /**
+ * GET: api path to get latest articles filtered by title.
+ */
+router.route('/search').get(passport.authenticate('jwt', {session: false}), articles.getArticleWithTitle);
+
+/**
  * POST: api path to create a article record to the database.
  */
 router.route('/').post(passport.authenticate('jwt', {session: false}), authorize.isAgent, articles.create);
