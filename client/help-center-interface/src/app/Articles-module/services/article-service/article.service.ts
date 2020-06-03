@@ -107,6 +107,7 @@ export class ArticleService {
    * @returns articles: list of article objects that match the specified input string in subject 
    */
   searchArticlesByText(searchString: string) : Observable<Article[]> {
+    console.log(searchString)
     return this.http.get<Article[]>(this.requestUri.getArticleBySearchText + searchString, this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
   }

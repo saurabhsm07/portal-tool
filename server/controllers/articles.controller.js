@@ -36,7 +36,8 @@ module.exports = {
  */
     getBySection: (req, res, next) => {
         const sectionId = req.params.id;
-        Article.findAll({ where: { section: { id: sectionId } } })
+        Article.findAll({attributes: ['id', 'title', 'created_at', 'section', 'author']},
+                        { where: { section: { id: sectionId } } })
             .then((data) => {
                 if (data.length > 0) {
                     console.log(`fetched Articles with section id : ${sectionId}`);
@@ -115,22 +116,24 @@ module.exports = {
     getArticleWithTitle: (req, res, next) => {
         const searchString = req.query.query;
         console.log(searchString)
-        console.log(req.query);
-        Article.findAll({where: {
-            [Op.and]:{
-                title: {
-                    [Op.substring]: searchString
-                },
-                draft:{
-                    [Op.substring]: '"status":"true"'
-                }
-            }            
-            }})
+        // console.log(req.query);
+        Article.findAll({attributes: ['id', 'title', 'created_at', 'section', 'author'],
+                        where: {
+                            [Op.and]:{
+                                title: {
+                                    [Op.substring]: searchString
+                                },
+                                draft:{
+                                    [Op.substring]: '"status":"true"'
+                                }
+                            }            
+                            }})
                .then((articles) => {
                    if(articles.length > 0){
                        console.log(articles[0])
                     console.log(`fetched ${articles.length} articles from db `);
-                    res.status(200).send(articles);
+                    
+                    res.status(200).send(preprocessors.processArticlesList(articles));
                    }else{
                        console.log(`no articles exist with string in title: ${searchString}`);
                        res.status(404).send({message: `no articles exist with string in title: ${searchString}`});

@@ -96,19 +96,21 @@ preprocessors.updateArticleObj = (article) => {
  */
 preprocessors.processArticlesList = (articles) => {
     articles.map((article) => {
-        article.author = JSON.parse(article.author);
-        if(article.review_state != null){
-            article.review_state = JSON.parse(article.review_state);
-        }
-        if(article.label_names != ''){
-            article.label_names = JSON.parse(article.label_names);
-        }
+        const article_json_fields = ['author', 'review_state', 'draft', 'section', 'label_names'];
     
-        if(article.article_form_id != 0){
-            article.body = JSON.parse(article.body);
+        for(let i=0; i<article_json_fields.length; i++){
+            try{
+                if(article[article_json_fields[i]] != undefined)
+                if((article[article_json_fields[i]] != null)|| (article[article_json_fields[i]] != '')){
+                    article[article_json_fields[i]] = JSON.parse(article[article_json_fields[i]]);
+                }
+
+            }
+            catch(error){
+                console.log(error);
+            }
+          
         }
-        article.draft = JSON.parse(article.draft);
-        article.section = JSON.parse(article.section);
        
     })
 

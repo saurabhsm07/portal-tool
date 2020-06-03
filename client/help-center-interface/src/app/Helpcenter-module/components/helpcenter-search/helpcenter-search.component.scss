@@ -12,3 +12,10 @@ form{
 .search-header-div {
     padding-top: 140px;
 }
+
+.search-results-list{
+    li{
+        // margin-left: 10px;
+        display: inline-block;
+    }
+}

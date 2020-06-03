@@ -24,6 +24,8 @@ export class HelpcenterSearchComponent implements OnInit {
   public search_hc_form = this.fb.group({
     searchString : []
   })
+
+  get searchString(){ return this.search_hc_form.get('searchString')}
   ngOnInit() {
 
     this.articles$ = this.route.queryParamMap.pipe(
@@ -31,9 +33,12 @@ export class HelpcenterSearchComponent implements OnInit {
         this.articleService.searchArticlesByText(params.get('query')))
     );
 
+    this.searchString.setValue(this.route.snapshot.queryParamMap.get('query'))
+    
     this.articles$.subscribe((articles) => {
                               this.articles = articles;
-                              console.log(articles)                          
+                              console.log(articles)
+                                                        
                             },
                               (error) => {
                                 console.log(error);
