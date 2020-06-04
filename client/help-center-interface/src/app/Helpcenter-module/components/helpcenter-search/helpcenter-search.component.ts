@@ -15,11 +15,14 @@ import { ArticleService } from './../../../Articles-module/services/article-serv
 })
 export class HelpcenterSearchComponent implements OnInit {
 
-  articles$: Observable<Article[]>;   //observable of type articles to be mapped to search articles API on string from RoutePath
+  searchResults: Observable<{articles: Article[],count: number}>;   //observable of type articles to be mapped to search articles API on string from RoutePath
   articles : Article [];
+  articleCount: number;           //count of articles for this search
+  articleSet : number;
   constructor(private fb: FormBuilder,
             private articleService: ArticleService,
-            private route: ActivatedRoute) { }
+            private route: ActivatedRoute,
+            private router: Router) { }
 
   public search_hc_form = this.fb.group({
     searchString : []
@@ -28,16 +31,18 @@ export class HelpcenterSearchComponent implements OnInit {
   get searchString(){ return this.search_hc_form.get('searchString')}
   ngOnInit() {
 
-    this.articles$ = this.route.queryParamMap.pipe(
+    this.searchResults = this.route.queryParamMap.pipe(
       switchMap((params: ParamMap) =>
-        this.articleService.searchArticlesByText(params.get('query')))
+        this.articleService.searchArticlesByText(params.get('query'), params.get('offset')
+      ))
     );
 
-    this.searchString.setValue(this.route.snapshot.queryParamMap.get('query'))
-    
-    this.articles$.subscribe((articles) => {
-                              this.articles = articles;
-                              console.log(articles)
+    this.searchString.setValue(this.route.snapshot.queryParamMap.get('query'));
+    this.articleSet = parseInt(this.route.snapshot.queryParamMap.get('offset'));
+    this.searchResults.subscribe((results) => {
+                              
+                              this.articles = results.articles;
+                              this.articleCount = results.count
                                                         
                             },
                               (error) => {
@@ -46,4 +51,16 @@ export class HelpcenterSearchComponent implements OnInit {
     
   }
 
+
+
+  ifNextSetExists(count){
+    if((count+this.articleSet)*10 < this.articleCount)
+      return true;
+    else
+      return false
+  }
+
+  fetchNextSet(count){
+    this.router.navigate([], {queryParams: {query: this.searchString.value, offset: this.articleSet+ count}})
+  }
 }

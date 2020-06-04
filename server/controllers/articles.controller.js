@@ -114,26 +114,30 @@ module.exports = {
      * GET: articles with string in title
      */
     getArticleWithTitle: (req, res, next) => {
+        console.log(req.query)
         const searchString = req.query.query;
-        console.log(searchString)
-        // console.log(req.query);
-        Article.findAll({attributes: ['id', 'title', 'created_at', 'section', 'author'],
+        const offset = 10 * parseInt(req.query.set);
+        
+        Article.findAndCountAll({attributes: ['id', 'title', 'created_at', 'section', 'author'],
                         where: {
                             [Op.and]:{
                                 title: {
                                     [Op.substring]: searchString
                                 },
                                 draft:{
-                                    [Op.substring]: '"status":"true"'
+                                    [Op.substring]: '"status":"false"'
                                 }
                             }            
-                            }})
-               .then((articles) => {
-                   if(articles.length > 0){
-                       console.log(articles[0])
-                    console.log(`fetched ${articles.length} articles from db `);
+                            },
+                            order: [['created_at', 'ASC']],
+                            offset: offset,
+                            limit: 10})
+               .then((results) => {
+                   if(results.rows.length > 0){
+                       
+                    console.log(`fetched ${results.rows.length} articles from db `);
                     
-                    res.status(200).send(preprocessors.processArticlesList(articles));
+                    res.status(200).send({articles: preprocessors.processArticlesList(results.rows), count: results.count });
                    }else{
                        console.log(`no articles exist with string in title: ${searchString}`);
                        res.status(404).send({message: `no articles exist with string in title: ${searchString}`});

@@ -106,9 +106,8 @@ export class ArticleService {
    * @param searchString: string to be searched accross article subjects
    * @returns articles: list of article objects that match the specified input string in subject 
    */
-  searchArticlesByText(searchString: string) : Observable<Article[]> {
-    console.log(searchString)
-    return this.http.get<Article[]>(this.requestUri.getArticleBySearchText + searchString, this.headersOptions)
+  searchArticlesByText(searchString: string, set: string) : Observable<{articles: Article[], count: number}> {
+    return this.http.get<{articles: Article[], count: number}>(this.requestUri.getArticleBySearchText + searchString +'&'+'set='+set , this.headersOptions)
                .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
   }
 

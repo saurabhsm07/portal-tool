@@ -25,7 +25,7 @@ export class HelpcenterBannerComponent implements OnInit {
 
   public onSubmit(){
     // console.log(this.searchString)
-    this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString}})
+    this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString, offset: 0}})
   }
 
 }

@@ -19,15 +19,15 @@
   </div>
 </header>
 
-<div class=" wow fadeInRight animated animated" id="mainaccelritediv">
+<div  *ngIf='articles' class=" wow fadeInRight animated animated" id="mainaccelritediv">
   <div class="search-results">
-    <!-- <h1 class="searchresul-count">1164 results for {{}}</h1> -->
+    <h1 class="searchresul-count">{{articleCount}} results for '{{searchString.value}}'</h1>
     <section class="search-results-column">
       <h2 class="search-results-subheading">
         Knowledge base
       </h2>
 
-      <ul *ngIf='articles' class="search-results-list col-md-12">
+      <ul class="search-results-list col-md-12">
 
         <ng-container *ngFor='let article of articles'>
           <li class="search-result col-md-6">
@@ -53,7 +53,7 @@
 
     </section>
 
-    <!-- <nav class="pagination">
+    <nav class="pagination">
 <ul>
 
 
@@ -64,34 +64,13 @@
 </li>
 
 
+<ng-container *ngFor="let count of [2,3,4,5]">
+  <li *ngIf="ifNextSetExists(count)">
+    <a [routerLink]="" (click)="fetchNextSet(count)" rel="next">{{articleSet + count}}</a>
+  </li>
+  
+</ng-container>
 
-<li>
-  <a href="/hc/en-us/search?page=2&amp;query=radia#results" rel="next">2</a>
-</li>
-
-
-
-<li>
-  <a href="/hc/en-us/search?page=3&amp;query=radia#results">3</a>
-</li>
-
-
-
-<li>
-  <a href="/hc/en-us/search?page=4&amp;query=radia#results">4</a>
-</li>
-
-
-
-<li>
-  <a href="/hc/en-us/search?page=5&amp;query=radia#results">5</a>
-</li>
-
-
-
-<li>
-  <a href="/hc/en-us/search?page=6&amp;query=radia#results">6</a>
-</li>
 
 
 
@@ -105,7 +84,7 @@
 </li>
 
 </ul>
-</nav> -->
+</nav>
 
   </div>
 </div>
