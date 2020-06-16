@@ -56,17 +56,25 @@
     <nav class="pagination">
 <ul>
 
+  <li class="pagination-last">
+    <a [routerLink] = "" (click)="prevPageIndexes(5)">‹‹</a>
+    </li>
+
+  <li class="pagination-next">
+    <a [routerLink]="" (click)="prevPageIndexes(1)" rel="prev">‹</a>
+    </li>
+    
 
 
 
-<li class="pagination-current">
+<!-- <li class="pagination-current">
   <span>1</span>
-</li>
+</li> -->
 
 
-<ng-container *ngFor="let count of [2,3,4,5]">
+<ng-container *ngFor="let count of pageIndexes">
   <li *ngIf="ifNextSetExists(count)">
-    <a [routerLink]="" (click)="fetchNextSet(count)" rel="next">{{articleSet + count}}</a>
+    <a [routerLink]="" (click)="fetchNextSet(count)" rel="next">{{count}}</a>
   </li>
   
 </ng-container>
@@ -76,11 +84,11 @@
 
 
 <li class="pagination-next">
-<a href="/hc/en-us/search?page=2&amp;query=radia#results" rel="next">›</a>
+<a [routerLink]="" (click)="nextPageIndexes(1)" rel="next">›</a>
 </li>
 
 <li class="pagination-last">
-<a href="/hc/en-us/search?page=100&amp;query=radia#results">»</a>
+<a [routerLink] = "" (click)="nextPageIndexes(5)">»</a>
 </li>
 
 </ul>
