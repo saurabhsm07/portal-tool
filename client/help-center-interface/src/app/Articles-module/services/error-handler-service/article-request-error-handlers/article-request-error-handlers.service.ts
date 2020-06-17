@@ -70,17 +70,29 @@ export class ArticleRequestErrorHandlersService {
       // A client-side or network error occurred.
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend error
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
+        // The backend error
+        if(error.status == 404){
+          console.log(error);
+          const errObj = {
+            code: error.status,
+            message: 'noarticle',
 
-    const errObj = {
-      code: 500,
-      msg: 'error listing articles'
-     };
-    return throwError(errObj);
+           };
+          return throwError(errObj);
+        }
+        else{
+  
+          console.error(
+            `Backend returned code ${error.status}, ` +
+            `body was: ${error.error}`);
+  
+            const errObj = {
+              code: error.status,
+              msg: error.error
+             };
+            return throwError(errObj);          
+        }
+      }
   }
 
   public static putArticleError(error: HttpErrorResponse){

@@ -1,16 +1,18 @@
 <header>
   <app-helpcenter-header></app-helpcenter-header>
+
+
   <div class="main-search-div">
     <div class="downbanbg">
+        <div class="height50"></div>
       <div class="row unqipad">
         <div class="  search-header-div col-md-12">
           <div class="col-md-9 col-xs-13">
-            <div class="height50"></div>
             <div class="hlputextleft">Search Results</div>
             <div class="hgt20">&nbsp;</div>
-            <form [formGroup]="search_hc_form">
+            <form [formGroup]="search_hc_form" (ngSubmit)='searchText()'>
               <img class="searchhmicon hmsrchicon" src="assets/images/searchicon.png" />
-              <input type="text" class="hmsearchbox" name="query" placeholder="Search" />
+              <input formControlName = 'searchString'  type="text" class="hmsearchbox" name="query" placeholder="Search" />
             </form>
           </div>
         </div>
@@ -19,9 +21,9 @@
   </div>
 </header>
 
-<div  *ngIf='articles' class=" wow fadeInRight animated animated" id="mainaccelritediv">
+<div  *ngIf='articles; else noArticles' class=" wow fadeInRight animated animated" id="mainaccelritediv">
   <div class="search-results">
-    <h1 class="searchresul-count">{{articleCount}} results for '{{searchString.value}}'</h1>
+    <h1 class="searchresul-count">{{articleCount}} results for '{{currentSearchString}}'</h1>
     <section class="search-results-column">
       <h2 class="search-results-subheading">
         Knowledge base
@@ -31,19 +33,19 @@
 
         <ng-container *ngFor='let article of articles'>
           <li class="search-result col-md-6">
-            <a href={{article.url}} class="search-result-link">{{article.title}}</a>
+            <a [routerLink]=article.url class="search-result-link">{{article.title}}</a>
 
             <!-- <span class="search-result-votes">3</span> -->
 
             <div class="search-result-meta">
               by {{article.author.name}}
-              <span >{{article.created_at | date}}</span>
+             <span class="search-result-meta-time">{{article.created_at | date}}</span>
               in
-              <a href="/">Accelerite Support</a> &gt;
-              <a href="hc/en-us/section/{{article.section.id}}">{{article.section.name}}</a>
+              <a [routerLink]="hc/en-us/home">Accelerite Support</a> &gt;
+              <a [routerLink]="hc/en-us/section/article.section.id">{{article.section.name}}</a>
             </div>
-            <div class="search-result-description">
-              {{searchString.value}}</div>
+            <!-- <div class="search-result-description">
+              {{s}}</div> -->
           </li>
 
         </ng-container>
@@ -74,7 +76,7 @@
 
 <ng-container *ngFor="let count of pageIndexes">
   <li *ngIf="ifNextSetExists(count)">
-    <a [routerLink]="" (click)="fetchNextSet(count)" rel="next">{{count}}</a>
+    <a [routerLink]="" (click)="fetchNextSet(count)" rel="next">{{count + 1}}</a>
   </li>
   
 </ng-container>
@@ -96,3 +98,9 @@
 
   </div>
 </div>
+
+<ng-template #noArticles>
+  <div class="component-not-found">
+    <h1>No articles for the search string '{{currentSearchString}}'</h1>
+  </div>
+</ng-template>

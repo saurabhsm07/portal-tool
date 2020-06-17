@@ -10,12 +10,32 @@ form{
 }
 
 .search-header-div {
-    padding-top: 140px;
+    padding-top: 100px;
 }
 
 .search-results-list{
     li{
         // margin-left: 10px;
         display: inline-block;
+    }
+}
+
+.search-result-meta-time:before, .search-result-meta-count:before {
+    display: inline-block;
+    padding-right: 15px;
+    padding-left: 15px;
+    content: '\2022';
+    /* speak: none; */
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .component-not-found{
+
+    h1 {
+        padding-top: 80px;
+        padding-bottom: 80px;
+        text-align: center;
+
     }
 }
