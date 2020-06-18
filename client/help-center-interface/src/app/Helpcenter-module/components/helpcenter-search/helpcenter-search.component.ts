@@ -25,7 +25,7 @@ export class HelpcenterSearchComponent implements OnInit {
   public currentSearchString: string;      // search text for the current request
 
   public pageIndexes : number[];         // page index used for pagination
-
+  public searchStatus: string = 'searching' //current status of article search {searching, available, unavailable}
 
   constructor(private fb: FormBuilder,
               private articleService: ArticleService,
@@ -49,19 +49,24 @@ export class HelpcenterSearchComponent implements OnInit {
    * method gets articles from uri path
    */
   public getSearchTermArticles() {
-    this.searchResults = this.route.queryParamMap.pipe(switchMap((params: ParamMap) => this.articleService.searchArticlesByText(params.get('query'), params.get('offset'))));
+    this.searchResults = this.route
+                             .queryParamMap
+                             .pipe(switchMap((params: ParamMap) => this.articleService
+                             .searchArticlesByText(params.get('query'), params.get('offset'))));
+
     this.searchString.setValue(this.route.snapshot.queryParamMap.get('query'));
     this.articleSet = parseInt(this.route.snapshot.queryParamMap.get('offset'));
     this.pageIndexes = [1, 2, 3, 4, 5];
+    this.currentSearchString = this.searchString.value;
     this.pageIndexes = this.pageIndexes.map(pageIndex => pageIndex + this.articleSet - 1);
     // console.log(this.pageIndexes);
     this.searchResults.subscribe((results) => {
       this.articles = results.articles;
       this.articleCount = results.count;
-      this.currentSearchString = this.searchString.value;
+      this.searchStatus = 'available';
     }, (error) => {
       if (error.message == 'noarticle') {
-        this.currentSearchString = this.searchString.value;
+        this.searchStatus = 'unavailable';
       }
       console.log(error);
     });
@@ -122,10 +127,13 @@ export class HelpcenterSearchComponent implements OnInit {
     }
   }
 
-
+  /** 
+   * method makes a request to get filtered articles based on search text
+  */
   public searchText(){
+    this.currentSearchString = this.searchString.value;
+    this.searchStatus = 'searching';
     
-    console.log('this')
     // this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString.value, offset: 0}});
     const url = this.router.createUrlTree([], {relativeTo: this.route, 
                                                queryParams: {query: this.searchString.value, 

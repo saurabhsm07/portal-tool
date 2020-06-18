@@ -9,15 +9,18 @@ import { CategoryRequestErrorHandlersService } from '../error-handlers/category-
 })
 export class CategoryService {
 
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
   /**
    * List of primary CRUD APIs for Category data
    */
   private requestUri = {
-    getCategories: 'api/categories/',
-    getCategoryById: 'api/categories/id/',
-    postCategory: 'api/categories/',
-    updateCategory: 'api/categories/',
-    deleteCategory: 'api/categories/',
+    getCategories: this.serverDomain + 'api/categories/',
+    getCategoryById: this.serverDomain + 'api/categories/id/',
+    postCategory: this.serverDomain + 'api/categories/',
+    updateCategory: this.serverDomain + 'api/categories/',
+    deleteCategory: this.serverDomain + 'api/categories/',
   };
 
   private headersOptions = {

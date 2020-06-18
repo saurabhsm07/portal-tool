@@ -21,7 +21,17 @@
   </div>
 </header>
 
-<div  *ngIf='articles; else noArticles' class=" wow fadeInRight animated animated" id="mainaccelritediv">
+<ng-container  *ngIf='searchStatus == "searching"' >
+    <div class="component-not-found">
+      <h1>Searching Articles for  '{{currentSearchString}}'</h1>
+    </div>
+  </ng-container>
+<ng-container *ngIf='searchStatus == "available"'>
+
+</ng-container>
+
+<ng-container *ngIf='searchStatus == "available"'>
+<div class=" wow fadeInRight animated animated" id="mainaccelritediv">
   <div class="search-results">
     <h1 class="searchresul-count">{{articleCount}} results for '{{currentSearchString}}'</h1>
     <section class="search-results-column">
@@ -98,9 +108,10 @@
 
   </div>
 </div>
+</ng-container>
 
-<ng-template #noArticles>
+<ng-container  *ngIf='searchStatus == "unavailable"' >
   <div class="component-not-found">
     <h1>No articles for the search string '{{currentSearchString}}'</h1>
   </div>
-</ng-template>
+</ng-container>

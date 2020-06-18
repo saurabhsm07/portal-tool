@@ -7,14 +7,18 @@ import { Form } from './../../classes/form';
   providedIn: 'root'
 })
 export class FormService {
+
+//public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+
   /**
    * List of primary CRUD APIs for Category data
    */
   private requestUri = {
-    getFormList: 'api/tickets/forms',
-    getFormById: 'api/tickets/forms/id/',
-    // updateCategory: 'api/categories/',
-    // deleteCategory: 'api/categories/',
+    getFormList: this.serverDomain + 'api/tickets/forms',
+    getFormById: this.serverDomain + 'api/tickets/forms/id/',
+    // updateCategory: this.serverDomain + 'api/categories/',
+    // deleteCategory: this.serverDomain + 'api/categories/',
   };
 
   private headersOptions = {

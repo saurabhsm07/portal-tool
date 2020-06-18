@@ -178,7 +178,7 @@ export class CreateArticleFormFieldsComponent implements OnInit {
                             .subscribe((data) => {
                               console.log("successfully saved the field to database")
                               console.log(data)
-                              this.router.navigate(['/article/fields/list']);
+                              this.router.navigate(['/guide/article/fields/list']);
                             },
                             (error)=>{
                               console.log(error)

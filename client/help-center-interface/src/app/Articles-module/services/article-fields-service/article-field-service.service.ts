@@ -13,13 +13,16 @@ import { Article_Field } from '../../classes/article_fields'
 })
 export class ArticleFieldService {
 
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
   private requestUri = {
-    getArticleFields: 'api/articles/fields',
-    getArticleFieldById: 'api/articles/fields/id',
-    listArticleFieldsByIds: 'api/articles/fields/list?ids=',
-    postArticleField: 'api/articles/fields/',
-    updateArticleField: 'api/articles/fields/',
-    deleteArticleField: 'api/articles/fields/',
+    getArticleFields: this.serverDomain + 'api/articles/fields',
+    getArticleFieldById: this.serverDomain + 'api/articles/fields/id',
+    listArticleFieldsByIds: this.serverDomain + 'api/articles/fields/list?ids=',
+    postArticleField: this.serverDomain + 'api/articles/fields/',
+    updateArticleField: this.serverDomain + 'api/articles/fields/',
+    deleteArticleField: this.serverDomain + 'api/articles/fields/',
 };
 
 private headersOptions = {

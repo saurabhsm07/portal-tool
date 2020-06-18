@@ -9,12 +9,16 @@ import { Tag } from '../../classes/tag';
 })
 export class TagService {
 
+
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
     /**
    * List of primary CRUD APIs for Tags data
    */
   private requestUri = {
-    getTags: 'api/tags/',
-    getTagById: 'api/tags/id/',
+    getTags: this.serverDomain + 'api/tags/',
+    getTagById: this.serverDomain + 'api/tags/id/',
   };
   
   private headersOptions = {

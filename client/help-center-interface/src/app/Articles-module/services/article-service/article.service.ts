@@ -10,7 +10,8 @@ import {ArticleRequestErrorHandlersService } from '../error-handler-service/arti
 })
 export class ArticleService {
 
-  serverDomain = 'http://localhost:5000/' //base url of the serrer
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+   public serverDomain = '' //base url of the server (BUILD)
 
   /**
    * List of primary CRUD APIs for Article Data

@@ -10,12 +10,17 @@ import { Organization } from '../../classes/organization';
 })
 export class OrganizationService {
 
+
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+
+  
     /**
    * List of primary CRUD APIs for Organization data
    */
 private requestUri = {
-  getOrganizations: 'api/organizations/',
-  getOrganizationById: 'api/organizations/id/',
+  getOrganizations: this.serverDomain + 'api/organizations/',
+  getOrganizationById: this.serverDomain + 'api/organizations/id/',
 };
 
 private headersOptions = {

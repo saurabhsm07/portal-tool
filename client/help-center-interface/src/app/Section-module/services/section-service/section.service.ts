@@ -10,16 +10,20 @@ import { SectionRequestErrorHandlersService } from '../error-handlers/section-re
 })
 export class SectionService {
 
+
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
   /**
    * List of primary CRUD APIs for Section data
    */
 private requestUri = {
-  getSections: 'api/sections/',
-  getSectionById: 'api/sections/id/',
-  getSectionInCategory: 'api/sections/category/id/',
-  postSection: 'api/sections/',
-  updateSection: 'api/sections/',
-  deleteSection: 'api/sections/',
+  getSections: this.serverDomain + 'api/sections/',
+  getSectionById: this.serverDomain + 'api/sections/id/',
+  getSectionInCategory: this.serverDomain + 'api/sections/category/id/',
+  postSection: this.serverDomain + 'api/sections/',
+  updateSection: this.serverDomain + 'api/sections/',
+  deleteSection: this.serverDomain + 'api/sections/',
 };
 
 private headersOptions = {

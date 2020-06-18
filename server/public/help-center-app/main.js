@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n        <app-helpcenter-header></app-helpcenter-header>\r\n       <div class=\"main_article_div\">\r\n       <div class=\"downbanbg\">\r\n           <div class=\"row unqipad\">\r\n               <div class=\"padtop100  article-header-div col-md-12\">\r\n                 \r\n                 <div class=\"col-md-9 col-xs-13\">\r\n                   <div class=\"height50\"></div>\r\n                   <div *ngIf=\"section_name\" class=\"hlputextleft\">{{section_name}}</div>\r\n                   <div class=\"hgt20\">&nbsp;</div>\r\n                   <form name=\"searchfrom\" action=\"/hc/en-us/search\" method=\"GET\">\r\n                     <img class=\"searchhmicon hmsrchicon\" src=\"assets/images/searchicon.png\"> \r\n                     <input type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n                   </form>\r\n                   <div class=\"latestdetails\">\r\n                       <p> Latest release : \r\n                           <span><i class=\"fas fa-download orange\"></i> CloudPlatform 4.11</span>\r\n                           <span> <i class=\"fas fa-download orange\"></i> Radia 10</span>\r\n                       </p>\r\n                   </div>\r\n                 </div>\r\n                  <div class=\"col-md-3 col-xs-3\">\r\n                       <h5 style=\"padding: 0;margin-top: 0;color: #ededed;\"> Other links <i class=\"fas fa-angle-double-right orange\"></i></h5>\r\n                       <ul class=\"nav otherlinks\">\r\n                           <li><a href=\"/hc/communities/public/topics\">Community</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273853\">Downloads</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273823\">Help Article</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273843\">Announcements</a></li>\r\n                       </ul>\r\n                  </div>\r\n               </div>\r\n         </div>\r\n       </div>\r\n       \r\n     \r\n     \r\n     \r\n    </div>\r\n     </header>");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n        <app-helpcenter-header></app-helpcenter-header>\r\n       <div class=\"main_article_div\">\r\n       <div class=\"downbanbg\">\r\n           <div class=\"row unqipad\">\r\n               <div class=\"padtop100  article-header-div col-md-12\">\r\n                 \r\n                 <div class=\"col-md-9 col-xs-13\">\r\n                   <div class=\"height50\"></div>\r\n                   <div *ngIf=\"section_name\" class=\"hlputextleft\">{{section_name}}</div>\r\n                   <div class=\"hgt20\">&nbsp;</div>\r\n                   <form name=\"searchfrom\" action=\"/hc/en-us/search\" method=\"GET\">\r\n                     <img class=\"searchhmicon hmsrchicon\" src=\"assets/images/searchicon.png\"> \r\n                     <input type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n                   </form>\r\n                   <div class=\"latestdetails\">\r\n                       <p> Latest release : \r\n                           <span><i class=\"fas fa-download orange\"></i> CloudPlatform 4.11</span>\r\n                           <span> <i class=\"fas fa-download orange\"></i> Radia 10</span>\r\n                       </p>\r\n                   </div>\r\n                 </div>\r\n                  <div class=\"col-md-3 col-xs-3\">\r\n                       <h5 style=\"padding: 0;margin-top: 0;color: #ededed;\"> Other links <i class=\"fas fa-angle-double-right orange\"></i></h5>\r\n                       <ul class=\"nav otherlinks\">\r\n                           <li><a href=\"/hc/communities/public/topics\">Community</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273853\">Downloads</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273823\">Help Article</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273843\">Announcements</a></li>\r\n                       </ul>\r\n                  </div>\r\n               </div>\r\n         </div>\r\n       </div>\r\n       \r\n     \r\n     \r\n     \r\n    </div>\r\n     </header>");
 
 /***/ }),
 
@@ -152,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"article-fields-header  col-md-12\" >\r\n  <div class=\"head-title-div  col-md-12\">\r\n  <h1>Article Fields</h1>\r\n  <p>Article fields contain all article data, such as title, description, and body. <br>\r\n      Add and manage article fields to customize your article forms to create customised knowledge base articles.</p>\r\n  </div>\r\n  <div class=\"header-controls-div col-md-12\">\r\n      <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search article fields\"  />\r\n          \r\n      </div>\r\n      <div class=\"create-div col-md-4\">\r\n              <a routerLink='/article/fields/create' class=\"btn btn-info\">Add Article Field </a>\r\n      </div>\r\n\r\n  </div>\r\n  <!-- <span *ngIf=\"ticketFields | searchField:searchString\"></span> -->\r\n  <div *ngIf=\"dataSource | searchField:searchString : articleFields\" class=\"fields-body-div col-md-12\">\r\n                  <!--- Note that these columns can be defined in any order.\r\n                        The actual rendered columns are set as a property on the row definition\" -->\r\n                \r\n                  <!-- Position Column -->\r\n                  <div class=\"mat-elevation-z8 col-md-12\">\r\n                          <table class=\"col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                        \r\n                            <!-- Position Column -->\r\n                            <ng-container matColumnDef=\"field_name\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field Name </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.field_name}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Name Column -->\r\n                            <ng-container matColumnDef=\"id\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field ID </th>\r\n                              <td mat-cell *matCellDef=\"let field\">  {{field.id}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Weight Column -->\r\n                            <ng-container matColumnDef=\"field_type\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field Type </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.field_type}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Symbol Column -->\r\n                            <ng-container matColumnDef=\"created_at\">\r\n                              <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.created_at | date}} </td>\r\n                            </ng-container>\r\n\r\n                            <ng-container matColumnDef=\"edit\">\r\n                              <th mat-header-cell *matHeaderCellDef> </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> <button  (click) = \"editArticleField(field.id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button> </td>\r\n                            </ng-container>\r\n                        \r\n                            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n                          </table>\r\n                        \r\n                          <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n                        </div>\r\n  </div>\r\n</div>\r\n</div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"article-fields-header  col-md-12\" >\r\n  <div class=\"head-title-div  col-md-12\">\r\n  <h1>Article Fields</h1>\r\n  <p>Article fields contain all article data, such as title, description, and body. <br>\r\n      Add and manage article fields to customize your article forms to create customised knowledge base articles.</p>\r\n  </div>\r\n  <div class=\"header-controls-div col-md-12\">\r\n      <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search article fields\"  />\r\n          \r\n      </div>\r\n      <div class=\"create-div col-md-4\">\r\n              <a routerLink='/guide/article/fields/create' class=\"btn btn-info\">Add Article Field </a>\r\n      </div>\r\n\r\n  </div>\r\n  <!-- <span *ngIf=\"ticketFields | searchField:searchString\"></span> -->\r\n  <div *ngIf=\"dataSource | searchField:searchString : articleFields\" class=\"fields-body-div col-md-12\">\r\n                  <!--- Note that these columns can be defined in any order.\r\n                        The actual rendered columns are set as a property on the row definition\" -->\r\n                \r\n                  <!-- Position Column -->\r\n                  <div class=\"mat-elevation-z8 col-md-12\">\r\n                          <table class=\"col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                        \r\n                            <!-- Position Column -->\r\n                            <ng-container matColumnDef=\"field_name\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field Name </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.field_name}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Name Column -->\r\n                            <ng-container matColumnDef=\"id\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field ID </th>\r\n                              <td mat-cell *matCellDef=\"let field\">  {{field.id}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Weight Column -->\r\n                            <ng-container matColumnDef=\"field_type\">\r\n                              <th mat-header-cell *matHeaderCellDef> Field Type </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.field_type}} </td>\r\n                            </ng-container>\r\n                        \r\n                            <!-- Symbol Column -->\r\n                            <ng-container matColumnDef=\"created_at\">\r\n                              <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> {{field.created_at | date}} </td>\r\n                            </ng-container>\r\n\r\n                            <ng-container matColumnDef=\"edit\">\r\n                              <th mat-header-cell *matHeaderCellDef> </th>\r\n                              <td mat-cell *matCellDef=\"let field\"> <button  (click) = \"editArticleField(field.id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button> </td>\r\n                            </ng-container>\r\n                        \r\n                            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n                          </table>\r\n                        \r\n                          <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n                        </div>\r\n  </div>\r\n</div>\r\n</div>\r\n</div>");
 
 /***/ }),
 
@@ -204,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"article-forms-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Article Forms</h1>\r\n    <p>Article forms contain list of form models created using article forms<br>\r\n        Add and manage article forms to create customised knowledge base articles based on requirements.</p>\r\n    </div>\r\n    <div class=\"header-controls-div col-md-12\">\r\n        <div class=\"search-div col-md-8\">\r\n            <input [(ngModel)] = \"searchString\" placeholder=\"Search article forms\"  />\r\n            \r\n        </div>\r\n        <div class=\"create-div col-md-4\">\r\n                <a routerLink='/article/form/create' class=\"btn btn-info\">Add Article Form </a>\r\n        </div>\r\n\r\n    </div>\r\n    <!-- <span *ngIf=\"ticketforms | searchField:searchString\"></span> -->\r\n    <div *ngIf=\"dataSource | searchArticleForm:searchString : articleForms\" class=\"forms-body-div col-md-12\">\r\n                    <!--- Note that these columns can be defined in any order.\r\n                          The actual rendered columns are set as a property on the row definition\" -->\r\n                  \r\n                    <!-- Position Column -->\r\n                    <div class=\"mat-elevation-z8 col-md-12\">\r\n                            <table class=\"col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                          \r\n                              <!-- Position Column -->\r\n                              <ng-container matColumnDef=\"name\">\r\n                                <th mat-header-cell *matHeaderCellDef> Form Name </th>\r\n                                <td mat-cell *matCellDef=\"let form\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{form.name}} <span *ngIf=\"form.default_form==true\" class=\"badge badge-secondary default-badge\">Default</span> </td>\r\n                              </ng-container>\r\n                          \r\n                              <ng-container matColumnDef=\"id\">\r\n                                <th mat-header-cell *matHeaderCellDef> Form Id</th>\r\n                                <td mat-cell *matCellDef=\"let form\"> {{form.id}}</td>\r\n                              </ng-container>\r\n\r\n                              <!-- Symbol Column -->\r\n                              <ng-container matColumnDef=\"created_at\">\r\n                                <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                                <td mat-cell *matCellDef=\"let form\"> {{form.created_at | date}} </td>\r\n                              </ng-container>\r\n                              \r\n                              <ng-container matColumnDef=\"edit\">\r\n                                <th mat-header-cell *matHeaderCellDef> </th>\r\n                                <td mat-cell *matCellDef=\"let form\"> <button  (click) = \"editArticleForm(form.id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button> </td>\r\n                              </ng-container>\r\n\r\n                              <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                              <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n                            </table>\r\n                          \r\n                            <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n                          </div>\r\n    </div>\r\n</div>\r\n</div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"article-forms-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Article Forms</h1>\r\n    <p>Article forms contain list of form models created using article forms<br>\r\n        Add and manage article forms to create customised knowledge base articles based on requirements.</p>\r\n    </div>\r\n    <div class=\"header-controls-div col-md-12\">\r\n        <div class=\"search-div col-md-8\">\r\n            <input [(ngModel)] = \"searchString\" placeholder=\"Search article forms\"  />\r\n            \r\n        </div>\r\n        <div class=\"create-div col-md-4\">\r\n                <a routerLink='/guide/article/forms/create' class=\"btn btn-info\">Add Article Form </a>\r\n        </div>\r\n\r\n    </div>\r\n    <!-- <span *ngIf=\"ticketforms | searchField:searchString\"></span> -->\r\n    <div *ngIf=\"dataSource | searchArticleForm:searchString : articleForms\" class=\"forms-body-div col-md-12\">\r\n                    <!--- Note that these columns can be defined in any order.\r\n                          The actual rendered columns are set as a property on the row definition\" -->\r\n                  \r\n                    <!-- Position Column -->\r\n                    <div class=\"mat-elevation-z8 col-md-12\">\r\n                            <table class=\"col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                          \r\n                              <!-- Position Column -->\r\n                              <ng-container matColumnDef=\"name\">\r\n                                <th mat-header-cell *matHeaderCellDef> Form Name </th>\r\n                                <td mat-cell *matCellDef=\"let form\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{form.name}} <span *ngIf=\"form.default_form==true\" class=\"badge badge-secondary default-badge\">Default</span> </td>\r\n                              </ng-container>\r\n                          \r\n                              <ng-container matColumnDef=\"id\">\r\n                                <th mat-header-cell *matHeaderCellDef> Form Id</th>\r\n                                <td mat-cell *matCellDef=\"let form\"> {{form.id}}</td>\r\n                              </ng-container>\r\n\r\n                              <!-- Symbol Column -->\r\n                              <ng-container matColumnDef=\"created_at\">\r\n                                <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                                <td mat-cell *matCellDef=\"let form\"> {{form.created_at | date}} </td>\r\n                              </ng-container>\r\n                              \r\n                              <ng-container matColumnDef=\"edit\">\r\n                                <th mat-header-cell *matHeaderCellDef> </th>\r\n                                <td mat-cell *matCellDef=\"let form\"> <button  (click) = \"editArticleForm(form.id)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button> </td>\r\n                              </ng-container>\r\n\r\n                              <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                              <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n                            </table>\r\n                          \r\n                            <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n                          </div>\r\n    </div>\r\n</div>\r\n</div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -269,7 +269,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"categories-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Categories</h1>\r\n    <p>List of categories for holding different types of Sections and Article hirarchy<br>\r\n        ranging from agent specific, patches , product specific etc.</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search categories\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='guide/categories/create' class=\"btn btn-info\">Add Category </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchCategory:searchString : categories\" class=\"categories-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"categories-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Category Name </th>\r\n                  <td mat-cell *matCellDef=\"let category\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{category.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let category\"> {{category.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let category\"> {{category.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let category\"> <button  (click) = \"viewCategory(category.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"categories-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Categories</h1>\r\n    <p>List of categories for holding different types of Sections and Article hirarchy<br>\r\n        ranging from agent specific, patches , product specific etc.</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search categories\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='/guide/categories/create' class=\"btn btn-info\">Add Category </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchCategory:searchString : categories\" class=\"categories-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"categories-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Category Name </th>\r\n                  <td mat-cell *matCellDef=\"let category\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{category.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let category\"> {{category.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let category\"> {{category.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let category\"> <button  (click) = \"viewCategory(category.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>");
 
 /***/ }),
 
@@ -360,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n\r\n\t<div [ngClass] = \"{'non-home-page': currentPage!= 'home'}\" class=\"homebg\">\r\n\t\t<div class=\"unqipad\">\r\n\t\t\t<div class=\"hgt150\">&nbsp;</div>\r\n\t\t\t<div [ngClass] = \"{'hlputext-non-home': currentPage!= 'home'}\" class=\"hlputext\">How can we help you today?</div>\r\n\t\t\t<div class=\"hgt20\">&nbsp;</div>\r\n\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t<div class=\"offset-sm-2 offset-md-2 col-md-8 col-sm-8\" style=\"padding:0;\">\r\n\t\t\t\t\t<form [formGroup]='search_hc_form' class=\"form-inline header-search\" name=\"searchfrom\" action=\"/hc/en-us/search\" method=\"GET\">\r\n\t\t\t\t\t\t<img class=\"searchhmicon hmsrchicon\" src=\"./assets/images/searchicon.png\">\r\n\t\t\t\t\t\t<input formGroupName='search' type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n\t\t\t\t\t</form>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"hgt20\">&nbsp;</div>\r\n\t\t\t<div class=\"poputext\">Popular topics:\r\n\t\t\t\t<span class=\"poputextnorm\">Radia, Product manual, Rovius</span>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</header>");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n\r\n\t<div [ngClass] = \"{'non-home-page': currentPage!= 'home'}\" class=\"homebg\">\r\n\t\t<div class=\"unqipad\">\r\n\t\t\t<div class=\"hgt150\">&nbsp;</div>\r\n\t\t\t<div [ngClass] = \"{'hlputext-non-home': currentPage!= 'home'}\" class=\"hlputext\">How can we help you today?</div>\r\n\t\t\t<div class=\"hgt20\">&nbsp;</div>\r\n\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t<div class=\"offset-sm-2 offset-md-2 col-md-8 col-sm-8\" style=\"padding:0;\">\r\n\t\t\t\t\t<form [formGroup]='search_hc_form' class=\"form-inline header-search\" name=\"searchfrom\" (ngSubmit)='onSubmit()'>\r\n\t\t\t\t\t\t<img class=\"searchhmicon hmsrchicon\" src=\"./assets/images/searchicon.png\">\r\n\t\t\t\t\t\t<input formControlName='search' type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n\t\t\t\t\t</form>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"hgt20\">&nbsp;</div>\r\n\t\t\t<div class=\"poputext\">Popular topics:\r\n\t\t\t\t<span class=\"poputextnorm\">\r\n\t\t\t\t\t<a [routerLink]=\"\" (click)='searchHelpcenter(\"Radia\")'>Radia</a>, \r\n\t\t\t\t\t<a [routerLink]=\"\" (click)='searchHelpcenter(\"Product manual\")'>Product manual</a>, \r\n\t\t\t\t\t<a [routerLink]=\"\" (click)='searchHelpcenter(\"Rovius\")'>Rovius</a>\r\n\t\t\t\t</span>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</header>");
 
 /***/ }),
 
@@ -386,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Navigation -->\r\n<div class=\"topblkbox unqipad\" id=\"fixBox\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-3 col-sm-3 padtop10\">\r\n\t\t\t<a href=\"https://accelerite.com/\" target=\"_blank\">\r\n\t\t\t\t<img src=\"./assets/images/logo.png\" width=\"210\" height=\"\">\r\n\t\t\t</a>\r\n\t\t</div>\r\n\t\t<div class=\"col-md-9 col-sm-9 text-right\">\r\n\t\t\t<div class=\"padtop20\">\r\n\t\t\t\t<!-- <div class=\"toptext hg27 right padleft35\">\r\n\r\n\t\t\t\t\t<span class=\"dropdown language-selector\" aria-haspopup=\"true\">\r\n\t\t\t\t\t\t<a class=\"dropdown-toggle toprgtlink\">&nbsp;&nbsp;English (US)\r\n\t\t\t\t\t\t\t<i class=\"fa fa-angle-down iconsize\" style=\"margin-left: 8px;\"></i>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t<span class=\"dropdown-menu dropdown-menu-end dropdown-menu-caret\" role=\"menu\" style=\"margin-top: 8px;margin-right: -13px;margin-left:-20px;\">\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/fr?return_to=%2Fhc%2Ffr\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">Français</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/ja?return_to=%2Fhc%2Fja\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">日本語</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/ko?return_to=%2Fhc%2Fko\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">한국어</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/pt?return_to=%2Fhc%2Fpt\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">Português</a>\r\n\r\n\t\t\t\t\t\t</span>\r\n\t\t\t\t\t</span>\r\n\r\n\t\t\t\t</div> -->\r\n\t\t\t\t<ng-container *ngIf='userObj; else loginTemplate'>\r\n\r\n\t\t\t\t\t<div class=\"hg27 right user-header-opt\">\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<h3 class=\"toptext\">{{userObj.name}} </h3>\r\n\r\n\t\t\t\t\t\t\t<button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-angle-down iconsize\"></i>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t<mat-menu #userMenu=\"matMenu\">\r\n\t\t\t\t\t\t\t<button mat-menu-item>\r\n\t\t\t\t\t\t\t\t<mat-icon>assignment_ind</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>User profile</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button mat-menu-item>\r\n\t\t\t\t\t\t\t\t<mat-icon>textsms</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>Change password</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button mat-menu-item (click)='logoutUser()'>\r\n\t\t\t\t\t\t\t\t<mat-icon>notifications_off</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>Sign out</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</mat-menu>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<ng-template #loginTemplate>\r\n\t\t\t\t\t<div class=\"hg27 right user-header-opt padleftrgt35\">\r\n\t\t\t\t\t\t<a href=\"#\" #loginBtnLink class=\"toptext\" data-toggle=\"modal\" data-target=\"#loginModal\">Login/Register</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</ng-template>\r\n\t\t\t\t<div class=\"toptext hg27 right padleftrgt35\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#contactModal\" class=\"toptext\">Contact</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div *ngIf='isAgent' class=\"toptext hg27 guideAdminLink padleftrgt35\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<a href=\"guide/home\" target=\"_blank\">Guide Admin</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<!-- START CONTACT POPUP -->\r\n<div id=\"contactModal\" aria-hidden=\"false\" class=\"modal fade\" role=\"dialog\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t\t<div class=\"modal-dialog modal-dialog-width55per vertical-align-center\">\r\n\t\t\t<!-- Modal content-->\r\n\t\t\t<div class=\"modal-content modal-content-bg\">\r\n\t\t\t\t<div class=\"modal-header modal-header-bord\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body modal-body-pad row\" style=\"padding: 0px 60px 30px 60px !important;    margin-bottom: 20px; margin-top: 30px;\">\r\n\t\t\t\t\t<div class=\"col-md-12 contacts-details-div\">\r\n\t\t\t\t\t\t<h1 class=\"submnhed\">\r\n\t\t\t\t\t\t\t<img src=\"./assets/images/contact.svg\" style='margin-right:15px;' /> Telephone Support</h1>\r\n\t\t\t\t\t\t<hr class='popuphr' />\r\n\t\t\t\t\t\t<div class=\"cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/spain.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Spain</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +34-51888-0092 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/france.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">France</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +33-975-185-485 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/germany.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Germany</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +49-322-2109-3384 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/japan.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Japan</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +81-368-635-424 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/united_kingdom.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">UK</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +44-203-514-1417 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/united_states_of_america.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">USA</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +1-800-260-4174 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p4.zdassets.com/hc/theme_assets/270851/200042364/Australia.png\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Australia</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\">+61-280466570</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"#\" class=\"contdataImg\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Mexico</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> &nbsp; &nbsp; &nbsp; 800-681-8030 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\r\n\t\t\t\t\t\t\t<div class=\"cboth\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div class=\"unqipad subnavmndiv\">\r\n\t<div id=\"spacDiv\" style=\"display: none;\">&nbsp;</div>\r\n\t<div id=\"supdiv\">\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-2 col-sm-1 \">\r\n\t\t\t\t<a href=\"/hc/en-us/home\" class=\"suptext\">Support</a>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-md-10 col-sm-11 text-right\">\r\n\t\t\t\t<div id=\"navbar\" class=\"col-md-12 nopad\">\r\n\t\t\t\t\t<nav class=\"navbar\" role=\"navigation\">\r\n\t\t\t\t\t\t<div class=\"navbar-header\" style=\"display:none;\">\r\n\t\t\t\t\t\t\t<button type=\"button\" id=\"mobbutton\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" style=\"height:auto !important;\">\r\n\t\t\t\t\t\t\t\t<span class=\"sr-only\">Toggle navigation</span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"navbar-collapse \" id=\"navbar-collapse-1\">\r\n\t\t\t\t\t\t\t<ul class=\"nav navbar-nav cusnav home-main-navbar\">\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">My Support</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"myinfodetails\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/115005625283\">My Dashboard</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/en-us/requests?output_type=table \" id=\"reqlink\">My Requests</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/contributions/posts?locale=en-us \" id=\"reqlink\">My Articles</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/en-us/subscriptions \" id=\"subslink\">My Subscriptions</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/profiles/361040981-Administrator\" class=\"myinfonew\">My Profile</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/360006729632\" id=\"entitlement\">My Entitlement</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/115005882026\">My Projects </a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Knowledge Base</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"knowledgebsecrow\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273823\">Help Articles</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273833\">Product Manuals</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273843\">Announcements</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273883\">Support Documentation</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201264926\">Agent only </a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/115000852106\">Create KB Article</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Community</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=radia\">Radia</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=cloudplatform\">CloudPlatform</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=cloudportalbusinessmanager\">CPBM</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=shareinsights\">ShareInsights</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Downloads</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"downloadtopmenu\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273853\">Product Downloads</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201258686\">Patches</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/201273863\">Hotfixes</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t<li id=\"partnerTopMnlink\" class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"//support.accelerite.com/hc/en-us/categories/115000078683-Partner-Portal\">Partners</a>\r\n\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t<button \r\n\t\t\t\t\t\t\t\t\t\tclass=\"subrerlink\" \r\n\t\t\t\t\t\t\t\t\t\tid=\"submit_a_request\" \r\n\t\t\t\t\t\t\t\t\t\thref=\"javascript:void(0)\" \r\n\t\t\t\t\t\t\t\t\t\tdata-toggle=\"modal\" \r\n\t\t\t\t\t\t\t\t\t\tdata-target=\"#subrequestModal\"\r\n\t\t\t\t\t\t\t\t\t\t(click)=\"fetchFormData()\">\r\n\t\t\t\t\t\t\t\t\t\tSubmit a request\r\n\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- /.navbar-collapse -->\r\n\t\t\t\t\t</nav>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"cboth\"></div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-12\">\r\n\t\t\t<div class=\"borderline\">&nbsp;</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- END CONTACT POPUP-->\r\n<!-- LOGIN/REGISTER POPUP START-->\r\n<div id=\"loginModal\" class=\"modal fade poplogin\" aria-hidden=\"false\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t\t<div class=\"modal-dialog modal-dialog-login-width vertical-align-center\">\r\n\t\t\t<!-- Modal content-->\r\n\t\t\t<div class=\"modal-content modal-content-bg\">\r\n\t\t\t\t<div class=\"modal-header modal-header-bord login-pad\">\r\n\t\t\t\t\t<div class=\"text-right col-md-12\">\r\n\t\t\t\t\t\t<button type=\"button\" class=\"close-login\" data-dismiss=\"modal\">&times;</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body nopad\">\r\n\t\t\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad text-center\" (click)=\"toggleMode('login')\">\r\n\t\t\t\t\t\t\t<h1 [ngClass]=\"{'submnhed': loginMode, 'submnhedgrey': !loginMode}\" class=\"showloginjs\">\r\n\t\t\t\t\t\t\t\t<img #loginLink src=\"./assets/images/loginblueicon.svg\" class=\"padrgt20\" />Login</h1>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad text-center\" (click)=\"toggleMode('register')\">\r\n\t\t\t\t\t\t\t<h1 [ngClass]=\"{'submnhed': !loginMode, 'submnhedgrey': loginMode}\" class=\"showPointcursor showregisterjs\">\r\n\t\t\t\t\t\t\t\t<img #registerLink src=\"./assets/images/registergreyicon.svg\" class=\"padrgt20\" />Register</h1>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"cboth hgt20\">&nbsp;</div>\r\n\t\t\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t<div [ngClass]=\"{'logselbg': loginMode, 'lognonselbg': !loginMode}\" id=\"loginbg\">&nbsp;</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t<div [ngClass]=\"{'logselbg': !loginMode, 'lognonselbg': loginMode}\" id=\"registerbg\">&nbsp;</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"cboth hgt30\">&nbsp;</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<!-- START LOGIN POPUP -->\r\n\t\t\t\t\t\t<ng-container *ngIf=\"loginMode; else registerMode\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-12 padLogin\" id=\"loginDivForm\">\r\n\t\t\t\t\t\t\t\t<div id=\"errorDiv\"> </div>\r\n\t\t\t\t\t\t\t\t<form class=\"request-form\" [formGroup]='login_form' id=\"frmlogin\" name=\"loginfrm\" autocomplete=off (ngSubmit)='loginFormSubmit()'>\r\n\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t<input formControlName='email' type=\"text\" class=\"txtbxWidth\" name=\"email\" id=\"email\" value=\"\" required />\r\n\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconeml\" src=\"#\" width=\"22\" />\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label lbl-email\">Email</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div *ngIf=\"login_email.invalid && (login_email.dirty || login_email.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_email.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\tEmail field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_email.errors.email\">\r\n\t\t\t\t\t\t\t\t\t\t\tEmail format incorrect\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t<input formControlName='password' type=\"password\" class='txtbxWidth' name=\"password\" id=\"password\" value=\"\" required />\r\n\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label lbl-passwords\">Password</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div *ngIf=\"login_password.invalid && (login_password.dirty || login_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_password.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\tPassword field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt20\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"text-right\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"/access/help\" target=\"_blank\" class=\"fgpwdlink\">Forgot Password ?</a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadleft inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div id=\"logincancelbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input #modalCancelBtn type=\"button\" class=\"logcancelbtn\" value=\"Cancel\" data-dismiss=\"modal\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadrgt inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div id=\"loginbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"sublogbtn\"  [disabled]=\"login_form.invalid\" id=\"sub_login\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t\t\t<div *ngIf=\"authenticationError\" class=\"errmessage-cls\">\r\n\t\t\t\t\t\t\t\t\t<h3 *ngIf=\"authenticationError\">\r\n\t\t\t\t\t\t\t\t\t\tError in Username or password\r\n\t\t\t\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t<!-- END  LOGIN POPUP -->\r\n\t\t\t\t\t\t<!-- START REGISTER POPUP -->\r\n\t\t\t\t\t\t<ng-template #registerMode>\r\n\t\t\t\t\t\t\t<div class=\"col-md-12 padLogin\" id=\"registerDivForm\">\r\n\t\t\t\t\t\t\t\t<div id=\"successmsg\"></div>\r\n\t\t\t\t\t\t\t\t<div id=\"regfrmDiv\">\r\n\t\t\t\t\t\t\t\t\t<form [formGroup]='register_form' class=\"request-form\" id=\"UserRegForm\" (ngSubmit)='registerFormSubmit()'>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='full_name' type=\"text\" name=\"UserRegForm_name\" id=\"UserRegForm_name\" class='txtbxWidth' value=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t required>\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconreg\" src=\"#\" width=\"21\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">User Full Name</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"name.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tName field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='email' type=\"email\" name=\"UserRegForm_email\" id=\"UserRegForm_email\" class='txtbxWidth' required />\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconeml\" src=\"#\" width=\"21\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Email Address</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"email.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tEmail field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"email.errors.email\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tNot a valid email\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<span formGroupName=\"password_group\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input formControlName='password' type=\"password\" name=\"UserRegForm_password\" id=\"UserRegForm_password\" class='txtbxWidth'\r\n\t\t\t\t\t\t\t\t\t\t\t\t required />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Password</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"password.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"password.errors.minlength\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword length should be minimum 8 characters\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input formControlName='confirm_password' type=\"password\" name=\"UserRegForm_cpassword\" id=\"UserRegForm_cpassword\" class='txtbxWidth'\r\n\t\t\t\t\t\t\t\t\t\t\t\t required />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Confirm Password</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"confirm_password.invalid && (confirm_password.dirty || confirm_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"confirm_password.errors.pwdRequired\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tConfirm Password cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"confirm_password.errors.pwdMatch\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword does not match confirm Password\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</span>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='phone_number' type=\"text\" name=\"UserRegForm_phone\" id=\"UserRegForm_phone\" class='txtbxWidth' required\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconreg\" src=\"#\" width=\"23\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Phone Number</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"phone_number.invalid && (phone_number.dirty || confirm_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"phone_number.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tNumber field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" value=\"1\" name=\"reg_agree_term[]\" />\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"left agreeregtext\">I agree and accept the\r\n\t\t\t\t\t\t\t\t\t\t\t\t<a href='https://support.accelerite.com/hc/en-us/articles/203473150-Accelerite-Data-Privacy-Policy' target='_blank' style=\"color:#9b9b9b;text-decoration:underline;\">Terms and Conditions</a>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadleft inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"button\" #modalCancelBtnR class=\"logcancelbtn\" value=\"Cancel\" name=\"reg_cancel\" id=\"reg_cancel\">\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadrgt inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div id=\"loginbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"sublogbtn\" value=\"Register\" name=\"submit_reg\" [disabled]=\"register_form.invalid\" id=\"register\">\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t\t\t\t<div class=\"errmessage-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"registrationError\">\r\n\t\t\t\t\t\t\t\t\t\t\t<h3>\r\n\t\t\t\t\t\t\t\t\t\t\t\tError in registering user\t\r\n\t\t\t\t\t\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t<!-- END  REGISTER POPUP -->\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<!-- LOGIN/REGISTER POPUP ENDS HERE -->\r\n<!-- LOGIN/REGISTER POPUP ENDS HERE -->\r\n\r\n<!-- select form modal -->\r\n<div id=\"subrequestModal\" aria-hidden=\"true\" class=\"modal fade\" role=\"dialog\" tabindex=\"-1\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t  <div class=\"modal-dialog modal-dialog-width55per vertical-align-center\">\r\n\t\t<!-- Modal content-->\r\n\t\t<div class=\"modal-content modal-reqcontent-bg\">\r\n\t\t  <div class=\"modal-header modal-header-bord\">\r\n\t\t\t  <div class=\"col\">\r\n\t\t\t\t\t<button type=\"button\" class=\"closesubreq\" data-dismiss=\"modal\">×</button>\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t  </div>\r\n\t\t  <div class=\"modal-body modal-body-pad\">\r\n\t\t\t<h1 class=\"subreqHd\">\r\n\t\t\t\t<img src=\"./assets/images/select-form-icon.svg\" style=\"margin-right:20px;\">\r\n\t\t\t\tSelect a product\r\n\t\t\t</h1>\r\n\t\t\t<hr class=\"popuphr\">\r\n\t\t\t<div *ngIf=\"ticketForms\" class=\"col-md-12 nopad\" id=\"requestContent\">\r\n\t\t\t\t<div *ngFor=\"let form of ticketForms\" class=\"col-md-6 col-sm-12\">\r\n\t\t\t\t<div class=\"centerBlock\">\r\n\t\t\t\t\t<a href=\"/hc/en-us/tickets/create/form/id/{{form.id}}\" class=\"reqboxlink\" target=\"_blank\">\r\n\t\t\t\t<div class=\"logo_regbox\">\r\n\t\t\t\t<img height=\"60\" src=\"./assets/images/{{form_logos[form.id]}}\" width=\"153\">\r\n\t\t\t\t<h3>{{form.end_user_name}}</h3>\r\n\t\t\t\t</div>\r\n\t\t\t\t</a>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n<div class=\"cboth\">&nbsp;</div>\r\n<div class=\"cboth\">&nbsp;</div>\r\n</div>\r\n\t\t  </div>\r\n\t\t  <div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t</div>\r\n\t  </div>\r\n\t</div>\r\n  </div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Navigation -->\r\n<div class=\"topblkbox unqipad\" id=\"fixBox\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-3 col-sm-3 padtop10\">\r\n\t\t\t<a href=\"https://accelerite.com/\" target=\"_blank\">\r\n\t\t\t\t<img src=\"./assets/images/logo.png\" width=\"210\" height=\"\">\r\n\t\t\t</a>\r\n\t\t</div>\r\n\t\t<div class=\"col-md-9 col-sm-9 text-right\">\r\n\t\t\t<div class=\"padtop20\">\r\n\t\t\t\t<!-- <div class=\"toptext hg27 right padleft35\">\r\n\r\n\t\t\t\t\t<span class=\"dropdown language-selector\" aria-haspopup=\"true\">\r\n\t\t\t\t\t\t<a class=\"dropdown-toggle toprgtlink\">&nbsp;&nbsp;English (US)\r\n\t\t\t\t\t\t\t<i class=\"fa fa-angle-down iconsize\" style=\"margin-left: 8px;\"></i>\r\n\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t<span class=\"dropdown-menu dropdown-menu-end dropdown-menu-caret\" role=\"menu\" style=\"margin-top: 8px;margin-right: -13px;margin-left:-20px;\">\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/fr?return_to=%2Fhc%2Ffr\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">Français</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/ja?return_to=%2Fhc%2Fja\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">日本語</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/ko?return_to=%2Fhc%2Fko\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">한국어</a>\r\n\r\n\t\t\t\t\t\t\t<a href=\"/hc/change_language/pt?return_to=%2Fhc%2Fpt\" dir=\"ltr\" rel=\"nofollow\" role=\"menuitem\">Português</a>\r\n\r\n\t\t\t\t\t\t</span>\r\n\t\t\t\t\t</span>\r\n\r\n\t\t\t\t</div> -->\r\n\t\t\t\t<ng-container *ngIf='userObj; else loginTemplate'>\r\n\r\n\t\t\t\t\t<div class=\"hg27 right user-header-opt\">\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<h3 class=\"toptext\">{{userObj.name}} </h3>\r\n\r\n\t\t\t\t\t\t\t<button mat-icon-button [matMenuTriggerFor]=\"userMenu\">\r\n\t\t\t\t\t\t\t\t<i class=\"fa fa-angle-down iconsize\"></i>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t<mat-menu #userMenu=\"matMenu\">\r\n\t\t\t\t\t\t\t<button mat-menu-item>\r\n\t\t\t\t\t\t\t\t<mat-icon>assignment_ind</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>User profile</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button mat-menu-item>\r\n\t\t\t\t\t\t\t\t<mat-icon>textsms</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>Change password</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t<button mat-menu-item (click)='logoutUser()'>\r\n\t\t\t\t\t\t\t\t<mat-icon>notifications_off</mat-icon>\r\n\t\t\t\t\t\t\t\t<span>Sign out</span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</mat-menu>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</ng-container>\r\n\t\t\t\t<ng-template #loginTemplate>\r\n\t\t\t\t\t<div class=\"hg27 right user-header-opt padleftrgt35\">\r\n\t\t\t\t\t\t<a href=\"#\" #loginBtnLink class=\"toptext\" data-toggle=\"modal\" data-target=\"#loginModal\">Login/Register</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</ng-template>\r\n\t\t\t\t<div class=\"toptext hg27 right padleftrgt35\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<a href=\"#\" data-toggle=\"modal\" data-target=\"#contactModal\" class=\"toptext\">Contact</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div *ngIf='isAgent' class=\"toptext hg27 guideAdminLink padleftrgt35\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t\t<a href=\"guide/home\" target=\"_blank\">Guide Admin</a>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<!-- START CONTACT POPUP -->\r\n<div id=\"contactModal\" aria-hidden=\"false\" class=\"modal fade\" role=\"dialog\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t\t<div class=\"modal-dialog modal-dialog-width55per vertical-align-center\">\r\n\t\t\t<!-- Modal content-->\r\n\t\t\t<div class=\"modal-content modal-content-bg\">\r\n\t\t\t\t<div class=\"modal-header modal-header-bord\">\r\n\t\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body modal-body-pad row\" style=\"padding: 0px 60px 30px 60px !important;    margin-bottom: 20px; margin-top: 30px;\">\r\n\t\t\t\t\t<div class=\"col-md-12 contacts-details-div\">\r\n\t\t\t\t\t\t<h1 class=\"submnhed\">\r\n\t\t\t\t\t\t\t<img src=\"./assets/images/contact.svg\" style='margin-right:15px;' /> Telephone Support</h1>\r\n\t\t\t\t\t\t<hr class='popuphr' />\r\n\t\t\t\t\t\t<div class=\"cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/spain.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Spain</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +34-51888-0092 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/france.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">France</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +33-975-185-485 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/germany.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Germany</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +49-322-2109-3384 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/japan.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Japan</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +81-368-635-424 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/united_kingdom.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">UK</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +44-203-514-1417 </h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"//p2.zdassets.com/hc/theme_assets/270851/200042364/united_states_of_america.jpg\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">USA</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> +1-800-260-4174 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"hgt40 cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t<div class=\"col-md-12 nopad\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t<img src=\"//p4.zdassets.com/hc/theme_assets/270851/200042364/Australia.png\" class=\"contdataImg\" />\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Australia</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\">+61-280466570</h5>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t\t<div class=\"right\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"#\" class=\"contdataImg\">\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNmWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm countypad\">Mexico</h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"left cnNoWidth\">\r\n\t\t\t\t\t\t\t\t\t\t<h5 class=\"countryNm\"> &nbsp; &nbsp; &nbsp; 800-681-8030 </h5>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\r\n\t\t\t\t\t\t\t<div class=\"cboth\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div class=\"unqipad subnavmndiv\">\r\n\t<div id=\"spacDiv\" style=\"display: none;\">&nbsp;</div>\r\n\t<div id=\"supdiv\">\r\n\t\t<div class=\"row\">\r\n\t\t\t<div class=\"col-md-2 col-sm-1 \">\r\n\t\t\t\t<a href=\"/hc/en-us/home\" class=\"suptext\">Support</a>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-md-10 col-sm-11 text-right\">\r\n\t\t\t\t<div id=\"navbar\" class=\"col-md-12 nopad\">\r\n\t\t\t\t\t<nav class=\"navbar\" role=\"navigation\">\r\n\t\t\t\t\t\t<div class=\"navbar-header\" style=\"display:none;\">\r\n\t\t\t\t\t\t\t<button type=\"button\" id=\"mobbutton\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navbar-collapse-1\" style=\"height:auto !important;\">\r\n\t\t\t\t\t\t\t\t<span class=\"sr-only\">Toggle navigation</span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"navbar-collapse \" id=\"navbar-collapse-1\">\r\n\t\t\t\t\t\t\t<ul class=\"nav navbar-nav cusnav home-main-navbar\">\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">My Support</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"myinfodetails\">\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/id/115005625283\">My Dashboard</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/en-us/requests/list \" id=\"reqlink\">My Requests</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/contributions/posts?locale=en-us \" id=\"reqlink\">My Articles</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\" /hc/en-us/subscriptions \" id=\"subslink\">My Subscriptions</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/profiles/361040981-Administrator\" class=\"myinfonew\">My Profile</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/360006729632\" id=\"entitlement\">My Entitlement</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/115005882026\">My Projects </a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Knowledge Base</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"knowledgebsecrow\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273823\">Help Articles</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273833\">Product Manuals</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273843\">Announcements</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273883\">Support Documentation</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201264926\">Agent only </a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li class=\"disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/articles/id/115000852106\">Create KB Article</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Community</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=radia\">Radia</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=cloudplatform\">CloudPlatform</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=cloudportalbusinessmanager\">CPBM</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/community/topics?prodtype=shareinsights\">ShareInsights</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t<li class=\"dropdown\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Downloads</a>\r\n\t\t\t\t\t\t\t\t\t<ul class=\"dropdown-menu subnavbg topmnnavi\" id=\"downloadtopmenu\">\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273853\">Product Downloads</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201258686\">Patches</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t\t\t<a href=\"/hc/en-us/categories/id/201273863\">Hotfixes</a>\r\n\t\t\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t<li id=\"partnerTopMnlink\" class=\"dropdown disabledListVal\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"//support.accelerite.com/hc/en-us/categories/115000078683-Partner-Portal\">Partners</a>\r\n\t\t\t\t\t\t\t\t</li>\r\n\r\n\t\t\t\t\t\t\t\t<li>\r\n\t\t\t\t\t\t\t\t\t<button \r\n\t\t\t\t\t\t\t\t\t\tclass=\"subrerlink\" \r\n\t\t\t\t\t\t\t\t\t\tid=\"submit_a_request\" \r\n\t\t\t\t\t\t\t\t\t\thref=\"javascript:void(0)\" \r\n\t\t\t\t\t\t\t\t\t\tdata-toggle=\"modal\" \r\n\t\t\t\t\t\t\t\t\t\tdata-target=\"#subrequestModal\"\r\n\t\t\t\t\t\t\t\t\t\t(click)=\"fetchFormData()\">\r\n\t\t\t\t\t\t\t\t\t\tSubmit a request\r\n\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t\t</ul>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<!-- /.navbar-collapse -->\r\n\t\t\t\t\t</nav>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"cboth\"></div>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-12\">\r\n\t\t\t<div class=\"borderline\">&nbsp;</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<!-- END CONTACT POPUP-->\r\n<!-- LOGIN/REGISTER POPUP START-->\r\n<div id=\"loginModal\" class=\"modal fade poplogin\" aria-hidden=\"false\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t\t<div class=\"modal-dialog modal-dialog-login-width vertical-align-center\">\r\n\t\t\t<!-- Modal content-->\r\n\t\t\t<div class=\"modal-content modal-content-bg\">\r\n\t\t\t\t<div class=\"modal-header modal-header-bord login-pad\">\r\n\t\t\t\t\t<div class=\"text-right col-md-12\">\r\n\t\t\t\t\t\t<button type=\"button\" class=\"close-login\" data-dismiss=\"modal\">&times;</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-body nopad\">\r\n\t\t\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad text-center\" (click)=\"toggleMode('login')\">\r\n\t\t\t\t\t\t\t<h1 [ngClass]=\"{'submnhed': loginMode, 'submnhedgrey': !loginMode}\" class=\"showloginjs\">\r\n\t\t\t\t\t\t\t\t<img #loginLink src=\"./assets/images/loginblueicon.svg\" class=\"padrgt20\" />Login</h1>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad text-center\" (click)=\"toggleMode('register')\">\r\n\t\t\t\t\t\t\t<h1 [ngClass]=\"{'submnhed': !loginMode, 'submnhedgrey': loginMode}\" class=\"showPointcursor showregisterjs\">\r\n\t\t\t\t\t\t\t\t<img #registerLink src=\"./assets/images/registergreyicon.svg\" class=\"padrgt20\" />Register</h1>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"cboth hgt20\">&nbsp;</div>\r\n\t\t\t\t\t<div class=\"row nopad\">\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t<div [ngClass]=\"{'logselbg': loginMode, 'lognonselbg': !loginMode}\" id=\"loginbg\">&nbsp;</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-md-6 nopad\">\r\n\t\t\t\t\t\t\t<div [ngClass]=\"{'logselbg': !loginMode, 'lognonselbg': loginMode}\" id=\"registerbg\">&nbsp;</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"cboth hgt30\">&nbsp;</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<!-- START LOGIN POPUP -->\r\n\t\t\t\t\t\t<ng-container *ngIf=\"loginMode; else registerMode\">\r\n\t\t\t\t\t\t\t<div class=\"col-md-12 padLogin\" id=\"loginDivForm\">\r\n\t\t\t\t\t\t\t\t<div id=\"errorDiv\"> </div>\r\n\t\t\t\t\t\t\t\t<form class=\"request-form\" [formGroup]='login_form' id=\"frmlogin\" name=\"loginfrm\" autocomplete=off (ngSubmit)='loginFormSubmit()'>\r\n\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t<input formControlName='email' type=\"text\" class=\"txtbxWidth\" name=\"email\" id=\"email\" value=\"\" required />\r\n\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconeml\" src=\"#\" width=\"22\" />\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label lbl-email\">Email</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div *ngIf=\"login_email.invalid && (login_email.dirty || login_email.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_email.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\tEmail field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_email.errors.email\">\r\n\t\t\t\t\t\t\t\t\t\t\tEmail format incorrect\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t<input formControlName='password' type=\"password\" class='txtbxWidth' name=\"password\" id=\"password\" value=\"\" required />\r\n\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label lbl-passwords\">Password</span>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div *ngIf=\"login_password.invalid && (login_password.dirty || login_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"login_password.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\tPassword field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt20\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"text-right\">\r\n\t\t\t\t\t\t\t\t\t\t<a href=\"/access/help\" target=\"_blank\" class=\"fgpwdlink\">Forgot Password ?</a>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadleft inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div id=\"logincancelbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input #modalCancelBtn type=\"button\" class=\"logcancelbtn\" value=\"Cancel\" data-dismiss=\"modal\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadrgt inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div id=\"loginbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"sublogbtn\"  [disabled]=\"login_form.invalid\" id=\"sub_login\">\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<div class=\"cboth\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t\t\t<div *ngIf=\"authenticationError\" class=\"errmessage-cls\">\r\n\t\t\t\t\t\t\t\t\t<h3 *ngIf=\"authenticationError\">\r\n\t\t\t\t\t\t\t\t\t\tError in Username or password\r\n\t\t\t\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t<!-- END  LOGIN POPUP -->\r\n\t\t\t\t\t\t<!-- START REGISTER POPUP -->\r\n\t\t\t\t\t\t<ng-template #registerMode>\r\n\t\t\t\t\t\t\t<div class=\"col-md-12 padLogin\" id=\"registerDivForm\">\r\n\t\t\t\t\t\t\t\t<div id=\"successmsg\"></div>\r\n\t\t\t\t\t\t\t\t<div id=\"regfrmDiv\">\r\n\t\t\t\t\t\t\t\t\t<form [formGroup]='register_form' class=\"request-form\" id=\"UserRegForm\" (ngSubmit)='registerFormSubmit()'>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='full_name' type=\"text\" name=\"UserRegForm_name\" id=\"UserRegForm_name\" class='txtbxWidth' value=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t required>\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconreg\" src=\"#\" width=\"21\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">User Full Name</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"name.invalid && (name.dirty || name.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"name.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tName field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='email' type=\"email\" name=\"UserRegForm_email\" id=\"UserRegForm_email\" class='txtbxWidth' required />\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconeml\" src=\"#\" width=\"21\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Email Address</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"email.invalid && (email.dirty || email.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"email.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tEmail field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"email.errors.email\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tNot a valid email\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<span formGroupName=\"password_group\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input formControlName='password' type=\"password\" name=\"UserRegForm_password\" id=\"UserRegForm_password\" class='txtbxWidth'\r\n\t\t\t\t\t\t\t\t\t\t\t\t required />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Password</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"password.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"password.errors.minlength\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword length should be minimum 8 characters\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input formControlName='confirm_password' type=\"password\" name=\"UserRegForm_cpassword\" id=\"UserRegForm_cpassword\" class='txtbxWidth'\r\n\t\t\t\t\t\t\t\t\t\t\t\t required />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconpwd\" src=\"#\" width=\"16\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Confirm Password</span>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"confirm_password.invalid && (confirm_password.dirty || confirm_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"confirm_password.errors.pwdRequired\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tConfirm Password cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"confirm_password.errors.pwdMatch\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tPassword does not match confirm Password\r\n\t\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</span>\r\n\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"user-input-wrp\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input formControlName='phone_number' type=\"text\" name=\"UserRegForm_phone\" id=\"UserRegForm_phone\" class='txtbxWidth' required\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t<img class=\"appendiconreg\" src=\"#\" width=\"23\" />\r\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"floating-label\">Phone Number</span>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"phone_number.invalid && (phone_number.dirty || confirm_password.touched)\" class=\"alert alert-danger\">\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<small *ngIf=\"phone_number.errors.required\">\r\n\t\t\t\t\t\t\t\t\t\t\t\tNumber field cannot be empty\r\n\t\t\t\t\t\t\t\t\t\t\t</small>\r\n\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"left\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"checkbox\" value=\"1\" name=\"reg_agree_term[]\" />\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"left agreeregtext\">I agree and accept the\r\n\t\t\t\t\t\t\t\t\t\t\t\t<a href='https://support.accelerite.com/hc/en-us/articles/203473150-Accelerite-Data-Privacy-Policy' target='_blank' style=\"color:#9b9b9b;text-decoration:underline;\">Terms and Conditions</a>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"cboth hgt25\">&nbsp;</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadleft inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"button\" #modalCancelBtnR class=\"logcancelbtn\" value=\"Cancel\" name=\"reg_cancel\" id=\"reg_cancel\">\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col-md-6 nopadrgt inline-display-cls\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div id=\"loginbutton\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"sublogbtn\" value=\"Register\" name=\"submit_reg\" [disabled]=\"register_form.invalid\" id=\"register\">\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t</form>\r\n\t\t\t\t\t\t\t\t\t<div class=\"errmessage-cls\">\r\n\t\t\t\t\t\t\t\t\t\t<div *ngIf=\"registrationError\">\r\n\t\t\t\t\t\t\t\t\t\t\t<h3>\r\n\t\t\t\t\t\t\t\t\t\t\t\tError in registering user\t\r\n\t\t\t\t\t\t\t\t\t\t\t</h3>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t<!-- END  REGISTER POPUP -->\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n<!-- LOGIN/REGISTER POPUP ENDS HERE -->\r\n<!-- LOGIN/REGISTER POPUP ENDS HERE -->\r\n\r\n<!-- select form modal -->\r\n<div id=\"subrequestModal\" aria-hidden=\"true\" class=\"modal fade\" role=\"dialog\" tabindex=\"-1\">\r\n\t<div class=\"vertical-alignment-helper\">\r\n\t  <div class=\"modal-dialog modal-dialog-width55per vertical-align-center\">\r\n\t\t<!-- Modal content-->\r\n\t\t<div class=\"modal-content modal-reqcontent-bg\">\r\n\t\t  <div class=\"modal-header modal-header-bord\">\r\n\t\t\t  <div class=\"col\">\r\n\t\t\t\t\t<button type=\"button\" class=\"closesubreq\" data-dismiss=\"modal\">×</button>\r\n\t\t\t  </div>\r\n\t\t\t\r\n\t\t  </div>\r\n\t\t  <div class=\"modal-body modal-body-pad\">\r\n\t\t\t<h1 class=\"subreqHd\">\r\n\t\t\t\t<img src=\"./assets/images/select-form-icon.svg\" style=\"margin-right:20px;\">\r\n\t\t\t\tSelect a product\r\n\t\t\t</h1>\r\n\t\t\t<hr class=\"popuphr\">\r\n\t\t\t<div *ngIf=\"ticketForms\" class=\"col-md-12 nopad\" id=\"requestContent\">\r\n\t\t\t\t<div *ngFor=\"let form of ticketForms\" class=\"col-md-6 col-sm-12\">\r\n\t\t\t\t<div class=\"centerBlock\">\r\n\t\t\t\t\t<a href=\"/hc/en-us/tickets/create/form/id/{{form.id}}\" class=\"reqboxlink\" target=\"_blank\">\r\n\t\t\t\t<div class=\"logo_regbox\">\r\n\t\t\t\t<img height=\"60\" src=\"./assets/images/{{form_logos[form.id]}}\" width=\"153\">\r\n\t\t\t\t<h3>{{form.end_user_name}}</h3>\r\n\t\t\t\t</div>\r\n\t\t\t\t</a>\r\n\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n<div class=\"cboth\">&nbsp;</div>\r\n<div class=\"cboth\">&nbsp;</div>\r\n</div>\r\n\t\t  </div>\r\n\t\t  <div class=\"modal-footer modal-footer-bord modal-footer-pad\"></div>\r\n\t\t</div>\r\n\t  </div>\r\n\t</div>\r\n  </div>");
 
 /***/ }),
 
@@ -413,6 +413,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<app-helpcenter-header></app-helpcenter-header>\r\n<app-helpcenter-banner [currentPage] = '\"logout\"'></app-helpcenter-banner>\r\n<div class=\"log-out-div\">\r\n    <h1 autofocus>User logged out successfully</h1>\r\n</div>\r\n\r\n\r\n<app-helpcenter-footer></app-helpcenter-footer>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.html":
+/*!***************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.html ***!
+  \***************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n  <app-helpcenter-header></app-helpcenter-header>\r\n\r\n\r\n  <div class=\"main-search-div\">\r\n    <div class=\"downbanbg\">\r\n        <div class=\"height50\"></div>\r\n      <div class=\"row unqipad\">\r\n        <div class=\"  search-header-div col-md-12\">\r\n          <div class=\"col-md-9 col-xs-13\">\r\n            <div class=\"hlputextleft\">Search Results</div>\r\n            <div class=\"hgt20\">&nbsp;</div>\r\n            <form [formGroup]=\"search_hc_form\" (ngSubmit)='searchText()'>\r\n              <img class=\"searchhmicon hmsrchicon\" src=\"assets/images/searchicon.png\" />\r\n              <input formControlName = 'searchString'  type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\" />\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</header>\r\n\r\n<ng-container  *ngIf='searchStatus == \"searching\"' >\r\n    <div class=\"component-not-found\">\r\n      <h1>Searching Articles for  '{{currentSearchString}}'</h1>\r\n    </div>\r\n  </ng-container>\r\n<ng-container *ngIf='searchStatus == \"available\"'>\r\n\r\n</ng-container>\r\n\r\n<ng-container *ngIf='searchStatus == \"available\"'>\r\n<div class=\" wow fadeInRight animated animated\" id=\"mainaccelritediv\">\r\n  <div class=\"search-results\">\r\n    <h1 class=\"searchresul-count\">{{articleCount}} results for '{{currentSearchString}}'</h1>\r\n    <section class=\"search-results-column\">\r\n      <h2 class=\"search-results-subheading\">\r\n        Knowledge base\r\n      </h2>\r\n\r\n      <ul class=\"search-results-list col-md-12\">\r\n\r\n        <ng-container *ngFor='let article of articles'>\r\n          <li class=\"search-result col-md-6\">\r\n            <a [routerLink]=article.url class=\"search-result-link\">{{article.title}}</a>\r\n\r\n            <!-- <span class=\"search-result-votes\">3</span> -->\r\n\r\n            <div class=\"search-result-meta\">\r\n              by {{article.author.name}}\r\n             <span class=\"search-result-meta-time\">{{article.created_at | date}}</span>\r\n              in\r\n              <a [routerLink]=\"hc/en-us/home\">Accelerite Support</a> &gt;\r\n              <a [routerLink]=\"hc/en-us/section/article.section.id\">{{article.section.name}}</a>\r\n            </div>\r\n            <!-- <div class=\"search-result-description\">\r\n              {{s}}</div> -->\r\n          </li>\r\n\r\n        </ng-container>\r\n\r\n\r\n      </ul>\r\n\r\n    </section>\r\n\r\n    <nav class=\"pagination\">\r\n<ul>\r\n\r\n  <li class=\"pagination-last\">\r\n    <a [routerLink] = \"\" (click)=\"prevPageIndexes(5)\">‹‹</a>\r\n    </li>\r\n\r\n  <li class=\"pagination-next\">\r\n    <a [routerLink]=\"\" (click)=\"prevPageIndexes(1)\" rel=\"prev\">‹</a>\r\n    </li>\r\n    \r\n\r\n\r\n\r\n<!-- <li class=\"pagination-current\">\r\n  <span>1</span>\r\n</li> -->\r\n\r\n\r\n<ng-container *ngFor=\"let count of pageIndexes\">\r\n  <li *ngIf=\"ifNextSetExists(count)\">\r\n    <a [routerLink]=\"\" (click)=\"fetchNextSet(count)\" rel=\"next\">{{count + 1}}</a>\r\n  </li>\r\n  \r\n</ng-container>\r\n\r\n\r\n\r\n\r\n\r\n<li class=\"pagination-next\">\r\n<a [routerLink]=\"\" (click)=\"nextPageIndexes(1)\" rel=\"next\">›</a>\r\n</li>\r\n\r\n<li class=\"pagination-last\">\r\n<a [routerLink] = \"\" (click)=\"nextPageIndexes(5)\">»</a>\r\n</li>\r\n\r\n</ul>\r\n</nav>\r\n\r\n  </div>\r\n</div>\r\n</ng-container>\r\n\r\n<ng-container  *ngIf='searchStatus == \"unavailable\"' >\r\n  <div class=\"component-not-found\">\r\n    <h1>No articles for the search string '{{currentSearchString}}'</h1>\r\n  </div>\r\n</ng-container>\r\n");
 
 /***/ }),
 
@@ -451,7 +464,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"sections-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Sections</h1>\r\n    <p>List of sections for holding different types of Sections and Article hirarchy<br>\r\n        ranging from agent specific, patches , product specific etc.</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search sections\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='/sections/create' class=\"btn btn-info\">Add Section </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchSection:searchString : sections\" class=\"sections-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"sections-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Section Name </th>\r\n                  <td mat-cell *matCellDef=\"let section\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{section.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let section\"> {{section.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let section\"> {{section.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let section\"> <button  (click) = \"viewSection(section.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"sections-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>Sections</h1>\r\n    <p>List of sections for holding different types of Sections and Article hirarchy<br>\r\n        ranging from agent specific, patches , product specific etc.</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search sections\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='/guide/sections/create' class=\"btn btn-info\">Add Section </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchSection:searchString : sections\" class=\"sections-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"sections-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Section Name </th>\r\n                  <td mat-cell *matCellDef=\"let section\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{section.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let section\"> {{section.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let section\"> {{section.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let section\"> <button  (click) = \"viewSection(section.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -464,7 +477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n        <app-helpcenter-header></app-helpcenter-header>\r\n       <div class=\"section_main_div\" style=\"\">\r\n       <div class=\"downbanbg\">\r\n           <div class=\"row unqipad\">\r\n               <div class=\"padtop100  section-header-div col-md-12\">\r\n                 \r\n                 <div class=\"col-md-9 col-xs-13\">\r\n                   <div class=\"height50\"></div>\r\n                   <div class=\"hlputextleft\">{{section_name}}</div>\r\n                   <div class=\"hgt20\">&nbsp;</div>\r\n                   <form name=\"searchfrom\" action=\"/hc/en-us/search\" method=\"GET\">\r\n                     <img class=\"searchhmicon hmsrchicon\" src=\"assets/images/searchicon.png\"> \r\n                     <input type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n                   </form>\r\n                   <div class=\"latestdetails\">\r\n                       <p> Latest release : \r\n                           <span><i class=\"fas fa-download orange\"></i> CloudPlatform 4.11</span>\r\n                           <span> <i class=\"fas fa-download orange\"></i> Radia 10</span>\r\n                       </p>\r\n                   </div>\r\n                 </div>\r\n                  <div class=\"col-md-3 col-xs-3\">\r\n                       <h5 style=\"padding: 0;margin-top: 0;color: #ededed;\"> Other links <i class=\"fas fa-angle-double-right orange\"></i></h5>\r\n                       <ul class=\"nav otherlinks\">\r\n                           <li><a href=\"/hc/communities/public/topics\">Community</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273853\">Downloads</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273823\">Help Article</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/201273843\">Announcements</a></li>\r\n                       </ul>\r\n                  </div>\r\n               </div>\r\n         </div>\r\n       </div>\r\n       \r\n     \r\n     \r\n     \r\n    </div>\r\n     </header>");
+/* harmony default export */ __webpack_exports__["default"] = ("<header>\r\n        <app-helpcenter-header></app-helpcenter-header>\r\n       <div class=\"section_main_div\" style=\"\">\r\n       <div class=\"downbanbg\">\r\n           <div class=\"row unqipad\">\r\n               <div class=\"padtop100  section-header-div col-md-12\">\r\n                 \r\n                 <div class=\"col-md-9 col-xs-13\">\r\n                   <div class=\"height50\"></div>\r\n                   <div class=\"hlputextleft\">{{section_name}}</div>\r\n                   <div class=\"hgt20\">&nbsp;</div>\r\n                   <form name=\"searchfrom\" action=\"/hc/en-us/search\" method=\"GET\">\r\n                     <img class=\"searchhmicon hmsrchicon\" src=\"assets/images/searchicon.png\"> \r\n                     <input type=\"text\" class=\"hmsearchbox\" name=\"query\" placeholder=\"Search\">\r\n                   </form>\r\n                   <div class=\"latestdetails\">\r\n                       <p> Latest release : \r\n                           <span><i class=\"fas fa-download orange\"></i> CloudPlatform 4.11</span>\r\n                           <span> <i class=\"fas fa-download orange\"></i> Radia 10</span>\r\n                       </p>\r\n                   </div>\r\n                 </div>\r\n                  <div class=\"col-md-3 col-xs-3\">\r\n                       <h5 style=\"padding: 0;margin-top: 0;color: #ededed;\"> Other links <i class=\"fas fa-angle-double-right orange\"></i></h5>\r\n                       <ul class=\"nav otherlinks\">\r\n                           <li><a href=\"/hc/communities/public/topics\">Community</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273853\">Downloads</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273823\">Help Article</a></li>\r\n                           <li><a href=\"/hc/en-us/categories/id/201273843\">Announcements</a></li>\r\n                       </ul>\r\n                  </div>\r\n               </div>\r\n         </div>\r\n       </div>\r\n       \r\n     \r\n     \r\n     \r\n    </div>\r\n     </header>");
 
 /***/ }),
 
@@ -529,7 +542,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"segments-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>User Segments</h1>\r\n    <p>User segments are subsets of signed-in users or staff members, based on tags, groups, and organizations.\r\n        <br> User segments are the building blocks for permissions</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search segments\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='/segments/create' class=\"btn btn-info\">Add User Segment </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchSegment:searchString : userSegments\" class=\"segments-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"segments-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Segment Name </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{segment.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> {{segment.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> {{segment.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> <button  (click) = \"viewSegment(segment.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-main-header></app-main-header>\r\n<div class=\"row\">\r\n<div class=\"col-lg-3\">\r\n    <app-sidebar></app-sidebar>\r\n</div>\r\n<div class=\"col-lg-9 work-component\">\r\n<div class=\"segments-header col-md-12\" >\r\n    <div class=\"head-title-div col-md-12\">\r\n    <h1>User Segments</h1>\r\n    <p>User segments are subsets of signed-in users or staff members, based on tags, groups, and organizations.\r\n        <br> User segments are the building blocks for permissions</p>\r\n    </div>\r\n<div class=\"header-controls-div col-md-12\">\r\n    <div class=\"search-div col-md-8\">\r\n          <input [(ngModel)] = \"searchString\" placeholder=\"Search segments\"  />\r\n        </div>\r\n          <div class=\"create-div col-md-4\">\r\n            <a routerLink='/guide/segments/create' class=\"btn btn-info\">Add User Segment </a>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"dataSource | searchSegment:searchString : userSegments\" class=\"segments-body-div col-md-12\">\r\n      <!--- Note that these columns can be defined in any order.\r\n            The actual rendered columns are set as a property on the row definition\" -->\r\n    \r\n      \r\n      <div class=\"mat-elevation-z8 col-md-12\">\r\n              <table class=\"segments-list-table col-md-12\" mat-table [dataSource]=\"dataSource\">\r\n                <ng-container  matColumnDef=\"name\">\r\n                  <th mat-header-cell *matHeaderCellDef> Segment Name </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"><i class=\"fa fa-list-alt icon-class\" aria-hidden=\"true\"></i>  {{segment.name}}</td>\r\n                </ng-container>\r\n            \r\n                <ng-container matColumnDef=\"id\">\r\n                  <th mat-header-cell *matHeaderCellDef> Id</th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> {{segment.id}}</td>\r\n                </ng-container>\r\n\r\n                <ng-container matColumnDef=\"created_at\">\r\n                  <th mat-header-cell *matHeaderCellDef> Created At </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> {{segment.created_at | date}} </td>\r\n                </ng-container>\r\n                \r\n                <ng-container matColumnDef=\"edit\">\r\n                  <th mat-header-cell *matHeaderCellDef> </th>\r\n                  <td mat-cell *matCellDef=\"let segment\"> <button  (click) = \"viewSegment(segment.id)\"><i class=\"fa fa-eye-slash\" aria-hidden=\"true\"></i>\r\n                  </button> </td>\r\n                </ng-container>\r\n\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n              </table>\r\n            \r\n              <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n            </div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>");
 
 /***/ }),
 
@@ -1538,7 +1551,7 @@ var CreateArticleComponent = /** @class */ (function () {
         this.articleService.postArticle(articleObj)
             .subscribe(function (data) {
             console.log("succesfully created the article");
-            _this.router.navigate(['/articles/list']);
+            _this.router.navigate(['/guide/articles/list']);
         }, function (error) {
             console.log(error.error_on_req);
             console.log(error.error);
@@ -1634,12 +1647,12 @@ var CreateArticleComponent = /** @class */ (function () {
                 var fieldInformation = {};
                 fields.forEach(function (field) {
                     if (field.required) {
-                        _this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required));
+                        _this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required));
                     }
                     else {
-                        _this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''));
+                        _this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''));
                     }
-                    fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
+                    fieldInformation[field.field_name.trim().replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
                 });
                 this.article_body.addControl('fieldValues', new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({}));
                 this.article_body.addControl('fieldInformation', new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](fieldInformation));
@@ -2165,7 +2178,7 @@ var EditArticleComponent = /** @class */ (function () {
         this.articleService.updateArticle(article)
             .subscribe(function (data) {
             console.log(data);
-            _this.router.navigate(['/articles/id/', article.id]);
+            _this.router.navigate(['/guide/articles/id/', article.id]);
         }, function (error) {
             console.log(error);
             console.log(error.error_on_req);
@@ -2270,12 +2283,12 @@ var EditArticleComponent = /** @class */ (function () {
                 var fieldInformation = {};
                 fields.forEach(function (field) {
                     if (field.required) {
-                        _this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required));
+                        _this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required));
                     }
                     else {
-                        _this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''));
+                        _this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''));
                     }
-                    fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
+                    fieldInformation[field.field_name.trim().replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
                 });
                 this.article_body.addControl('fieldValues', new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]({}));
                 this.article_body.addControl('fieldInformation', new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](fieldInformation));
@@ -2777,7 +2790,7 @@ var CreateArticleFormFieldsComponent = /** @class */ (function () {
             .subscribe(function (data) {
             console.log("successfully saved the field to database");
             console.log(data);
-            _this.router.navigate(['/article/fields/list']);
+            _this.router.navigate(['/guide/article/fields/list']);
         }, function (error) {
             console.log(error);
         });
@@ -2981,7 +2994,7 @@ var EditArticleFormFieldsComponent = /** @class */ (function () {
             }
             else {
                 console.log("successfully updated article field with id " + data.id);
-                _this.router.navigate(['/article/fields/list']);
+                _this.router.navigate(['/guide/article/fields/list']);
             }
         }, function (error) {
             console.log(error);
@@ -3082,7 +3095,7 @@ var ListArticleFormFieldsComponent = /** @class */ (function () {
     * @param id : id of the article field to edit
     */
     ListArticleFormFieldsComponent.prototype.editArticleField = function (id) {
-        this.router.navigate(['/article/fields/edit/' + id]);
+        this.router.navigate(['/guide/article/fields/edit/' + id]);
     };
     ListArticleFormFieldsComponent.ctorParameters = function () { return [
         { type: _services_article_fields_service_article_field_service_service__WEBPACK_IMPORTED_MODULE_2__["ArticleFieldService"] },
@@ -3249,7 +3262,7 @@ var CreateArticleFormComponent = /** @class */ (function () {
             .subscribe(function (data) {
             console.log(data);
             console.log('article published successfully');
-            _this.router.navigate(['/article/forms/list']);
+            _this.router.navigate(['/guide/article/forms/list']);
         });
     };
     CreateArticleFormComponent.ctorParameters = function () { return [
@@ -3372,7 +3385,7 @@ var EditArticleFormComponent = /** @class */ (function () {
         this.articleFormService.putArticleForm(article_form, this.article_form.id)
             .subscribe(function (res) {
             console.log("successfully update form with id = " + res.id);
-            _this.router.navigate(['/article/forms/list']);
+            _this.router.navigate(['/guide/article/forms/list']);
         }, function (error) {
             console.log(error);
         });
@@ -3472,7 +3485,7 @@ var ListArticleFormComponent = /** @class */ (function () {
      * @param id : id of the article to edit
      */
     ListArticleFormComponent.prototype.editArticleForm = function (id) {
-        this.router.navigate(['/article/forms/edit/' + id]);
+        this.router.navigate(['/guide/article/forms/edit/' + id]);
     };
     ListArticleFormComponent.ctorParameters = function () { return [
         { type: _services_article_forms_service_article_forms_service__WEBPACK_IMPORTED_MODULE_2__["ArticleFormsService"] },
@@ -3847,12 +3860,14 @@ __webpack_require__.r(__webpack_exports__);
 var ArticleAttachmentsService = /** @class */ (function () {
     function ArticleAttachmentsService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         this.requestUri = {
-            getArticleAttachments: 'api/articles/',
-            getArticleAttachmentById: 'api/articles/id/',
-            postArticleAttachment: 'api/articles/',
-            updateArticleAttachment: 'api/articles/',
-            deleteArticleAttachment: 'api/articles/',
+            getArticleAttachments: this.serverDomain + 'api/articles/',
+            getArticleAttachmentById: this.serverDomain + 'api/articles/id/',
+            postArticleAttachment: this.serverDomain + 'api/articles/',
+            updateArticleAttachment: this.serverDomain + 'api/articles/',
+            deleteArticleAttachment: this.serverDomain + 'api/articles/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -3922,13 +3937,15 @@ __webpack_require__.r(__webpack_exports__);
 var ArticleFieldService = /** @class */ (function () {
     function ArticleFieldService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         this.requestUri = {
-            getArticleFields: 'api/articles/fields',
-            getArticleFieldById: 'api/articles/fields/id',
-            listArticleFieldsByIds: 'api/articles/fields/list?ids=',
-            postArticleField: 'api/articles/fields/',
-            updateArticleField: 'api/articles/fields/',
-            deleteArticleField: 'api/articles/fields/',
+            getArticleFields: this.serverDomain + 'api/articles/fields',
+            getArticleFieldById: this.serverDomain + 'api/articles/fields/id',
+            listArticleFieldsByIds: this.serverDomain + 'api/articles/fields/list?ids=',
+            postArticleField: this.serverDomain + 'api/articles/fields/',
+            updateArticleField: this.serverDomain + 'api/articles/fields/',
+            deleteArticleField: this.serverDomain + 'api/articles/fields/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -4017,12 +4034,14 @@ __webpack_require__.r(__webpack_exports__);
 var ArticleFormsService = /** @class */ (function () {
     function ArticleFormsService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         this.requestUri = {
-            getArticleForms: 'api/articles/forms/',
-            getArticleFormById: 'api/articles/forms/id/',
-            postArticleForm: 'api/articles/forms/',
-            updateArticleForm: 'api/articles/forms/',
-            deleteArticleForm: 'api/articles/forms/id/'
+            getArticleForms: this.serverDomain + 'api/articles/forms/',
+            getArticleFormById: this.serverDomain + 'api/articles/forms/id/',
+            postArticleForm: this.serverDomain + 'api/articles/forms/',
+            updateArticleForm: this.serverDomain + 'api/articles/forms/',
+            deleteArticleForm: this.serverDomain + 'api/articles/forms/id/'
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -4110,12 +4129,14 @@ __webpack_require__.r(__webpack_exports__);
 var ArticleLabelsService = /** @class */ (function () {
     function ArticleLabelsService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         this.requestUri = {
-            getArticleLabels: 'api/articles/labels/',
-            getArticleLabelById: 'api/articles/labels/id/',
-            postArticleLabel: 'api/articles/labels/',
-            updateArticleLabel: 'api/articles/labels/',
-            deleteArticleLabel: 'api/articles/labels/id/'
+            getArticleLabels: this.serverDomain + 'api/articles/labels/',
+            getArticleLabelById: this.serverDomain + 'api/articles/labels/id/',
+            postArticleLabel: this.serverDomain + 'api/articles/labels/',
+            updateArticleLabel: this.serverDomain + 'api/articles/labels/',
+            deleteArticleLabel: this.serverDomain + 'api/articles/labels/id/'
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -4186,17 +4207,20 @@ __webpack_require__.r(__webpack_exports__);
 var ArticleService = /** @class */ (function () {
     function ArticleService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for Article Data
          */
         this.requestUri = {
-            getArticles: 'api/articles/',
-            getArticlesWithSectionId: 'api/articles/section/id/',
-            getArticleById: 'api/articles/id/',
-            getLastArticleId: 'api/articles/max/id',
-            postArticle: 'api/articles/',
-            updateArticle: 'api/articles/',
-            deleteArticle: 'api/articles/id/',
+            getArticles: this.serverDomain + 'api/articles/',
+            getArticlesWithSectionId: this.serverDomain + 'api/articles/section/id/',
+            getArticleById: this.serverDomain + 'api/articles/id/',
+            getLastArticleId: this.serverDomain + 'api/articles/max/id',
+            getArticleBySearchText: this.serverDomain + 'api/articles/search?query=',
+            postArticle: this.serverDomain + 'api/articles/',
+            updateArticle: this.serverDomain + 'api/articles/',
+            deleteArticle: this.serverDomain + 'api/articles/id/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -4204,33 +4228,73 @@ var ArticleService = /** @class */ (function () {
             })
         };
     }
+    /**
+     * postArticle: method makes an API call to create an article with specified attributes in db.
+     * @param article : article object to be saved in the database
+     */
     ArticleService.prototype.postArticle = function (article) {
         return this.http.post(this.requestUri.postArticle, { article: article }, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].postArticleError));
     };
+    /**
+     * getArticle: method makes an API call to get article wih specified ID
+     * @param id : id of the article to be fetched
+     */
     ArticleService.prototype.getArticle = function (id) {
         return this.http.get(this.requestUri.getArticleById + id, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].getArticleError));
     };
+    /**
+     * getArticlesWithSectionId: method makes an API call to get article with specied Section ID.
+     * @param id : id of the section whose articles are to be fetched
+     *  @returns Articles : list of articles of type  user defined Article Object
+     */
     ArticleService.prototype.getArticlesWithSectionId = function (id) {
         return this.http.get(this.requestUri.getArticlesWithSectionId + id, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].listArticlesError));
     };
+    /**
+     * getLastRecordId: method makes an API call to get the ID of the last article created in DB
+     * @returns id: last articles ID as number
+     */
     ArticleService.prototype.getLastRecordId = function () {
         return this.http.get(this.requestUri.getLastArticleId, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].getLastRecordError));
     };
+    /**
+     * listArticles: returns all articles in the db *needs to be paginated.
+     *  @returns Articles : list of articles of type  user defined Article Object
+     */
     ArticleService.prototype.listArticles = function () {
         return this.http.get(this.requestUri.getArticles, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].listArticlesError));
     };
+    /**
+     * updateArticle: method makes an API call to update article method with updated article fields
+     * @param article : article object with updated attribute values
+     * @returns article: object of type article
+     */
     ArticleService.prototype.updateArticle = function (article) {
         return this.http.put(this.requestUri.updateArticle, { article: article }, this.headersOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].putArticleError));
     };
+    /**
+     * deleteArticle: method makes an API call to delete an article with specific ID (*considering archive)
+     * @param id : id of the article to be deleted
+     * @returns object: of type 'any' with information if article was successfully deleted or not
+     */
     ArticleService.prototype.deleteArticle = function (id) {
         return this.http.delete(this.requestUri.deleteArticle + id, this.headersOptions);
         // .pipe(catchError(ArticleRequestErrorHandlersService.))
+    };
+    /**
+     * searchArticlesByText: method gets all articles that have the input string in subject
+     * @param searchString: string to be searched accross article subjects
+     * @returns articles: list of article objects that match the specified input string in subject
+     */
+    ArticleService.prototype.searchArticlesByText = function (searchString, set) {
+        return this.http.get(this.requestUri.getArticleBySearchText + searchString + '&' + 'set=' + set, this.headersOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(_error_handler_service_article_request_error_handlers_article_request_error_handlers_service__WEBPACK_IMPORTED_MODULE_4__["ArticleRequestErrorHandlersService"].listArticlesError));
     };
     ArticleService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
@@ -4662,14 +4726,24 @@ var ArticleRequestErrorHandlersService = /** @class */ (function () {
         }
         else {
             // The backend error
-            console.error("Backend returned code " + error.status + ", " +
-                ("body was: " + error.error));
+            if (error.status == 404) {
+                console.log(error);
+                var errObj = {
+                    code: error.status,
+                    message: 'noarticle',
+                };
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errObj);
+            }
+            else {
+                console.error("Backend returned code " + error.status + ", " +
+                    ("body was: " + error.error));
+                var errObj = {
+                    code: error.status,
+                    msg: error.error
+                };
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errObj);
+            }
         }
-        var errObj = {
-            code: 500,
-            msg: 'error listing articles'
-        };
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])(errObj);
     };
     ArticleRequestErrorHandlersService.putArticleError = function (error) {
         if (error.error instanceof ErrorEvent) {
@@ -5471,15 +5545,17 @@ __webpack_require__.r(__webpack_exports__);
 var CategoryService = /** @class */ (function () {
     function CategoryService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for Category data
          */
         this.requestUri = {
-            getCategories: 'api/categories/',
-            getCategoryById: 'api/categories/id/',
-            postCategory: 'api/categories/',
-            updateCategory: 'api/categories/',
-            deleteCategory: 'api/categories/',
+            getCategories: this.serverDomain + 'api/categories/',
+            getCategoryById: this.serverDomain + 'api/categories/id/',
+            postCategory: this.serverDomain + 'api/categories/',
+            updateCategory: this.serverDomain + 'api/categories/',
+            deleteCategory: this.serverDomain + 'api/categories/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -5987,7 +6063,7 @@ var ComponentNotFoundComponent = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".non-home-page {\n  height: 50vh;\n}\n\n.hlputext-non-home {\n  padding-top: 0px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWJhbm5lci9FOlxcWmVuZGVzay1wb2NcXEFjY2VsZXJpdGUgSGVscCBDZW50ZXJcXGNsaWVudFxcaGVscC1jZW50ZXItaW50ZXJmYWNlL3NyY1xcYXBwXFxIZWxwY2VudGVyLW1vZHVsZVxcY29tcG9uZW50c1xcaGVscGNlbnRlci1iYW5uZXJcXGhlbHBjZW50ZXItYmFubmVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItYmFubmVyL2hlbHBjZW50ZXItYmFubmVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0ksWUFBQTtBQ0RKOztBRElBO0VBQ0ksZ0JBQUE7QUNESiIsImZpbGUiOiJzcmMvYXBwL0hlbHBjZW50ZXItbW9kdWxlL2NvbXBvbmVudHMvaGVscGNlbnRlci1iYW5uZXIvaGVscGNlbnRlci1iYW5uZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuXHJcbi5ub24taG9tZS1wYWdle1xyXG4gICAgaGVpZ2h0OiA1MHZoO1xyXG59XHJcblxyXG4uaGxwdXRleHQtbm9uLWhvbWV7XHJcbiAgICBwYWRkaW5nLXRvcDogMHB4O1xyXG59IiwiLm5vbi1ob21lLXBhZ2Uge1xuICBoZWlnaHQ6IDUwdmg7XG59XG5cbi5obHB1dGV4dC1ub24taG9tZSB7XG4gIHBhZGRpbmctdG9wOiAwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".non-home-page {\n  height: 50vh;\n}\n\n.hlputext-non-home {\n  padding-top: 0px;\n}\n\n.poputextnorm {\n  font-size: 18px;\n  color: #ffffff;\n  font-weight: normal;\n  text-align: center;\n}\n\n.poputextnorm a {\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWJhbm5lci9FOlxcWmVuZGVzay1wb2NcXEFjY2VsZXJpdGUgSGVscCBDZW50ZXJcXGNsaWVudFxcaGVscC1jZW50ZXItaW50ZXJmYWNlL3NyY1xcYXBwXFxIZWxwY2VudGVyLW1vZHVsZVxcY29tcG9uZW50c1xcaGVscGNlbnRlci1iYW5uZXJcXGhlbHBjZW50ZXItYmFubmVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItYmFubmVyL2hlbHBjZW50ZXItYmFubmVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0ksWUFBQTtBQ0RKOztBRElBO0VBQ0ksZ0JBQUE7QUNESjs7QURJQTtFQUNJLGVBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtBQ0RKOztBREVJO0VBQ0ksWUFBQTtBQ0FSIiwiZmlsZSI6InNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWJhbm5lci9oZWxwY2VudGVyLWJhbm5lci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuLm5vbi1ob21lLXBhZ2V7XHJcbiAgICBoZWlnaHQ6IDUwdmg7XHJcbn1cclxuXHJcbi5obHB1dGV4dC1ub24taG9tZXtcclxuICAgIHBhZGRpbmctdG9wOiAwcHg7XHJcbn1cclxuXHJcbi5wb3B1dGV4dG5vcm0geyBcclxuICAgIGZvbnQtc2l6ZTogMThweDsgXHJcbiAgICBjb2xvcjogI2ZmZmZmZjsgXHJcbiAgICBmb250LXdlaWdodDogbm9ybWFsOyBcclxuICAgIHRleHQtYWxpZ246Y2VudGVyOyAgXHJcbiAgICBhIHtcclxuICAgICAgICBjb2xvcjogd2hpdGVcclxuICAgIH1cclxuXHJcbn1cclxuIiwiLm5vbi1ob21lLXBhZ2Uge1xuICBoZWlnaHQ6IDUwdmg7XG59XG5cbi5obHB1dGV4dC1ub24taG9tZSB7XG4gIHBhZGRpbmctdG9wOiAwcHg7XG59XG5cbi5wb3B1dGV4dG5vcm0ge1xuICBmb250LXNpemU6IDE4cHg7XG4gIGNvbG9yOiAjZmZmZmZmO1xuICBmb250LXdlaWdodDogbm9ybWFsO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ucG9wdXRleHRub3JtIGEge1xuICBjb2xvcjogd2hpdGU7XG59Il19 */");
 
 /***/ }),
 
@@ -6004,21 +6080,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 var HelpcenterBannerComponent = /** @class */ (function () {
-    function HelpcenterBannerComponent(fb) {
+    function HelpcenterBannerComponent(fb, router) {
         this.fb = fb;
+        this.router = router;
         this.search_hc_form = this.fb.group({
             search: ['']
         });
     }
+    Object.defineProperty(HelpcenterBannerComponent.prototype, "searchString", {
+        get: function () { return this.search_hc_form.get('search').value; },
+        enumerable: true,
+        configurable: true
+    });
     HelpcenterBannerComponent.prototype.ngOnInit = function () {
         console.log(this.currentPage);
     };
+    /**
+     * click search method to fetch hc data (articles) based on topic clicked
+     * @param searchTerm the term clicked to search accross helpcenter
+     */
+    HelpcenterBannerComponent.prototype.searchHelpcenter = function (searchTerm) {
+        this.router.navigate(['hc/en-us/search'], { queryParams: { query: searchTerm, offset: 0 } });
+    };
+    /**
+     * method searches hc content (articles) once searchbox form is submitted
+     */
+    HelpcenterBannerComponent.prototype.onSubmit = function () {
+        // console.log(this.searchString)
+        this.router.navigate(['hc/en-us/search'], { queryParams: { query: this.searchString, offset: 0 } });
+    };
     HelpcenterBannerComponent.ctorParameters = function () { return [
-        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] }
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
     ]; };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -6030,7 +6129,7 @@ var HelpcenterBannerComponent = /** @class */ (function () {
             template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./helpcenter-banner.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/Helpcenter-module/components/helpcenter-banner/helpcenter-banner.component.html")).default,
             styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./helpcenter-banner.component.scss */ "./src/app/Helpcenter-module/components/helpcenter-banner/helpcenter-banner.component.scss")).default]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], HelpcenterBannerComponent);
     return HelpcenterBannerComponent;
 }());
@@ -6095,7 +6194,7 @@ var HelpcenterFooterComponent = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".user-header-opt {\n  margin-bottom: 10px;\n}\n.user-header-opt div {\n  display: inline-block;\n  vertical-align: top;\n}\n.user-header-opt div .toptext {\n  padding-left: 20px;\n  padding-top: 4px;\n  display: inline;\n}\n.user-header-opt div button {\n  display: inline-block;\n  vertical-align: top;\n}\n.user-header-opt div button i {\n  padding-bottom: 12px;\n}\n.mat-menu-item {\n  outline: none;\n}\n.mat-menu-item mat-icon {\n  margin-top: 0px;\n}\n.mat-icon-button {\n  width: 20px;\n  line-height: 20px;\n}\n.home-main-navbar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  float: right;\n}\n.home-main-navbar li.dropdown {\n  padding-top: 10px;\n}\n.home-main-navbar li.dropdown ul {\n  position: absolute;\n  margin-top: 7px;\n}\n.home-main-navbar li.dropdown ul li a {\n  display: block;\n}\n.contacts-details-div div {\n  display: inline-block;\n}\n.close-login {\n  padding-top: 10px;\n}\n.guideAdminLink {\n  display: inline-block;\n  padding-right: 0px;\n}\n.guideAdminLink div a {\n  color: white;\n}\n.guideAdminLink div a:hover {\n  text-decoration: none;\n}\n.errmessage-cls h3 {\n  font-size: 15px;\n  color: red;\n}\n#subrequestModal .col-md-6.ng-star-inserted {\n  display: inline-block;\n}\nbutton.closesubreq {\n  float: right !important;\n  opacity: 1 !important;\n  font-size: 33px;\n  box-shadow: none !important;\n  padding: 15px 10px 0 10px;\n  margin-top: -5px !important;\n  color: #9B9B9B;\n  font-weight: 500;\n  border: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWhlYWRlci9FOlxcWmVuZGVzay1wb2NcXEFjY2VsZXJpdGUgSGVscCBDZW50ZXJcXGNsaWVudFxcaGVscC1jZW50ZXItaW50ZXJmYWNlL3NyY1xcYXBwXFxIZWxwY2VudGVyLW1vZHVsZVxcY29tcG9uZW50c1xcaGVscGNlbnRlci1oZWFkZXJcXGhlbHBjZW50ZXItaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItaGVhZGVyL2hlbHBjZW50ZXItaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUNDSjtBREFJO0VBQ0kscUJBQUE7RUFDQSxtQkFBQTtBQ0VSO0FERFE7RUFDSSxrQkFBQTtFQUVBLGdCQUFBO0VBQ0EsZUFBQTtBQ0VaO0FEQ1E7RUFDSSxxQkFBQTtFQUNBLG1CQUFBO0FDQ1o7QURBWTtFQUNJLG9CQUFBO0FDRWhCO0FES0k7RUFDSSxhQUFBO0FDRlI7QURHUTtFQUNJLGVBQUE7QUNEWjtBREtJO0VBQ0ksV0FBQTtFQUNBLGlCQUFBO0FDRlI7QURLQTtFQUNJLG9CQUFBO0VBQUEsYUFBQTtFQUNBLDhCQUFBO0VBQUEsNkJBQUE7VUFBQSxtQkFBQTtFQUNBLFlBQUE7QUNGSjtBREdBO0VBQ0ksaUJBQUE7QUNESjtBREVJO0VBQ0ksa0JBQUE7RUFDQSxlQUFBO0FDQVI7QURHWTtFQUNJLGNBQUE7QUNEaEI7QURTSTtFQUNJLHFCQUFBO0FDTlI7QURVQTtFQUNJLGlCQUFBO0FDUEo7QURVQTtFQUNJLHFCQUFBO0VBQ0Esa0JBQUE7QUNQSjtBRFNRO0VBQ0ksWUFBQTtBQ1BaO0FEVVE7RUFDSSxxQkFBQTtBQ1JaO0FEY0k7RUFDSSxlQUFBO0VBQ0EsVUFBQTtBQ1hSO0FEZ0JFO0VBQ0kscUJBQUE7QUNiTjtBRGlCQTtFQUVJLHVCQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0EsMkJBQUE7RUFDQSx5QkFBQTtFQUNBLDJCQUFBO0VBQ0EsY0FBQTtFQUNBLGdCQUFBO0VBQ0EsU0FBQTtBQ2ZKIiwiZmlsZSI6InNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWhlYWRlci9oZWxwY2VudGVyLWhlYWRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi51c2VyLWhlYWRlci1vcHR7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG4gICAgZGl2e1xyXG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgICAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xyXG4gICAgICAgIC50b3B0ZXh0e1xyXG4gICAgICAgICAgICBwYWRkaW5nLWxlZnQ6IDIwcHg7XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICBwYWRkaW5nLXRvcDogNHB4O1xyXG4gICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmU7XHJcblxyXG4gICAgICAgIH1cclxuICAgICAgICBidXR0b257XHJcbiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgICAgICAgICAgdmVydGljYWwtYWxpZ246IHRvcDtcclxuICAgICAgICAgICAgaXtcclxuICAgICAgICAgICAgICAgIHBhZGRpbmctYm90dG9tOiAxMnB4O1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxufVxyXG5cclxuICAgIC5tYXQtbWVudS1pdGVte1xyXG4gICAgICAgIG91dGxpbmU6IG5vbmU7XHJcbiAgICAgICAgbWF0LWljb257XHJcbiAgICAgICAgICAgIG1hcmdpbi10b3A6IDBweDtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgLm1hdC1pY29uLWJ1dHRvbntcclxuICAgICAgICB3aWR0aDogMjBweDtcclxuICAgICAgICBsaW5lLWhlaWdodDogMjBweDtcclxuICAgIH1cclxuXHJcbi5ob21lLW1haW4tbmF2YmFye1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICBmbG9hdDogcmlnaHQ7XHJcbmxpLmRyb3Bkb3due1xyXG4gICAgcGFkZGluZy10b3A6IDEwcHg7XHJcbiAgICB1bCB7XHJcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICAgIG1hcmdpbi10b3A6IDdweDtcclxuICAgICAgICBsaXtcclxuICAgICAgICAgICBcclxuICAgICAgICAgICAgYXtcclxuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgICAgIFxyXG4gICAgfVxyXG59XHJcbn1cclxuLmNvbnRhY3RzLWRldGFpbHMtZGl2e1xyXG4gICAgZGl2e1xyXG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIH1cclxufVxyXG5cclxuLmNsb3NlLWxvZ2lue1xyXG4gICAgcGFkZGluZy10b3A6IDEwcHg7XHJcbn1cclxuXHJcbi5ndWlkZUFkbWluTGlua3tcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIHBhZGRpbmctcmlnaHQ6IDBweDtcclxuICAgIGRpdntcclxuICAgICAgICBhe1xyXG4gICAgICAgICAgICBjb2xvcjogd2hpdGU7XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICBhOmhvdmVye1xyXG4gICAgICAgICAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59XHJcblxyXG4uZXJybWVzc2FnZS1jbHN7XHJcbiAgICBoM3tcclxuICAgICAgICBmb250LXNpemU6IDE1cHg7XHJcbiAgICAgICAgY29sb3I6IHJlZDtcclxuICAgIH1cclxufVxyXG5cclxuI3N1YnJlcXVlc3RNb2RhbHtcclxuICAuY29sLW1kLTYubmctc3Rhci1pbnNlcnRlZCB7XHJcbiAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICB9XHJcbn1cclxuXHJcbmJ1dHRvbi5jbG9zZXN1YnJlcSB7XHJcblxyXG4gICAgZmxvYXQ6IHJpZ2h0ICFpbXBvcnRhbnQ7XHJcbiAgICBvcGFjaXR5OiAxICFpbXBvcnRhbnQ7XHJcbiAgICBmb250LXNpemU6IDMzcHg7XHJcbiAgICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XHJcbiAgICBwYWRkaW5nOiAxNXB4IDEwcHggMCAxMHB4O1xyXG4gICAgbWFyZ2luLXRvcDogLTVweCAhaW1wb3J0YW50O1xyXG4gICAgY29sb3I6ICM5QjlCOUI7XHJcbiAgICBmb250LXdlaWdodDogNTAwO1xyXG4gICAgYm9yZGVyOiAwO1xyXG59XHJcblxyXG4iLCIudXNlci1oZWFkZXItb3B0IHtcbiAgbWFyZ2luLWJvdHRvbTogMTBweDtcbn1cbi51c2VyLWhlYWRlci1vcHQgZGl2IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLnVzZXItaGVhZGVyLW9wdCBkaXYgLnRvcHRleHQge1xuICBwYWRkaW5nLWxlZnQ6IDIwcHg7XG4gIHBhZGRpbmctdG9wOiA0cHg7XG4gIGRpc3BsYXk6IGlubGluZTtcbn1cbi51c2VyLWhlYWRlci1vcHQgZGl2IGJ1dHRvbiB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi51c2VyLWhlYWRlci1vcHQgZGl2IGJ1dHRvbiBpIHtcbiAgcGFkZGluZy1ib3R0b206IDEycHg7XG59XG5cbi5tYXQtbWVudS1pdGVtIHtcbiAgb3V0bGluZTogbm9uZTtcbn1cbi5tYXQtbWVudS1pdGVtIG1hdC1pY29uIHtcbiAgbWFyZ2luLXRvcDogMHB4O1xufVxuXG4ubWF0LWljb24tYnV0dG9uIHtcbiAgd2lkdGg6IDIwcHg7XG4gIGxpbmUtaGVpZ2h0OiAyMHB4O1xufVxuXG4uaG9tZS1tYWluLW5hdmJhciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGZsb2F0OiByaWdodDtcbn1cbi5ob21lLW1haW4tbmF2YmFyIGxpLmRyb3Bkb3duIHtcbiAgcGFkZGluZy10b3A6IDEwcHg7XG59XG4uaG9tZS1tYWluLW5hdmJhciBsaS5kcm9wZG93biB1bCB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgbWFyZ2luLXRvcDogN3B4O1xufVxuLmhvbWUtbWFpbi1uYXZiYXIgbGkuZHJvcGRvd24gdWwgbGkgYSB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuXG4uY29udGFjdHMtZGV0YWlscy1kaXYgZGl2IHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuXG4uY2xvc2UtbG9naW4ge1xuICBwYWRkaW5nLXRvcDogMTBweDtcbn1cblxuLmd1aWRlQWRtaW5MaW5rIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBwYWRkaW5nLXJpZ2h0OiAwcHg7XG59XG4uZ3VpZGVBZG1pbkxpbmsgZGl2IGEge1xuICBjb2xvcjogd2hpdGU7XG59XG4uZ3VpZGVBZG1pbkxpbmsgZGl2IGE6aG92ZXIge1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG59XG5cbi5lcnJtZXNzYWdlLWNscyBoMyB7XG4gIGZvbnQtc2l6ZTogMTVweDtcbiAgY29sb3I6IHJlZDtcbn1cblxuI3N1YnJlcXVlc3RNb2RhbCAuY29sLW1kLTYubmctc3Rhci1pbnNlcnRlZCB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuYnV0dG9uLmNsb3Nlc3VicmVxIHtcbiAgZmxvYXQ6IHJpZ2h0ICFpbXBvcnRhbnQ7XG4gIG9wYWNpdHk6IDEgIWltcG9ydGFudDtcbiAgZm9udC1zaXplOiAzM3B4O1xuICBib3gtc2hhZG93OiBub25lICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmc6IDE1cHggMTBweCAwIDEwcHg7XG4gIG1hcmdpbi10b3A6IC01cHggIWltcG9ydGFudDtcbiAgY29sb3I6ICM5QjlCOUI7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGJvcmRlcjogMDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".user-header-opt {\n  margin-bottom: 10px;\n}\n.user-header-opt div {\n  display: inline-block;\n  vertical-align: top;\n}\n.user-header-opt div .toptext {\n  padding-left: 20px;\n  padding-top: 4px;\n  display: inline;\n}\n.user-header-opt div button {\n  display: inline-block;\n  vertical-align: top;\n}\n.user-header-opt div button i {\n  padding-bottom: 12px;\n}\n.mat-menu-item {\n  outline: none;\n}\n.mat-menu-item mat-icon {\n  margin-top: 0px;\n}\n.mat-icon-button {\n  width: 20px;\n  line-height: 20px;\n}\n.home-main-navbar {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n  float: right;\n}\n.home-main-navbar li.dropdown {\n  padding-top: 10px;\n}\n.home-main-navbar li.dropdown ul {\n  position: absolute;\n  margin-top: 7px;\n}\n.home-main-navbar li.dropdown ul li a {\n  display: block;\n}\n.contacts-details-div div {\n  display: inline-block;\n}\n.close-login {\n  padding-top: 10px;\n}\n.guideAdminLink {\n  display: inline-block;\n  padding-right: 0px;\n}\n.guideAdminLink div a {\n  color: white;\n}\n.guideAdminLink div a:hover {\n  text-decoration: none;\n}\n.errmessage-cls h3 {\n  font-size: 15px;\n  color: red;\n}\n#subrequestModal .col-md-6.ng-star-inserted {\n  display: inline-block;\n}\nbutton.closesubreq {\n  float: right !important;\n  opacity: 1 !important;\n  font-size: 33px;\n  box-shadow: none !important;\n  padding: 15px 10px 0 10px;\n  margin-top: -5px !important;\n  color: #9B9B9B;\n  font-weight: 500;\n  border: 0;\n}\n.disabledListVal {\n  pointer-events: none;\n  opacity: 0.6;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLWhlYWRlci9FOlxcWmVuZGVzay1wb2NcXEFjY2VsZXJpdGUgSGVscCBDZW50ZXJcXGNsaWVudFxcaGVscC1jZW50ZXItaW50ZXJmYWNlL3NyY1xcYXBwXFxIZWxwY2VudGVyLW1vZHVsZVxcY29tcG9uZW50c1xcaGVscGNlbnRlci1oZWFkZXJcXGhlbHBjZW50ZXItaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItaGVhZGVyL2hlbHBjZW50ZXItaGVhZGVyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUNDSjtBREFJO0VBQ0kscUJBQUE7RUFDQSxtQkFBQTtBQ0VSO0FERFE7RUFDSSxrQkFBQTtFQUVBLGdCQUFBO0VBQ0EsZUFBQTtBQ0VaO0FEQ1E7RUFDSSxxQkFBQTtFQUNBLG1CQUFBO0FDQ1o7QURBWTtFQUNJLG9CQUFBO0FDRWhCO0FES0k7RUFDSSxhQUFBO0FDRlI7QURHUTtFQUNJLGVBQUE7QUNEWjtBREtJO0VBQ0ksV0FBQTtFQUNBLGlCQUFBO0FDRlI7QURLQTtFQUNJLG9CQUFBO0VBQUEsYUFBQTtFQUNBLDhCQUFBO0VBQUEsNkJBQUE7VUFBQSxtQkFBQTtFQUNBLFlBQUE7QUNGSjtBREdBO0VBQ0ksaUJBQUE7QUNESjtBREVJO0VBQ0ksa0JBQUE7RUFDQSxlQUFBO0FDQVI7QURHWTtFQUNJLGNBQUE7QUNEaEI7QURTSTtFQUNJLHFCQUFBO0FDTlI7QURVQTtFQUNJLGlCQUFBO0FDUEo7QURVQTtFQUNJLHFCQUFBO0VBQ0Esa0JBQUE7QUNQSjtBRFNRO0VBQ0ksWUFBQTtBQ1BaO0FEVVE7RUFDSSxxQkFBQTtBQ1JaO0FEY0k7RUFDSSxlQUFBO0VBQ0EsVUFBQTtBQ1hSO0FEZ0JFO0VBQ0kscUJBQUE7QUNiTjtBRGlCQTtFQUVJLHVCQUFBO0VBQ0EscUJBQUE7RUFDQSxlQUFBO0VBQ0EsMkJBQUE7RUFDQSx5QkFBQTtFQUNBLDJCQUFBO0VBQ0EsY0FBQTtFQUNBLGdCQUFBO0VBQ0EsU0FBQTtBQ2ZKO0FEa0JBO0VBQ0ksb0JBQUE7RUFDQSxZQUFBO0FDZkoiLCJmaWxlIjoic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItaGVhZGVyL2hlbHBjZW50ZXItaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVzZXItaGVhZGVyLW9wdHtcclxuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XHJcbiAgICBkaXZ7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XHJcbiAgICAgICAgLnRvcHRleHR7XHJcbiAgICAgICAgICAgIHBhZGRpbmctbGVmdDogMjBweDtcclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIHBhZGRpbmctdG9wOiA0cHg7XHJcbiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZTtcclxuXHJcbiAgICAgICAgfVxyXG4gICAgICAgIGJ1dHRvbntcclxuICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgICAgICAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xyXG4gICAgICAgICAgICBpe1xyXG4gICAgICAgICAgICAgICAgcGFkZGluZy1ib3R0b206IDEycHg7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG59XHJcblxyXG4gICAgLm1hdC1tZW51LWl0ZW17XHJcbiAgICAgICAgb3V0bGluZTogbm9uZTtcclxuICAgICAgICBtYXQtaWNvbntcclxuICAgICAgICAgICAgbWFyZ2luLXRvcDogMHB4O1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgICAubWF0LWljb24tYnV0dG9ue1xyXG4gICAgICAgIHdpZHRoOiAyMHB4O1xyXG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xyXG4gICAgfVxyXG5cclxuLmhvbWUtbWFpbi1uYXZiYXJ7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIGZsb2F0OiByaWdodDtcclxubGkuZHJvcGRvd257XHJcbiAgICBwYWRkaW5nLXRvcDogMTBweDtcclxuICAgIHVsIHtcclxuICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICAgICAgbWFyZ2luLXRvcDogN3B4O1xyXG4gICAgICAgIGxpe1xyXG4gICAgICAgICAgIFxyXG4gICAgICAgICAgICBhe1xyXG4gICAgICAgICAgICAgICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICAgICAgXHJcbiAgICB9XHJcbn1cclxufVxyXG4uY29udGFjdHMtZGV0YWlscy1kaXZ7XHJcbiAgICBkaXZ7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgfVxyXG59XHJcblxyXG4uY2xvc2UtbG9naW57XHJcbiAgICBwYWRkaW5nLXRvcDogMTBweDtcclxufVxyXG5cclxuLmd1aWRlQWRtaW5MaW5re1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgcGFkZGluZy1yaWdodDogMHB4O1xyXG4gICAgZGl2e1xyXG4gICAgICAgIGF7XHJcbiAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIGE6aG92ZXJ7XHJcbiAgICAgICAgICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuXHJcbi5lcnJtZXNzYWdlLWNsc3tcclxuICAgIGgze1xyXG4gICAgICAgIGZvbnQtc2l6ZTogMTVweDtcclxuICAgICAgICBjb2xvcjogcmVkO1xyXG4gICAgfVxyXG59XHJcblxyXG4jc3VicmVxdWVzdE1vZGFse1xyXG4gIC5jb2wtbWQtNi5uZy1zdGFyLWluc2VydGVkIHtcclxuICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIH1cclxufVxyXG5cclxuYnV0dG9uLmNsb3Nlc3VicmVxIHtcclxuXHJcbiAgICBmbG9hdDogcmlnaHQgIWltcG9ydGFudDtcclxuICAgIG9wYWNpdHk6IDEgIWltcG9ydGFudDtcclxuICAgIGZvbnQtc2l6ZTogMzNweDtcclxuICAgIGJveC1zaGFkb3c6IG5vbmUgIWltcG9ydGFudDtcclxuICAgIHBhZGRpbmc6IDE1cHggMTBweCAwIDEwcHg7XHJcbiAgICBtYXJnaW4tdG9wOiAtNXB4ICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogIzlCOUI5QjtcclxuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbiAgICBib3JkZXI6IDA7XHJcbn1cclxuXHJcbi5kaXNhYmxlZExpc3RWYWwge1xyXG4gICAgcG9pbnRlci1ldmVudHM6bm9uZTsgLy9UaGlzIG1ha2VzIGl0IG5vdCBjbGlja2FibGVcclxuICAgIG9wYWNpdHk6MC42OyAgICAgICAgIC8vVGhpcyBncmF5cyBpdCBvdXQgdG8gbG9vayBkaXNhYmxlZFxyXG59IiwiLnVzZXItaGVhZGVyLW9wdCB7XG4gIG1hcmdpbi1ib3R0b206IDEwcHg7XG59XG4udXNlci1oZWFkZXItb3B0IGRpdiB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi51c2VyLWhlYWRlci1vcHQgZGl2IC50b3B0ZXh0IHtcbiAgcGFkZGluZy1sZWZ0OiAyMHB4O1xuICBwYWRkaW5nLXRvcDogNHB4O1xuICBkaXNwbGF5OiBpbmxpbmU7XG59XG4udXNlci1oZWFkZXItb3B0IGRpdiBidXR0b24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4udXNlci1oZWFkZXItb3B0IGRpdiBidXR0b24gaSB7XG4gIHBhZGRpbmctYm90dG9tOiAxMnB4O1xufVxuXG4ubWF0LW1lbnUtaXRlbSB7XG4gIG91dGxpbmU6IG5vbmU7XG59XG4ubWF0LW1lbnUtaXRlbSBtYXQtaWNvbiB7XG4gIG1hcmdpbi10b3A6IDBweDtcbn1cblxuLm1hdC1pY29uLWJ1dHRvbiB7XG4gIHdpZHRoOiAyMHB4O1xuICBsaW5lLWhlaWdodDogMjBweDtcbn1cblxuLmhvbWUtbWFpbi1uYXZiYXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICBmbG9hdDogcmlnaHQ7XG59XG4uaG9tZS1tYWluLW5hdmJhciBsaS5kcm9wZG93biB7XG4gIHBhZGRpbmctdG9wOiAxMHB4O1xufVxuLmhvbWUtbWFpbi1uYXZiYXIgbGkuZHJvcGRvd24gdWwge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIG1hcmdpbi10b3A6IDdweDtcbn1cbi5ob21lLW1haW4tbmF2YmFyIGxpLmRyb3Bkb3duIHVsIGxpIGEge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuLmNvbnRhY3RzLWRldGFpbHMtZGl2IGRpdiB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuLmNsb3NlLWxvZ2luIHtcbiAgcGFkZGluZy10b3A6IDEwcHg7XG59XG5cbi5ndWlkZUFkbWluTGluayB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgcGFkZGluZy1yaWdodDogMHB4O1xufVxuLmd1aWRlQWRtaW5MaW5rIGRpdiBhIHtcbiAgY29sb3I6IHdoaXRlO1xufVxuLmd1aWRlQWRtaW5MaW5rIGRpdiBhOmhvdmVyIHtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufVxuXG4uZXJybWVzc2FnZS1jbHMgaDMge1xuICBmb250LXNpemU6IDE1cHg7XG4gIGNvbG9yOiByZWQ7XG59XG5cbiNzdWJyZXF1ZXN0TW9kYWwgLmNvbC1tZC02Lm5nLXN0YXItaW5zZXJ0ZWQge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG59XG5cbmJ1dHRvbi5jbG9zZXN1YnJlcSB7XG4gIGZsb2F0OiByaWdodCAhaW1wb3J0YW50O1xuICBvcGFjaXR5OiAxICFpbXBvcnRhbnQ7XG4gIGZvbnQtc2l6ZTogMzNweDtcbiAgYm94LXNoYWRvdzogbm9uZSAhaW1wb3J0YW50O1xuICBwYWRkaW5nOiAxNXB4IDEwcHggMCAxMHB4O1xuICBtYXJnaW4tdG9wOiAtNXB4ICFpbXBvcnRhbnQ7XG4gIGNvbG9yOiAjOUI5QjlCO1xuICBmb250LXdlaWdodDogNTAwO1xuICBib3JkZXI6IDA7XG59XG5cbi5kaXNhYmxlZExpc3RWYWwge1xuICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgb3BhY2l0eTogMC42O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -6482,6 +6581,178 @@ var HelpcenterLogoutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.scss":
+/*!*************************************************************************************************!*\
+  !*** ./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.scss ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("@charset \"UTF-8\";\n.search-header-div div {\n  display: inline-block;\n  vertical-align: top;\n}\nform .searchhmicon {\n  margin-top: 20px;\n}\n.search-header-div {\n  padding-top: 100px;\n}\n.search-results-list li {\n  display: inline-block;\n}\n.search-result-meta-time:before, .search-result-meta-count:before {\n  display: inline-block;\n  padding-right: 15px;\n  padding-left: 15px;\n  content: \"•\";\n  /* speak: none; */\n  line-height: 1;\n  -webkit-font-smoothing: antialiased;\n}\n.component-not-found h1 {\n  padding-top: 80px;\n  padding-bottom: 80px;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLXNlYXJjaC9oZWxwY2VudGVyLXNlYXJjaC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvSGVscGNlbnRlci1tb2R1bGUvY29tcG9uZW50cy9oZWxwY2VudGVyLXNlYXJjaC9FOlxcWmVuZGVzay1wb2NcXEFjY2VsZXJpdGUgSGVscCBDZW50ZXJcXGNsaWVudFxcaGVscC1jZW50ZXItaW50ZXJmYWNlL3NyY1xcYXBwXFxIZWxwY2VudGVyLW1vZHVsZVxcY29tcG9uZW50c1xcaGVscGNlbnRlci1zZWFyY2hcXGhlbHBjZW50ZXItc2VhcmNoLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQ0NaO0VBQUkscUJBQUE7RUFDQSxtQkFBQTtBREVSO0FDRUk7RUFDSSxnQkFBQTtBRENSO0FDR0E7RUFDSSxrQkFBQTtBREFKO0FDSUk7RUFFSSxxQkFBQTtBREZSO0FDTUE7RUFDSSxxQkFBQTtFQUNBLG1CQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsbUNBQUE7QURISjtBQ1FJO0VBQ0ksaUJBQUE7RUFDQSxvQkFBQTtFQUNBLGtCQUFBO0FETFIiLCJmaWxlIjoic3JjL2FwcC9IZWxwY2VudGVyLW1vZHVsZS9jb21wb25lbnRzL2hlbHBjZW50ZXItc2VhcmNoL2hlbHBjZW50ZXItc2VhcmNoLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNoYXJzZXQgXCJVVEYtOFwiO1xuLnNlYXJjaC1oZWFkZXItZGl2IGRpdiB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cblxuZm9ybSAuc2VhcmNoaG1pY29uIHtcbiAgbWFyZ2luLXRvcDogMjBweDtcbn1cblxuLnNlYXJjaC1oZWFkZXItZGl2IHtcbiAgcGFkZGluZy10b3A6IDEwMHB4O1xufVxuXG4uc2VhcmNoLXJlc3VsdHMtbGlzdCBsaSB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuLnNlYXJjaC1yZXN1bHQtbWV0YS10aW1lOmJlZm9yZSwgLnNlYXJjaC1yZXN1bHQtbWV0YS1jb3VudDpiZWZvcmUge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBhZGRpbmctcmlnaHQ6IDE1cHg7XG4gIHBhZGRpbmctbGVmdDogMTVweDtcbiAgY29udGVudDogXCLigKJcIjtcbiAgLyogc3BlYWs6IG5vbmU7ICovXG4gIGxpbmUtaGVpZ2h0OiAxO1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbn1cblxuLmNvbXBvbmVudC1ub3QtZm91bmQgaDEge1xuICBwYWRkaW5nLXRvcDogODBweDtcbiAgcGFkZGluZy1ib3R0b206IDgwcHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iLCIuc2VhcmNoLWhlYWRlci1kaXZ7XHJcbiAgICBkaXZ7ZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7fVxyXG59XHJcblxyXG5mb3Jte1xyXG4gICAgLnNlYXJjaGhtaWNvbntcclxuICAgICAgICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gICAgfVxyXG59XHJcblxyXG4uc2VhcmNoLWhlYWRlci1kaXYge1xyXG4gICAgcGFkZGluZy10b3A6IDEwMHB4O1xyXG59XHJcblxyXG4uc2VhcmNoLXJlc3VsdHMtbGlzdHtcclxuICAgIGxpe1xyXG4gICAgICAgIC8vIG1hcmdpbi1sZWZ0OiAxMHB4O1xyXG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIH1cclxufVxyXG5cclxuLnNlYXJjaC1yZXN1bHQtbWV0YS10aW1lOmJlZm9yZSwgLnNlYXJjaC1yZXN1bHQtbWV0YS1jb3VudDpiZWZvcmUge1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgcGFkZGluZy1yaWdodDogMTVweDtcclxuICAgIHBhZGRpbmctbGVmdDogMTVweDtcclxuICAgIGNvbnRlbnQ6ICdcXDIwMjInO1xyXG4gICAgLyogc3BlYWs6IG5vbmU7ICovXHJcbiAgICBsaW5lLWhlaWdodDogMTtcclxuICAgIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xyXG4gIH1cclxuXHJcbiAgLmNvbXBvbmVudC1ub3QtZm91bmR7XHJcblxyXG4gICAgaDEge1xyXG4gICAgICAgIHBhZGRpbmctdG9wOiA4MHB4O1xyXG4gICAgICAgIHBhZGRpbmctYm90dG9tOiA4MHB4O1xyXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuXHJcbiAgICB9XHJcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.ts":
+/*!***********************************************************************************************!*\
+  !*** ./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.ts ***!
+  \***********************************************************************************************/
+/*! exports provided: HelpcenterSearchComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HelpcenterSearchComponent", function() { return HelpcenterSearchComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _Articles_module_services_article_service_article_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../../Articles-module/services/article-service/article.service */ "./src/app/Articles-module/services/article-service/article.service.ts");
+
+
+
+
+
+
+
+var HelpcenterSearchComponent = /** @class */ (function () {
+    function HelpcenterSearchComponent(fb, articleService, route, router, location) {
+        this.fb = fb;
+        this.articleService = articleService;
+        this.route = route;
+        this.router = router;
+        this.location = location;
+        this.searchStatus = 'searching'; //current status of article search {searching, available, unavailable}
+        this.search_hc_form = this.fb.group({
+            searchString: []
+        });
+    }
+    Object.defineProperty(HelpcenterSearchComponent.prototype, "searchString", {
+        get: function () { return this.search_hc_form.get('searchString'); },
+        enumerable: true,
+        configurable: true
+    });
+    HelpcenterSearchComponent.prototype.ngOnInit = function () {
+        this.getSearchTermArticles();
+    };
+    /**
+     * method gets articles from uri path
+     */
+    HelpcenterSearchComponent.prototype.getSearchTermArticles = function () {
+        var _this = this;
+        this.searchResults = this.route
+            .queryParamMap
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (params) { return _this.articleService
+            .searchArticlesByText(params.get('query'), params.get('offset')); }));
+        this.searchString.setValue(this.route.snapshot.queryParamMap.get('query'));
+        this.articleSet = parseInt(this.route.snapshot.queryParamMap.get('offset'));
+        this.pageIndexes = [1, 2, 3, 4, 5];
+        this.currentSearchString = this.searchString.value;
+        this.pageIndexes = this.pageIndexes.map(function (pageIndex) { return pageIndex + _this.articleSet - 1; });
+        // console.log(this.pageIndexes);
+        this.searchResults.subscribe(function (results) {
+            _this.articles = results.articles;
+            _this.articleCount = results.count;
+            _this.searchStatus = 'available';
+        }, function (error) {
+            if (error.message == 'noarticle') {
+                _this.searchStatus = 'unavailable';
+            }
+            console.log(error);
+        });
+    };
+    HelpcenterSearchComponent.prototype.ifNextSetExists = function (count) {
+        if ((count) * 10 < this.articleCount)
+            return true;
+        else
+            return false;
+    };
+    /**
+     * get next set of articles from count offset
+     * @param count : the number offset after which articles are to be fetched
+     */
+    HelpcenterSearchComponent.prototype.fetchNextSet = function (count) {
+        this.router.navigate(['hc/en-us/search'], { queryParams: { query: this.searchString.value, offset: count } });
+    };
+    /**
+     * increment pagination buttons index
+     * @param index : update pagination list by numeric index
+     */
+    HelpcenterSearchComponent.prototype.nextPageIndexes = function (index) {
+        var _this = this;
+        if (this.articleSet + index < (this.articleCount / 10)) {
+            this.pageIndexes = this.pageIndexes.map(function (pageIndex) { return pageIndex + index; }).filter(function (pageIndex) { return pageIndex < _this.articleCount / 10; });
+            this.router.navigate(['hc/en-us/search'], { queryParams: { query: this.searchString.value,
+                    offset: this.articleSet + this.pageIndexes[this.pageIndexes.length - 1] } });
+        }
+    };
+    /**
+     * decrement pagination buttons index
+     * @param index : update pagination list by numeric index
+     */
+    HelpcenterSearchComponent.prototype.prevPageIndexes = function (index) {
+        // console.log(this.pageIndexes[0])
+        if (this.pageIndexes[0] > 1) {
+            if (index == 1) {
+                this.pageIndexes = this.pageIndexes.map(function (pageIndex) { return pageIndex - index; });
+            }
+            else {
+                if ((this.pageIndexes[0] - 5) < 0) {
+                    this.pageIndexes = [1, 2, 3, 4, 5];
+                }
+                else {
+                    this.pageIndexes = this.pageIndexes.map(function (pageIndex) { return pageIndex - index; });
+                }
+            }
+            this.router.navigate(['hc/en-us/search'], { queryParams: { query: this.searchString.value, offset: this.articleSet + this.pageIndexes[0] } });
+        }
+        else {
+            this.pageIndexes = [1, 2, 3, 4, 5];
+            this.router.navigate(['hc/en-us/search'], { queryParams: { query: this.searchString.value, offset: this.articleSet + this.pageIndexes[0] } });
+        }
+    };
+    /**
+     * method makes a request to get filtered articles based on search text
+    */
+    HelpcenterSearchComponent.prototype.searchText = function () {
+        this.currentSearchString = this.searchString.value;
+        this.searchStatus = 'searching';
+        // this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString.value, offset: 0}});
+        var url = this.router.createUrlTree([], { relativeTo: this.route,
+            queryParams: { query: this.searchString.value,
+                offset: 0 } }).toString();
+        this.location.go(url);
+        window.location.replace(url);
+    };
+    HelpcenterSearchComponent.ctorParameters = function () { return [
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"] },
+        { type: _Articles_module_services_article_service_article_service__WEBPACK_IMPORTED_MODULE_6__["ArticleService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] }
+    ]; };
+    HelpcenterSearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-helpcenter-search',
+            template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./helpcenter-search.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.html")).default,
+            styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./helpcenter-search.component.scss */ "./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.scss")).default]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormBuilder"],
+            _Articles_module_services_article_service_article_service__WEBPACK_IMPORTED_MODULE_6__["ArticleService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]])
+    ], HelpcenterSearchComponent);
+    return HelpcenterSearchComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/Helpcenter-module/helpcenter.module.ts":
 /*!********************************************************!*\
   !*** ./src/app/Helpcenter-module/helpcenter.module.ts ***!
@@ -6504,6 +6775,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_component_not_found_component_not_found_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/component-not-found/component-not-found.component */ "./src/app/Helpcenter-module/components/component-not-found/component-not-found.component.ts");
 /* harmony import */ var _components_helpcenter_logout_helpcenter_logout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/helpcenter-logout/helpcenter-logout.component */ "./src/app/Helpcenter-module/components/helpcenter-logout/helpcenter-logout.component.ts");
 /* harmony import */ var _components_helpcenter_banner_helpcenter_banner_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/helpcenter-banner/helpcenter-banner.component */ "./src/app/Helpcenter-module/components/helpcenter-banner/helpcenter-banner.component.ts");
+/* harmony import */ var _components_helpcenter_search_helpcenter_search_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/helpcenter-search/helpcenter-search.component */ "./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.ts");
+
 
 
 
@@ -6526,7 +6799,7 @@ var HelpcenterModule = /** @class */ (function () {
                 _components_helpcenter_header_helpcenter_header_component__WEBPACK_IMPORTED_MODULE_8__["HelpcenterHeaderComponent"],
                 _components_component_not_found_component_not_found_component__WEBPACK_IMPORTED_MODULE_9__["ComponentNotFoundComponent"],
                 _components_helpcenter_logout_helpcenter_logout_component__WEBPACK_IMPORTED_MODULE_10__["HelpcenterLogoutComponent"],
-                _components_helpcenter_banner_helpcenter_banner_component__WEBPACK_IMPORTED_MODULE_11__["HelpcenterBannerComponent"]],
+                _components_helpcenter_banner_helpcenter_banner_component__WEBPACK_IMPORTED_MODULE_11__["HelpcenterBannerComponent"], _components_helpcenter_search_helpcenter_search_component__WEBPACK_IMPORTED_MODULE_12__["HelpcenterSearchComponent"]],
             exports: [_components_helpcenter_footer_helpcenter_footer_component__WEBPACK_IMPORTED_MODULE_7__["HelpcenterFooterComponent"], _components_helpcenter_header_helpcenter_header_component__WEBPACK_IMPORTED_MODULE_8__["HelpcenterHeaderComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -6558,6 +6831,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _components_helpcenter_home_helpcenter_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/helpcenter-home/helpcenter-home.component */ "./src/app/Helpcenter-module/components/helpcenter-home/helpcenter-home.component.ts");
 /* harmony import */ var _components_helpcenter_logout_helpcenter_logout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/helpcenter-logout/helpcenter-logout.component */ "./src/app/Helpcenter-module/components/helpcenter-logout/helpcenter-logout.component.ts");
+/* harmony import */ var _components_helpcenter_search_helpcenter_search_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/helpcenter-search/helpcenter-search.component */ "./src/app/Helpcenter-module/components/helpcenter-search/helpcenter-search.component.ts");
+
 
 
 
@@ -6567,6 +6842,7 @@ var routes = [
     { path: 'hc/en-us/home', component: _components_helpcenter_home_helpcenter_home_component__WEBPACK_IMPORTED_MODULE_3__["HelpcenterHomeComponent"] },
     { path: 'home', redirectTo: '/hc/en-us/home', pathMatch: 'full' },
     { path: '', redirectTo: '/hc/en-us/home', pathMatch: 'full' },
+    { path: 'hc/en-us/search', component: _components_helpcenter_search_helpcenter_search_component__WEBPACK_IMPORTED_MODULE_5__["HelpcenterSearchComponent"] },
     { path: 'hc/en-us/logout', component: _components_helpcenter_logout_helpcenter_logout_component__WEBPACK_IMPORTED_MODULE_4__["HelpcenterLogoutComponent"] },
 ];
 var HelpcenterRoutingModule = /** @class */ (function () {
@@ -6604,14 +6880,16 @@ __webpack_require__.r(__webpack_exports__);
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
+        // serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         this.requestUri = {
-            loginUser: 'api/users/login',
-            logoutUser: 'api/users/logout',
-            registerUser: 'api/users/',
-            authorizedAdmin: 'api/users/auth/admin',
-            authorizedAgent: 'api/users/auth/agent',
-            authorizedCustom: 'api/users/auth/custom',
-            validateToken: 'api/users/token/valid',
+            loginUser: this.serverDomain + 'api/users/login',
+            logoutUser: this.serverDomain + 'api/users/logout',
+            registerUser: this.serverDomain + 'api/users/',
+            authorizedAdmin: this.serverDomain + 'api/users/auth/admin',
+            authorizedAgent: this.serverDomain + 'api/users/auth/agent',
+            authorizedCustom: this.serverDomain + 'api/users/auth/custom',
+            validateToken: this.serverDomain + 'api/users/token/valid',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -6728,17 +7006,19 @@ __webpack_require__.r(__webpack_exports__);
 var UserService = /** @class */ (function () {
     function UserService(http) {
         this.http = http;
+        // serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for User data
          */
         this.requestUri = {
-            createUser: 'api/users',
-            getUserById: 'api/users/id/',
-            updateUser: 'api/users/',
-            signoutUser: 'api/users/signout',
-            deleteUser: 'api/users/',
-            getUserOrgs: 'api/users/organizations',
-            getOrgsProducts: 'api/users/products/organizationids/'
+            createUser: this.serverDomain + 'api/users',
+            getUserById: this.serverDomain + 'api/users/id/',
+            updateUser: this.serverDomain + 'api/users/',
+            signoutUser: this.serverDomain + 'api/users/signout',
+            deleteUser: this.serverDomain + 'api/users/',
+            getUserOrgs: this.serverDomain + 'api/users/organizations',
+            getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -6909,7 +7189,7 @@ var CreateSectionComponent = /** @class */ (function () {
         this.sectionService.postSection(section)
             .subscribe(function (data) {
             console.log(data);
-            _this.router.navigate(['/sections/home']);
+            _this.router.navigate(['/guide/sections/home']);
         }, function (error) {
             console.log(error);
         });
@@ -7125,7 +7405,7 @@ var EditSectionComponent = /** @class */ (function () {
             .subscribe(function (data) {
             if (data.status == 200) {
                 console.log(data.message);
-                _this.router.navigate(['/sections/home']);
+                _this.router.navigate(['/guide/sections/home']);
             }
             else {
                 console.log(data.message);
@@ -7228,7 +7508,7 @@ var ListSectionsComponent = /** @class */ (function () {
         });
     };
     ListSectionsComponent.prototype.viewSection = function (sectionId) {
-        this.route.navigate(['/sections/id/' + sectionId]);
+        this.route.navigate(['/guide/sections/id/' + sectionId]);
     };
     ListSectionsComponent.ctorParameters = function () { return [
         { type: _services_section_service_section_service__WEBPACK_IMPORTED_MODULE_2__["SectionService"] },
@@ -7727,16 +8007,18 @@ __webpack_require__.r(__webpack_exports__);
 var SectionService = /** @class */ (function () {
     function SectionService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for Section data
          */
         this.requestUri = {
-            getSections: 'api/sections/',
-            getSectionById: 'api/sections/id/',
-            getSectionInCategory: 'api/sections/category/id/',
-            postSection: 'api/sections/',
-            updateSection: 'api/sections/',
-            deleteSection: 'api/sections/',
+            getSections: this.serverDomain + 'api/sections/',
+            getSectionById: this.serverDomain + 'api/sections/id/',
+            getSectionInCategory: this.serverDomain + 'api/sections/category/id/',
+            postSection: this.serverDomain + 'api/sections/',
+            updateSection: this.serverDomain + 'api/sections/',
+            deleteSection: this.serverDomain + 'api/sections/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -8108,7 +8390,7 @@ var CreateSegmentComponent = /** @class */ (function () {
         this.segmentService.postSegment(this.userSegment)
             .subscribe(function (segment) {
             console.log(segment);
-            _this.router.navigate(['/segments/home']);
+            _this.router.navigate(['/guide/segments/home']);
         }, function (error) {
             console.log(error);
         });
@@ -8502,7 +8784,7 @@ var EditSegmentComponent = /** @class */ (function () {
             .subscribe(function (data) {
             if (data.status == 200) {
                 console.log(data.message);
-                _this.router.navigate(['/segments/home']);
+                _this.router.navigate(['/guide/segments/home']);
             }
             else {
                 console.log(data.message);
@@ -8619,7 +8901,7 @@ var ListSegmentsComponent = /** @class */ (function () {
         });
     };
     ListSegmentsComponent.prototype.viewSegment = function (segmentId) {
-        this.route.navigate(['/segments/id/' + segmentId]);
+        this.route.navigate(['/guide/segments/id/' + segmentId]);
     };
     ListSegmentsComponent.ctorParameters = function () { return [
         { type: _services_segment_service_segment_service__WEBPACK_IMPORTED_MODULE_2__["SegmentService"] },
@@ -8963,12 +9245,14 @@ __webpack_require__.r(__webpack_exports__);
 var OrganizationService = /** @class */ (function () {
     function OrganizationService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
        * List of primary CRUD APIs for Organization data
        */
         this.requestUri = {
-            getOrganizations: 'api/organizations/',
-            getOrganizationById: 'api/organizations/id/',
+            getOrganizations: this.serverDomain + 'api/organizations/',
+            getOrganizationById: this.serverDomain + 'api/organizations/id/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -9023,16 +9307,18 @@ __webpack_require__.r(__webpack_exports__);
 var SegmentService = /** @class */ (function () {
     function SegmentService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
           * List of primary CRUD APIs for Segment data
           */
         this.requestUri = {
-            getSegments: 'api/segments/',
-            getSegmentById: 'api/segments/id/',
-            // getSegmentInCategory: 'api/segments/category/id/',
-            postSegment: 'api/segments/',
-            updateSegment: 'api/segments/',
-            deleteSegment: 'api/segments/',
+            getSegments: this.serverDomain + 'api/segments/',
+            getSegmentById: this.serverDomain + 'api/segments/id/',
+            // getSegmentInCategory: this.serverDomain + 'api/segments/category/id/',
+            postSegment: this.serverDomain + 'api/segments/',
+            updateSegment: this.serverDomain + 'api/segments/',
+            deleteSegment: this.serverDomain + 'api/segments/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -9099,12 +9385,14 @@ __webpack_require__.r(__webpack_exports__);
 var TagService = /** @class */ (function () {
     function TagService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
        * List of primary CRUD APIs for Tags data
        */
         this.requestUri = {
-            getTags: 'api/tags/',
-            getTagById: 'api/tags/id/',
+            getTags: this.serverDomain + 'api/tags/',
+            getTagById: this.serverDomain + 'api/tags/id/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -10340,12 +10628,14 @@ __webpack_require__.r(__webpack_exports__);
 var FieldService = /** @class */ (function () {
     function FieldService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
        * List of primary CRUD APIs for ticket fields data
        */
         this.requestUri = {
-            getFieldList: 'api/tickets/fields?ids=',
-            getFieldById: 'api/tickets/fields/id/',
+            getFieldList: this.serverDomain + 'api/tickets/fields?ids=',
+            getFieldById: this.serverDomain + 'api/tickets/fields/id/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -10391,12 +10681,14 @@ __webpack_require__.r(__webpack_exports__);
 var FormService = /** @class */ (function () {
     function FormService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for Category data
          */
         this.requestUri = {
-            getFormList: 'api/tickets/forms',
-            getFormById: 'api/tickets/forms/id/',
+            getFormList: this.serverDomain + 'api/tickets/forms',
+            getFormById: this.serverDomain + 'api/tickets/forms/id/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -10445,15 +10737,17 @@ __webpack_require__.r(__webpack_exports__);
 var TicketService = /** @class */ (function () {
     function TicketService(http) {
         this.http = http;
+        //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+        this.serverDomain = ''; //base url of the server (BUILD)
         /**
          * List of primary CRUD APIs for Category data
          */
         this.requestUri = {
-            getTickets: 'api/tickets/search?',
-            getTicketById: 'api/tickets/id/',
-            createTicket: 'api/tickets/',
-            createComment: 'api/tickets/comments/',
-            listComments: 'api/tickets/comments/ticketid/',
+            getTickets: this.serverDomain + 'api/tickets/search?',
+            getTicketById: this.serverDomain + 'api/tickets/id/',
+            createTicket: this.serverDomain + 'api/tickets/',
+            createComment: this.serverDomain + 'api/tickets/comments/',
+            listComments: this.serverDomain + 'api/tickets/comments/ticketid/',
         };
         this.headersOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
@@ -11146,7 +11440,10 @@ var FieldComponentCreators = /** @class */ (function () {
         if (field.required == true) {
             validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name);
         }
-        return "<div class=\"col-md-12 form-group\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-12\">\n                    <input matInput formControlName= " + field.field_name + " placeholder=\"Article Title\">\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
+        return "<div class=\"col-md-12 form-group\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-12\">\n                    <input matInput formControlName= " + FieldComponentCreators.setFormatControlNameFormat(field) + " placeholder=\"Article Title\">\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
+    };
+    FieldComponentCreators.setFormatControlNameFormat = function (field) {
+        return field.field_name.trim().toLowerCase().replace(' ', '_');
     };
     /**
      *
@@ -11158,7 +11455,7 @@ var FieldComponentCreators = /** @class */ (function () {
         if (field.required == true) {
             validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name);
         }
-        return "<div class=\"article-body-attr col-md-12\">\n                    <label class=\"label-cls\" >" + field.field_name + " :</label>\n                    " + validations + "\n                    <editor id= " + field.id + "\n                    formControlName = " + field.field_name.toLowerCase() + "\n                    initialValue=\"<p>Initial content - " + field.field_name.toLowerCase() + "</p>\"\n                    [init]=\"tiny_mce_editor_config\">\n                    </editor>\n                </div>";
+        return "<div class=\"article-body-attr col-md-12\">\n                    <label class=\"label-cls\" >" + field.field_name + " :</label>\n                    " + validations + "\n                    <editor id= " + field.id + "\n                    formControlName = " + FieldComponentCreators.setFormatControlNameFormat(field) + "\n                    initialValue=\"<p>Initial content - " + field.field_name.toLowerCase() + "</p>\"\n                    [init]=\"tiny_mce_editor_config\">\n                    </editor>\n                </div>";
     };
     /**
      *
@@ -11172,7 +11469,7 @@ var FieldComponentCreators = /** @class */ (function () {
         if (field.required == true) {
             validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name);
         }
-        return "<div class=\"article-body-attr col-md-6\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-10\">\n                    <mat-label>" + field.field_name + "</mat-label>\n                    <mat-select formControlName = " + field.field_name.toLowerCase() + ">\n                    <mat-option>None</mat-option>\n                    " + field_value_template + "\n                    </mat-select>\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
+        return "<div class=\"article-body-attr col-md-6\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-10\">\n                    <mat-label>" + field.field_name + "</mat-label>\n                    <mat-select formControlName = " + FieldComponentCreators.setFormatControlNameFormat(field) + ">\n                    <mat-option>None</mat-option>\n                    " + field_value_template + "\n                    </mat-select>\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
     };
     /**
      *
@@ -11186,7 +11483,7 @@ var FieldComponentCreators = /** @class */ (function () {
         if (field.required == true) {
             validations = FieldComponentCreators.setRequiredValidationMessage(field.field_name);
         }
-        return "<div class=\"article-body-attr col-md-6\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-10\">\n                    <mat-label>" + field.field_name + "</mat-label>\n                    <mat-select formControlName = " + field.field_name.replace(/ /g, "_").toLowerCase() + " (selectionChange)=\"updateFieldValueArray($event)\" multiple>\n                    <mat-option>None</mat-option>\n                    " + field_value_template + "\n                    </mat-select>\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
+        return "<div class=\"article-body-attr col-md-6\">\n                    <mat-form-field id = " + field.id + " class=\"col-md-10\">\n                    <mat-label>" + field.field_name + "</mat-label>\n                    <mat-select formControlName = " + FieldComponentCreators.setFormatControlNameFormat(field) + " (selectionChange)=\"updateFieldValueArray($event)\" multiple>\n                    <mat-option>None</mat-option>\n                    " + field_value_template + "\n                    </mat-select>\n                    </mat-form-field>\n                    " + validations + "\n                </div>";
     };
     /**
      *
@@ -11194,7 +11491,7 @@ var FieldComponentCreators = /** @class */ (function () {
      * return angular material html component for input of type text
      */
     FieldComponentCreators.createCheckboxComponent = function (field) {
-        return "<div class=\"article-body-attr col-md-6\">\n                <mat-checkbox class=\"col-md-12\" formControlName = " + field.field_name.replace(/ /g, "_").toLowerCase() + " > " + field.field_name + "</mat-checkbox>\n                </div>";
+        return "<div class=\"article-body-attr col-md-6\">\n                <mat-checkbox class=\"col-md-12\" formControlName = " + FieldComponentCreators.setFormatControlNameFormat(field) + " > " + field.field_name + "</mat-checkbox>\n                </div>";
     };
     /**
      *
@@ -11237,7 +11534,7 @@ var FieldComponentCreators = /** @class */ (function () {
         }).join().replace(/,/g, "");
     };
     FieldComponentCreators.setRequiredValidationMessage = function (fieldName) {
-        var formControlName = fieldName.replace(/ /g, "_").toLowerCase();
+        var formControlName = fieldName.trim().replace(/ /g, "_").toLowerCase();
         return "<div *ngIf=\"article_body.get('" + formControlName + "').invalid && (article_body.get('" + formControlName + "').dirty || article_body.get('" + formControlName + "').touched)\" class=\"alert alert-danger\">\n                    <small *ngIf=\"article_body.get('" + formControlName + "').errors.required\">\n                        Select/Enter a value for " + fieldName + "\n                    </small>\n                </div>";
     };
     return FieldComponentCreators;

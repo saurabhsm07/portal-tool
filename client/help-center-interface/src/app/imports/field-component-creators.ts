@@ -61,10 +61,14 @@ export class FieldComponentCreators{
 
         return `<div class="col-md-12 form-group">
                     <mat-form-field id = ${field.id} class="col-md-12">
-                    <input matInput formControlName= ${field.field_name} placeholder="Article Title">
+                    <input matInput formControlName= ${FieldComponentCreators.setFormatControlNameFormat(field)} placeholder="Article Title">
                     </mat-form-field>
                     ${validations}
                 </div>`;
+    }
+
+    public static setFormatControlNameFormat(field: Article_Field) {
+        return field.field_name.trim().toLowerCase().replace(' ','_');
     }
 
     /**
@@ -83,7 +87,7 @@ export class FieldComponentCreators{
                     <label class="label-cls" >${field.field_name} :</label>
                     ${validations}
                     <editor id= ${field.id}
-                    formControlName = ${field.field_name.toLowerCase()}
+                    formControlName = ${FieldComponentCreators.setFormatControlNameFormat(field)}
                     initialValue="<p>Initial content - ${field.field_name.toLowerCase()}</p>"
                     [init]="tiny_mce_editor_config">
                     </editor>
@@ -107,7 +111,7 @@ export class FieldComponentCreators{
         return `<div class="article-body-attr col-md-6">
                     <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name.toLowerCase()}>
+                    <mat-select formControlName = ${FieldComponentCreators.setFormatControlNameFormat(field)}>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
@@ -133,7 +137,7 @@ export class FieldComponentCreators{
         return `<div class="article-body-attr col-md-6">
                     <mat-form-field id = ${field.id} class="col-md-10">
                     <mat-label>${field.field_name}</mat-label>
-                    <mat-select formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} (selectionChange)="updateFieldValueArray($event)" multiple>
+                    <mat-select formControlName = ${FieldComponentCreators.setFormatControlNameFormat(field)} (selectionChange)="updateFieldValueArray($event)" multiple>
                     <mat-option>None</mat-option>
                     ${field_value_template}
                     </mat-select>
@@ -149,7 +153,7 @@ export class FieldComponentCreators{
      */
     public static createCheckboxComponent(field: Article_Field): string{
         return `<div class="article-body-attr col-md-6">
-                <mat-checkbox class="col-md-12" formControlName = ${field.field_name.replace(/ /g,"_").toLowerCase()} > ${field.field_name}</mat-checkbox>
+                <mat-checkbox class="col-md-12" formControlName = ${FieldComponentCreators.setFormatControlNameFormat(field)} > ${field.field_name}</mat-checkbox>
                 </div>`;
     }
 
@@ -203,7 +207,7 @@ export class FieldComponentCreators{
 
 
     private static setRequiredValidationMessage(fieldName: String) : string{
-        let formControlName = fieldName.replace(/ /g,"_").toLowerCase();
+        let formControlName = fieldName.trim().replace(/ /g,"_").toLowerCase();
 
         return  `<div *ngIf="article_body.get('${formControlName}').invalid && (article_body.get('${formControlName}').dirty || article_body.get('${formControlName}').touched)" class="alert alert-danger">
                     <small *ngIf="article_body.get('${formControlName}').errors.required">

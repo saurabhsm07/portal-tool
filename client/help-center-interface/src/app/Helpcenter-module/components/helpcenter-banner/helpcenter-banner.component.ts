@@ -23,6 +23,17 @@ export class HelpcenterBannerComponent implements OnInit {
     
   }
 
+  /**
+   * click search method to fetch hc data (articles) based on topic clicked
+   * @param searchTerm the term clicked to search accross helpcenter
+   */
+  public searchHelpcenter(searchTerm){
+    this.router.navigate(['hc/en-us/search'], {queryParams: {query: searchTerm, offset: 0}})
+  }
+
+  /**
+   * method searches hc content (articles) once searchbox form is submitted
+   */
   public onSubmit(){
     // console.log(this.searchString)
     this.router.navigate(['hc/en-us/search'], {queryParams: {query: this.searchString, offset: 0}})

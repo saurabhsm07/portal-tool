@@ -323,7 +323,7 @@ export class CreateSegmentComponent implements OnInit, AfterViewInit, OnDestroy 
     this.segmentService.postSegment(this.userSegment)
       .subscribe((segment) => {
         console.log(segment);
-        this.router.navigate(['/segments/home']);
+        this.router.navigate(['/guide/segments/home']);
       }, (error) => {
         console.log(error);
       })

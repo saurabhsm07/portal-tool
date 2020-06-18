@@ -102,3 +102,7 @@ button.closesubreq {
     border: 0;
 }
 
+.disabledListVal {
+    pointer-events:none; //This makes it not clickable
+    opacity:0.6;         //This grays it out to look disabled
+}

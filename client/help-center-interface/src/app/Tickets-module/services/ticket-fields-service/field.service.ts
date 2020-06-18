@@ -9,14 +9,17 @@ import { Field_value } from '../../classes/field_value';
 })
 export class FieldService {
 
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+    public serverDomain = '' //base url of the server (BUILD)
+    
     /**
    * List of primary CRUD APIs for ticket fields data
    */
   public requestUri = {
-    getFieldList: 'api/tickets/fields?ids=',
-    getFieldById: 'api/tickets/fields/id/',
-    // updateCategory: 'api/categories/',
-    // deleteCategory: 'api/categories/',
+    getFieldList: this.serverDomain + 'api/tickets/fields?ids=',
+    getFieldById: this.serverDomain + 'api/tickets/fields/id/',
+    // updateCategory: this.serverDomain + 'api/categories/',
+    // deleteCategory: this.serverDomain + 'api/categories/',
   };
 
 

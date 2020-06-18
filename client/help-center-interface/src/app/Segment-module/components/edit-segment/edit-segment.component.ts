@@ -353,7 +353,7 @@ export class EditSegmentComponent implements OnInit {
       .subscribe((data) => {
         if (data.status == 200) {
           console.log(data.message);
-          this.router.navigate(['/segments/home'])
+          this.router.navigate(['/guide/segments/home'])
         }
         else {
           console.log(data.message);

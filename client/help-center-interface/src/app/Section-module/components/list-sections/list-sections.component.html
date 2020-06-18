@@ -15,7 +15,7 @@
           <input [(ngModel)] = "searchString" placeholder="Search sections"  />
         </div>
           <div class="create-div col-md-4">
-            <a routerLink='/sections/create' class="btn btn-info">Add Section </a>
+            <a routerLink='/guide/sections/create' class="btn btn-info">Add Section </a>
     </div>
 </div>
 <div *ngIf="dataSource | searchSection:searchString : sections" class="sections-body-div col-md-12">

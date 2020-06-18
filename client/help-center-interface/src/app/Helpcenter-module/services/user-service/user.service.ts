@@ -11,7 +11,8 @@ import { Organization_Products } from '../../classes/organization_products';
 export class UserService {
 
 
-  serverDomain = 'http://localhost:5000/' //base url of the serrer
+   // serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+   serverDomain = '' //base url of the server (BUILD)
 
   /**
    * List of primary CRUD APIs for User data

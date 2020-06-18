@@ -364,7 +364,7 @@ export class EditArticleComponent implements OnInit {
     this.articleService.updateArticle(article)
       .subscribe((data) => {
         console.log(data)
-        this.router.navigate(['/articles/id/', article.id]);
+        this.router.navigate(['/guide/articles/id/', article.id]);
       }, (error) => {
         console.log(error)
         console.log(error.error_on_req)
@@ -486,11 +486,11 @@ export class EditArticleComponent implements OnInit {
         fields.forEach(field => {
 
           if (field.required) {
-            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl('',Validators.required));
+            this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new FormControl('',Validators.required));
           } else {
-            this.article_body.addControl(field.field_name.replace(/ /g, "_").toLowerCase(), new FormControl(''));
+            this.article_body.addControl(field.field_name.trim().replace(/ /g, "_").toLowerCase(), new FormControl(''));
           }
-          fieldInformation[field.field_name.replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
+          fieldInformation[field.field_name.trim().replace(/ /g, "_").toLowerCase()] = { id: field.id, name: field.field_name, type: field.field_type };
         });
 
         

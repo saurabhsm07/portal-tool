@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  serverDomain = 'http://localhost:5000/' //base url of the serrer
+  // serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+     serverDomain = '' //base url of the server (BUILD)
   
   private requestUri = {
     loginUser: this.serverDomain + 'api/users/login',

@@ -10,16 +10,18 @@ import { Comment } from './../../classes/comment';
 })
 export class TicketService {
 
+   //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+   public serverDomain = '' //base url of the server (BUILD)
 
   /**
    * List of primary CRUD APIs for Category data
    */
   public requestUri = {
-    getTickets: 'api/tickets/search?',
-    getTicketById: 'api/tickets/id/',
-    createTicket: 'api/tickets/',
-    createComment: 'api/tickets/comments/',
-    listComments: 'api/tickets/comments/ticketid/',
+    getTickets: this.serverDomain + 'api/tickets/search?',
+    getTicketById: this.serverDomain + 'api/tickets/id/',
+    createTicket: this.serverDomain + 'api/tickets/',
+    createComment: this.serverDomain + 'api/tickets/comments/',
+    listComments: this.serverDomain + 'api/tickets/comments/ticketid/',
   };
 
 

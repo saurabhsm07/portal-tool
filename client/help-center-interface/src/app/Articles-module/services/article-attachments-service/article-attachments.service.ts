@@ -10,13 +10,16 @@ import { Article_Attachment } from '../../classes/article_attachment'
   providedIn: 'root'
 })
 export class ArticleAttachmentsService {
+//public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+public serverDomain = '' //base url of the server (BUILD)
 
-  private requestUri = {
-    getArticleAttachments: 'api/articles/',
-    getArticleAttachmentById: 'api/articles/id/',
-    postArticleAttachment: 'api/articles/',
-    updateArticleAttachment: 'api/articles/',
-    deleteArticleAttachment: 'api/articles/',
+
+private requestUri = {
+    getArticleAttachments: this.serverDomain + 'api/articles/',
+    getArticleAttachmentById: this.serverDomain + 'api/articles/id/',
+    postArticleAttachment: this.serverDomain + 'api/articles/',
+    updateArticleAttachment: this.serverDomain + 'api/articles/',
+    deleteArticleAttachment: this.serverDomain + 'api/articles/',
 };
 
   private article_id: string;

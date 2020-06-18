@@ -56,7 +56,7 @@ this.dataSource.filter = this.searchString;
 * @param id : id of the article field to edit
 */
 editArticleField(id) {
-this.router.navigate(['/article/fields/edit/' + id]);
+this.router.navigate(['/guide/article/fields/edit/' + id]);
 }
 
 }

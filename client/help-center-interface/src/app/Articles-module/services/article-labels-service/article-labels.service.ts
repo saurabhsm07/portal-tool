@@ -10,12 +10,17 @@ import {ArticleLabelErrorHandlerService } from '../error-handler-service/article
   providedIn: 'root'
 })
 export class ArticleLabelsService {
+
+
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
   private requestUri = {
-    getArticleLabels: 'api/articles/labels/',
-    getArticleLabelById: 'api/articles/labels/id/',
-    postArticleLabel: 'api/articles/labels/',
-    updateArticleLabel: 'api/articles/labels/',
-    deleteArticleLabel: 'api/articles/labels/id/'
+    getArticleLabels: this.serverDomain + 'api/articles/labels/',
+    getArticleLabelById: this.serverDomain + 'api/articles/labels/id/',
+    postArticleLabel: this.serverDomain + 'api/articles/labels/',
+    updateArticleLabel: this.serverDomain + 'api/articles/labels/',
+    deleteArticleLabel: this.serverDomain + 'api/articles/labels/id/'
   }
 
   private headersOptions = {

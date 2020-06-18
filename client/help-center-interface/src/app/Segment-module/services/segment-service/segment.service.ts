@@ -9,16 +9,21 @@ import { SegmentRequestErrorHandlersService } from '../error-handlers/segment-re
   providedIn: 'root'
 })
 export class SegmentService {
+
+
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
  /**
    * List of primary CRUD APIs for Segment data
    */
   private requestUri = {
-    getSegments: 'api/segments/',
-    getSegmentById: 'api/segments/id/',
-    // getSegmentInCategory: 'api/segments/category/id/',
-    postSegment: 'api/segments/',
-    updateSegment: 'api/segments/',
-    deleteSegment: 'api/segments/',
+    getSegments: this.serverDomain + 'api/segments/',
+    getSegmentById: this.serverDomain + 'api/segments/id/',
+    // getSegmentInCategory: this.serverDomain + 'api/segments/category/id/',
+    postSegment: this.serverDomain + 'api/segments/',
+    updateSegment: this.serverDomain + 'api/segments/',
+    deleteSegment: this.serverDomain + 'api/segments/',
   };
   
   private headersOptions = {

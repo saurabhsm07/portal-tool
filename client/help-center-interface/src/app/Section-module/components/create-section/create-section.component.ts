@@ -73,7 +73,7 @@ export class CreateSectionComponent implements OnInit {
       this.sectionService.postSection(section)
                           .subscribe((data) => {
                             console.log(data);
-                            this.router.navigate(['/sections/home']);
+                            this.router.navigate(['/guide/sections/home']);
                           },
                             (error) => {
                             console.log(error);

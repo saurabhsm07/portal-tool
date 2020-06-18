@@ -147,7 +147,7 @@ export class EditSectionComponent implements OnInit {
                                     .subscribe((data) => {
                                       if(data.status == 200){
                                         console.log(data.message);
-                                        this.router.navigate(['/sections/home'])
+                                        this.router.navigate(['/guide/sections/home'])
                                       }
                                       else{
                                         console.log(data.message);

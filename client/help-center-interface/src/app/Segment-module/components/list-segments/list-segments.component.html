@@ -15,7 +15,7 @@
           <input [(ngModel)] = "searchString" placeholder="Search segments"  />
         </div>
           <div class="create-div col-md-4">
-            <a routerLink='/segments/create' class="btn btn-info">Add User Segment </a>
+            <a routerLink='/guide/segments/create' class="btn btn-info">Add User Segment </a>
     </div>
 </div>
 <div *ngIf="dataSource | searchSegment:searchString : userSegments" class="segments-body-div col-md-12">

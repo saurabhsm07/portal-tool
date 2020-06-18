@@ -84,7 +84,7 @@ export class CreateArticleFormComponent implements OnInit {
                            .subscribe((data) => {
                              console.log(data);
                              console.log('article published successfully');
-                             this.router.navigate(['/article/forms/list']);
+                             this.router.navigate(['/guide/article/forms/list']);
                             });
 
   }

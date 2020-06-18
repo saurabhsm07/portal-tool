@@ -86,7 +86,7 @@ export class EditArticleFormComponent implements OnInit {
     this.articleFormService.putArticleForm(article_form, this.article_form.id)
         .subscribe((res) => {
           console.log(`successfully update form with id = ${res.id}`)
-          this.router.navigate(['/article/forms/list'])
+          this.router.navigate(['/guide/article/forms/list'])
         }, (error) => {
           console.log(error)
         });

@@ -13,12 +13,15 @@ import { Article_Form } from '../../classes/article_form';
 })
 export class ArticleFormsService {
 
+  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  public serverDomain = '' //base url of the server (BUILD)
+  
   private requestUri = {
-    getArticleForms: 'api/articles/forms/',
-    getArticleFormById: 'api/articles/forms/id/',
-    postArticleForm: 'api/articles/forms/',
-    updateArticleForm: 'api/articles/forms/',
-    deleteArticleForm: 'api/articles/forms/id/'
+    getArticleForms: this.serverDomain + 'api/articles/forms/',
+    getArticleFormById: this.serverDomain + 'api/articles/forms/id/',
+    postArticleForm: this.serverDomain + 'api/articles/forms/',
+    updateArticleForm: this.serverDomain + 'api/articles/forms/',
+    deleteArticleForm: this.serverDomain + 'api/articles/forms/id/'
   }
 
   private headersOptions = {

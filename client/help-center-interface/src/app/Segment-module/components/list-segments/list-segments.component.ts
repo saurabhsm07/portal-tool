@@ -44,7 +44,7 @@ export class ListSegmentsComponent implements OnInit {
                 }
 
                 viewSegment(segmentId){
-                  this.route.navigate(['/segments/id/'+segmentId])
+                  this.route.navigate(['/guide/segments/id/'+segmentId])
                 }
 
 }
