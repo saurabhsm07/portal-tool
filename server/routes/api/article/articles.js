@@ -25,7 +25,7 @@ router.route('/id/:id').get(passport.authenticate('jwt', {session: false}),artic
 /**
  * GET: api path to get article record with section id.
  */
-router.route('/section/id/:id').get(passport.authenticate('jwt', {session: false}), articles.getBySection);
+router.route('/section/id/:id?/:limit?/:offset?').get(passport.authenticate('jwt', {session: false}), articles.getBySection);
 
 
 /**

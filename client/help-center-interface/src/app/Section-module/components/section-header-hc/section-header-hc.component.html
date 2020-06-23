@@ -2,16 +2,17 @@
         <app-helpcenter-header></app-helpcenter-header>
        <div class="section_main_div" style="">
        <div class="downbanbg">
+            <div class="height50"></div>
+
            <div class="row unqipad">
-               <div class="padtop100  section-header-div col-md-12">
+               <div class="padtop50  section-header-div col-md-12">
                  
                  <div class="col-md-9 col-xs-13">
-                   <div class="height50"></div>
                    <div class="hlputextleft">{{section_name}}</div>
                    <div class="hgt20">&nbsp;</div>
-                   <form name="searchfrom" action="/hc/en-us/search" method="GET">
+                   <form [formGroup]='search_hc_form' name="searchfrom" (ngSubmit)='onSubmit()'>
                      <img class="searchhmicon hmsrchicon" src="assets/images/searchicon.png"> 
-                     <input type="text" class="hmsearchbox" name="query" placeholder="Search">
+                     <input  formControlName='search' type="text" class="hmsearchbox" name="query" placeholder="Search">
                    </form>
                    <div class="latestdetails">
                        <p> Latest release : 
@@ -23,10 +24,10 @@
                   <div class="col-md-3 col-xs-3">
                        <h5 style="padding: 0;margin-top: 0;color: #ededed;"> Other links <i class="fas fa-angle-double-right orange"></i></h5>
                        <ul class="nav otherlinks">
-                           <li><a href="/hc/communities/public/topics">Community</a></li>
-                           <li><a href="/hc/en-us/categories/id/201273853">Downloads</a></li>
-                           <li><a href="/hc/en-us/categories/id/201273823">Help Article</a></li>
-                           <li><a href="/hc/en-us/categories/id/201273843">Announcements</a></li>
+                           <li><a routerLink="/hc/communities/public/topics">Community</a></li>
+                           <li><a routerLink="/hc/en-us/categories/id/201273853">Downloads</a></li>
+                           <li><a routerLink="/hc/en-us/categories/id/201273823">Help Article</a></li>
+                           <li><a routerLink="/hc/en-us/categories/id/201273843">Announcements</a></li>
                        </ul>
                   </div>
                </div>

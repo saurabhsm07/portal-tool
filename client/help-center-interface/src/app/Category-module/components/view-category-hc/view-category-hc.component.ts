@@ -108,7 +108,7 @@ export class ViewCategoryHcComponent implements OnInit {
     // console.log(this.section_articles_obj[section_id].articles.length);
     this.toggle(section_id);
     if(this.section_articles_obj[section_id].articles.length == 0){
-      this.articleService.getArticlesWithSectionId(section_id)
+      this.articleService.getArticlesWithSectionId(section_id, 10)
       .subscribe((articles) => {
         this.article_list = articles;
         this.section_articles_obj[section_id].articles = this.article_list;

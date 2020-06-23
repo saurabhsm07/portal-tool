@@ -13,8 +13,8 @@ import { Article_Field } from '../../classes/article_fields'
 })
 export class ArticleFieldService {
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-  public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  //public serverDomain = '' //base url of the server (BUILD)
   
   private requestUri = {
     getArticleFields: this.serverDomain + 'api/articles/fields',

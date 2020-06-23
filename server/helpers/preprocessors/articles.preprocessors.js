@@ -1,5 +1,27 @@
 const preprocessors = {};
 
+
+
+
+
+preprocessors.createListArticlesQuery = (requestParams, queryOn) => {
+    
+    let dbQueryParameters = {};
+    dbQueryParameters.attributes = ['id', 'title', 'created_at', 'section', 'author'];
+    dbQueryParameters.order = [['created_at', 'DESC']];
+    if(queryOn == 'section'){
+        dbQueryParameters.where = { section: { id: requestParams.id } };
+    }
+    if(requestParams.offset != undefined){
+        dbQueryParameters.offset = parseInt(requestParams.offset);
+    }
+    if(requestParams.limit != undefined){
+        dbQueryParameters.limit = parseInt(requestParams.limit);
+    }
+
+    // console.log(dbQueryParameters)
+    return dbQueryParameters;
+}
 /**
  * 
  * @param  article : article object to be processed before returning to the client  

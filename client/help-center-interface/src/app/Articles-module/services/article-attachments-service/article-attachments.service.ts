@@ -10,8 +10,8 @@ import { Article_Attachment } from '../../classes/article_attachment'
   providedIn: 'root'
 })
 export class ArticleAttachmentsService {
-//public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-public serverDomain = '' //base url of the server (BUILD)
+public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+//public serverDomain = '' //base url of the server (BUILD)
 
 
 private requestUri = {

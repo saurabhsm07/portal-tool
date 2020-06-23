@@ -11,8 +11,8 @@ import { Organization } from '../../classes/organization';
 export class OrganizationService {
 
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-  public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  //public serverDomain = '' //base url of the server (BUILD)
 
   
     /**

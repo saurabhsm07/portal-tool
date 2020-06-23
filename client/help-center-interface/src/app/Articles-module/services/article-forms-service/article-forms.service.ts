@@ -13,8 +13,8 @@ import { Article_Form } from '../../classes/article_form';
 })
 export class ArticleFormsService {
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-  public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  //public serverDomain = '' //base url of the server (BUILD)
   
   private requestUri = {
     getArticleForms: this.serverDomain + 'api/articles/forms/',

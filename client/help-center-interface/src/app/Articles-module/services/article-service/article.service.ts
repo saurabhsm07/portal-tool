@@ -10,8 +10,8 @@ import {ArticleRequestErrorHandlersService } from '../error-handler-service/arti
 })
 export class ArticleService {
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-   public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+   //public serverDomain = '' //base url of the server (BUILD)
 
   /**
    * List of primary CRUD APIs for Article Data
@@ -59,9 +59,16 @@ export class ArticleService {
    * @param id : id of the section whose articles are to be fetched
    *  @returns Articles : list of articles of type  user defined Article Object
    */
-  getArticlesWithSectionId(id : String) : Observable<Article[]> {
-    return this.http.get<Article[]>(this.requestUri.getArticlesWithSectionId+id, this.headersOptions)
+  getArticlesWithSectionId(id : String, limit?: Number) : Observable<Article[]> {
+    if( limit != null){
+      return this.http.get<Article[]>(this.requestUri.getArticlesWithSectionId + id + '/' + limit, this.headersOptions)
                     .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
+    }
+    else{
+      return this.http.get<Article[]>(this.requestUri.getArticlesWithSectionId+id, this.headersOptions)
+                      .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
+    }
+    
   }
 
   /**

@@ -11,8 +11,8 @@ import { SegmentRequestErrorHandlersService } from '../error-handlers/segment-re
 export class SegmentService {
 
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-  public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  //public serverDomain = '' //base url of the server (BUILD)
   
  /**
    * List of primary CRUD APIs for Segment data

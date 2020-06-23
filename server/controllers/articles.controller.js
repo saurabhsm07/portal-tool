@@ -36,11 +36,11 @@ module.exports = {
  */
     getBySection: (req, res, next) => {
         const sectionId = req.params.id;
-        Article.findAll({attributes: ['id', 'title', 'created_at', 'section', 'author']},
-                        { where: { section: { id: sectionId } } })
+        // console.log(req.params);
+        Article.findAll(preprocessors.createListArticlesQuery(req.params, 'section'))
             .then((data) => {
                 if (data.length > 0) {
-                    console.log(`fetched Articles with section id : ${sectionId}`);
+                    console.log(`fetched ${data.length} Articles with section id : ${sectionId}`);
                     const articleList = preprocessors.processArticlesList(data);
                     res.status(200).send(articleList);
                 }

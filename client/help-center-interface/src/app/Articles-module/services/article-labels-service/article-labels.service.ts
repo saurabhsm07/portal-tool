@@ -12,8 +12,8 @@ import {ArticleLabelErrorHandlerService } from '../error-handler-service/article
 export class ArticleLabelsService {
 
 
-  //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-  public serverDomain = '' //base url of the server (BUILD)
+  public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+  //public serverDomain = '' //base url of the server (BUILD)
   
   private requestUri = {
     getArticleLabels: this.serverDomain + 'api/articles/labels/',

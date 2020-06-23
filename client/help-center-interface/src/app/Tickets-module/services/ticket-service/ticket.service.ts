@@ -10,8 +10,8 @@ import { Comment } from './../../classes/comment';
 })
 export class TicketService {
 
-   //public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
-   public serverDomain = '' //base url of the server (BUILD)
+   public serverDomain = 'http://localhost:5000/' //base url of the server (UN-BUILD)
+   //public serverDomain = '' //base url of the server (BUILD)
 
   /**
    * List of primary CRUD APIs for Category data

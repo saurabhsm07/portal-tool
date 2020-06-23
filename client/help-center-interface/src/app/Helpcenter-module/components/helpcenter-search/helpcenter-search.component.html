@@ -43,7 +43,7 @@
 
         <ng-container *ngFor='let article of articles'>
           <li class="search-result col-md-6">
-            <a [routerLink]=article.url class="search-result-link">{{article.title}}</a>
+            <a routerLink='/hc/en-us/articles/id/{{article.id}}' class="search-result-link">{{article.title}}</a>
 
             <!-- <span class="search-result-votes">3</span> -->
 
@@ -51,8 +51,8 @@
               by {{article.author.name}}
              <span class="search-result-meta-time">{{article.created_at | date}}</span>
               in
-              <a [routerLink]="hc/en-us/home">Accelerite Support</a> &gt;
-              <a [routerLink]="hc/en-us/section/article.section.id">{{article.section.name}}</a>
+              <a routerLink = "/hc/en-us/home">Accelerite Support</a> &gt;
+              <a routerLink = "/hc/en-us/sections/id/{{article.section.id}}">{{article.section.name}}</a>
             </div>
             <!-- <div class="search-result-description">
               {{s}}</div> -->
