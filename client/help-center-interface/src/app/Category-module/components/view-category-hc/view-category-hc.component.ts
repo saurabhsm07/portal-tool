@@ -41,8 +41,41 @@ export class ViewCategoryHcComponent implements OnInit {
   articleList: Article[];          // list of articles in perticular section
   currentSection: number;
   sectionArticlesObj: {}          // data structure to map articles to section for template generation in UI
-  customCategoryTemplates: number [] = [201273833, 201273823, 201264926] //list of category ids who have custom design templates  and do not follow general structure
+  
+  //list of category data objects who have custom design templates  and do not follow general structure
+  customCategoryTemplates = {
+    201273833: {
+      name: 'Product Manuals',
+      childCategoryData: [
+        {id: '200146610', tagline: 'One tool to manage your entire endpoint universe', name: 'Radia Endpoint Manager', nameIcon: 'assets/images/radia-cat-icon.png', backImg: 'assets/images/radia-cat-back.jpg' },
+        {id: '201183733', tagline: 'An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills', name: 'Hybrid Enterprise Cloud', nameIcon: 'assets/images/roviuscp-cat-icon.png', backImg: 'assets/images/roviuscp-cat-back.jpg' },
+        {id: 'cpbmModal', tagline: 'Cloud platform business manager', name: 'CPBM', nameIcon: 'assets/images/cpbm-cat-icon.png', backImg: 'assets/images/cpbm-cat-back.jpg' },
+        {id: '201284083', tagline: 'Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds', name: 'Endpoint Management Security', nameIcon: 'assets/images/sentient-cat-icon.png', backImg: 'assets/images/sentient-cat-back.png' },
+        {id: '360003439852', tagline: 'Make it easy for app developers to treat complex protocols like they were no different from any other web service', name: 'Aepona IoT', nameIcon: 'assets/images/aepona-cat-icon.png', backImg: 'assets/images/aepona-cat-back.jpg' }
+      ]
+    },
+    201264926: {
+      name: 'Agent Only',
+      childCategoryData: [
+        {id: '201284063', tagline: 'One tool to manage your entire endpoint universe', name: 'Radia Endpoint Manager', nameIcon: 'assets/images/radia-cat-icon.png', backImg: 'assets/images/radia-cat-back.jpg' },
+        {id: '201174856', tagline: 'An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills', name: 'Hybrid Enterprise Cloud', nameIcon: 'assets/images/roviuscp-cat-icon.png', backImg: 'assets/images/roviuscp-cat-back.jpg' },
+        {id: '201267586', tagline: 'Accelerite', name: 'Accelerite', nameIcon: 'assets/images/accelerite-cat-icon.png', backImg: 'assets/images/accelerite-cat-back.png' },
+        {id: '201629406', tagline: 'Make it easy for app developers to treat complex protocols like they were no different from any other web service', name: 'Aepona IoT', nameIcon: 'assets/images/aepona-cat-icon.png', backImg: 'assets/images/aepona-cat-back.jpg' },
+        {id: '201284083', tagline: 'Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds', name: 'Endpoint Management Security', nameIcon: 'assets/images/sentient-cat-icon.png', backImg: 'assets/images/sentient-cat-back.png' }
+      ]
 
+    },
+    201273823: {
+      name: 'Help Articles',
+      childCategoryData: [
+        {id: '200146250', tagline: 'One tool to manage your entire endpoint universe', name: 'Radia Endpoint Manager', nameIcon: 'assets/images/radia-cat-icon.png', backImg: 'assets/images/radia-cat-back.jpg' },
+        {id: '201174846', tagline: 'An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills', name: 'Hybrid Enterprise Cloud', nameIcon: 'assets/images/roviuscp-cat-icon.png', backImg: 'assets/images/roviuscp-cat-back.jpg' },
+        {id: '115000147066', tagline: 'Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds', name: 'Endpoint Management Security', nameIcon: 'assets/images/sentient-cat-icon.png', backImg: 'assets/images/sentient-cat-back.png' },
+        {id: '360000464971', tagline: 'Powerful big data analytics platform with an easy-to-use self-service interface for data preparation, analysis, visualization, and machine learning', name: 'Data Analytics', nameIcon: 'assets/images/si-cat-icon.png', backImg: 'assets/images/si-cat-icon.png' },
+      ]
+  }
+  
+  }
 
   toggle(section_id) {
     this.sectionArticlesObj[section_id].isOpen = !this.sectionArticlesObj[section_id].isOpen;
@@ -126,7 +159,8 @@ export class ViewCategoryHcComponent implements OnInit {
  * @param categoryId : id of the category in current hc view
  */
   public isGenericCategory(categoryId){
-    if(this.customCategoryTemplates.indexOf(categoryId) == -1)
+    console.log(Object.keys(this.customCategoryTemplates))
+    if(Object.keys(this.customCategoryTemplates).indexOf(categoryId.toString()) == -1)
       return true;
     else
       return false;
