@@ -37,15 +37,15 @@ import { Article } from '../../../Articles-module/classes/article';
 export class ViewCategoryHcComponent implements OnInit {
   category$: Observable<Category>;  // observable to map category i.d from angular route path and call get category by id API
   category: Category;               // category object to store category record field values
-  section_list: Section[];          // list of sections in the specific category
-  article_list: Article[];          // list of articles in perticular section
-  current_section: number;
-  section_articles_obj: {}          // data structure to map articles to section for template generation in UI
-
+  sectionList: Section[];          // list of sections in the specific category
+  articleList: Article[];          // list of articles in perticular section
+  currentSection: number;
+  sectionArticlesObj: {}          // data structure to map articles to section for template generation in UI
+  customCategoryTemplates: number [] = [201273833, 201273823, 201264926] //list of category ids who have custom design templates  and do not follow general structure
 
 
   toggle(section_id) {
-    this.section_articles_obj[section_id].isOpen = !this.section_articles_obj[section_id].isOpen;
+    this.sectionArticlesObj[section_id].isOpen = !this.sectionArticlesObj[section_id].isOpen;
 
   }
   constructor(private router: Router,
@@ -53,7 +53,7 @@ export class ViewCategoryHcComponent implements OnInit {
     private sectionService: SectionService,
     private articleService: ArticleService,
     private route: ActivatedRoute) { 
-      this.section_articles_obj = {};
+      this.sectionArticlesObj = {};
     }
 
   ngOnInit() {
@@ -64,6 +64,7 @@ export class ViewCategoryHcComponent implements OnInit {
 
     this.category$.subscribe((category) => {
                               this.category = category;
+                              console.log(this.category)
                               this.getSectionsFromCategory();
                             },
                               (error) => {
@@ -78,11 +79,11 @@ export class ViewCategoryHcComponent implements OnInit {
   public getSectionsFromCategory() {
     this.sectionService.getSectionInCategory(this.category.id.toString())
       .subscribe((sectionsList) => {
-        this.section_list = sectionsList;
-        this.current_section = this.section_list[0].id;
-        console.log(this.section_list);
+        this.sectionList = sectionsList;
+        this.currentSection = this.sectionList[0].id;
+        console.log(this.sectionList);
         this.initializeSectionArticleObject();
-        // console.log(this.section_articles_obj);
+        // console.log(this.sectionArticlesObj);
       }, (error) => {
         console.log(error);
       });
@@ -92,8 +93,8 @@ export class ViewCategoryHcComponent implements OnInit {
    * initializes section article object for rendering in template
    */
   public initializeSectionArticleObject() {
-    this.section_list.forEach((section, index) => {
-      this.section_articles_obj[section.id] = { articles: [], see_more: section.html_url, isOpen: false };
+    this.sectionList.forEach((section, index) => {
+      this.sectionArticlesObj[section.id] = { articles: [], see_more: section.html_url, isOpen: false };
     });
   }
 
@@ -102,21 +103,33 @@ export class ViewCategoryHcComponent implements OnInit {
    * @param section_id : id of the section from which articles are to be fetched
    */
    public getArticlesfromSection(section_id) {
-     this.current_section = section_id;
+     this.currentSection = section_id;
 
     
-    // console.log(this.section_articles_obj[section_id].articles.length);
+    // console.log(this.sectionArticlesObj[section_id].articles.length);
     this.toggle(section_id);
-    if(this.section_articles_obj[section_id].articles.length == 0){
+    if(this.sectionArticlesObj[section_id].articles.length == 0){
       this.articleService.getArticlesWithSectionId(section_id, 10)
       .subscribe((articles) => {
-        this.article_list = articles;
-        this.section_articles_obj[section_id].articles = this.article_list;
+        this.articleList = articles;
+        this.sectionArticlesObj[section_id].articles = this.articleList;
         
-        console.log(this.section_articles_obj[section_id].articles.length);
+        console.log(this.sectionArticlesObj[section_id].articles.length);
       })
     }
   
+
+  }
+
+/**
+ *  method checks if the category is valid or not
+ * @param categoryId : id of the category in current hc view
+ */
+  public isGenericCategory(categoryId){
+    if(this.customCategoryTemplates.indexOf(categoryId) == -1)
+      return true;
+    else
+      return false;
 
   }
 }

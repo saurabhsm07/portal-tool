@@ -1,58 +1,391 @@
+<div class="categoryViewHcCls">
 <ng-container *ngIf="category">
 <app-category-header-hc [category_name] = "category.name"></app-category-header-hc>
-<div id="realcatcontent" class="unqipad catcontbg">
-    <div class="row">
-        <div class="offset-md-1 col-md-10  offset-sm-1 col-sm-10 ">
-            <div class="fright expcont">
-                <a href="javascript:void(0);" class="exptext">Expand all</a>
-            </div>
 
-            <div class="section-tree">
-                <ng-container *ngFor="let section of section_list">
-                    <div class="col-md-12 section col-sm-12 sectionblk" style="margin-top: -30px;">
-                        <h3>
-
-                            <a href='hc/en-us/sections/id/{{section.id}}' class="sectionnameslink">{{section.name}}</a>
-                            <div class="catrgticon">
-                                <img src="//theme.zdassets.com/theme_assets/270851/8d97c5de53892722710b29f2cbd1686d3f79e87c.svg"
-                                    class="hidesect" (click) = "getArticlesfromSection(section.id)">
-                            </div>
-                            <div class="right">
-                                <input type="hidden" class="sectionid" name="sectionid[]" value={{section.id}}>
-                                <div class="section-subscribe dropdown section115001455183" aria-haspopup="true">
-                                    <span class="dropdown-menu menusub115001455183 subscribemenu" role="menu" aria-expanded="false" style="height: 90px;">
-                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=false', '115001455183', 'Subscribing..','Following');"
-                                            href="javascript:void(0);" class="menuitem-A subscribe-item">New articles</a>
-                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=true', '115001455183','Subscribing..', 'Following');"
-                                            href="javascript:void(0);" class="menuitem-AC subscribe-item">New articles and comments</a>
-                                        <a rel="nofollow" role="menuitem" aria-selected="false" data-method="delete" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?to=section', '115001455183', 'Unfollowing..', 'Follow');"
-                                            href="javascript:void(0);" class="menuitem-U subscribe-item" style="display: none;">Unfollow</a>
-                                    </span>
+<!-- PRODUCT MANUALS CATEGORY -->
+<ng-container *ngIf="category.id == 201273833">
+<div  class="catsub_201273823 bgcolor">
+    <!--div class="categorybg" >
+			<div class="unqipad">
+				<div class="hgt45">&nbsp;</div>
+				<div class="hlputext" >Help Articles</div>
+				<div class="hgt20">&nbsp;</div>
+				<div class="row nopad">
+				  <form name="searchfrom" action="/hc/en-us/search" method="GET">
+							<div class="col-md-8 col-md-offset-2" style="padding:0;">
+								<img class="searchhmicon hmsrchicon" src="//theme.zdassets.com/theme_assets/270851/cc9dee3338e286beed9573c5ce0c5c4c4a5b5f24.svg" /> 
+								<input type="text" class="hmsearchbox" name="query" placeholder="Search" >
+							</div>
+				  </form>  
+				</div>
+			</div>
+		</div-->
+		<div class="hgt34 cboth">&nbsp;</div>
+		<div class="unqipad">
+			<div class="row">
+				<div class="cboth"></div>
+				<div style="padding:0 40px 0 40px;">
+					<div class="col-md-12  col-sm-12 acc-home-prod-tabs column_container">
+						<div class="wpb_row">
+							<div class="vc_column_container col-md-3 col-sm-3" id="radia_help_art">
+								<div class="vc_column-inner">
+									<h3>Radia Endpoint Manager</h3>
+									<p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/b5c101420354c5823e07b3e9dd247b7b36e61760.png" class="img-responsive"></p>
+									<h4>One tool to manage your entire endpoint universe</h4>
+									<p><a href="/hc/en-us/categories/id/200146610">Explore</a></p>
+									<div class="cboth"></div>
+									<div class="mk-image">
+										<div class="mk-image-holder">
+											<div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/b5e32ee6f755dacb469bfdb8da7b0a2af0136707.jpg"></div>
+										</div>
+										<div class="cboth"></div>
+									</div>
+								</div>
+							</div>
+							<div class="vc_column_container col-md-3 col-sm-3" id="rovius_help_art">
+								<div class="vc_column-inner">
+									<h3>Hybrid Enterprise Cloud</h3>
+									<p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/2e96a445b61ddea52a128dc3957fe4a012ed831c.png" class="img-responsive"></p>
+									<h4>An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills</h4>
+									<p><a href="/hc/en-us/categories/id/201183733">Explore</a></p>
+									<div class="cboth"></div>
+									<div class="mk-image">
+										<div class="mk-image-holder">
+											<div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/9c76391d7d4f9661651160ea6c9ac65a95c41da9.jpg"></div>
+										</div>
+										<div class="cboth"></div>
+									</div>
+								</div>
+							</div>
+                            <div class="vc_column_container col-md-3 col-sm-3" data-toggle="modal" data-target="#cpbmManualModal">
+                                <div class="vc_column-inner">
+                                  <h3>CPBM</h3>
+                                  <p  class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/e35ec0721976a8fbd186acbfd4f838cf4c835723.png" class="img-responsive"></p>
+                                  <h4>Cloud platform business manager</h4>
+                                  <p><a href="javascript:void(0);" data-toggle="modal" data-target="#cpbmManualModal">Explore</a></p>
+                                  <div class="cboth"></div>
+                                  <div class="mk-image">
+                                    <div class="mk-image-holder">
+                                      <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/9c76391d7d4f9661651160ea6c9ac65a95c41da9.jpg"></div>
+                                    </div>
+                                    <div class="cboth"></div>
+                                  </div>
+                                </div>
+                              </div>
+							
+                              <div class="vc_column_container col-md-3 col-sm-3" id="sentient_pm_art">
+                                <div class="vc_column-inner">
+                                  <h3>Endpoint Management Security</h3>
+                                  <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/a3f6bc1d8d300355e31b51c6544980e8f62a773d.png" class="img-responsive"></p>
+                                  <h4>Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds</h4>
+                                  <p><a href="/hc/en-us/categories/id/201284083">Explore</a></p>
+                                  <div class="cboth"></div>
+                                  <div class="mk-image">
+                                    <div class="mk-image-holder">
+                                      <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/c1d2b8c3ea193614f631cc9c23e0124aab4d9952.png"></div>
+                                    </div>
+                                    <div class="cboth"></div>
+                                  </div>
+                                </div>
+                              </div>
+                        <div class="vc_column_container col-md-3 col-sm-3">
+                            <div class="vc_column-inner">
+                                <h3>Aepona IoT</h3>
+                                <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/3341ddf1dfce7de483f1f94df17570813d53d6c0.png" class="img-responsive"></p>
+                                <h4>Make it easy for app developers to treat complex protocols like they were no different from any other web service</h4>
+                                <p><a href="/hc/en-us/categories/id/360003439852">Explore</a></p>
+                                <div class="cboth"></div>
+                                <div class="mk-image">
+                                    <div class="mk-image-holder">
+                                        <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/fe745421a09a774fb3b975e2bb87a47a464e0378.jpg"></div>
+                                    </div>
+                                    <div class="cboth"></div>
                                 </div>
                             </div>
-                            <div class="cboth"></div>
-                        </h3>
-                        <div [@collapse]="section_articles_obj[section.id].isOpen ? 'open' : 'close'">
-                        <ul class="article-list">
-                            <ng-container *ngIf="section_articles_obj[section.id].articles.length > 0">
-                                <li *ngFor="let article of section_articles_obj[section.id].articles">
-                                    <a href="/hc/en-us/articles/id/{{article.id}}">{{article.title}}</a>
-                                </li>
-
-                            </ng-container>
-                           
-                        </ul>
-                        <span class="seeMoreCls">
-                                <a routerLink='/hc/en-us/sections/id/{{section.id}}'>see more</a>
-                            </span>
                         </div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-container>
 
+<!-- HELP ARTICLES CATEGORY -->
+<ng-container *ngIf="category.id == 201273823">
+    <!-- <h1> custom design for {{category.name}}</h1> -->
+    <div  class="catsub_201273823 bgcolor">
+        <!--div class="categorybg" >
+                <div class="unqipad">
+                    <div class="hgt45">&nbsp;</div>
+                    <div class="hlputext" >Help Articles</div>
+                    <div class="hgt20">&nbsp;</div>
+                    <div class="row nopad">
+                      <form name="searchfrom" action="/hc/en-us/search" method="GET">
+                                <div class="col-md-8 col-md-offset-2" style="padding:0;">
+                                    <img class="searchhmicon hmsrchicon" src="//theme.zdassets.com/theme_assets/270851/cc9dee3338e286beed9573c5ce0c5c4c4a5b5f24.svg" /> 
+                                    <input type="text" class="hmsearchbox" name="query" placeholder="Search" >
+                                </div>
+                      </form>  
                     </div>
-                    <div class="sectsep cboth">&nbsp;</div>
-                </ng-container>
+                </div>
+            </div-->
+            <div class="hgt34 cboth">&nbsp;</div>
+            <div class="unqipad">
+                <div class="row">
+                    <div class="cboth"></div>
+                    <div style="padding:0 40px 0 40px;">
+                        <div class="col-md-12  col-sm-12 acc-home-prod-tabs column_container">
+                            <div class="wpb_row">
+                                <div class="vc_column_container col-md-3 col-sm-3" id="radia_help_art">
+                                    <div class="vc_column-inner">
+                                        <h3>Radia Endpoint Manager</h3>
+                                        <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/b5c101420354c5823e07b3e9dd247b7b36e61760.png" class="img-responsive"></p>
+                                        <h4>One tool to manage your entire endpoint universe</h4>
+                                        <p><a href="/hc/en-us/categories/id/200146250">Explore</a></p>
+                                        <div class="cboth"></div>
+                                        <div class="mk-image">
+                                            <div class="mk-image-holder">
+                                                <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/b5e32ee6f755dacb469bfdb8da7b0a2af0136707.jpg"></div>
+                                            </div>
+                                            <div class="cboth"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vc_column_container col-md-3 col-sm-3" id="rovius_help_art">
+                                    <div class="vc_column-inner">
+                                        <h3>Hybrid Enterprise Cloud</h3>
+                                        <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/2e96a445b61ddea52a128dc3957fe4a012ed831c.png" class="img-responsive"></p>
+                                        <h4>An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills</h4>
+                                        <p><a href="/hc/en-us/categories/id/201174846">Explore</a></p>
+                                        <div class="cboth"></div>
+                                        <div class="mk-image">
+                                            <div class="mk-image-holder">
+                                                <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/9c76391d7d4f9661651160ea6c9ac65a95c41da9.jpg"></div>
+                                            </div>
+                                            <div class="cboth"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vc_column_container col-md-3 col-sm-3" id="sentient_help_art">
+                                    <div class="vc_column-inner">
+                                        <h3>Endpoint Management Security</h3>
+                                        <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/a3f6bc1d8d300355e31b51c6544980e8f62a773d.png" class="img-responsive"></p>
+                                        <h4>Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds</h4>
+                                        <p><a href="/hc/en-us/categories/id/115000147066">Explore</a></p>
+                                        <div class="cboth"></div>
+                                        <div class="mk-image">
+                                            <div class="mk-image-holder">
+                                                <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/c1d2b8c3ea193614f631cc9c23e0124aab4d9952.png"></div>
+                                            </div>
+                                            <div class="cboth"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                  <div class="vc_column_container col-md-3 col-sm-3" id="si_help_art">
+                                <div class="vc_column-inner">
+                                    <h3>Data Analytics</h3>
+                                    <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/c03f7aec331f37ba07c71e643bb33b7cad203a87.png" class="img-responsive"></p>
+                                    <h4>Powerful big data analytics platform with an easy-to-use self-service interface for data preparation, analysis, visualization, and machine learning</h4>
+                                    <p><a href="/hc/en-us/categories/id/360000464971">Explore</a></p>
+                                    <div class="cboth"></div>
+                                    <div class="mk-image">
+                                        <div class="mk-image-holder">
+                                            <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/8060b0e847b104fee453b18d1f64cf188db5353b.jpg"></div>
+                                        </div>
+                                        <div class="cboth"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
+        </div>
+</ng-container>
 
+<!-- AGENTS ONLY CATEGORY -->
+<ng-container *ngIf="category.id == 201264926">
+    <div  class="catsub_201273823 bgcolor">
+            <div class="hgt34 cboth">&nbsp;</div>
+            <div class="unqipad">
+                <div class="row">
+                    <div class="cboth"></div>
+                    <div style="padding:0 40px 0 40px;">
+                        <div class="col-md-12  col-sm-12 acc-home-prod-tabs column_container">
+                            <div class="wpb_row">
+                                <div class="vc_column_container col-md-3 col-sm-3" id="radia_help_art">
+                        <div class="vc_column-inner">
+                            <h3>Radia Endpoint Manager</h3>
+                            <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/b5c101420354c5823e07b3e9dd247b7b36e61760.png" class="img-responsive"></p>
+                            <h4>One tool to manage your entire endpoint universe</h4>
+                            <p><a href="/hc/en-us/categories/201284063">Explore</a></p>
+                            <div class="cboth"></div>
+                            <div class="mk-image">
+                                <div class="mk-image-holder">
+                                    <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/b5e32ee6f755dacb469bfdb8da7b0a2af0136707.jpg"></div>
+                                </div>
+                                <div class="cboth"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_column_container col-md-3 col-sm-3">
+                        <div class="vc_column-inner">
+                            <h3>Hybrid Enterprise Cloud</h3>
+                            <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/2e96a445b61ddea52a128dc3957fe4a012ed831c.png" class="img-responsive"></p>
+                            <h4>An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills</h4>
+                            <p><a href="/hc/en-us/categories/201174856">Explore</a></p>
+                            <div class="cboth"></div>
+                            <div class="mk-image">
+                                <div class="mk-image-holder">
+                                    <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/9c76391d7d4f9661651160ea6c9ac65a95c41da9.jpg"></div>
+                                </div>
+                                <div class="cboth"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_column_container col-md-3 col-sm-3">
+                        <div class="vc_column-inner">
+                            <h3>Accelerite</h3>
+                            <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/50632cd58124a2f43d068abefb77c81f96774937.png" class="img-responsive"></p>
+                            <h4>Accelerite</h4>
+                            <p><a href="/hc/en-us/categories/201267586">Explore</a></p>
+                            <div class="cboth"></div>
+                            <div class="mk-image">
+                                <div class="mk-image-holder">
+                                    <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/428946612219cf7535e9326e4be07e036a7fd437.png"></div>
+                                </div>
+                                <div class="cboth"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_column_container col-md-3 col-sm-3">
+                        <div class="vc_column-inner">
+                            <h3>Aepona IoT</h3>
+                            <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/3341ddf1dfce7de483f1f94df17570813d53d6c0.png" class="img-responsive"></p>
+                            <h4>Make it easy for app developers to treat complex protocols like they were no different from any other web service</h4>
+                            <p><a href="/hc/en-us/categories/201629406">Explore</a></p>
+                            <div class="cboth"></div>
+                            <div class="mk-image">
+                                <div class="mk-image-holder">
+                                    <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/fe745421a09a774fb3b975e2bb87a47a464e0378.jpg"></div>
+                                </div>
+                                <div class="cboth"></div>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="vc_column_container col-md-3 col-sm-3">
+                    <div class="vc_column-inner">
+                        <h3>Endpoint Management Security</h3>
+                        <p class="productNameImg"><img src="//theme.zdassets.com/theme_assets/270851/a3f6bc1d8d300355e31b51c6544980e8f62a773d.png" class="img-responsive"></p>
+                        <h4>Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds</h4>
+                        <p><a href="/hc/en-us/categories/201284083">Explore</a></p>
+                        <div class="cboth"></div>
+                        <div class="mk-image">
+                            <div class="mk-image-holder">
+                                <div class="mk-image-inner "><img class="img-responsive" src="//theme.zdassets.com/theme_assets/270851/c1d2b8c3ea193614f631cc9c23e0124aab4d9952.png"></div>
+                            </div>
+                            <div class="cboth"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+</ng-container>
+<ng-container *ngIf="isGenericCategory(category.id);">
+    <div id="realcatcontent" class="unqipad catcontbg">
+        <div class="row">
+            <div class="offset-md-1 col-md-10  offset-sm-1 col-sm-10 ">
+                <div class="fright expcont">
+                    <a href="javascript:void(0);" class="exptext">Expand all</a>
+                </div>
+    
+                <div class="section-tree">
+                    <ng-container *ngFor="let section of sectionList">
+                        <div class="col-md-12 section col-sm-12 sectionblk" style="margin-top: -30px;">
+                            <h3>
+    
+                                <a href='hc/en-us/sections/id/{{section.id}}' class="sectionnameslink">{{section.name}}</a>
+                                <div class="catrgticon">
+                                    <img src="//theme.zdassets.com/theme_assets/270851/8d97c5de53892722710b29f2cbd1686d3f79e87c.svg"
+                                        class="hidesect" (click) = "getArticlesfromSection(section.id)">
+                                </div>
+                                <div class="right">
+                                    <input type="hidden" class="sectionid" name="sectionid[]" value={{section.id}}>
+                                    <div class="section-subscribe dropdown section115001455183" aria-haspopup="true">
+                                        <span class="dropdown-menu menusub115001455183 subscribemenu" role="menu" aria-expanded="false" style="height: 90px;">
+                                            <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=false', '115001455183', 'Subscribing..','Following');"
+                                                href="javascript:void(0);" class="menuitem-A subscribe-item">New articles</a>
+                                            <a rel="nofollow" role="menuitem" aria-selected="false" data-method="post" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?subscribe_to_grandchildren=true', '115001455183','Subscribing..', 'Following');"
+                                                href="javascript:void(0);" class="menuitem-AC subscribe-item">New articles and comments</a>
+                                            <a rel="nofollow" role="menuitem" aria-selected="false" data-method="delete" onclick="javascript:subscribeuser('https://support.accelerite.com/hc/en-us/sections/115001455183/subscription?to=section', '115001455183', 'Unfollowing..', 'Follow');"
+                                                href="javascript:void(0);" class="menuitem-U subscribe-item" style="display: none;">Unfollow</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="cboth"></div>
+                            </h3>
+                            <div [@collapse]="sectionArticlesObj[section.id].isOpen ? 'open' : 'close'">
+                            <ul class="article-list">
+                                <ng-container *ngIf="sectionArticlesObj[section.id].articles.length > 0">
+                                    <li *ngFor="let article of sectionArticlesObj[section.id].articles">
+                                        <a href="/hc/en-us/articles/id/{{article.id}}">{{article.title}}</a>
+                                    </li>
+    
+                                </ng-container>
+                               
+                            </ul>
+                            <span class="seeMoreCls">
+                                    <a routerLink='/hc/en-us/sections/id/{{section.id}}'>see more</a>
+                                </span>
+                            </div>
+    
+                        </div>
+                        <div class="sectsep cboth">&nbsp;</div>
+                    </ng-container>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<div id="cpbmManualModal" class="modal fade poplogin in" aria-hidden="false" >
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-dialog-width vertical-align-center">
+            <!-- Modal content-->
+            <div class="modal-content modal-content-bg">
+                <div class="modal-header modal-header-bord">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body modal-body-pad">
+                    <h1 class="submnhed">Please select the version</h1>
+                    <hr class="popuphr">
+                    <div class="col-md-12 nopad">
+                        <a href="/hc/en-us/articles/id/115005979386" class="fontsz15">CloudPortal Business Manager
+                            2.6</a><br><br>
+                        <a href="/hc/en-us/articles/id/115000191926" class="fontsz15">CloudPortal Business Manager
+                            2.5</a><br><br>
+                        <a href="/hc/en-us/articles/id/207899626" class="fontsz15">CloudPortal Business Manager
+                            2.4</a><br><br>
+                        <div class="cboth">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-bord modal-footer-pad"></div>
+            </div>
         </div>
     </div>
 </div>
 </ng-container>
+</div>
+<app-helpcenter-footer></app-helpcenter-footer>
