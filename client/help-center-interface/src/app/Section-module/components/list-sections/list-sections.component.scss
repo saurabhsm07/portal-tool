@@ -79,8 +79,11 @@
 
   }
 
-  div{
-    display: inline-block;
+  div.row{
+    div{
+      display: inline-block;
+    }
+    
   }
   .create-div{
     text-align: right;

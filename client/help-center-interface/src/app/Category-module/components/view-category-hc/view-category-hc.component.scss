@@ -27,3 +27,25 @@
             
         }
 }
+
+.download-list
+{
+
+    li {
+        font-weight: 400;
+        font-size: 15px;
+        color: #4b4d4d;
+        list-style-type: none;
+        padding: 0 10px 25px 5px;
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+        text-align: center;
+    }
+}
+
+.see-more-cls{
+    i{
+        padding-left:10px;
+}
+}

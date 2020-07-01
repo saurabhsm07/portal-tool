@@ -3,7 +3,7 @@
 <app-category-header-hc [category_name] = "category.name"></app-category-header-hc>
 
 <!-- AGENTS ONLY CATEGORY -->
-<ng-container *ngIf="isGenericCategory(category.id); else customTemplate">
+<ng-container *ngIf="isGenericCategory(category.id); else customTemplates">
     <div id="realcatcontent" class="unqipad catcontbg">
         <div class="row">
             <div class="offset-md-1 col-md-10  offset-sm-1 col-sm-10 ">
@@ -61,45 +61,73 @@
     </div>
 </ng-container>
 
-<ng-template #customTemplate>
-        <div  class="catsub_201273823 bgcolor">
-                <div class="hgt34 cboth">&nbsp;</div>
-                <div class="unqipad">
-                    <div class="row">
-                        <div class="cboth"></div>
-                        <div style="padding:0 40px 0 40px;">
-                            <div class="col-md-12  col-sm-12 acc-home-prod-tabs column_container">
-                                <div class="wpb_row">
-                            <ng-container *ngFor="let subCategory of customCategoryTemplates[category.id].childCategoryData">
-                                    <div class="vc_column_container col-md-3 col-sm-3" id="radia_help_art">
-                                            <div class="vc_column-inner">
-                                                <h3>{{subCategory.name}}</h3>
-                                                <p class="productNameImg"><img src={{subCategory.nameIcon}} class="img-responsive"></p>
-                                                <h4>{{subCategory.tagline}}</h4>
-                                                <p>
-                                                <ng-container *ngIf="subCategory.id != 'cpbmModal'; else cpbmModal">
-                                                    <a href="/hc/en-us/categories/{{subCategory.id}}">Explore</a>
-                                                </ng-container>
-                                                <ng-template #cpbmModal>
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#cpbmManualModal">Explore</a>
-                                                </ng-template>
-                                                </p>
-                                                <div class="cboth"></div>
-                                                <div class="mk-image">
-                                                    <div class="mk-image-holder">
-                                                        <div class="mk-image-inner "><img class="img-responsive" src={{subCategory.backImg}}></div>
-                                                    </div>
+<ng-template #customTemplates>
+
+    <ng-container *ngIf="isDocumentationTemplate(category.id)">
+        <h1>my lord</h1>
+            <div  class="catsub_201273823 bgcolor">
+                    <div class="hgt34 cboth">&nbsp;</div>
+                    <div class="unqipad">
+                        <div class="row">
+                            <div class="cboth"></div>
+                            <div style="padding:0 40px 0 40px;">
+                                <div class="col-md-12  col-sm-12 acc-home-prod-tabs column_container">
+                                    <div class="wpb_row">
+                                <ng-container *ngFor="let subCategory of getChildCategories('documentation', category.id);">
+                                        <div class="vc_column_container col-md-3 col-sm-3" id="radia_help_art">
+                                                <div class="vc_column-inner">
+                                                    <h3>{{subCategory.name}}</h3>
+                                                    <p class="productNameImg"><img src={{subCategory.nameIcon}} class="img-responsive"></p>
+                                                    <h4>{{subCategory.tagline}}</h4>
+                                                    <p>
+                                                    <ng-container *ngIf="subCategory.id != 'cpbmModal'; else cpbmModal">
+                                                        <a href="/hc/en-us/categories/{{subCategory.id}}">Explore</a>
+                                                    </ng-container>
+                                                    <ng-template #cpbmModal>
+                                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#cpbmManualModal">Explore</a>
+                                                    </ng-template>
+                                                    </p>
                                                     <div class="cboth"></div>
+                                                    <div class="mk-image">
+                                                        <div class="mk-image-holder">
+                                                            <div class="mk-image-inner "><img class="img-responsive" src={{subCategory.backImg}}></div>
+                                                        </div>
+                                                        <div class="cboth"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                            </ng-container>
+                                </ng-container>
+                    </div>
                 </div>
+                </div>
+                </div>
+                </div>
+                </div>
+    </ng-container>
+    <ng-container *ngIf="isDownloadTemplate(category.id)">
+        <div class="row">
+        <ng-container *ngFor="let subCategory of getChildCategories('download', category.id);">
+
+        
+            <div class="col-md-4">
+                    <div class="prodBox">
+                    <div class="dwldlgimg">{{subCategory.name}}</div>
+                    <div class="cboth">&nbsp;</div>
+                    <div class="dwldcontpad">
+                    <ul class="download-list" style="height: 92px;">
+                        <ng-container *ngFor="let downloadPage of subCategory.downloadInfo">
+                            <li><a href = {{downloadPage.link}}>{{downloadPage.name}}</a></li>
+                        </ng-container>
+                   </ul>
+                    <hr class="downparline">
+                    <div class="cboth">&nbsp;</div>
+                    <a class="see-more-cls" href={{subCategory.seeMore}}>See all versions<i class="fa fa-angle-right downarrw"></i></a>
+                    </div>
+                    </div>
+                    </div>
+                </ng-container>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>
+    </ng-container>
     </ng-template>
 
 <div id="cpbmManualModal" class="modal fade poplogin in" aria-hidden="false" >
