@@ -2,11 +2,16 @@
     padding-top: 50px;
 }
 
-.categoryViewHcCls{
+// .categoryViewHcCls{
+  
+// }
+
+.categoryBodyHc{
     padding: {
-        top: 50px;
-        bottom: 50px;
+        top: 20px;
+        bottom: 30px;
     }
+background-color: #f7f7f7;    
 }
 
 .seeMoreCls{
@@ -48,4 +53,31 @@
     i{
         padding-left:10px;
 }
+}
+
+.download-list li a {
+    color: #4b4d4d !important;
+    font-weight: 600;
+}
+
+ul.download-list {
+    padding: 0;
+    margin: 0;
+}
+
+.dwldlgimg {  padding: 30px 15px;text-align:center;vertical-align: middle; font-size:22px; color:#333333 !important }
+
+.dwldlgimg { 
+	 
+	padding: 30px 15px;
+	text-align:center;
+	vertical-align: middle; 
+	font-size:22px;    
+	color:#fff; 
+	border-bottom: 2px solid #fa6400;
+	font-family: 'Montserrat-Regular' !important; 
+	letter-spacing: 0.87px; 
+	font-weight:500; 
+	-webkit-font-smoothing: subpixel-antialiased;
+	-webkit-text-stroke:1px transparent; 
 }

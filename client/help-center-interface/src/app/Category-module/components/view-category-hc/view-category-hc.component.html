@@ -3,6 +3,7 @@
 <app-category-header-hc [category_name] = "category.name"></app-category-header-hc>
 
 <!-- AGENTS ONLY CATEGORY -->
+<div class="categoryBodyHc">
 <ng-container *ngIf="isGenericCategory(category.id); else customTemplates">
     <div id="realcatcontent" class="unqipad catcontbg">
         <div class="row">
@@ -64,7 +65,6 @@
 <ng-template #customTemplates>
 
     <ng-container *ngIf="isDocumentationTemplate(category.id)">
-        <h1>my lord</h1>
             <div  class="catsub_201273823 bgcolor">
                     <div class="hgt34 cboth">&nbsp;</div>
                     <div class="unqipad">
@@ -129,7 +129,7 @@
             </div>
     </ng-container>
     </ng-template>
-
+</div>
 <div id="cpbmManualModal" class="modal fade poplogin in" aria-hidden="false" >
     <div class="vertical-alignment-helper">
         <div class="modal-dialog modal-dialog-width vertical-align-center">

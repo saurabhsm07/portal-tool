@@ -6,7 +6,9 @@
     .header-content {
         padding: 10px 20px 10px 20px;
         margin-left: 0px;
-
+        .logo-img-cls{
+           width:230px;
+        }
         .addMenu{
             margin-top: 10px;
             margin-right: 45px;
@@ -46,3 +48,7 @@
     
 }
 
+.disabledListVal {
+    pointer-events:none; //This makes it not clickable
+    opacity:0.6;         //This grays it out to look disabled
+}

@@ -72,7 +72,7 @@ export class ViewCategoryHcComponent implements OnInit {
         {id: '200146250', tagline: 'One tool to manage your entire endpoint universe', name: 'Radia Endpoint Manager', nameIcon: 'assets/images/radia-cat-icon.png', backImg: 'assets/images/radia-cat-back.jpg' },
         {id: '201174846', tagline: 'An integrated fully hybrid cloud platform that makes it simple for enterprises to run private clouds, without the need for 		special technology skills', name: 'Hybrid Enterprise Cloud', nameIcon: 'assets/images/roviuscp-cat-icon.png', backImg: 'assets/images/roviuscp-cat-back.jpg' },
         {id: '115000147066', tagline: 'Impeccable endpoint management that safeguards the security posture of enterprises in a few seconds', name: 'Endpoint Management Security', nameIcon: 'assets/images/sentient-cat-icon.png', backImg: 'assets/images/sentient-cat-back.png' },
-        {id: '360000464971', tagline: 'Powerful big data analytics platform with an easy-to-use self-service interface for data preparation, analysis, visualization, and machine learning', name: 'Data Analytics', nameIcon: 'assets/images/si-cat-icon.png', backImg: 'assets/images/si-cat-icon.png' },
+        {id: '360000464971', tagline: 'Powerful big data analytics platform with an easy-to-use self-service interface for data preparation, analysis, visualization, and machine learning', name: 'Data Analytics', nameIcon: 'assets/images/si-cat-icon.png', backImg: 'assets/images/si-cat-back.jpg' },
       ]
   }
 },
@@ -188,7 +188,7 @@ download: {
         this.currentSection = this.sectionList[0].id;
         console.log(this.sectionList);
         this.initializeSectionArticleObject();
-        // console.log(this.sectionArticlesObj);
+        console.log(this.sectionArticlesObj);
       }, (error) => {
         console.log(error);
       });
@@ -199,7 +199,7 @@ download: {
    */
   public initializeSectionArticleObject() {
     this.sectionList.forEach((section, index) => {
-      this.sectionArticlesObj[section.id] = { downloadInfo: [], see_more: section.html_url, isOpen: false };
+      this.sectionArticlesObj[section.id] = {articles: [], downloadInfo: [], see_more: section.html_url, isOpen: false };
     });
   }
 
