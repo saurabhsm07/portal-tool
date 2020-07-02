@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TicketService } from './../../services/ticket-service/ticket.service';
-import { Comment } from './../../classes/comment';
-import { UserService } from '../../../Helpcenter-module/services/user-service/user.service';
+import { TicketService } from '../../services/ticket-service/ticket.service';
+import { Comment } from '../../classes/comment';
+import { UserService } from '../../../User-module/services/user-service/user.service';
 
 @Component({
   selector: 'app-add-comment',

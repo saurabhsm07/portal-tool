@@ -2,14 +2,14 @@ import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../services/user-service/user.service';
-import { FormService } from './../../../Tickets-module/services/ticket-forms-service/form.service';
+import { UserService } from '../../../User-module/services/user-service/user.service';
+import { FormService } from '../../../Tickets-module/services/ticket-forms-service/form.service';
 import { AuthService } from '../../services/auth-service/auth.service';
 
-import { User } from '../../classes/user';
-import { User_Organizations } from '../../classes/user_organizations';
-import { Form } from './../../../Tickets-module/classes/form';
-import { CustomValidators } from './../../../imports/custom-form-validators';
+import { User } from '../../../User-module/class/user';
+import { User_Organizations } from '../../../User-module/class/user_organizations';
+import { Form } from '../../../Tickets-module/classes/form';
+import { CustomValidators } from '../../../imports/custom-form-validators';
 
 @Component({
   selector: 'app-helpcenter-header',

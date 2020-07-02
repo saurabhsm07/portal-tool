@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Field } from './../../classes/field';
+import { Field } from '../../classes/field';
 import { Field_value } from '../../classes/field_value';
 
 @Injectable({

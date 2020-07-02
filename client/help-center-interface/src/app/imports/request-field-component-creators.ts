@@ -1,4 +1,4 @@
-import { Field_value } from './../Tickets-module/classes/field_value';
+import { Field_value } from '../Tickets-module/classes/field_value';
 
 /**
  * 

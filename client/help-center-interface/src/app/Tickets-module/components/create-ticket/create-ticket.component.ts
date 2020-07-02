@@ -4,14 +4,14 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Ticket } from './../../classes/ticket'
+import { Ticket } from '../../classes/ticket'
 import { Form } from '../../classes/form';
 
 // import { DynamicRequestFormComponent } from './../../modules/request-form/components/dynamic-request-form/dynamic-request-form.component';
-import { FormService } from './../../services/ticket-forms-service/form.service';
-import { FieldService } from './../../services/ticket-fields-service/field.service';
+import { FormService } from '../../services/ticket-forms-service/form.service';
+import { FieldService } from '../../services/ticket-fields-service/field.service';
 import { Field_value } from '../../classes/field_value';
-import { UserService } from './../../../Helpcenter-module/services/user-service/user.service';
+import { UserService } from '../../../User-module/services/user-service/user.service';
 import { Custom_field_value } from '../../classes/custom_field_value';
 import { TicketService } from '../../services/ticket-service/ticket.service';
 

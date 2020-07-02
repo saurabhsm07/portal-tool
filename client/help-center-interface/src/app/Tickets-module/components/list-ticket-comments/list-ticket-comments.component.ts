@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TicketService } from '../../services/ticket-service/ticket.service';
-import { Comment} from './../../classes/comment';
+import { Comment} from '../../classes/comment';
 @Component({
   selector: 'app-list-ticket-comments',
   templateUrl: './list-ticket-comments.component.html',
