@@ -17,7 +17,8 @@ export class ArticleService {
    * List of primary CRUD APIs for Article Data
    */
   private requestUri = {
-    getArticles:  this.serverDomain + 'api/articles/',                             // get all articles
+    getArticles:  this.serverDomain + 'api/articles/',
+    getArticlesByAuthor:  this.serverDomain + 'api/articles/author/id',                             // get all articles
     getArticlesWithSectionId:  this.serverDomain + 'api/articles/section/id/',     // get articles in section
     getArticleById:  this.serverDomain + 'api/articles/id/',                       // get article with specific id
     getLastArticleId:  this.serverDomain + 'api/articles/max/id',                  // get id of the last article created

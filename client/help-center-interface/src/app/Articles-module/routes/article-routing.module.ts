@@ -7,6 +7,7 @@ import { ArticleHomeComponent } from '../components/article-components/article-h
 import { ArticleNotFoundComponent } from '../components/article-components/article-not-found/article-not-found.component'
 import { EditArticleComponent } from '../components/article-components/edit-article/edit-article.component';
 import { ViewArticleHcComponent } from '../components/article-components/view-article-hc/view-article-hc.component';
+import { ListArticlesHcComponent } from '../components/article-components/list-articles-hc/list-articles-hc.component';
 import { AuthGuard } from '../../helpers/authentication/auth.guard';
 import { AdminGuard } from '../../helpers/autherization/admin/admin.guard';
 import { AgentGuard } from '../../helpers/autherization/agent/agent.guard'
@@ -19,6 +20,7 @@ const articleRoutes: Routes = [
   { path: 'guide/articles/edit/id/:id', component: EditArticleComponent, canActivate: [AuthGuard, AgentGuard] },
   {path: 'guide/home', redirectTo: 'guide/articles/list', pathMatch: 'full' },
   { path: 'hc/en-us/articles/id/:id', component: ViewArticleHcComponent, canActivate: [AuthGuard]},
+  { path: 'hc/en-us/articles/contributions', component: ListArticlesHcComponent, canActivate: [AuthGuard]},
   { path: 'hc/en-us/articles/*', component: ArticleNotFoundComponent}
 ];
 

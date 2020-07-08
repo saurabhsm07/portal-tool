@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 
 import { GuideadminModule } from '../Guideadmin-module/guideadmin.module';
 import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
+import { UserModule } from '../User-module/user.module'
+
 // routing components
 import { ArticleRoutingModule } from './routes/article-routing.module';
 import { ArticleFieldsRoutingModule } from './routes/article-fields-routing.module';
@@ -43,6 +45,7 @@ import { SearchArticlePipe } from './pipes/search-article/search-article.pipe';
 import { ViewArticleHcComponent } from './components/article-components/view-article-hc/view-article-hc.component';
 import { ArticleHeaderHcComponent } from './components/article-components/article-header-hc/article-header-hc.component';
 import { SanitizeArticlePipe } from './pipes/sanitize-article/sanitize-article.pipe';
+import { ListArticlesHcComponent } from './components/article-components/list-articles-hc/list-articles-hc.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,7 @@ import { SanitizeArticlePipe } from './pipes/sanitize-article/sanitize-article.p
     ViewArticleHcComponent,
     ArticleHeaderHcComponent,
     SanitizeArticlePipe,
+    ListArticlesHcComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,7 @@ import { SanitizeArticlePipe } from './pipes/sanitize-article/sanitize-article.p
     ArticleFieldsRoutingModule,
     ArticleFormsRoutingModule,
     ArticleRoutingModule,
+    UserModule,
     GuideadminModule,
     HelpcenterModule,
   ],

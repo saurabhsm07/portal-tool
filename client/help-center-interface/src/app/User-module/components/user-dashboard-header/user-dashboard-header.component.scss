@@ -1,0 +1,85 @@
+.myDashboardStyle{
+    #userProfileData{
+        display: inline-block;
+        vertical-align: top;
+        .profilebckg{
+            /* background: url(//theme.zdassets.com/theme_assets/270851/51260a6….png) no-repeat center; */
+            height: 150px;
+            text-align: center;
+            margin-top: 44px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid #fa6400;
+            width: 150px !important;
+            height: 130px;
+            background: white;
+            padding: 20px;
+        }
+
+        .userInfoCls{
+            display: inline-block;
+        }
+    }
+    #allTicketInformation{
+        display: inline-block;
+        vertical-align: top;
+        .col-md-6{
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+}
+
+.allInfo-Cls{
+    div{
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.Line-1-Cls {
+    height: 1px;
+     border: solid 0.5px #afafaf;
+       margin-top: 12px;
+       width: 100%
+   }
+   
+   .Line-1-Cls-Dash {
+    height: 1px;
+     border: solid 0.5px #afafaf;
+       margin-top: 12px;
+   }
+
+   #dashboard-navbar{
+       display: block;
+       ul{
+           display: block;
+           padding-left: 60px;
+           li{
+               display: inline-block;
+               margin-right: 100px;
+            //    margin-top: 20px;
+            a{
+                line-height: 57px;
+                color: white;
+                font-size: 18px;
+            }
+           }
+       }
+   }
+
+   .myDashboardStyle{
+    background-color: #f7f7f7;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-bottom:40px;
+    margin-top:75px;
+  
+  }
+
+  #dashboardParentSpan{
+      background:#58595b !important;
+      display: block;
+  }
