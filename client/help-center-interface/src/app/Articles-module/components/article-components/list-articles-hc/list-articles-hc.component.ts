@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -25,9 +26,50 @@ export class ListArticlesHcComponent implements OnInit {
   }
 
   constructor(private articleService: ArticleService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private route: Router) { }
 
-  ngOnInit() {
+              ngOnInit() {
+                this.fetchAuthorArticles();
+              }
+
+  public fetchAuthorArticles() {
+    const authorId = this.userService.getUserId();
+    this.articleService.listArticlesByAuthor(authorId.toString())
+      .subscribe((data) => {
+        console.log(data);
+        this.articles = data;
+        this.displayedColumns = ['title', 'status', 'created_at', 'section', 'edit'];
+        this.dataSource.data = this.articles;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.filter = this.searchString;
+      }, (error) => {
+        console.log("error occured");
+        console.log(error);
+      });
   }
 
+              draftStatusPipe(status){
+                return JSON.parse(status).type;
+              }
+            
+              reviewStatusPipe(reviewState){
+                return JSON.parse(reviewState).state;
+              }
+            
+              authorPipe(author){
+                return JSON.parse(author).name;
+              }
+            
+              sectionPipe(section){
+                return JSON.parse(section).name;
+              }
+            
+              viewArticle(articleId){
+                return '/hc/en-us/articles/id/'+articleId;
+              }
+
+              editArticle(articleId){
+                this.route.navigate(['/guide/articles/id/'+articleId])
+              }
 }

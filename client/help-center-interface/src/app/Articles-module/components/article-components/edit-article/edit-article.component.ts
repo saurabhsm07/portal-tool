@@ -27,6 +27,7 @@ import { SegmentService } from '../../../../Segment-module/services/segment-serv
 import { MaterialModule } from '../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FieldComponentCreators } from '../../../../imports/field-component-creators';
+import { UserService } from '../../../../User-module/services/user-service/user.service';
 
 
 
@@ -140,6 +141,7 @@ export class EditArticleComponent implements OnInit {
     private articleFieldService: ArticleFieldService,
     private articleLabelsService: ArticleLabelsService,
     private segmentService: SegmentService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private compiler: Compiler) {
@@ -352,7 +354,7 @@ export class EditArticleComponent implements OnInit {
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
       },
-      author: { id: 112323, name: 'saurabh' },
+      author: { id: this.userService.getUserId(), name: this.userService.getUserName() },
       draft: this.submit_as.value? {status: false, type: 'publish'} : {status: true, type: 'draft'} ,
       body: this.article_form.controls.article_body.value,
       review_state: { state: 'Non Technical Review State', value: 1 },

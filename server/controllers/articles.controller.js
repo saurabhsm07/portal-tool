@@ -11,7 +11,7 @@ module.exports = {
     getAll: (req, res, next) => {
 
 
-        Article.findAll()
+        Article.findAll({attributes: ['id', 'title', 'created_at', 'section', 'author', 'draft']})
             .then((data) => {
                 if (data.length > 0) {
                     console.log(`fetched ${data.length} articles`);
@@ -85,6 +85,31 @@ module.exports = {
                 console.log("ERROR :");
                 console.log(err.stack);
                 res.status(500).send(err);
+            })
+    },
+
+        /**
+     * GET:  get list of articles from the database.
+     */
+    getAllByRequester: (req, res, next) => {
+        
+        Article.findAll(preprocessors.createListArticlesQuery(req.params, 'author'))
+            .then((data) => {
+                if (data.length > 0) {
+                    console.log(`fetched ${data.length} articles`);
+                    res.status(200).send(preprocessors.processArticlesList(data));
+                } else {
+                    console.log('no data exists in the article table');
+                    res.status(404).send({
+                        status: 404,
+                        message: `No Article data available`
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err)
             })
     },
 

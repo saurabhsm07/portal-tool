@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
 import { MaterialModule } from '../../../../imports/material-module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FieldComponentCreators } from '../../../../imports/field-component-creators';
+import { UserService } from '../../../../User-module/services/user-service/user.service';
 
 @Component({
   selector: 'app-article-fields',
@@ -132,6 +133,7 @@ export class CreateArticleComponent implements OnInit {
     private articleFieldService: ArticleFieldService,
     private articleLabelsService: ArticleLabelsService,
     private segmentService: SegmentService,
+    private userService: UserService,
     private router: Router,
     private compiler: Compiler) { 
 
@@ -314,7 +316,7 @@ export class CreateArticleComponent implements OnInit {
         id: this.article_form.value.article_header.section,
         name: this.sectionList.filter(section => section.id == this.article_form.value.article_header.section)[0].name
       },
-      author: { id: 112323, name: 'saurabh' },
+      author: { id: this.userService.getUserId(), name: this.userService.getUserName() },
       draft: this.submit_as.value? {status: false, type: 'publish'} : {status: true, type: 'draft'} ,
       label_names: this.article_form.value.article_footer.labels,
       article_form_id: this.article_form.value.article_header.form,

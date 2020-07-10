@@ -17,10 +17,19 @@ const labels = require('./labels/labels');
  */
 router.route('/').get(passport.authenticate('jwt', {session: false}), articles.getAll);
 
+
+
+
 /**
  * GET: api path to get article record with id.
  */
 router.route('/id/:id').get(passport.authenticate('jwt', {session: false}),articles.getById);
+
+/**
+ * GET: api path to get article record with author id.
+ */
+router.route('/author/id/:id').get(passport.authenticate('jwt', {session: false}), articles.getAllByRequester);
+
 
 /**
  * GET: api path to get article record with section id.

@@ -18,7 +18,7 @@ export class ArticleService {
    */
   private requestUri = {
     getArticles:  this.serverDomain + 'api/articles/',
-    getArticlesByAuthor:  this.serverDomain + 'api/articles/author/id',                             // get all articles
+    getArticlesByAuthor:  this.serverDomain + 'api/articles/author/id/',                             // get all articles
     getArticlesWithSectionId:  this.serverDomain + 'api/articles/section/id/',     // get articles in section
     getArticleById:  this.serverDomain + 'api/articles/id/',                       // get article with specific id
     getLastArticleId:  this.serverDomain + 'api/articles/max/id',                  // get id of the last article created
@@ -87,6 +87,16 @@ export class ArticleService {
    */
   listArticles() : Observable<Article[]>{
     return this.http.get<Article[]>(this.requestUri.getArticles, this.headersOptions)
+                .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
+  }
+
+    /**
+   * listArticlesByAuthor: returns all articles in the db by specific author.
+   *  @param authorId : id of the author whose articles are to be fetched
+   *  @returns Articles : list of articles of type  user defined Article Object
+   */
+  listArticlesByAuthor(authorId: string) : Observable<Article[]>{
+    return this.http.get<Article[]>(this.requestUri.getArticlesByAuthor + authorId, this.headersOptions)
                 .pipe(catchError(ArticleRequestErrorHandlersService.listArticlesError));
   }
 

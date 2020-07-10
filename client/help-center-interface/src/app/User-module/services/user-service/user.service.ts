@@ -94,8 +94,12 @@ isLoggedIn(){
 
   getUserId(): number{
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
     return user.id;
+  }
+
+  getUserName(): string{
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.name;
   }
 
   getOrganizationIds(): number[]{
