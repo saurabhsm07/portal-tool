@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { UserService } from './../../../../User-module/services/user-service/user.service';
-import { ArticleService } from './../../../services/article-service/article.service'
+import { UserService } from '../../../../User-module/services/user-service/user.service';
+import { ArticleService } from '../../../services/article-service/article.service'
 import { Article } from '../../../classes/article';
 @Component({
   selector: 'app-list-articles-hc',

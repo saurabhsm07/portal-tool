@@ -1,0 +1,38 @@
+.profilebtns {
+  border-radius: 6px;
+  border: solid 1px #58595b !important;
+  background-color: #58595b  !important;
+  padding: 0px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 28px;
+  color: #fff;
+  text-align: center;
+}
+.profiletopdiv{
+    display: inline-block;
+    .profile-avatar {
+        vertical-align: top;
+        display: inline-block;
+    }
+    .basic-info{
+        display: inline-block;
+    }
+}
+
+.profileStatsCls{
+    padding:0px;
+    width:63%;
+    display: inline-block;
+}
+
+.profile-stats{
+    .col-md-4{
+        display: inline-block;
+    }
+    .marginbttm{
+        display: inline-block;
+    }
+        
+    
+}

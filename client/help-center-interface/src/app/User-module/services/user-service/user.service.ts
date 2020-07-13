@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '../../class/user';
 import { User_Organizations } from '../../class/user_organizations';
 import { Observable } from 'rxjs';
-import { Organization_Products } from './../../class/organization_products';
+import { Organization_Products } from '../../class/organization_products';
 
 @Injectable({
   providedIn: 'root'
