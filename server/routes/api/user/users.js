@@ -5,6 +5,10 @@ const passportConfig = require('./../../../auth/passport.config');
 const authorize = require('./../../../auth/autherize.controller');
 const users = require('./../../../controllers/users.controller');
 const organizationProducts = require('./../../../controllers/organization.products.controller');
+const userDetails = require('./../../../controllers/user.details.controller');
+const userExtraDetails = require('./../../../controllers/user.extra.details.controller');
+
+
 /**
  * GET: api path to get user record with specific id.
  */
@@ -30,10 +34,17 @@ router.route('/logout').get(passport.authenticate('jwt', { session: false }), us
  */
 router.route('/organizations').get(passport.authenticate('jwt', { session: false }), users.getOrganizations);
 
+
+/**
+ * GET: get user details
+ */
+router.route('/details/id/:id').get(userDetails.findByUserId, userExtraDetails.findByUserId);
+
 /**
  * GET: api path to get all organizations for current logged in user.
  */
-router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getUserOrgProducts);
+
+ router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getUserOrgProducts);
 
 /**
  * GET: check if user is admin authorized

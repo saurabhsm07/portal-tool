@@ -4,6 +4,8 @@ import { User } from '../../class/user';
 import { User_Organizations } from '../../class/user_organizations';
 import { Observable } from 'rxjs';
 import { Organization_Products } from '../../class/organization_products';
+import { User_Details } from '../../class/user_details';
+import { User_Extra_Details } from '../../class/user_extra_details';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,7 @@ private requestUri = {
   signoutUser: this.serverDomain + 'api/users/signout',
   deleteUser: this.serverDomain + 'api/users/',
   getUserOrgs: this.serverDomain + 'api/users/organizations',
+  getUserDetails: this.serverDomain + 'api/users/details/id/',
   getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
 };
 
@@ -86,6 +89,15 @@ getUserOrgs(): Observable<User_Organizations>{
  */
 getOrgProducts(organization_ids : number[]): Observable<Organization_Products[]>{
   return this.http.get<Organization_Products[]>(this.requestUri.getOrgsProducts + organization_ids.toString(), this.headersOptions);
+}
+
+/**
+ * getUserDetails: get user profile details based on user id
+ * @param userId: id of the user whose profile details are to be fetched
+ * @returns  {obj1: User_Details[], obj2: user_extra_details[]} an object containing 2 arrays, 1st with basic user details (email, number) and second with other details (skype id, address etc)
+ */
+getUserDetails(userId : number): Observable<{details: User_Details[],extra_details: User_Extra_Details[]}>{
+  return this.http.get<{details: User_Details[],extra_details: User_Extra_Details[]}>(this.requestUri.getUserDetails + userId.toString(), this.headersOptions);
 }
 
 isLoggedIn(){
