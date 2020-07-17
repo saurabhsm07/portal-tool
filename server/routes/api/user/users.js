@@ -38,7 +38,18 @@ router.route('/organizations').get(passport.authenticate('jwt', { session: false
 /**
  * GET: get user details
  */
-router.route('/details/id/:id').get(userDetails.findByUserId, userExtraDetails.findByUserId);
+router.route('/details/id/:id').get(passport.authenticate('jwt', { session: false }), userDetails.findByUserId, userExtraDetails.findByUserId);
+
+/**
+ * POST: insert a user detail in the db (phone, email)
+ */
+router.route('/details').post(passport.authenticate('jwt', { session: false }), userDetails.addUserDetail);
+
+/**
+ * POST: insert a user extra detail in the db (address, facebookId, skypeId, twitterId etc.)
+ */
+router.route('/extra/details').post(passport.authenticate('jwt', { session: false }), userExtraDetails.addUserExtraDetail);
+
 
 /**
  * GET: api path to get all organizations for current logged in user.
@@ -66,7 +77,7 @@ router.route('/').post(users.create);
 /**
  * PUT: api path to update a segment record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt'), users.update);
+router.route('/').put(passport.authenticate('jwt', { session: false }), users.update);
 
 /**
  * DELETE: api path to delete segment with specific id 

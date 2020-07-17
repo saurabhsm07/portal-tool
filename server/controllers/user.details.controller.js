@@ -26,5 +26,42 @@ module.exports = {
                 console.log(err.stack);
                 res.status(500).send(err);
             })
+    },
+
+    addUserDetail:  (req, res, next) => {
+        const detail = req.body.detail;
+
+        if (detail.id != undefined) {
+            userDetails.update({ data_value: detail.data_value },
+                { where: { id: detail.id } })
+                .then((result) => {
+                    if (result == 1) {
+                        console.log(detail)
+                        res.status(200).send(detail)
+                    }
+
+                })
+                .catch((err) => {
+                    console.log("ERROR :");
+                    console.log(err.stack);
+                    res.status(500).send(err);
+                })
+        }
+        else {
+            userDetails.create({data_value: detail.data_value, 
+                                     field_type: detail.field_type,
+                                     user_id: detail.user_id
+                                     })
+                .then((result) => {
+                    console.log(result)
+                    res.status(200).send(result)
+                })
+                .catch((err) => {
+                    console.log("ERROR :");
+                    console.log(err.stack);
+                    res.status(500).send(err);
+                })
+        }
+
     }
 }

@@ -1,6 +1,6 @@
-export class User_Details {
+export class User_Detail {
     user_id: number;
-    id: number;
+    id?: number;
     field_type: string;
     data_value: string;
 }

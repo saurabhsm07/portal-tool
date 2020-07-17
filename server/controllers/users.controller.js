@@ -8,10 +8,12 @@ module.exports = {
     load: (req, res, next) => {
         const id = req.params.id;
         console.log(id);
-        User.findAll({ where: { id: id } })
+        User.findAll({ attributes: ['created_at', 'updated_at', 'last_login_at', 'name', 'email', 'id'],
+                        where: { id: id } })
             .then((data) => {
                 if (data.length == 1) {
                     const user = data[0];
+                    console.log(user);
                     console.log(`fetched user with id = ${user.id}`);
                     res.status(200).send({ user });
                 } else {
@@ -110,24 +112,15 @@ module.exports = {
     update: async (req, res, next) => {
         // console.log(req.body.user)
         const userObj = req.body.user;
-        const updateData = {
-            name: userObj.name,
-            email: userObj.email,
-            password: md5(userObj.password),
-            updated_at: userObj.updated_at
-        }
-
+      
         User.findAll({ where: { id: userObj.id } })
             .then((user) => {
                 if (user.length == 1) {
-                    User.update(updateData, { where: { id: user.id } })
+                    User.update(userObj, { where: { id: userObj.id } })
                         .then((data) => {
                             if (data == 1) {
-                                console.log('update successfull');
-                                res.status(200).send({
-                                    status: 200,
-                                    message: `user with id ${user.id} updated successfully`
-                                });
+                                console.log(`user with id ${userObj.id} updated successfully`);
+                                res.status(200).send(userObj);
                             }
 
                         })

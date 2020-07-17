@@ -162,11 +162,16 @@ export class HelpcenterHeaderComponent implements OnInit, AfterViewInit {
       name: this.name.value,
       email: this.email.value,
       password: this.password.value,
-      phone: this.password.value
+      phone: this.password.value,
+      created_at: new Date(Date.now()),
+      updated_at: new Date(Date.now()),
+
     }).subscribe((user) => {
       this.iniHcData(user);
       this.modalCancelBtnR.nativeElement.click();
       this.checkIfAgent();
+      this.checkIfLoggedIn();
+      this.router.navigate(['/']);
       
     }, (error) => {
       console.log(error);

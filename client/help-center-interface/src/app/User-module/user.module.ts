@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { MaterialModule } from '../imports/material-module';
 import { UserRoutingModule } from './routes/user-routing.module';
 
 import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
@@ -8,6 +10,7 @@ import { UserDashboardHeaderComponent } from './components/user-dashboard-header
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserEntitlementsComponent } from './components/user-entitlements/user-entitlements.component';
 import { UserProjectsComponent } from './components/user-projects/user-projects.component'; 
+
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { UserProjectsComponent } from './components/user-projects/user-projects.
   imports: [
     CommonModule,
     HelpcenterModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports:[UserDashboardHeaderComponent]
 })

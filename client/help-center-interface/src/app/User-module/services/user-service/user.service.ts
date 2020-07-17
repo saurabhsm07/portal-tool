@@ -4,8 +4,8 @@ import { User } from '../../class/user';
 import { User_Organizations } from '../../class/user_organizations';
 import { Observable } from 'rxjs';
 import { Organization_Products } from '../../class/organization_products';
-import { User_Details } from '../../class/user_details';
-import { User_Extra_Details } from '../../class/user_extra_details';
+import { User_Detail } from '../../class/user_detail';
+import { User_Extra_Detail } from '../../class/user_extra_detail';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,8 @@ private requestUri = {
   deleteUser: this.serverDomain + 'api/users/',
   getUserOrgs: this.serverDomain + 'api/users/organizations',
   getUserDetails: this.serverDomain + 'api/users/details/id/',
+  addUserDetail: this.serverDomain + 'api/users/details',
+  addUserExtraDetail: this.serverDomain + 'api/users/extra/details',
   getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
 };
 
@@ -44,8 +46,8 @@ constructor(private http: HttpClient) { }
  * getUser : fetches a single user based on id from the database
  * @param id : id of the user to be fetched
  */
-  getUser(id: number): Observable<User> {
-  return this.http.get<User>(this.requestUri.getUserById+ id.toString(), this.headersOptions)
+  getUser(id: number): Observable<{user: User}> {
+  return this.http.get<{user: User}>(this.requestUri.getUserById+ id.toString(), this.headersOptions)
   // .pipe(catchError(CategoryRequestErrorHandlersService.postCategoryError));
   }
 
@@ -96,8 +98,22 @@ getOrgProducts(organization_ids : number[]): Observable<Organization_Products[]>
  * @param userId: id of the user whose profile details are to be fetched
  * @returns  {obj1: User_Details[], obj2: user_extra_details[]} an object containing 2 arrays, 1st with basic user details (email, number) and second with other details (skype id, address etc)
  */
-getUserDetails(userId : number): Observable<{details: User_Details[],extra_details: User_Extra_Details[]}>{
-  return this.http.get<{details: User_Details[],extra_details: User_Extra_Details[]}>(this.requestUri.getUserDetails + userId.toString(), this.headersOptions);
+getUserDetails(userId : number): Observable<{details: User_Detail[],extra_details: User_Extra_Detail[]}>{
+  return this.http.get<{details: User_Detail[],extra_details: User_Extra_Detail[]}>(this.requestUri.getUserDetails + userId.toString(), this.headersOptions);
+}
+
+/**
+ * 
+ */
+addUserDetail(detail: User_Detail): Observable<User_Detail>{
+  return this.http.post<User_Detail>(this.requestUri.addUserDetail, {detail},  this.headersOptions);
+}
+
+/**
+ * 
+ */
+addUserExtraDetail(detail: User_Extra_Detail): Observable<User_Extra_Detail>{
+  return this.http.post<User_Extra_Detail>(this.requestUri.addUserExtraDetail, {detail}, this.headersOptions);
 }
 
 isLoggedIn(){
@@ -112,6 +128,11 @@ isLoggedIn(){
   getUserName(): string{
     const user = JSON.parse(localStorage.getItem('user'));
     return user.name;
+  }
+
+  getUserEmail(): string{
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.email;
   }
 
   getOrganizationIds(): number[]{
