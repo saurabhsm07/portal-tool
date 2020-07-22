@@ -41,7 +41,7 @@ getOrganization(id : String) : Observable<Organization> {
  * 
  * @param organization_ids : list of organization ids whose information needs to be fetched
  */
-getOrganizationIds(organization_ids: number[]) : Observable<Organization[]> {
+getOrganizationByIds(organization_ids: number[]) : Observable<Organization[]> {
   return this.http.get< Organization[]>(this.requestUri.getOrganizationByIds + organization_ids.toString(), this.headersOptions)
 }
 

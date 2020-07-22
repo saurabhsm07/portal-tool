@@ -7,6 +7,8 @@ import { ListTicketsComponent } from './components/list-tickets/list-tickets.com
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { TicketRequestHeaderComponent } from './components/ticket-request-header/ticket-request-header.component';
 import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
+import { UserModule } from '../User-module/user.module'
+
 import { MaterialModule } from '../imports/material-module';
 import { RequestFormModule } from './modules/request-form/request-form.module';
 import { SearchTicketPipe } from './pipes/search-ticket/search-ticket.pipe';
@@ -26,6 +28,7 @@ import { FilterStatusPipe } from './pipes/filter-status/filter-status.pipe';
     RequestFormModule,
     TicketRoutingModule,
     HelpcenterModule,
+    UserModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule

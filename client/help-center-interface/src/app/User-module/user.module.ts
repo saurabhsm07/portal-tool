@@ -9,7 +9,10 @@ import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
 import { UserDashboardHeaderComponent } from './components/user-dashboard-header/user-dashboard-header.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserEntitlementsComponent } from './components/user-entitlements/user-entitlements.component';
-import { UserProjectsComponent } from './components/user-projects/user-projects.component'; 
+import { UserProjectsComponent } from './components/user-projects/user-projects.component';
+import { UserSubscriptionsComponent } from './components/user-subscriptions/user-subscriptions.component';
+import { UserOverviewComponent } from './components/user-overview/user-overview.component';
+import { UserPasswordChangeComponent } from './components/user-password-change/user-password-change.component'; 
 
 
 
@@ -18,7 +21,10 @@ import { UserProjectsComponent } from './components/user-projects/user-projects.
     UserDashboardHeaderComponent, 
     UserProfileComponent,
     UserEntitlementsComponent,
-    UserProjectsComponent],
+    UserProjectsComponent,
+    UserSubscriptionsComponent,
+    UserOverviewComponent,
+    UserPasswordChangeComponent],
   imports: [
     CommonModule,
     HelpcenterModule,

@@ -14,7 +14,6 @@ import { User } from '../../class/user';
 })
 export class UserProfileComponent implements OnInit {
 
-
   public profileInitStatus = false;
   public userProfileObj = {}   //empty object for storing user profile data
 
@@ -83,7 +82,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public fetchUserOrganizationDetails(organizationIds: number[]) {
-    this.organizationService.getOrganizationIds(organizationIds)
+    this.organizationService.getOrganizationByIds(organizationIds)
       .subscribe((userOrganizations) => {
         this.userProfileObj['organizationNames'] = userOrganizations.map((org) => {
           return org.name;
