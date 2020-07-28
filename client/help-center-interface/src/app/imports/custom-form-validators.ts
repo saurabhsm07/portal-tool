@@ -1,11 +1,11 @@
 import { AbstractControl, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UserService } from './../User-module/services/user-service/user.service';
 
 /**
  * class with functions of custom validators to be used to validate reactive forms accross modules,
  * for different field types and use cases
  */
 export class CustomValidators {
-
     /**
      * Checks if the dropdown select option is updated from none to specific value or not
      * @param control form control for which this validator function is being tested
@@ -41,6 +41,10 @@ export class CustomValidators {
         }
     }
 
+    /**
+     * 
+     * @param control form control element for user email validation
+     */
     public static validateEmailListFormat(control: AbstractControl) : { [key: string] : any} | null {
         const emails = control.value
         const email_regex = new RegExp(`^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$`)
@@ -55,7 +59,22 @@ export class CustomValidators {
         if((if_error) && (emails.length > 0)){
             control.markAsDirty()
             control.markAsTouched()
-            return {invalidEmails: true}
+            return {'invalidEmails': true}
+        }else{
+            return null;
+        }
+        
+    }
+
+
+
+    public static matchPasswords(group: FormGroup): {[key: string] : any} | null {
+
+        const newPwd = group.get('newPassword').value;
+        const confirmPwd = group.get('confirmPassword').value;
+        
+        if(newPwd!= confirmPwd){
+            return {'passwordMismatch': true}
         }else{
             return null;
         }

@@ -144,6 +144,47 @@ module.exports = {
             })
     },
 
+    updatePassword: async (req, res, next) => {
+        pwdChangeObj = req.body.pwdChangeObj;
+        console.log(pwdChangeObj)
+        
+        User.findAll({where: {id: pwdChangeObj.id}})
+            .then((user) => {
+                if(user.length == 1){
+                    if(user[0].password == md5(pwdChangeObj.currentPwd)){
+                       
+                        if(pwdChangeObj.newPwd.length > 5){
+
+                            if(pwdChangeObj.newPwd == pwdChangeObj.confirmPwd){
+                                User.update({password: md5(pwdChangeObj.newPwd)}, {where: {id: pwdChangeObj.id}})
+                                          .then((data) => {
+                                              console.log("password updated successfully");
+                                              res.status(200).send({status: true, msg: 'password updated successfully.'})
+                                          })
+                                          .catch((err) => {
+                                            console.log("ERROR :");
+                                            console.log(err.stack);
+                                            res.status(500).send(err);
+                                          })
+                            }else{
+                                console.log("new password and confirm password do not match");
+                                res.status(200).send({status: false, msg: 'new password and confirm password do not match.'})
+                            }
+                        }else{
+                            console.log("new password is less the 5 characters in size.");
+                                res.status(200).send({status: false, msg: 'new password is less the 5 characters in size.'})
+                        }
+                        
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+            })
+    },
+
     delete: async (req, res, next) => {
         const id = req.params.id
         User.destroy({ where: { id } })

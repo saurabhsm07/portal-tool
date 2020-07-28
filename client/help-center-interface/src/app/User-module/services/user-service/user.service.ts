@@ -27,6 +27,7 @@ private requestUri = {
   deleteUser: this.serverDomain + 'api/users/',
   getUserOrgs: this.serverDomain + 'api/users/organizations',
   getUserDetails: this.serverDomain + 'api/users/details/id/',
+  changeUserPassword: this.serverDomain + 'api/users/password',
   addUserDetail: this.serverDomain + 'api/users/details',
   addUserExtraDetail: this.serverDomain + 'api/users/extra/details',
   getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
@@ -114,6 +115,13 @@ addUserDetail(detail: User_Detail): Observable<User_Detail>{
  */
 addUserExtraDetail(detail: User_Extra_Detail): Observable<User_Extra_Detail>{
   return this.http.post<User_Extra_Detail>(this.requestUri.addUserExtraDetail, {detail}, this.headersOptions);
+}
+
+/**
+ * 
+ */
+updateUserPassword(pwdChangeObj): Observable<{status: boolean, msg: string}>{
+  return this.http.put<{status: boolean, msg: string}>(this.requestUri.changeUserPassword, {pwdChangeObj}, this.headersOptions);
 }
 
 isLoggedIn(){

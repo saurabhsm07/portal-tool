@@ -34,6 +34,12 @@ router.route('/logout').get(passport.authenticate('jwt', { session: false }), us
  */
 router.route('/organizations').get(passport.authenticate('jwt', { session: false }), users.getOrganizations);
 
+ /**
+  * PUT: api route to update username and password
+  */
+ router.route('/password').put(passport.authenticate('jwt', { session: false }), users.updatePassword);
+
+
 
 /**
  * GET: get user details

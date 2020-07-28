@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user-service/user.service';
 import { OrganizationService } from '../../services/organization-service/organization.service';
@@ -7,6 +8,7 @@ import { User_Extra_Detail } from '../../class/user_extra_detail';
 import { TimezoneAndLocation } from './../../../imports/time-location-data';
 import { User_Detail } from '../../class/user_detail';
 import { User } from '../../class/user';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -54,7 +56,9 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
               private organizationService: OrganizationService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private route: Router
+              ) { }
 
 
   ngOnInit() {
@@ -284,6 +288,11 @@ export class UserProfileComponent implements OnInit {
 
   public updateProfileInitStatus(status: boolean){
     this.profileInitStatus = status
+  }
+
+  public refreshProfile(){
+   window.location.reload();
+   
   }
 
 }
