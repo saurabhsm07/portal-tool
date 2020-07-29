@@ -13,10 +13,10 @@
                     <div class="profiletopdiv col-md-4 col-sm-12 " style="padding:0px; ">
                         <div class="profile-avatar profile-avatar-agent col-md-4" style="padding: 2px 20px;">
                             <div id="targetLayer">
-                                <img class="avatar" src="https://support.accelerite.com/system/photos/3600/2115/5612/361040981.png" alt="Avatar">
+                                <img class="avatar" src="http://localhost:5000/assets/profile_data/{{userProfileObj.profile_image}}" alt="Avatar">
                             </div>
                             <div class="icon-choose-image">
-                                <input name="userImage" id="userImage" type="file" class="inputFile" onchange="showPreview(this);" alt="Profile Picture"
+                                <input name="userImage" id="userImage" type="file" class="inputFile"  (change) = 'updateProfileImage($event.target.files);'alt="Profile Picture"
                                     title="Profile Picture">
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-12 dividerborder" style=" "></div>
+                <div class="col-md-12 dividerborder"></div>
 
                 <div class="profile-stats col-md-12 nopadding">
 

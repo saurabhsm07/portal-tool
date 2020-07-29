@@ -78,6 +78,7 @@ export class UserProfileComponent implements OnInit {
       this.userProfileObj['updated_at'] = userObj.updated_at;
       this.userProfileObj['last_login_at'] = userObj.last_login_at;
       this.userProfileObj['name'] = userObj.name;
+      this.userProfileObj['profile_image'] = userObj.profile_image;
 
       const organizationIds = this.userService.getOrganizationIds();
       this.fetchUserOrganizationDetails(organizationIds);
@@ -166,6 +167,16 @@ export class UserProfileComponent implements OnInit {
     return this.userProfileObj['organizationNames'];
   }
 
+  public updateProfileImage(profileImageObj: FileList){
+    
+    this.userService.updateUserProfilePicture(profileImageObj, this.userService.getUserId())
+                    .subscribe((resp) => {
+                      console.log(resp);
+                      window.location.reload();
+                    },(error) => {
+                      console.log('ERROR: \n'+ error);
+                    })
+  }
   public profileUpdateEventSubscribtion(userId) {
     this.userProfileForm.valueChanges.subscribe(() => {
 

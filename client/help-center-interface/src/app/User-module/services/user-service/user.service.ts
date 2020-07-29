@@ -28,6 +28,7 @@ private requestUri = {
   getUserOrgs: this.serverDomain + 'api/users/organizations',
   getUserDetails: this.serverDomain + 'api/users/details/id/',
   changeUserPassword: this.serverDomain + 'api/users/password',
+  changeUserProfilePicture: this.serverDomain + 'api/users/profile/picture',
   addUserDetail: this.serverDomain + 'api/users/details',
   addUserExtraDetail: this.serverDomain + 'api/users/extra/details',
   getOrgsProducts: this.serverDomain + 'api/users/products/organizationids/'
@@ -115,6 +116,22 @@ addUserDetail(detail: User_Detail): Observable<User_Detail>{
  */
 addUserExtraDetail(detail: User_Extra_Detail): Observable<User_Extra_Detail>{
   return this.http.post<User_Extra_Detail>(this.requestUri.addUserExtraDetail, {detail}, this.headersOptions);
+}
+
+/**
+ * 
+ */
+updateUserProfilePicture(profileImageObj: FileList, userId: number): Observable<{status: boolean, msg: string}>{
+  console.log(profileImageObj)
+  
+  let profileImage = profileImageObj.item(0);
+
+  console.log(profileImage);
+
+  let imgFormObj: FormData = new FormData(); 
+  imgFormObj.append('profileImage', profileImage,  userId+'_'+profileImage.name);
+  console.log(imgFormObj);
+  return this.http.put<{status: boolean, msg: string}>(this.requestUri.changeUserProfilePicture, imgFormObj);
 }
 
 /**

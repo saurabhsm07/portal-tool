@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const path = require('path')
+const multer = require('multer');
+const upload = multer({dest: path.join(__dirname,'./../../../public/assets/profile_data/')})
+
 const passportConfig = require('./../../../auth/passport.config');
 const authorize = require('./../../../auth/autherize.controller');
 const users = require('./../../../controllers/users.controller');
@@ -38,6 +42,11 @@ router.route('/organizations').get(passport.authenticate('jwt', { session: false
   * PUT: api route to update username and password
   */
  router.route('/password').put(passport.authenticate('jwt', { session: false }), users.updatePassword);
+
+ /**
+  * PUT: api route to update username and password
+  */
+ router.route('/profile/picture').put(passport.authenticate('jwt', { session: false }),upload.single('profileImage'), users.updateProfilePicture);
 
 
 

@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const fs = require('fs');
 const User = require("./../models/user");
 const UserOrganizations = require("./../models/user.organizations");
 const jwt_token = require('./../helpers/encoders/token_generator');
@@ -8,7 +9,7 @@ module.exports = {
     load: (req, res, next) => {
         const id = req.params.id;
         console.log(id);
-        User.findAll({ attributes: ['created_at', 'updated_at', 'last_login_at', 'name', 'email', 'id'],
+        User.findAll({ attributes: ['created_at', 'updated_at', 'last_login_at','profile_image', 'name', 'email', 'id'],
                         where: { id: id } })
             .then((data) => {
                 if (data.length == 1) {
@@ -183,6 +184,31 @@ module.exports = {
                 console.log(err.stack);
                 res.status(500).send(err);
             })
+    },
+
+    updateProfilePicture: (req, res, next) => {
+        console.log(req.file)
+        fs.rename(req.file.path, req.file.destination + req.file.originalname, (error) => {
+            if(error){
+                console.log(error);
+                res.status(200).send({status:false, msg: error});
+            }else{
+                userId = req.file.originalname.split('_')[0];
+                console.log(userId);
+                User.update({profile_image: req.file.originalname}, {where: {id: parseInt(userId)}})
+                    .then((user) => {
+                        console.log(user);
+                        res.status(200).send({status:true, msg: 'image uploaded successfully'});
+                    })
+                    .catch((err) => {
+                        console.log("ERROR :");
+                        console.log(err.stack);
+                        res.status(500).send(err);
+                    })
+            }
+            
+        });
+        
     },
 
     delete: async (req, res, next) => {
