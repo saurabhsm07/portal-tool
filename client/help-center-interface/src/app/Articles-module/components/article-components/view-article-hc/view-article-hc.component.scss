@@ -10,3 +10,11 @@
 .height100{
     height: 100px;
 }
+
+.docsSection{
+    margin-right: 150px;
+    display: inline-table;
+    .col-md-3{
+        display: inline-block;
+    }   
+   }
