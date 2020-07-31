@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Ticket } from './../../classes/ticket';
-import { TicketService } from './../../services/ticket-service/ticket.service';
+import { Ticket } from '../../classes/ticket';
+import { TicketService } from '../../services/ticket-service/ticket.service';
 
 @Component({
   selector: 'app-view-ticket',

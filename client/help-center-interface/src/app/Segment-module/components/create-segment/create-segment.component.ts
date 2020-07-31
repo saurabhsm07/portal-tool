@@ -4,15 +4,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Segment } from '../../classes/segment';
-import { Organization } from '../../classes/organization';
+import { Organization } from '../../../User-module/class/organization';
 import { Tag } from '../../classes/tag';
 import { SegmentService } from '../../services/segment-service/segment.service';
-import { OrganizationService } from '../../services/organization-service/organization.service';
+
 import { TagService } from '../../services/tag-service/tag.service';
 
 import { take, takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material';
+import { OrganizationService } from '../../../User-module/services/organization-service/organization.service';
 @Component({
   selector: 'app-create-segment',
   templateUrl: './create-segment.component.html',

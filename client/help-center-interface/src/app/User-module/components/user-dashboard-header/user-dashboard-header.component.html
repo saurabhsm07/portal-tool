@@ -1,0 +1,86 @@
+<header>
+<span id="dashboardParentSpan">
+    <app-helpcenter-header></app-helpcenter-header>
+
+<div *ngIf='userObj' class="myDashboardStyle">
+    <div class="row userProfileAllInfo">
+        <div class="My-Support-Dashboard-Title">My Support Dashboard</div>
+        <div class="Line-1-Cls"> </div>
+        <div id="userProfileData" class="col-md-5">
+            <div class="col-md-4 profilebckg">
+                <div class="avtimglnhgt" align="center">
+                    <img id="userAvatarImg" src="http://localhost:5000/assets/profile_data/{{userObj.profile_image}}" alt="profile image" class="profdashimg">
+                </div>
+            </div>
+            <div class="userInfoCls col-md-8">
+                <div class="dashfnt18 col-md-12" id="userName">{{userObj.name}}</div>
+                <div *ngIf = 'organizationList' class="dashfnt14 col-md-12" id="userOrg">{{getOrganizationString()}}</div>
+                <div class="dashdishgt col-md-12" id="userSupport"></div>
+            </div>
+        </div>
+        <div id="allTicketInformation" class="col-md-7 text-right paddingZero" style="margin-top: 2%;">
+            <div class="col-md-6 col-xs-12 col-sm-6 paddingZero">
+                <div class="allInfo-Cls">
+                    <div class="col-md-8 dashfnt13 allInfo-Style-Cls col-sm-8 col-xs-7">Active Cases</div>
+                    <div id="activeCasesAll" class="col-md-4 col-sm-2 col-xs-5 text-center dashtickdata">-</div>
+                </div>
+            </div>
+            <div class="paddingZero col-md-6 col-xs-12 col-sm-6 ">
+                <div class="allInfo-Cls">
+                    <div class="col-md-8 dashfnt13 allInfo-Style-Cls col-sm-8 col-xs-7">Solved Cases</div>
+                    <div id="solvedCasesAll" class="col-md-4 col-sm-2 col-xs-5 text-center dashtickdata">-</div>
+                </div>
+            </div>
+            <div class="paddingZero  col-xs-12 col-sm-6 col-md-6">
+                <div class=" allInfo-Cls ">
+                    <div class="col-md-8 dashfnt13 allInfo-Style-Cls col-sm-8 col-xs-7">Satisfaction</div>
+                    <div id="satisfactionPercentageAll" class="col-sm-2 col-xs-5 col-md-4 text-center dashtickdata">
+                        - </div>
+                </div>
+            </div>
+            <div class="paddingZero col-xs-12 col-sm-6 col-md-6">
+                <div class=" allInfo-Cls">
+                    <div class="dashfnt13 allInfo-Style-Cls col-md-8 col-sm-8 col-xs-7">Article Posts</div>
+                    <div id="communityPostAll" class=" col-sm-2 col-xs-5 col-md-4 text-center dashtickdata"> - </div>
+                </div>
+            </div>
+        </div>
+        <div class="cboth backColorF7" style="height: 10px;"></div>
+    </div>
+</div>
+
+<div class="collapse navbar-collapse" id="dashboard-navbar">
+    <ul class="nav navbar-nav dashbrdNav">
+        <li>
+            <a href="/hc/en-us/user/overview">Overview</a>
+            <div *ngIf='checkDashboardType("overview")' class="dashSelMnu overviewDash" >&nbsp;</div>
+        </li>
+        <li>
+            <a href="/hc/en-us/requests/list">Requests
+                <div *ngIf='checkDashboardType("request")' class="dashSelMnu requestDash" >&nbsp;</div>
+            </a>
+        </li>
+        <li>
+            <a href="/hc/en-us/articles/contributions">Articles</a>
+            <div *ngIf='checkDashboardType("article")' class="dashSelMnu articleDash" >&nbsp;</div>
+        </li>
+        <li>
+            <a href="/hc/en-us/user/subscriptions">Subscriptions</a>
+            <div *ngIf='checkDashboardType("subscription")' class="dashSelMnu subscriptionDash" >&nbsp;</div>
+        </li>
+        <li>
+            <a href="/hc/en-us/user/profile">Profile</a>
+            <div *ngIf='checkDashboardType("profile")' class="dashSelMnu profileDash" >&nbsp;</div>
+        </li>
+        <li>
+            <a href="/hc/en-us/user/entitlements">Entitlement</a>
+            <div *ngIf='checkDashboardType("entitlement")' class="dashSelMnu entitlementDash" >&nbsp;</div>
+        </li>
+        <li>
+            <a href="/hc/en-us/user/projects">Projects</a>
+            <div *ngIf='checkDashboardType("project")' class="dashSelMnu projectDash" >&nbsp;</div>
+        </li>
+    </ul>
+</div>
+</span>
+</header>

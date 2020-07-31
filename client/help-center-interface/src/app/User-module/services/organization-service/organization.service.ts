@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Organization } from '../../classes/organization';
+import { Organization } from './../../class/organization'
 
 
 @Injectable({
@@ -21,6 +21,7 @@ export class OrganizationService {
 private requestUri = {
   getOrganizations: this.serverDomain + 'api/organizations/',
   getOrganizationById: this.serverDomain + 'api/organizations/id/',
+  getOrganizationByIds: this.serverDomain + 'api/organizations/show_many?ids='
 };
 
 private headersOptions = {
@@ -34,6 +35,14 @@ constructor(private http: HttpClient) { }
 getOrganization(id : String) : Observable<Organization> {
   return this.http.get<Organization>(this.requestUri.getOrganizationById+id, this.headersOptions)
             //  .pipe(catchError(OrganizationRequestErrorHandlersService.getOrganizationError));
+}
+
+/**
+ * 
+ * @param organization_ids : list of organization ids whose information needs to be fetched
+ */
+getOrganizationByIds(organization_ids: number[]) : Observable<Organization[]> {
+  return this.http.get< Organization[]>(this.requestUri.getOrganizationByIds + organization_ids.toString(), this.headersOptions)
 }
 
 listOrganizations() : Observable<Organization[]>{

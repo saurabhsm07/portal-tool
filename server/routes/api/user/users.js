@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const path = require('path')
+const multer = require('multer');
+const upload = multer({dest: path.join(__dirname,'./../../../public/assets/profile_data/')})
+
 const passportConfig = require('./../../../auth/passport.config');
 const authorize = require('./../../../auth/autherize.controller');
 const users = require('./../../../controllers/users.controller');
 const organizationProducts = require('./../../../controllers/organization.products.controller');
+const userDetails = require('./../../../controllers/user.details.controller');
+const userExtraDetails = require('./../../../controllers/user.extra.details.controller');
+
+
 /**
  * GET: api path to get user record with specific id.
  */
@@ -30,10 +38,39 @@ router.route('/logout').get(passport.authenticate('jwt', { session: false }), us
  */
 router.route('/organizations').get(passport.authenticate('jwt', { session: false }), users.getOrganizations);
 
+ /**
+  * PUT: api route to update username and password
+  */
+ router.route('/password').put(passport.authenticate('jwt', { session: false }), users.updatePassword);
+
+ /**
+  * PUT: api route to update username and password
+  */
+ router.route('/profile/picture').put(passport.authenticate('jwt', { session: false }),upload.single('profileImage'), users.updateProfilePicture);
+
+
+
+/**
+ * GET: get user details
+ */
+router.route('/details/id/:id').get(passport.authenticate('jwt', { session: false }), userDetails.findByUserId, userExtraDetails.findByUserId);
+
+/**
+ * POST: insert a user detail in the db (phone, email)
+ */
+router.route('/details').post(passport.authenticate('jwt', { session: false }), userDetails.addUserDetail);
+
+/**
+ * POST: insert a user extra detail in the db (address, facebookId, skypeId, twitterId etc.)
+ */
+router.route('/extra/details').post(passport.authenticate('jwt', { session: false }), userExtraDetails.addUserExtraDetail);
+
+
 /**
  * GET: api path to get all organizations for current logged in user.
  */
-router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getUserOrgProducts);
+
+ router.route('/products/organizationids/:organizationids').get(passport.authenticate('jwt', { session: false }), organizationProducts.getOrgProducts, users.getUserOrgProducts);
 
 /**
  * GET: check if user is admin authorized
@@ -55,7 +92,7 @@ router.route('/').post(users.create);
 /**
  * PUT: api path to update a segment record with specific i.d
  */
-router.route('/').put(passport.authenticate('jwt'), users.update);
+router.route('/').put(passport.authenticate('jwt', { session: false }), users.update);
 
 /**
  * DELETE: api path to delete segment with specific id 

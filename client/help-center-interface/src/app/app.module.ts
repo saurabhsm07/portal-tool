@@ -16,6 +16,7 @@ import { CategoryModule } from './Category-module/category.module';
 import { SectionModule } from './Section-module/section.module';
 import { SegmentModule } from './Segment-module/segment.module';
 import { TicketModule } from './Tickets-module/ticket.module';
+import { UserModule } from './User-module/user.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -43,6 +44,7 @@ import {TokenInterceptorService } from './helpers/interceptor/token-interceptor/
     GuideadminModule,
     HelpcenterModule,
     TicketModule,
+    UserModule,
     AppRoutingModule,
     EditorModule,
     MaterialModule

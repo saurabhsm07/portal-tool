@@ -70,6 +70,9 @@ const User = client.define('user', {
     user_type: {
         type: Sequelize.TEXT,
     },
+    profile_image:{
+        type: Sequelize.TEXT,
+    },
     last_login_at: {
         type: Sequelize.DATE,
     }

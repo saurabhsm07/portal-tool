@@ -1,0 +1,82 @@
+<app-user-dashboard-header [dashboardType]='"entitlement"'></app-user-dashboard-header>
+
+<div class="dashdivbg">
+  <div class="row">
+    <div class="cboth">&nbsp;</div>
+    <div class="text-center dashMnHd col-md-12">My Entitlement</div>
+    <div class="cboth">&nbsp;</div>
+    <div class="dashdivintbgentit col-md-11">
+      <div style="font-size: 16px; padding-bottom: 25px;">Please review your Accelerite product license entitlement and support contract information.
+        <br> This page also provides an activation feature for new licenses and a download link to generate pdf of your 'Proof
+        of Entitlement Certificate'.
+        <br> Please note new transactions may take up to 7 days to populate on this page.</div>
+      <!-- START ENTITLEMENT POPUP -->
+      <div id="entitlepageModal" class="modal fade" style="opacity: 1;">
+        <div class="vertical-alignment-helper">
+          <div class="modal-dialog modal-dialog-width-75per vertical-align-center">
+            <!-- Modal content-->
+            <div class="modal-content modal-content-bg">
+              <div class="modal-header modal-header-bord">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body modal-body-pad" style="padding: 10px 16px 10px 16px !important;">
+                <div class="col-md-12 nopad">
+                  <div id="sfcontent" style="margin-top: -40px;">
+                    <input id="brId" name="brId" type="hidden" value="">
+                    <input id="userEmail" name="userEmail" type="hidden" value="">
+                    <input id="custId" name="custId" type="hidden" value="">
+                    <input id="poId" name="poId" type="hidden" value="">
+                    <div class="fontblueCol fntsize25">Proof of Entitlement</div>
+                    <br>
+                    <div class="bldsize14">You must agree with the license agreement below to download Proof of Entitlement.</div>
+                    <br>
+                    <p>Click on PDF scroll bar to see rest of the agreement.</p>
+                    <object id="sfpoe_pdf" title="" data="https://docs.accelerite.com/app/videos/oldfiles/PCA_EULA.pdf#zoom=110" type="application/pdf"
+                      width="100%" height="380">
+                      <p>
+                        It appears you don't have a PDF plugin for this browser. No worries... you can
+
+                        <a class="eula_down_pdf" href="https://docs.accelerite.com/app/videos/oldfiles/PCA_EULA.pdf">click here to download the PDF file.</a>
+                      </p>
+
+                    </object>
+                    <div class="cboth"></div>
+                    <div id="radio_accept">
+                      <div id="radiobutton" style="display: block;">
+                        <input id="accepteula" name="accepteula" type="radio" value="1"> I accept the terms
+                        <input id="rejecteula" name="accepteula" type="radio" value="2"> I do not accept the terms</div>
+                      <div id="radiobuttongendyn" style="display: none;">Please click here
+                        <input id="gdactivate" name="gdactivate" type="checkbox" value="1"> to activate your Accelerite Enterprise License Agreement and accept these terms on behalf of your
+                        organization.</div>
+                      <div id="sfbtn" class="hiddiv">
+                        <div class="cboth"></div>
+                        <input id="dwnldbtn" class="entitleBtn" name="dwnldbtn" type="button" value="Submit &amp; Download">
+                      </div>
+                      <div id="sfgabtn" class="hiddiv">
+                        <div class="cboth"></div>
+                        <input id="acceptdbtn" class="entitleBtn" name="acceptdbtn" type="button" value="I Accept">
+                      </div>
+                      <div id="sfrjbtn" class="hiddiv">
+                        <div class="cboth"></div>
+                        <input id="rejectbtn" class="entitleBtn" name="rejectbtn" type="button" value="Submit &amp; Reject">
+                      </div>
+                    </div>
+                  </div>
+                  <div id="sfdowntext" class="hiddiv" style="font-size: 25px;">Please wait for sometime to download the pdf.....</div>
+                </div>
+              </div>
+              <div class="modal-footer modal-footer-bord modal-footer-pad"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END ENTITLEMENT POPUP-->
+      <div id="salesContent" style="font-size: 16px;">
+        <h3 style="text-align: center;padding-top: 70px;line-height: 40px;padding-bottom: 70px;color: orange;">This page is Under Construction.
+          <br> Please write to
+          <a href="mailto:support@accelerite.com">support@accelerite.com</a> for any queries.</h3>
+      </div>
+    </div>
+    <div class="cboth"></div>
+  </div>
+</div>

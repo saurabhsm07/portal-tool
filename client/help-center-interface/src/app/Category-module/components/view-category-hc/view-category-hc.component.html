@@ -81,7 +81,7 @@
                                                     <h4>{{subCategory.tagline}}</h4>
                                                     <p>
                                                     <ng-container *ngIf="subCategory.id != 'cpbmModal'; else cpbmModal">
-                                                        <a href="/hc/en-us/categories/{{subCategory.id}}">Explore</a>
+                                                        <a href="/hc/en-us/categories/id/{{subCategory.id}}">Explore</a>
                                                     </ng-container>
                                                     <ng-template #cpbmModal>
                                                             <a href="javascript:void(0);" data-toggle="modal" data-target="#cpbmManualModal">Explore</a>

@@ -5,9 +5,9 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 
-import { Article } from './../../../Articles-module/classes/article';
-import { ArticleService } from './../../../Articles-module/services/article-service/article.service';
-import { conditionallyCreateMapObjectLiteral } from '../../../../../node_modules/@angular/compiler/src/render3/view/util';
+import { Article } from '../../../Articles-module/classes/article';
+import { ArticleService } from '../../../Articles-module/services/article-service/article.service';
+import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({

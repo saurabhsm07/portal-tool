@@ -3,10 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { TicketService } from './../../services/ticket-service/ticket.service';
-import { UserService } from './../../../Helpcenter-module/services/user-service/user.service';
+import { TicketService } from '../../services/ticket-service/ticket.service';
+import { UserService } from '../../../User-module/services/user-service/user.service';
 import { Ticket } from '../../classes/ticket';
-import { async } from '../../../../../node_modules/rxjs/internal/scheduler/async';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-list-tickets',

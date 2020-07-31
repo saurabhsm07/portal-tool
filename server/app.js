@@ -37,6 +37,8 @@ app.use('/api/users/', users) //routes for User Apis
 app.use('/api/tags/', tags) // routes for tagss APIs
 
 
+app.use(express.static(__dirname + '/public'));
+
 /**
  * Un comment below code when UI is deployed
  */

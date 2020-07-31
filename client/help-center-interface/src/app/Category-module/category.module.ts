@@ -10,8 +10,8 @@ import { EditorModule } from '@tinymce/tinymce-angular'
 import { CommonModule } from '@angular/common';
 
 
-import { GuideadminModule } from './../Guideadmin-module/guideadmin.module';
-import { HelpcenterModule } from './../Helpcenter-module/helpcenter.module';
+import { GuideadminModule } from '../Guideadmin-module/guideadmin.module';
+import { HelpcenterModule } from '../Helpcenter-module/helpcenter.module';
 
 import { CategoryRoutingModule } from './routes/category-routing.module';
 

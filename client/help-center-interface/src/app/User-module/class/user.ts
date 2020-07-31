@@ -9,6 +9,7 @@ export class User {
     alias?: Text;
     signature?: Text;
     details?: Text;
+    profile_image?: Text;
     is_admin?: Boolean;
     remember_token?: string;
     role_id?: Boolean;

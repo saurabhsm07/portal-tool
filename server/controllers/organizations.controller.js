@@ -28,6 +28,34 @@ module.exports = {
                })
     },
 
+    /**
+     * 
+     */
+    getByIds: (req, res, next) => {
+        const organization_ids = req.query.ids.split(',');
+
+        Organization.findAll({
+            where: {id : organization_ids},
+            attributes: ['id', 'name']
+        })
+               .then((data) => {
+                   if(data.length > 0){
+                    console.log(`fetch ${data.length} organization records`);
+                    res.status(200).send(data);
+                   }else{
+                        console.log('no data exists in the organization table');
+                        res.status(404).send({status: 404,
+                                              message: `No Organization data available`});
+                }
+               })
+               .catch((err) => {
+                    console.log("ERROR :");
+                    console.log(err.stack);
+                    res.status(500).send(err)
+               })
+
+    },
+
      /**
  * GET: organization record with id.
  */

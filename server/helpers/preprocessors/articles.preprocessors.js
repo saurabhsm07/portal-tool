@@ -1,3 +1,6 @@
+const { Op } = require("sequelize");
+
+
 const preprocessors = {};
 
 
@@ -5,49 +8,59 @@ const preprocessors = {};
 
 
 preprocessors.createListArticlesQuery = (requestParams, queryOn) => {
-    
+
     let dbQueryParameters = {};
-    dbQueryParameters.attributes = ['id', 'title', 'created_at', 'section', 'author'];
+    dbQueryParameters.attributes = ['id', 'title', 'created_at', 'updated_at', 'section', 'author', 'draft'];
     dbQueryParameters.order = [['created_at', 'DESC']];
-    if(queryOn == 'section'){
+    if (queryOn == 'section') {
         dbQueryParameters.where = { section: { id: requestParams.id } };
     }
-    if(requestParams.offset != undefined){
-        dbQueryParameters.offset = parseInt(requestParams.offset);
-    }
-    if(requestParams.limit != undefined){
-        dbQueryParameters.limit = parseInt(requestParams.limit);
+    if (queryOn == 'author') {
+        dbQueryParameters.where = {
+            author: {
+                [Op.substring]: '"id":' + requestParams.id
+            }
+        }
     }
 
-    // console.log(dbQueryParameters)
-    return dbQueryParameters;
+if (requestParams.offset != undefined) {
+    dbQueryParameters.offset = parseInt(requestParams.offset);
 }
+if (requestParams.limit != undefined) {
+    dbQueryParameters.limit = parseInt(requestParams.limit);
+}
+
+// console.log(dbQueryParameters)
+return dbQueryParameters;
+}
+
+
 /**
  * 
  * @param  article : article object to be processed before returning to the client  
  */
 preprocessors.clientArticleObj = (article) => {
     const article_json_fields = ['author', 'review_state', 'draft', 'section', 'label_names'];
-    
-        for(let i=0; i<article_json_fields.length; i++){
-            try{
-                if(article[article_json_fields[i]] != undefined)
-                if(article[article_json_fields[i]] != null){
+
+    for (let i = 0; i < article_json_fields.length; i++) {
+        try {
+            if (article[article_json_fields[i]] != undefined)
+                if (article[article_json_fields[i]] != null) {
                     article[article_json_fields[i]] = JSON.parse(article[article_json_fields[i]]);
                 }
 
-            }
-            catch(error){
-                console.log(error);
-            }
-          
         }
-        if(article.article_form_id != 0){
-            let article_body = JSON.parse(article['body']);
-            article.body = Object.keys(article_body).map((key) => { return {key: key, value: article_body[key]}} );
+        catch (error) {
+            console.log(error);
         }
-        
-    
+
+    }
+    if (article.article_form_id != 0) {
+        let article_body = JSON.parse(article['body']);
+        article.body = Object.keys(article_body).map((key) => { return { key: key, value: article_body[key] } });
+    }
+
+
 
 
     return article;
@@ -64,9 +77,9 @@ preprocessors.saveArticleObj = (article) => {
         title: article.title,
         body: article.body,
         article_form_id: article.article_form_id,
-        locale:'en-us',
+        locale: 'en-us',
         author: article.author,
-        draft:  JSON.stringify(article.draft),
+        draft: JSON.stringify(article.draft),
         comment_disabled: true,
         promoted: true,
         position: 0,
@@ -78,7 +91,7 @@ preprocessors.saveArticleObj = (article) => {
         permission_group_id: 10000,
         created_at: article.created_at,
         updated_at: article.updated_at,
-        edited_at:  article.updated_at,
+        edited_at: article.updated_at,
         review_state: article.review_state,
 
     };
@@ -93,7 +106,7 @@ preprocessors.updateArticleObj = (article) => {
         title: article.title,
         body: article.body,
         header: article.header,
-        locale:'en-us',
+        locale: 'en-us',
         draft: JSON.stringify(article.draft),
         comment_disabled: true,
         promoted: true,
@@ -105,7 +118,7 @@ preprocessors.updateArticleObj = (article) => {
         label_names: article.label_names,
         permission_group_id: 1526652,
         updated_at: article.updated_at,
-        edited_at:  article.updated_at,
+        edited_at: article.updated_at,
         review_state: article.review_state
     }
 }
@@ -119,25 +132,25 @@ preprocessors.updateArticleObj = (article) => {
 preprocessors.processArticlesList = (articles) => {
     articles.map((article) => {
         const article_json_fields = ['author', 'review_state', 'draft', 'section', 'label_names'];
-    
-        for(let i=0; i<article_json_fields.length; i++){
-            try{
-                if(article[article_json_fields[i]] != undefined)
-                if((article[article_json_fields[i]] != null)|| (article[article_json_fields[i]] != '')){
-                    article[article_json_fields[i]] = JSON.parse(article[article_json_fields[i]]);
-                }
+
+        for (let i = 0; i < article_json_fields.length; i++) {
+            try {
+                if (article[article_json_fields[i]] != undefined)
+                    if ((article[article_json_fields[i]] != null) || (article[article_json_fields[i]] != '')) {
+                        article[article_json_fields[i]] = JSON.parse(article[article_json_fields[i]]);
+                    }
 
             }
-            catch(error){
+            catch (error) {
                 console.log(error);
             }
-          
+
         }
-       
+
     })
 
 
-    
+
 
     return articles;
 }

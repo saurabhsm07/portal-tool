@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
-import { Field_value } from './../../../../classes/field_value';
+import { Field_value } from '../../../../classes/field_value';
 import { RequestFieldCreators } from '../../../../../imports/request-field-component-creators';
 import { CustomValidators } from '../../../../../imports/custom-form-validators';
 

@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const fs = require('fs');
 const User = require("./../models/user");
 const UserOrganizations = require("./../models/user.organizations");
 const jwt_token = require('./../helpers/encoders/token_generator');
@@ -8,10 +9,12 @@ module.exports = {
     load: (req, res, next) => {
         const id = req.params.id;
         console.log(id);
-        User.findAll({ where: { id: id } })
+        User.findAll({ attributes: ['created_at', 'updated_at', 'last_login_at','profile_image', 'name', 'email', 'id'],
+                        where: { id: id } })
             .then((data) => {
                 if (data.length == 1) {
                     const user = data[0];
+                    console.log(user);
                     console.log(`fetched user with id = ${user.id}`);
                     res.status(200).send({ user });
                 } else {
@@ -110,24 +113,15 @@ module.exports = {
     update: async (req, res, next) => {
         // console.log(req.body.user)
         const userObj = req.body.user;
-        const updateData = {
-            name: userObj.name,
-            email: userObj.email,
-            password: md5(userObj.password),
-            updated_at: userObj.updated_at
-        }
-
+      
         User.findAll({ where: { id: userObj.id } })
             .then((user) => {
                 if (user.length == 1) {
-                    User.update(updateData, { where: { id: user.id } })
+                    User.update(userObj, { where: { id: userObj.id } })
                         .then((data) => {
                             if (data == 1) {
-                                console.log('update successfull');
-                                res.status(200).send({
-                                    status: 200,
-                                    message: `user with id ${user.id} updated successfully`
-                                });
+                                console.log(`user with id ${userObj.id} updated successfully`);
+                                res.status(200).send(userObj);
                             }
 
                         })
@@ -149,6 +143,72 @@ module.exports = {
                 console.log(err.stack);
                 res.status(500).send(err);
             })
+    },
+
+    updatePassword: async (req, res, next) => {
+        pwdChangeObj = req.body.pwdChangeObj;
+        console.log(pwdChangeObj)
+        
+        User.findAll({where: {id: pwdChangeObj.id}})
+            .then((user) => {
+                if(user.length == 1){
+                    if(user[0].password == md5(pwdChangeObj.currentPwd)){
+                       
+                        if(pwdChangeObj.newPwd.length > 5){
+
+                            if(pwdChangeObj.newPwd == pwdChangeObj.confirmPwd){
+                                User.update({password: md5(pwdChangeObj.newPwd)}, {where: {id: pwdChangeObj.id}})
+                                          .then((data) => {
+                                              console.log("password updated successfully");
+                                              res.status(200).send({status: true, msg: 'password updated successfully.'})
+                                          })
+                                          .catch((err) => {
+                                            console.log("ERROR :");
+                                            console.log(err.stack);
+                                            res.status(500).send(err);
+                                          })
+                            }else{
+                                console.log("new password and confirm password do not match");
+                                res.status(200).send({status: false, msg: 'new password and confirm password do not match.'})
+                            }
+                        }else{
+                            console.log("new password is less the 5 characters in size.");
+                                res.status(200).send({status: false, msg: 'new password is less the 5 characters in size.'})
+                        }
+                        
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log("ERROR :");
+                console.log(err.stack);
+                res.status(500).send(err);
+            })
+    },
+
+    updateProfilePicture: (req, res, next) => {
+        console.log(req.file)
+        fs.rename(req.file.path, req.file.destination + req.file.originalname, (error) => {
+            if(error){
+                console.log(error);
+                res.status(200).send({status:false, msg: error});
+            }else{
+                userId = req.file.originalname.split('_')[0];
+                console.log(userId);
+                User.update({profile_image: req.file.originalname}, {where: {id: parseInt(userId)}})
+                    .then((user) => {
+                        console.log(user);
+                        res.status(200).send({status:true, msg: 'image uploaded successfully'});
+                    })
+                    .catch((err) => {
+                        console.log("ERROR :");
+                        console.log(err.stack);
+                        res.status(500).send(err);
+                    })
+            }
+            
+        });
+        
     },
 
     delete: async (req, res, next) => {

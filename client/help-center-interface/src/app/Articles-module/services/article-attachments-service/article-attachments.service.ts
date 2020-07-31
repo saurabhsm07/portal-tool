@@ -45,7 +45,7 @@ public getArticleAttachments(article_id: number) : Observable<Article_Attachment
 }
 
 public postArticleAttachment(attachment: Article_Attachment) : Observable<Article_Attachment> {
-  console.log(attachment.file_data)
+  
   this.article_id = attachment.article_id.toString();
   let formData: FormData = new FormData();
   

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Ticket } from './../../classes/ticket';
+import { Ticket } from '../../classes/ticket';
 
 @Pipe({
   name: 'searchTicket'

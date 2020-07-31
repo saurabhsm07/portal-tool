@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -8,7 +8,8 @@ import { ArticleService } from '../../../services/article-service/article.servic
 @Component({
   selector: 'app-view-article-hc',
   templateUrl: './view-article-hc.component.html',
-  styleUrls: ['./view-article-hc.component.scss']
+  styleUrls: ['./view-article-hc.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ViewArticleHcComponent implements OnInit {
 

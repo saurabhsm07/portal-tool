@@ -12,6 +12,11 @@ const organizations = require('./../../../controllers/organizations.controller')
 router.route('/').get(passport.authenticate('jwt', {session: false}),authorize.isAgent, organizations.getAll);
 
 /**
+ * GET: api path to get list of organizations from the database.
+ */
+router.route('/show_many').get(passport.authenticate('jwt', {session: false}), organizations.getByIds);
+
+/**
  * GET: api path to get organization record with id.
  */
 router.route('/id/:id').get(passport.authenticate('jwt', {session: false}),authorize.isAgent, organizations.getById);

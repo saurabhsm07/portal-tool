@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Ticket } from './../../classes/ticket';
+import { Ticket } from '../../classes/ticket';
 import { Field_value } from '../../classes/field_value';
-import { Comment } from './../../classes/comment';
+import { Comment } from '../../classes/comment';
 
 @Injectable({
   providedIn: 'root'
