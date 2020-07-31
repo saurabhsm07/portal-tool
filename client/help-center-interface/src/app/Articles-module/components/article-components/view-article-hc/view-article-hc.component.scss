@@ -11,10 +11,41 @@
     height: 100px;
 }
 
-.docsSection{
-    margin-right: 150px;
-    display: inline-table;
-    .col-md-3{
-        display: inline-block;
-    }   
-   }
+.article-body{
+    #downloadFiles {
+        padding-bottom: 20px;
+    
+        .downloadbox {
+            display: inline-block;
+          }
+    }
+    .docsSection{
+        font-size: 100px;
+        margin-right: 150px;
+        display: inline-table;
+        
+        .col-md-3{
+            display: inline-block;
+            vertical-align: top;
+        }   
+       }
+
+    #hotfixSection{
+        margin-left: 35px !important;
+
+        .HotFixC{
+            padding-left:0px;
+            padding-right: 0px;
+            display: inline-block;
+            width: 33%;
+            }
+            
+            .HotFixC  > a{
+                color : #ffffff;
+                text-decoration:none;
+                }
+
+    }
+    
+
+}
