@@ -20,6 +20,7 @@ const articleRoutes: Routes = [
   { path: 'guide/articles/edit/id/:id', component: EditArticleComponent, canActivate: [AuthGuard, AgentGuard] },
   {path: 'guide/home', redirectTo: 'guide/articles/list', pathMatch: 'full' },
   { path: 'hc/en-us/articles/id/:id', component: ViewArticleHcComponent, canActivate: [AuthGuard]},
+  {path: 'hc/en-us/articles/:id', redirectTo: 'hc/en-us/articles/id/:id', pathMatch: 'full' },
   { path: 'hc/en-us/articles/contributions', component: ListArticlesHcComponent, canActivate: [AuthGuard]},
   { path: 'hc/en-us/articles/*', component: ArticleNotFoundComponent}
 ];
