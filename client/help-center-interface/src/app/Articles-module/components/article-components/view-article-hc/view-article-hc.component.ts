@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'jquery';
 
 import { Article } from '../../../classes/article';
 import { ArticleService } from '../../../services/article-service/article.service';
@@ -21,6 +22,10 @@ export class ViewArticleHcComponent implements OnInit {
 
   ngOnInit() {
     this.fetchArticleData();
+    
+    $(document).ready(function(){
+      $('.dwnlink').show();
+    })
   }
 
 
